@@ -46,9 +46,7 @@ export function NavbarHome(props: any) {
         <Stack className="header-main" flexDirection={"row"}>
           <Box>
             <NavLink to={"/"} className="header-logo">
-              <p className="logo">
-                Lazzat<span>Food</span>
-              </p>
+              <img className="logo" src="./images/logo_lazzat.png" alt="" />
             </NavLink>
           </Box>
           <Box className="header-search-container">

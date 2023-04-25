@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../css/App.css";
 import "../css/footer.css";
 import "../css/navbar.css";
+import "../css/home.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { MarketPage } from "./screens/MarketPage";
 import { CommunityPage } from "./screens/CommunityPage";
