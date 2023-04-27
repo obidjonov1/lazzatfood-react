@@ -1072,7 +1072,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 /* #FOOTER */
-footer {
+.footer {
   background: var(--eerie-black);
   padding: 50px 20px;
   border-top: 5px solid var(--color);
