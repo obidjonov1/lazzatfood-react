@@ -12,26 +12,26 @@ import { HelpPage } from "./screens/HelpPage";
 import { LoginPage } from "./screens/LoginPage";
 import { HomePage } from "./screens/HomePage";
 import { NavbarHome } from "./components/header";
-import { NavbarMarket } from "./components/header/market";
-import { NavbarOthers } from "./components/header/others";
+// import { NavbarMarket } from "./components/header/market";
+// import { NavbarOthers } from "./components/header/others";
 import { Footer } from "./components/footer";
 
 function App() {
   const [path, setPath] = useState();
-  const main_path = window.location.pathname;
+  // const main_path = window.location.pathname;
 
   return (
     <Router>
-      {main_path == "/" ? (
+      {/* {main_path == "/" ? (
         <NavbarHome setPath={setPath} />
-      ) : main_path.includes("/market") ? (
+      ) : main_path.includes("/markets") ? (
         <NavbarMarket setPath={setPath} />
       ) : (
         <NavbarOthers setPath={setPath} />
-      )}
-
+      )} */}
+      <NavbarHome/>
       <Switch>
-        <Route path="/market">
+        <Route path="/markets">
           <MarketPage />
         </Route>
         <Route path="/community">

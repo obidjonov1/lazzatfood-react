@@ -2,8 +2,12 @@ import { Badge, IconButton } from "@mui/material";
 import { Box, Container, Stack } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { BsFacebook, BsWhatsapp } from "react-icons/bs";
-import { AiFillYoutube, AiOutlineInstagram } from "react-icons/ai";
+import { BsFacebook, BsWhatsapp, BsFileEarmarkPerson } from "react-icons/bs";
+import {
+  AiFillYoutube,
+  AiOutlineInstagram,
+  AiOutlineSearch,
+} from "react-icons/ai";
 import { IoPersonOutline, IoCallOutline } from "react-icons/io5";
 import { BiShoppingBag, BiChevronDown } from "react-icons/bi";
 import { CssVarsProvider } from "@mui/joy/styles";
@@ -90,14 +94,18 @@ export function NavbarHome(props: any) {
                   className="search-field"
                   placeholder="Izlash, misol uchun kolbasa..."
                 />
-                <button className="search-btn"></button>
+                <AiOutlineSearch className="search-btn" />
               </div>
               <div className="header-user-actions">
-                <NavLink to={"/help"} className="help">
-                  <IoCallOutline className="action-btn help_call" />
-                  Yordam
+                <NavLink
+                  to={"#"}
+                  activeClassName="underline"
+                  className="menu-title my_page"
+                >
+                  <BsFileEarmarkPerson className="my-page_icon" />
+                  My page
                 </NavLink>
-                <NavLink className="user-link" to={"#"}></NavLink>
+                {/* <NavLink className="user-link" to={"#"}></NavLink> */}
                 <CssVarsProvider>
                   <button
                     className="action-btn user-icon login-btn-action"
@@ -303,9 +311,13 @@ export function NavbarHome(props: any) {
             <div className="container">
               <ul className="desktop-menu-category-list">
                 <li className="menu-category">
-                  <a href="./index.html" className="menu-title">
+                  <NavLink
+                    to={"/"}
+                    activeClassName="underline"
+                    className="menu-title"
+                  >
                     Home
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="menu-category">
                   <a href="#" className="menu-title">
@@ -424,26 +436,42 @@ export function NavbarHome(props: any) {
                   </div>
                 </li>
                 <li className="menu-category">
-                  <a href="./markets.html" className="menu-title">
+                  <NavLink
+                    to={"/markets"}
+                    activeClassName="underline"
+                    className="menu-title"
+                  >
                     Markets
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="menu-category">
-                  <a href="#" className="menu-title">
+                  <NavLink
+                    to={"/order"}
+                    activeClassName="underline"
+                    className="menu-title"
+                  >
+                    Order
+                  </NavLink>
+                </li>
+                <li className="menu-category">
+                  <NavLink
+                    to={"/community"}
+                    activeClassName="underline"
+                    className="menu-title"
+                  >
                     Community
-                  </a>
+                  </NavLink>
                 </li>
-                <li className="menu-category">
-                  <a href="#" className="menu-title">
-                    Yangiliklar
-                  </a>
-                </li>
+
                 <li className="menu-category">
                   <a href="#" className="menu-title">
                     Biz haqimizda
                   </a>
                   <BiChevronDown />
                   <ul className="dropdown-list">
+                    <li className="dropdown-item">
+                      <a href="#app">Yangiliklar</a>
+                    </li>
                     <li className="dropdown-item">
                       <a href="#app">Bizning Ilova</a>
                     </li>
@@ -453,16 +481,17 @@ export function NavbarHome(props: any) {
                   </ul>
                 </li>
                 <li className="menu-category">
-                  <a href="#" className="menu-title">
-                    Hamkorlik
-                  </a>
+                  <NavLink
+                    to={"/help"}
+                    activeClassName="underline"
+                    className="menu-title"
+                  >
+                    Help
+                  </NavLink>
                 </li>
               </ul>
             </div>
           </nav>
-
-          
-
         </div>
       </Container>
     </div>
