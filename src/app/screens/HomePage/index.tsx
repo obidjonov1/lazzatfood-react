@@ -3,7 +3,7 @@ import React from "react";
 
 export function HomePage() {
   return (
-    <div style={{ height: "700px" }}>
+    <div>
       <Container>
         <div>HomePage</div>
       </Container>

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../css/App.css";
 import "../css/footer.css";
 import "../css/navbar.css";
-import "../css/home.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { MarketPage } from "./screens/MarketPage";
 import { CommunityPage } from "./screens/CommunityPage";
@@ -12,24 +11,23 @@ import { HelpPage } from "./screens/HelpPage";
 import { LoginPage } from "./screens/LoginPage";
 import { HomePage } from "./screens/HomePage";
 import { NavbarHome } from "./components/header";
-// import { NavbarMarket } from "./components/header/market";
-// import { NavbarOthers } from "./components/header/others";
+import { NavbarMarket } from "./components/header/market";
+import { NavbarOthers } from "./components/header/others";
 import { Footer } from "./components/footer";
 
 function App() {
   const [path, setPath] = useState();
-  // const main_path = window.location.pathname;
+  const main_path = window.location.pathname;
 
   return (
     <Router>
-      {/* {main_path == "/" ? (
+      {main_path == "/" ? (
         <NavbarHome setPath={setPath} />
       ) : main_path.includes("/markets") ? (
         <NavbarMarket setPath={setPath} />
       ) : (
         <NavbarOthers setPath={setPath} />
-      )} */}
-      <NavbarHome/>
+      )}
       <Switch>
         <Route path="/markets">
           <MarketPage />

@@ -11,9 +11,15 @@ import {
 import { IoPersonOutline, IoCallOutline } from "react-icons/io5";
 import { BiShoppingBag, BiChevronDown } from "react-icons/bi";
 import { CssVarsProvider } from "@mui/joy/styles";
-import "../../../css/home.css";
 import Modal from "@mui/joy/Modal";
 import { ModalClose, ModalDialog, Typography, Button, Sheet } from "@mui/joy";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+// import { Pagination, Navigation } from "swiper";
+import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
+SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 export function NavbarHome(props: any) {
   const [open, setOpen] = React.useState<boolean>(false);
@@ -310,7 +316,7 @@ export function NavbarHome(props: any) {
           <nav className="desktop-navigation-menu">
             <div className="container">
               <ul className="desktop-menu-category-list">
-                <li className="menu-category">
+                <li className="menu-category" onClick={props.setPath}>
                   <NavLink
                     to={"/"}
                     activeClassName="underline"
@@ -319,7 +325,7 @@ export function NavbarHome(props: any) {
                     Home
                   </NavLink>
                 </li>
-                <li className="menu-category">
+                <li className="menu-category" onClick={props.setPath}>
                   <a href="#" className="menu-title">
                     Kategoriyalar
                   </a>
@@ -435,7 +441,7 @@ export function NavbarHome(props: any) {
                     </ul>
                   </div>
                 </li>
-                <li className="menu-category">
+                <li className="menu-category" onClick={props.setPath}>
                   <NavLink
                     to={"/markets"}
                     activeClassName="underline"
@@ -444,16 +450,16 @@ export function NavbarHome(props: any) {
                     Markets
                   </NavLink>
                 </li>
-                <li className="menu-category">
+                <li className="menu-category" onClick={props.setPath}>
                   <NavLink
-                    to={"/order"}
+                    to={"/orders"}
                     activeClassName="underline"
                     className="menu-title"
                   >
                     Order
                   </NavLink>
                 </li>
-                <li className="menu-category">
+                <li className="menu-category" onClick={props.setPath}>
                   <NavLink
                     to={"/community"}
                     activeClassName="underline"
@@ -463,7 +469,7 @@ export function NavbarHome(props: any) {
                   </NavLink>
                 </li>
 
-                <li className="menu-category">
+                <li className="menu-category" onClick={props.setPath}>
                   <a href="#" className="menu-title">
                     Biz haqimizda
                   </a>
@@ -480,7 +486,7 @@ export function NavbarHome(props: any) {
                     </li>
                   </ul>
                 </li>
-                <li className="menu-category">
+                <li className="menu-category" onClick={props.setPath}>
                   <NavLink
                     to={"/help"}
                     activeClassName="underline"
@@ -493,6 +499,35 @@ export function NavbarHome(props: any) {
             </div>
           </nav>
         </div>
+
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={30}
+          loop={true}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          modules={[Pagination, Navigation]}
+          className="mySwiper"
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: true,
+          }}
+        >
+          <SwiperSlide>
+            <img src="./images/slide.jpeg" alt="" className="slide_img" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src="./images/slide1.png" alt="" className="slide_img" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src="./images/slide3.jpeg" alt="" className="slide_img" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src="./images/slide5.jpeg" alt="" className="slide_img" />
+          </SwiperSlide>
+        </Swiper>
       </Container>
     </div>
   );
