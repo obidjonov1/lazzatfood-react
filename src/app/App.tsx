@@ -8,6 +8,8 @@ import { CommunityPage } from "./screens/CommunityPage";
 import { OrdersPage } from "./screens/OrdersPage";
 import { MemberPage } from "./screens/MemberPage";
 import { HelpPage } from "./screens/HelpPage";
+import { NewsPage } from "./screens/NewsPage";
+import { AboutUsPage } from "./screens/AboutUsPage";
 import { LoginPage } from "./screens/LoginPage";
 import { HomePage } from "./screens/HomePage";
 import { NavbarHome } from "./components/header";
@@ -40,6 +42,12 @@ function App() {
         </Route>
         <Route path="/member-page">
           <MemberPage />
+        </Route>
+        <Route path="/news">
+          <NewsPage />
+        </Route>
+        <Route path="/about-us">
+          <AboutUsPage />
         </Route>
         <Route path="/help">
           <HelpPage />

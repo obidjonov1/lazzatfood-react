@@ -37,8 +37,8 @@ export function NavbarMarket(props: any) {
 
   return (
     <div className="format home-navbar">
-      <Container>
-        <div>
+      <div className="header_top">
+        <Container>
           <div className="header-top">
             <div className="container">
               <ul className="header-social-container">
@@ -79,6 +79,11 @@ export function NavbarMarket(props: any) {
               </div>
             </div>
           </div>
+        </Container>
+      </div>
+
+      <div className="header_main">
+        <Container>
           <div className="header-main">
             <div className="container">
               <NavLink to={"/"} className="header-logo">
@@ -96,9 +101,10 @@ export function NavbarMarket(props: any) {
               </div>
               <div className="header-user-actions">
                 <NavLink
-                  to={"#"}
+                  to={"member-page"}
                   activeClassName="underline"
                   className="menu-title my_page"
+                  onClick={props.setPath}
                 >
                   <BsFileEarmarkPerson className="my-page_icon" />
                   My page
@@ -304,194 +310,198 @@ export function NavbarMarket(props: any) {
               </div>
             </div>
           </div>
+        </Container>
+      </div>
 
-          <nav className="desktop-navigation-menu">
-            <div className="container">
-              <ul className="desktop-menu-category-list">
-                <li className="menu-category" onClick={props.setPath}>
-                  <NavLink
-                    to={"/"}
-                    activeClassName="underline"
-                    className="menu-title"
-                  >
-                    Home
-                  </NavLink>
-                </li>
-                <li className="menu-category" onClick={props.setPath}>
-                  <a href="#" className="menu-title">
-                    Kategoriyalar
-                  </a>
-                  <BiChevronDown />
-                  <div className="dropdown-panel">
-                    <ul className="dropdown-panel-list">
-                      <li className="menu-title">
-                        <a href="#">Elektr qurilmalar</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="#">Uy jihozlari</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="#">Oshxona buyumlar</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="#">Avoto anjomlar</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="#">Tibbiy uskunalar</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="#">
-                          <img
-                            src="./images/electro.JPEG"
-                            alt=""
-                            width="250"
-                            height="119"
-                          />
-                        </a>
-                      </li>
-                    </ul>
-                    <ul className="dropdown-panel-list">
-                      <li className="menu-title">
-                        <a href="#">Go'zallik va Sog'lik</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="#">Vitaminlar</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="#">Dorilar</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="#">Pardozlash anjomlari</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="#">Koreya kosmetikasi</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="#">
-                          <img
-                            src="./images/vitamin.JPEG"
-                            alt=""
-                            width="250"
-                            height="119"
-                          />
-                        </a>
-                      </li>
-                    </ul>
-                    <ul className="dropdown-panel-list">
-                      <li className="menu-title">
-                        <a href="#">Oila do'koni</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="#">Qishki buyumlar</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="#">Joynamozlar</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="#">Bolalar uchun</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="#">Sport</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="#">
-                          <img
-                            src="./images/familyItem.JPEG"
-                            alt=""
-                            width="250"
-                            height="119"
-                          />
-                        </a>
-                      </li>
-                    </ul>
-                    <ul className="dropdown-panel-list">
-                      <li className="menu-title">
-                        <a href="#">Halollik sertfikatlari</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="certificate.html">Go'sht</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="certificate.html">Kolbasa va Sasiska</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="certificate.html">Sut mahsulotlari</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="certificate.html">Kanserva mahsulotlari</a>
-                      </li>
-                      <li className="panel-list-item">
-                        <a href="#">
-                          <img
-                            src="./images/halalSer.JPEG"
-                            alt=""
-                            width="250"
-                            height="119"
-                          />
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li className="menu-category" onClick={props.setPath}>
-                  <NavLink
-                    to={"/markets"}
-                    activeClassName="underline"
-                    className="menu-title"
-                  >
-                    Markets
-                  </NavLink>
-                </li>
-                <li className="menu-category" onClick={props.setPath}>
-                  <NavLink
-                    to={"/orders"}
-                    activeClassName="underline"
-                    className="menu-title"
-                  >
-                    Order
-                  </NavLink>
-                </li>
-                <li className="menu-category" onClick={props.setPath}>
-                  <NavLink
-                    to={"/community"}
-                    activeClassName="underline"
-                    className="menu-title"
-                  >
-                    Community
-                  </NavLink>
-                </li>
-
-                <li className="menu-category" onClick={props.setPath}>
-                  <a href="#" className="menu-title">
-                    Biz haqimizda
-                  </a>
-                  <BiChevronDown />
-                  <ul className="dropdown-list">
-                    <li className="dropdown-item">
-                      <a href="#app">Yangiliklar</a>
+      <Container>
+        <nav className="desktop-navigation-menu">
+          <div className="container">
+            <ul className="desktop-menu-category-list">
+              <li className="menu-category" onClick={props.setPath}>
+                <NavLink
+                  to={"/"}
+                  activeClassName="underline"
+                  className="menu-title"
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li className="menu-category" onClick={props.setPath}>
+                <a href="#" className="menu-title">
+                  Kategoriyalar
+                </a>
+                <BiChevronDown />
+                <div className="dropdown-panel">
+                  <ul className="dropdown-panel-list">
+                    <li className="menu-title">
+                      <a href="#">Elektr qurilmalar</a>
                     </li>
-                    <li className="dropdown-item">
-                      <a href="#app">Bizning Ilova</a>
+                    <li className="panel-list-item">
+                      <a href="#">Uy jihozlari</a>
                     </li>
-                    <li className="dropdown-item">
-                      <a href="./about-us.html">Karyera</a>
+                    <li className="panel-list-item">
+                      <a href="#">Oshxona buyumlar</a>
+                    </li>
+                    <li className="panel-list-item">
+                      <a href="#">Avoto anjomlar</a>
+                    </li>
+                    <li className="panel-list-item">
+                      <a href="#">Tibbiy uskunalar</a>
+                    </li>
+                    <li className="panel-list-item">
+                      <a href="#">
+                        <img
+                          src="./images/electro.JPEG"
+                          alt=""
+                          width="250"
+                          height="119"
+                        />
+                      </a>
                     </li>
                   </ul>
-                </li>
-                <li className="menu-category" onClick={props.setPath}>
-                  <NavLink
-                    to={"/help"}
-                    activeClassName="underline"
-                    className="menu-title"
-                  >
-                    Help
-                  </NavLink>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
+                  <ul className="dropdown-panel-list">
+                    <li className="menu-title">
+                      <a href="#">Go'zallik va Sog'lik</a>
+                    </li>
+                    <li className="panel-list-item">
+                      <a href="#">Vitaminlar</a>
+                    </li>
+                    <li className="panel-list-item">
+                      <a href="#">Dorilar</a>
+                    </li>
+                    <li className="panel-list-item">
+                      <a href="#">Pardozlash anjomlari</a>
+                    </li>
+                    <li className="panel-list-item">
+                      <a href="#">Koreya kosmetikasi</a>
+                    </li>
+                    <li className="panel-list-item">
+                      <a href="#">
+                        <img
+                          src="./images/vitamin.JPEG"
+                          alt=""
+                          width="250"
+                          height="119"
+                        />
+                      </a>
+                    </li>
+                  </ul>
+                  <ul className="dropdown-panel-list">
+                    <li className="menu-title">
+                      <a href="#">Oila do'koni</a>
+                    </li>
+                    <li className="panel-list-item">
+                      <a href="#">Qishki buyumlar</a>
+                    </li>
+                    <li className="panel-list-item">
+                      <a href="#">Joynamozlar</a>
+                    </li>
+                    <li className="panel-list-item">
+                      <a href="#">Bolalar uchun</a>
+                    </li>
+                    <li className="panel-list-item">
+                      <a href="#">Sport</a>
+                    </li>
+                    <li className="panel-list-item">
+                      <a href="#">
+                        <img
+                          src="./images/familyItem.JPEG"
+                          alt=""
+                          width="250"
+                          height="119"
+                        />
+                      </a>
+                    </li>
+                  </ul>
+                  <ul className="dropdown-panel-list">
+                    <li className="menu-title">
+                      <a href="#">Halollik sertfikatlari</a>
+                    </li>
+                    <li className="panel-list-item">
+                      <a href="certificate.html">Go'sht</a>
+                    </li>
+                    <li className="panel-list-item">
+                      <a href="certificate.html">Kolbasa va Sasiska</a>
+                    </li>
+                    <li className="panel-list-item">
+                      <a href="certificate.html">Sut mahsulotlari</a>
+                    </li>
+                    <li className="panel-list-item">
+                      <a href="certificate.html">Kanserva mahsulotlari</a>
+                    </li>
+                    <li className="panel-list-item">
+                      <a href="#">
+                        <img
+                          src="./images/halalSer.JPEG"
+                          alt=""
+                          width="250"
+                          height="119"
+                        />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li className="menu-category" onClick={props.setPath}>
+                <NavLink
+                  to={"/markets"}
+                  activeClassName="underline"
+                  className="menu-title"
+                >
+                  Markets
+                </NavLink>
+              </li>
+              <li className="menu-category" onClick={props.setPath}>
+                <NavLink
+                  to={"/orders"}
+                  activeClassName="underline"
+                  className="menu-title"
+                >
+                  Order
+                </NavLink>
+              </li>
+              <li className="menu-category" onClick={props.setPath}>
+                <NavLink
+                  to={"/community"}
+                  activeClassName="underline"
+                  className="menu-title"
+                >
+                  Community
+                </NavLink>
+              </li>
+
+              <li className="menu-category" onClick={props.setPath}>
+                <a href="#" className="menu-title">
+                  About Us
+                </a>
+                <BiChevronDown />
+                <ul className="dropdown-list">
+                  <li className="dropdown-item">
+                    <NavLink to={"/news"} onClick={props.setPath}>
+                      Yangiliklar
+                    </NavLink>
+                  </li>
+                  <li className="dropdown-item">
+                    <NavLink to={"/about-us"} onClick={props.setPath}>
+                      Karyera
+                    </NavLink>
+                  </li>
+                </ul>
+              </li>
+              <li className="menu-category" onClick={props.setPath}>
+                <NavLink
+                  to={"/help"}
+                  activeClassName="underline"
+                  className="menu-title"
+                >
+                  Help
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        </nav>
       </Container>
+
       {/* <!-- Banner --> */}
       <div className="banner_section">
         <img
