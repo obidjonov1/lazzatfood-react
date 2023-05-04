@@ -1,28 +1,27 @@
 import { Container } from "@mui/system";
 import React from "react";
 
-
 export function AboutUsPage() {
   return (
     <Container>
       <div className="about-us__title">
-        <h2>Assalomu Alaykum !</h2>
-        <p>Sahifamizga xush kelibsiz !</p>
+        <h2>Welcome !</h2>
+        <p>We are glad to see you here !</p>
         <span>
-          Bizning asosiy maqsadimiz Koreyadagi hayotingizni yanada qiziqarli
-          qilishdir. Biz o'z oldimizga qo'ygan eng muhim maqsadimiz - sizga
-          sifatli mahsulot va xizmatlarni taklif qilishdir. Tashkil
-          etilganimizdan beri biz bir qator xizmatlarni, jumladan, mobil hisobni
-          to'ldirish va onlayn-do'konni ishga tushirdik. Sizning doimiy
-          qo'llab-quvvatlashingiz tufayli biz muhim tashkilotga aylandik. <br />
+          Our main objective is to make your life in Korea more enjoyable. We
+          have made it our primary goal to serve you with top-class goods and
+          services. Since our establishment, we have launched numerous services
+          including mobile top-up and online shopping, and thanks to your
+          continuous support we have grown into a sizable organization. <br />
           <br />
-          Bugungi kunda bizning xizmatlarimizdan har kuni o'n mingdan ortiq
-          mijozlar foydalanadi. Bundan tashqari, biz hamkorlarimizga o'z
-          minnatdorchiligimizni bildiramiz va kelgusida ham samarali va
-          muvaffaqiyatli hamkorlikni davom ettirishga umid qilamiz. Bizning
-          mahsulot va xizmatlarimizni tanlaganingiz uchun jamoamiz nomidan
-          minnatdorchilik bildiramiz. Sizning qo'llab-quvvatlashingiz biz uchun
-          juda muhim va sizga xizmat qilish bizning ustuvor vazifamizdir.
+          We now have more than ten thousand loyal customers who use our
+          services on daily basis. In addition, we would like to extend our
+          gratitude and appreciation to our partners and hope to continue our
+          effective and successful cooperation in the future.
+          <br /> <br />
+          On behalf of our team, we would like to thank you for choosing us.
+          Your support is important to us and your satisfaction is our top
+          priority.
         </span>
       </div>
     </Container>

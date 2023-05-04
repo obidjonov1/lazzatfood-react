@@ -181,8 +181,6 @@ body::-webkit-scrollbar-thumb:hover {
   pointer-events: all;
 }
 
-
-
 /* #BANNER */
 .banner {
   margin-bottom: 30px;
@@ -915,4 +913,35 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .modal-show {
   width: 420px;
+}
+
+.help_page {
+  margin: 80px auto;
+  width: 80%;
+}
+
+.help_page .help-page_top {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.help_page .help_accardion {
+  background: #f7f6f6;
+  color: #171427;
+}
+
+.help_accardion .help-accardion_title {
+  width: 100% !important;
+  padding: 5px;
+}
+.css-1m4ljmh-MuiTypography-root {
+  font-family: "Poppins", sans-serif !important;
+}
+
+.help-accardion_subtitle {
+  font-family: "Poppins", sans-serif !important;
+  padding: 10px;
+}
+.css-o4b71y-MuiAccordionSummary-content.Mui-expanded {
+  margin: 0 !important;
 }

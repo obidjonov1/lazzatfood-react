@@ -249,6 +249,7 @@
   letter-spacing: 0.5px;
   padding: 8px 0;
   transition: var(--transition-timing);
+  cursor: pointer;
 }
 
 .desktop-menu-category-list .menu-category > .menu-title:hover {

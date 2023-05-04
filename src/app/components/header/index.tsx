@@ -335,9 +335,7 @@ export function NavbarHome(props: any) {
                 </NavLink>
               </li>
               <li className="menu-category" onClick={props.setPath}>
-                <a href="#" className="menu-title">
-                  Kategoriyalar
-                </a>
+                <p className="menu-title">Kategoriyalar</p>
                 <BiChevronDown />
                 <div className="dropdown-panel">
                   <ul className="dropdown-panel-list">
@@ -479,19 +477,17 @@ export function NavbarHome(props: any) {
               </li>
 
               <li className="menu-category" onClick={props.setPath}>
-                <a href="#" className="menu-title">
-                  About Us
-                </a>
+                <p className="menu-title">About Us</p>
                 <BiChevronDown />
                 <ul className="dropdown-list">
                   <li className="dropdown-item">
                     <NavLink to={"/news"} onClick={props.setPath}>
-                      Yangiliklar
+                      News
                     </NavLink>
                   </li>
                   <li className="dropdown-item">
                     <NavLink to={"/about-us"} onClick={props.setPath}>
-                      Karyera
+                      About us
                     </NavLink>
                   </li>
                 </ul>
