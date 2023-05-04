@@ -805,7 +805,7 @@ body::-webkit-scrollbar-thumb:hover {
           Additional HTML(CSS)  
 ================================================= */
 /* About us HTML */
-.pages {
+/* .pages {
   display: flex;
   margin: 2rem 0 2.5rem 0;
   font-size: 15px;
@@ -836,7 +836,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .about-us__title span {
   line-height: 2;
-}
+} */
 
 /* Sertificate section */
 .sertificates {

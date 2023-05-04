@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
+/* New Page style */
 .news-container {
   margin: 80px 0 80px 0;
 }
@@ -46,4 +47,25 @@
   display: flex;
   justify-content: end;
   margin-right: 20px;
+}
+/* New Page style end */
+
+.about-us__title {
+  width: 800px;
+  margin: 6rem auto;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: 1px;
+  font-style: italic;
+}
+.about-us__title h2,
+.about-us__title p {
+  text-align: center;
+}
+.about-us__title p {
+  margin: 2rem 0;
+}
+.about-us__title span {
+  line-height: 2;
 }
