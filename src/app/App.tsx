@@ -30,6 +30,7 @@ function App() {
       ) : (
         <NavbarOthers setPath={setPath} />
       )}
+
       <Switch>
         <Route path="/markets">
           <MarketPage />
@@ -58,9 +59,10 @@ function App() {
         <Route path="/">
           <HomePage />
         </Route>
+        {/* {main_path !== "/" && <NavbarOthers setPath={setPath} />} */}
       </Switch>
 
-      <Footer />
+      <Footer setPath={setPath} />
     </Router>
   );
 }

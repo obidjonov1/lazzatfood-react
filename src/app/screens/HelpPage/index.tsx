@@ -15,16 +15,9 @@ export function HelpPage() {
   /** INITIALIZATIONS **/
   const [value, setValue] = useState("1");
 
-  const [expanded, setExpanded] = React.useState<string | false>(false);
-
   const handleChanges = (event: any, newValue: string) => {
     setValue(newValue);
   };
-
-  const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : false);
-    };
 
   const rules = [
     "In order to use the site fully, that is, to make orders and use live communications, you must register.",

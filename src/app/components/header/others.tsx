@@ -88,7 +88,7 @@ export function NavbarOthers(props: any) {
         <Container>
           <div className="header-main">
             <div className="container">
-              <NavLink to={"/"} className="header-logo">
+              <NavLink to={"/"} className="header-logo" onClick={props.setPath}>
                 <img className="logo" src="./images/logo_lazzat.png" alt="" />
               </NavLink>
 
