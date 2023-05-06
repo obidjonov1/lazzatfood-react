@@ -16,6 +16,7 @@ import { NavbarHome } from "./components/header";
 import { NavbarMarket } from "./components/header/market";
 import { NavbarOthers } from "./components/header/others";
 import { Footer } from "./components/footer";
+import { CertificatePage } from "./screens/CertificatePage";
 
 function App() {
   const [path, setPath] = useState();
@@ -32,6 +33,9 @@ function App() {
       )}
 
       <Switch>
+        <Route path="/certificates">
+          <CertificatePage />
+        </Route>
         <Route path="/markets">
           <MarketPage />
         </Route>
@@ -59,7 +63,6 @@ function App() {
         <Route path="/">
           <HomePage />
         </Route>
-        {/* {main_path !== "/" && <NavbarOthers setPath={setPath} />} */}
       </Switch>
 
       <Footer setPath={setPath} />

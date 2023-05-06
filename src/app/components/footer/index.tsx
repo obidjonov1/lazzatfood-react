@@ -49,23 +49,23 @@ export function Footer(props: any) {
             <strong>Halal Certificates</strong>
             <ul>
               <li>
-                <NavLink to={"#"} onClick={props.setPath}>
+                <NavLink to={"/certificates"} onClick={props.setPath}>
                   Salami and Sausage
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"#"} onClick={props.setPath}>
+                <NavLink to={"/certificates"} onClick={props.setPath}>
                   Meat
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"#"} onClick={props.setPath}>
+                <NavLink to={"/certificates"} onClick={props.setPath}>
                   Diary Products
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/about-us"} onClick={props.setPath}>
-                  About Us
+                <NavLink to={"/certificates"} onClick={props.setPath}>
+                  Other Products
                 </NavLink>
               </li>
             </ul>

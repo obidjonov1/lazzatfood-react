@@ -421,19 +421,29 @@ export function NavbarHome(props: any) {
                   </ul>
                   <ul className="dropdown-panel-list">
                     <li className="menu-title">
-                      <a href="#">Halollik sertfikatlari</a>
+                      <NavLink to={"/certificates"} onClick={props.setPath}>
+                        Halal Certificates
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="certificate.html">Go'sht</a>
+                      <NavLink to={"/certificates"} onClick={props.setPath}>
+                        Salami and Sausage
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="certificate.html">Kolbasa va Sasiska</a>
+                      <NavLink to={"/certificates"} onClick={props.setPath}>
+                        Meat
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="certificate.html">Sut mahsulotlari</a>
+                      <NavLink to={"/certificates"} onClick={props.setPath}>
+                        Diary Products
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="certificate.html">Kanserva mahsulotlari</a>
+                      <NavLink to={"/certificates"} onClick={props.setPath}>
+                        Other Products
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
                       <a href="#">

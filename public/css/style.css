@@ -161,26 +161,6 @@ body::-webkit-scrollbar-thumb:hover {
 
 /* #MAIN */
 
-/*** overlay ***/
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: hsla(0, 0%, 0%, 0.5);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 15;
-  transition: 0.5s ease;
-}
-
-.overlay.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
 /* #BANNER */
 .banner {
   margin-bottom: 30px;
@@ -794,6 +774,7 @@ body::-webkit-scrollbar-thumb:hover {
   font-size: 0.9rem;
   letter-spacing: 1px;
 }
+
 .footer__links li a:hover {
   transition: all ease 0.1s;
   opacity: 1;
@@ -855,7 +836,7 @@ body::-webkit-scrollbar-thumb:hover {
   color: #23285f;
 }
 .sertificates p {
-  margin: 2rem auto 3rem auto;
+  margin: 32px auto 70px auto;
   width: 800px;
 }
 .sertificates h4 {
@@ -865,24 +846,7 @@ body::-webkit-scrollbar-thumb:hover {
   font-size: 25px;
   color: #23285f;
 }
-#show-modal-btn {
-  object-fit: cover;
-  box-shadow: 0 0 10px rgb(82 97 109 / 50%);
-  margin: 1.5rem 2rem 1.5rem 0;
-}
-#close-modal-btn {
-  position: absolute;
-  top: -60px;
-  right: -100px;
-  width: 40px;
-  height: 40px;
-  background: #fff;
-  border-radius: 50%;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 .sertificate-images {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, auto));
@@ -891,20 +855,15 @@ body::-webkit-scrollbar-thumb:hover {
 .sertificate-image {
   max-width: 240px;
 }
-
-/* modal */
-#overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 999;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(3px);
+.sertificate-modal_image {
+  width: 520px;
+  height: auto;
+}
+.css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop  {
+ background-color: rgba(0, 0, 0, 0.3) !important; 
 }
 
+/* Help page */
 .help_page {
   margin: 80px auto;
   width: 80%;
