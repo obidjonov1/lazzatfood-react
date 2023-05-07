@@ -17,6 +17,10 @@ import { NavbarMarket } from "./components/header/market";
 import { NavbarOthers } from "./components/header/others";
 import { Footer } from "./components/footer";
 import { CertificatePage } from "./screens/CertificatePage";
+import { TermsOfServicePage } from "./screens/TermsOfServicePage";
+import { PrivacyPage } from "./screens/PrivacyPage";
+import { DeliveryPolicyPage } from "./screens/DeliveryPolicyPage";
+import { PartnershipPage } from "./screens/PartnershipPage";
 
 function App() {
   const [path, setPath] = useState();
@@ -56,6 +60,18 @@ function App() {
         </Route>
         <Route path="/help">
           <HelpPage />
+        </Route>
+        <Route path="/terms">
+          <TermsOfServicePage />
+        </Route>
+        <Route path="/privacy">
+          <PrivacyPage />
+        </Route>
+        <Route path="/delivery-policy">
+          <DeliveryPolicyPage />
+        </Route>
+        <Route path="/partners">
+          <PartnershipPage />
         </Route>
         <Route path="/login">
           <LoginPage />

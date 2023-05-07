@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { BsFacebook, BsWhatsapp } from "react-icons/bs";
 import { AiFillYoutube, AiOutlineInstagram } from "react-icons/ai";
 import { Container } from "@mui/material";
+import "../../../css/footer.css";
 
 export function Footer(props: any) {
   return (
@@ -74,22 +75,22 @@ export function Footer(props: any) {
             <strong>TERMS AND POLICY</strong>
             <ul>
               <li>
-                <NavLink to={"#"} onClick={props.setPath}>
+                <NavLink to={"/terms"} onClick={props.setPath}>
                   Terms of Service
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"#"} onClick={props.setPath}>
+                <NavLink to={"/privacy"} onClick={props.setPath}>
                   Privacy Policy
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"#"} onClick={props.setPath}>
+                <NavLink to={"/delivery-policy"} onClick={props.setPath}>
                   Delivery Policy
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"#"} onClick={props.setPath}>
+                <NavLink to={"/partners"} onClick={props.setPath}>
                   Partnership
                 </NavLink>
               </li>
