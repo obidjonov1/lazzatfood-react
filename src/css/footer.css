@@ -59,7 +59,8 @@
 .footer__links ul {
   margin-top: 10px;
 }
-.footer__links ul li a {
+.footer__links ul li a,
+.footer__links ul li p {
   color: #ffffff;
   opacity: 0.5;
   margin: 4px 0;
@@ -67,6 +68,7 @@
   letter-spacing: 1px;
 }
 
+.footer__links ul li p:hover,
 .footer__links li a:hover {
   transition: all ease 0.1s;
   opacity: 1;

@@ -100,21 +100,19 @@ export function Footer(props: any) {
             <strong>CONTACT US</strong>
             <ul>
               <li>
-                <a href="#">PLUS LAZZATFOO CO.LTD</a>
+                <p>PLUS LAZZATFOO CO.LTD</p>
               </li>
               <li>
-                <a href="#">Phone : (+82) 010 5448 9811</a>
+                <p>Phone : (+82) 010 5448 9811</p>
               </li>
               <li>
-                <a href="#">Business License : 123-45-67890 </a>
+                <p>Business License : 123-45-67890 </p>
               </li>
               <li>
-                <a href="#">Email : obidjonov@naver.com</a>
+                <p>Email : obidjonov@naver.com</p>
               </li>
               <li>
-                <a href="#">
-                  Address : 317 브로드웨이, 로스앤젤레스, CA 90013, 미국
-                </a>
+                <p>Address : 317 브로드웨이, 로스앤젤레스, CA 90013, 미국</p>
               </li>
             </ul>
           </div>
