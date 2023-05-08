@@ -208,7 +208,7 @@ body::-webkit-scrollbar-thumb:hover {
   margin: 30px 0px 30px 0px;
 } */
 
-.product-grid {
+/* .product-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 25px;
@@ -345,7 +345,7 @@ body::-webkit-scrollbar-thumb:hover {
 .buttons .active-btn {
   background: #23285f;
   color: #fff;
-}
+} */
 
 
 /* .show {

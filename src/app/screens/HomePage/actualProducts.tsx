@@ -25,7 +25,7 @@ export function ActualProducts(props: any) {
               style={{ margin: "0px 10px 30px 60px" }}
             >
               <h1 className="title title_sale title_title">
-                Aktaul <span>mahsulotlar</span>
+                Actual <span>Products</span>
               </h1>
               <TabContext value={value}>
                 <TabList
