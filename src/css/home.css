@@ -428,3 +428,93 @@ body {
   font-weight: 200;
 }
 /* Best Markets */
+
+/* ActualProducts */
+.actual_products {
+  /* width: 900px; */
+  width: 1067px;
+}
+.title_title {
+  margin-bottom: 35px;
+}
+.aktual-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(235px, auto));
+  gap: 20px;
+  margin-top: 1.6rem;
+}
+.aktual-product {
+  width: 320px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--cultured);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  transition: var(--transition-timing);
+  position: relative;
+}
+.aktual-product:hover {
+  box-shadow: 0 0 10px hsl(0deg 0% 0% / 10%);
+}
+.aktual-product:hover .actual_cart {
+  display: block;
+}
+.aktual-product .aktual-img {
+  width: 140px;
+}
+.aktual-body {
+  /* z-index: 100; */
+  margin-left: 10px;
+}
+.aktual-body .aktual-title {
+  color: var(--sonic-silver);
+  font-size: var(--fs-6);
+}
+.aktual-body .aktual-price {
+  font-size: 1.2rem;
+  margin-top: 15px;
+}
+.css-10zgwri-MuiTabPanel-root {
+  padding: 0 !important;
+}
+.css-heg063-MuiTabs-flexContainer {
+  justify-content: center;
+  padding: 3px;
+}
+.actual-product_tablist {
+  /* border: 1px solid #23285f; */
+  border-radius: 10px;
+  background: #f4f4f4;
+}
+.actual_cart {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* z-index: 101; */
+  display: none;
+}
+
+.aktual-product:hover .actual_cart {
+  background: rgba(0, 0, 0, 0.2);
+  /* background: #f4f4f4; */
+  /* z-index: 101; */
+}
+.actual-cart_btn {
+  position: absolute;
+  top: 50%;
+  left: 47%;
+  transform: translate(0, -50%);
+  padding: 2px 6px;
+  background: #43bb59;
+  border-radius: 10%;
+}
+.actual-cart_btn:hover {
+  /* color: #43bb59; */
+  /* border: 1px solid #d0d1d0; */
+}
+.actual_btn {
+  font-size: 27px;
+  color: #fff;
+}
+/* ActualProducts end */

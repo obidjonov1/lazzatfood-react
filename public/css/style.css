@@ -347,47 +347,7 @@ body::-webkit-scrollbar-thumb:hover {
   color: #fff;
 }
 
-.aktual-products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, auto));
-  gap: 20px;
-  margin-top: 1.6rem;
-}
-.aktual-product {
-  padding: 10px;
-  background: #fff;
-  border: 1px solid var(--cultured);
-  border-radius: var(--border-radius-md);
-  overflow: hidden;
-  transition: var(--transition-timing);
-  position: relative;
-}
-.aktual-product:hover {
-  box-shadow: 0 0 10px hsl(0deg 0% 0% / 10%);
-}
-.aktual-product:hover .aktual-img {
-  transform: scale(1.08);
-}
-.aktual-product .aktual-img {
-  width: 100px;
-  transition: var(--transition-timing);
-}
-.aktual-body {
-  flex-direction: column;
-  float: right;
-  position: absolute;
-  top: 25px;
-  right: 55px;
-}
-.aktual-body .aktual-title {
-  color: var(--sonic-silver);
-  font-size: var(--fs-6);
-  font-weight: var(--weight-300);
-}
-.aktual-body .aktual-price {
-  font-size: 1.2rem;
-  margin-top: 15px;
-}
+
 /* .show {
   display: block;
 } */
