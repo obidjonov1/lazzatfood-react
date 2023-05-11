@@ -1,0 +1,45 @@
+.sertificates {
+  margin: 4rem 0;
+}
+.sertificate-container {
+  padding: 0 25px;
+}
+.sertificate-title {
+  text-align: center;
+  margin: 0 auto;
+}
+.sertificate-meal {
+  display: flex;
+}
+.sertificates h2 {
+  margin-bottom: 2rem;
+  color: #23285f;
+}
+.sertificates p {
+  margin: 32px auto 70px auto;
+  width: 800px;
+}
+.sertificates h4 {
+  padding-bottom: 10px;
+  margin: 30px 0 15px 0;
+  border-bottom: 1.5px solid var(--cultured);
+  font-size: 25px;
+  color: #23285f;
+}
+
+.sertificate-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, auto));
+  gap: 25px;
+}
+.sertificate-image {
+  max-width: 240px;
+  cursor: pointer;
+}
+.sertificate-modal_image {
+  width: 520px;
+  height: auto;
+}
+.css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
