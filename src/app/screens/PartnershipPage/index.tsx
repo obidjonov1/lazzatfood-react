@@ -1,5 +1,6 @@
-import { Container } from "@mui/system";
 import React from "react";
+import { Container } from "@mui/system";
+import "../../../css/partners.css";
 
 export function PartnershipPage() {
   return (

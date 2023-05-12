@@ -162,7 +162,7 @@ body::-webkit-scrollbar-thumb:hover {
 /* #MAIN */
 
 /* #BANNER */
-.banner {
+/* .banner {
   margin-bottom: 30px;
 }
 .slider {
@@ -198,7 +198,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .next {
   right: 0;
-}
+} */
 
 /*-----------------------------------*\
   #PRODUCT GRID
@@ -353,7 +353,7 @@ body::-webkit-scrollbar-thumb:hover {
 } */
 
 /* #PRODUCT MINIMAL */
-.product-minimal {
+/* .product-minimal {
   margin-bottom: 30px;
 }
 
@@ -435,14 +435,14 @@ body::-webkit-scrollbar-thumb:hover {
 
 .del {
   font-size: 18px;
-}
+} */
 
 /* =================================================
           Additional HTML(CSS)  
 ================================================= */
 
 /* Sertificate section */
-.sertificates {
+/* .sertificates {
   margin: 4rem 0;
 }
 .sertificate-container {
@@ -486,10 +486,10 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop {
   background-color: rgba(0, 0, 0, 0.3) !important;
-}
+} */
 
 /* Help page */
-.help_page {
+/* .help_page {
   margin: 80px auto;
   width: 80%;
 }
@@ -514,7 +514,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 .help-accardion_subtitle {
   font-family: "Poppins", sans-serif !important;
-  /* padding: 10px; */
+  /* padding: 10px;
 }
 .css-o4b71y-MuiAccordionSummary-content.Mui-expanded {
   margin: 0 !important;
@@ -560,10 +560,10 @@ body::-webkit-scrollbar-thumb:hover {
   font-size: 1rem;
   line-height: 2.5;
   letter-spacing: 0.00938em;
-}
+} */ 
 
 /* Parners page */
-.partenrs {
+/* .partenrs {
   margin: 4rem auto;
   width: 800px;
   font-family: sans-serif;
@@ -644,7 +644,6 @@ body::-webkit-scrollbar-thumb:hover {
 
 .form-field__textarea {
   height: 150px;
-  /* outline: none; */
   resize: none;
 }
 .partner_btn {
@@ -664,4 +663,4 @@ body::-webkit-scrollbar-thumb:hover {
 
 .btn-order:hover {
   background-color: #41a252;
-}
+} */

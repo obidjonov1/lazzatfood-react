@@ -95,7 +95,7 @@ export function NavbarHome(props: any) {
           <div className="header-main">
             <div className="container">
               <NavLink to={"/"} className="header-logo" onClick={props.setPath}>
-                <img className="logo" src="./images/logo_lazzat.png" alt="" />
+                <img className="logo" src="/images/logo_lazzat.png" alt="" />
               </NavLink>
 
               <div className="header-search-container">
@@ -160,7 +160,7 @@ export function NavbarHome(props: any) {
                         >
                           <div className="user login">
                             <div className="img-box">
-                              <img src="./images/sigin.webp" alt="" />
+                              <img src="/images/sigin.webp" alt="" />
                             </div>
                             <div className="form-box">
                               <h2 className="welcome">Xush kelibsiz !</h2>
@@ -190,8 +190,8 @@ export function NavbarHome(props: any) {
                                       <img
                                         src={
                                           showPassword
-                                            ? "./images/hide.svg"
-                                            : "./images/eye.svg"
+                                            ? "/images/hide.svg"
+                                            : "/images/eye.svg"
                                         }
                                         alt=""
                                       />
@@ -203,16 +203,16 @@ export function NavbarHome(props: any) {
                                   <p>Yoki davom eting</p>
                                   <div className="icons">
                                     <div className="icon">
-                                      <img src="./images/search.svg" alt="" />
+                                      <img src="/images/search.svg" alt="" />
                                     </div>
                                     <div className="icon">
-                                      <img src="./images/facebook.png" alt="" />
+                                      <img src="/images/facebook.png" alt="" />
                                     </div>
                                     <div className="icon">
-                                      <img src="./images/naver.png" alt="" />
+                                      <img src="/images/naver.png" alt="" />
                                     </div>
                                     <div className="icon">
-                                      <img src="./images/kakotalk.png" alt="" />
+                                      <img src="/images/kakotalk.png" alt="" />
                                     </div>
                                   </div>
                                 </div>
@@ -252,8 +252,8 @@ export function NavbarHome(props: any) {
                                       <img
                                         src={
                                           showPassword
-                                            ? "./images/hide.svg"
-                                            : "./images/eye.svg"
+                                            ? "/images/hide.svg"
+                                            : "/images/eye.svg"
                                         }
                                         alt=""
                                       />
@@ -271,8 +271,8 @@ export function NavbarHome(props: any) {
                                       <img
                                         src={
                                           showPassword
-                                            ? "./images/hide.svg"
-                                            : "./images/eye.svg"
+                                            ? "/images/hide.svg"
+                                            : "/images/eye.svg"
                                         }
                                         alt=""
                                       />
@@ -287,23 +287,23 @@ export function NavbarHome(props: any) {
                                   <p>Yoki davom eting</p>
                                   <div className="icons">
                                     <div className="icon">
-                                      <img src="./images/search.svg" alt="" />
+                                      <img src="/images/search.svg" alt="" />
                                     </div>
                                     <div className="icon">
-                                      <img src="./images/facebook.png" alt="" />
+                                      <img src="/images/facebook.png" alt="" />
                                     </div>
                                     <div className="icon">
-                                      <img src="./images/naver.png" alt="" />
+                                      <img src="/images/naver.png" alt="" />
                                     </div>
                                     <div className="icon">
-                                      <img src="./images/kakotalk.png" alt="" />
+                                      <img src="/images/kakotalk.png" alt="" />
                                     </div>
                                   </div>
                                 </div>
                               </form>
                             </div>
                             <div className="img-box">
-                              <img src="./images/sign-up-form.svg" alt="" />
+                              <img src="/images/sign-up-form.svg" alt="" />
                             </div>
                           </div>
                         </div>
@@ -357,7 +357,7 @@ export function NavbarHome(props: any) {
                     <li className="panel-list-item">
                       <a href="#">
                         <img
-                          src="./images/electro.JPEG"
+                          src="/images/electro.JPEG"
                           alt=""
                           width="250"
                           height="119"
@@ -384,7 +384,7 @@ export function NavbarHome(props: any) {
                     <li className="panel-list-item">
                       <a href="#">
                         <img
-                          src="./images/vitamin.JPEG"
+                          src="/images/vitamin.JPEG"
                           alt=""
                           width="250"
                           height="119"
@@ -411,7 +411,7 @@ export function NavbarHome(props: any) {
                     <li className="panel-list-item">
                       <a href="#">
                         <img
-                          src="./images/familyItem.JPEG"
+                          src="/images/familyItem.JPEG"
                           alt=""
                           width="250"
                           height="119"
@@ -448,7 +448,7 @@ export function NavbarHome(props: any) {
                     <li className="panel-list-item">
                       <a href="#">
                         <img
-                          src="./images/halalSer.JPEG"
+                          src="/images/halalSer.JPEG"
                           alt=""
                           width="250"
                           height="119"
@@ -534,16 +534,16 @@ export function NavbarHome(props: any) {
           }}
         >
           <SwiperSlide>
-            <img src="./images/slide.jpeg" alt="" className="slide_img" />
+            <img src="/images/slide.jpeg" alt="" className="slide_img" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="./images/slide1.png" alt="" className="slide_img" />
+            <img src="/images/slide1.png" alt="" className="slide_img" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="./images/slide3.jpeg" alt="" className="slide_img" />
+            <img src="/images/slide3.jpeg" alt="" className="slide_img" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="./images/slide5.jpeg" alt="" className="slide_img" />
+            <img src="/images/slide5.jpeg" alt="" className="slide_img" />
           </SwiperSlide>
         </Swiper>
       </Container>

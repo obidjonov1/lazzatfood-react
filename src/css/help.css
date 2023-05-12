@@ -1,0 +1,72 @@
+.help_page {
+  margin: 80px auto;
+  width: 80%;
+}
+
+.help_page .help-page_top {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.help_page .help_accardion {
+  background: #f7f6f6;
+  color: #171427;
+}
+
+.help_accardion .help-accardion_title {
+  width: 100% !important;
+  padding: 5px 16px;
+}
+.css-1m4ljmh-MuiTypography-root {
+  font-family: "Poppins", sans-serif !important;
+}
+
+.help-accardion_subtitle {
+  font-family: "Poppins", sans-serif !important;
+  /* padding: 10px; */
+}
+.css-o4b71y-MuiAccordionSummary-content.Mui-expanded {
+  margin: 0 !important;
+}
+.css-1aquho2-MuiTabs-indicator {
+  background: #43bb59 !important;
+}
+.css-ltjzd6-MuiButtonBase-root-MuiTab-root {
+  color: #000000 !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 18px !important;
+  border-radius: 18px !important;
+}
+
+.theRules_box {
+  padding: 3px 20px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 1px solid #ededed;
+  box-shadow: 0px 20px 30px rgb(25 25 46 / 4%);
+  border-radius: 8px;
+  background: #f4f4f4;
+  color: #171427;
+}
+
+.theRules_box .theRulesFrame {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.theRules_box .theRulesFrame p {
+  padding: 5px;
+  border-bottom: 1px solid #dddddd;
+  color: #000000;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 2.5;
+  letter-spacing: 0.00938em;
+}

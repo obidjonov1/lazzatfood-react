@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import { BsFacebook, BsWhatsapp } from "react-icons/bs";
 import { AiFillYoutube, AiOutlineInstagram } from "react-icons/ai";
 import { Container } from "@mui/material";
-import "../../../css/footer.css";
 
 export function Footer(props: any) {
   return (
@@ -17,7 +16,7 @@ export function Footer(props: any) {
             >
               <img
                 className="logo"
-                src="./images/logo_lazzat_white.png"
+                src="/images/logo_lazzat_white.png"
                 alt=""
               />
             </NavLink>

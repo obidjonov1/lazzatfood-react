@@ -2,6 +2,7 @@ import React from "react";
 import { Container } from "@mui/system";
 import Modal from "@mui/material/Modal";
 import { Box } from "@mui/material";
+import "../../../css/sertificate.css";
 
 const style = {
   position: "absolute",
@@ -80,16 +81,16 @@ export function CertificatePage(props: any) {
     },
   ];
 
-  const certificates_other = [
-    {
-      id: "sertificate1",
-      image: "./images/sertificate15.jpeg",
-    },
-    {
-      id: "sertificate2",
-      image: "./images/sertificate16.jpeg",
-    },
-  ];
+  // const certificates_other = [
+  //   {
+  //     id: "sertificate1",
+  //     image: "./images/sertificate15.jpeg",
+  //   },
+  //   {
+  //     id: "sertificate2",
+  //     image: "./images/sertificate16.jpeg",
+  //   },
+  // ];
 
   return (
     <Container>

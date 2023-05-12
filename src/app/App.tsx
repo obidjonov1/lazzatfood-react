@@ -28,7 +28,7 @@ function App() {
 
   return (
     <Router>
-      {main_path == "/" ? (
+      {main_path === "/" ? (
         <NavbarHome setPath={setPath} />
       ) : main_path.includes("/markets") ? (
         <NavbarMarket setPath={setPath} />
@@ -81,7 +81,7 @@ function App() {
         </Route>
       </Switch>
 
-      <Footer setPath={setPath} />
+      <Footer />
     </Router>
   );
 }
