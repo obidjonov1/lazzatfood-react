@@ -57,8 +57,9 @@ theme = createTheme(theme, {
         maxWidthLg: {
           [theme.breakpoints.up("lg")]: {
             maxWidth: "1320px",
-            paddingLeft: "10px",
-            paddingRight: "10px",
+            // paddingLeft: "10px",
+            // paddingRight: "10px",
+            padding: 0,
           },
         },
       },

@@ -4,6 +4,7 @@ import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { ChosenProduct } from "./chosenProduct";
 import { OneMarket } from "./oneMarket";
 import { AllMarkets } from "./allMarkets";
+import "../../../css/market.css";
 
 export function MarketPage() {
   let market = useRouteMatch();

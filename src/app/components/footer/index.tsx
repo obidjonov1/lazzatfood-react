@@ -111,7 +111,9 @@ export function Footer(props: any) {
                 <p>Email : obidjonov@naver.com</p>
               </li>
               <li>
-                <p>Address : 317 브로드웨이, 로스앤젤레스, CA 90013, 미국</p>
+                <p>
+                  Address : 317 브로드웨이, <br /> 로스앤젤레스, CA 90013, 미국
+                </p>
               </li>
             </ul>
           </div>

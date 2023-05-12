@@ -18,6 +18,7 @@ body {
   align-items: center;
   justify-content: flex-end;
   margin: 30px 0;
+  margin-left: 50px;
 }
 .product-container_home {
   position: sticky;
@@ -27,7 +28,7 @@ body {
 .product-container_home .container_home {
   position: absolute;
   margin: 30px 0;
-  left: -20px;
+  left: -6px;
 }
 /* #SIDEBAR */
 .sidebar {
@@ -367,6 +368,7 @@ body {
 .info_top .info-top_address .info_top-icon {
   font-size: 18px;
   margin-right: 3px;
+  color: #434242;
 }
 
 .info_bottom .market_bottom {
@@ -405,7 +407,7 @@ body {
   background: #89898a;
 }
 .markets_box .market_like .market-like_icon {
-  font-size: 24px;
+  font-size: 35px;
   color: #fff;
 }
 .view-markets {
