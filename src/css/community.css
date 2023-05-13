@@ -1,0 +1,214 @@
+.community_page {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.community_page .community_frame {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.community_page .chat_frame {
+  width: 30%;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  background: #e3f2fd;
+  border-radius: 34px;
+  box-shadow: inset 0px 1px 1px rgb(0 0 0 / 25%),
+    inset 0px 1px 8px rgb(0 0 0 / 25%), inset 0px 4px 16px rgb(242 189 87 / 4%);
+}
+
+.community_page .community_all_frame {
+  width: 68%;
+  height: 975px;
+  border-radius: 34px;
+  box-shadow: inset 0px 1px 1px rgb(0 0 0 / 25%),
+    inset 0px 1px 8px rgb(0 0 0 / 25%), inset 0px 4px 16px rgb(242 189 87 / 4%);
+  /* background: #182226; */
+}
+
+.community_page .chat_frame .chat_top {
+  width: 100%;
+  height: 103px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(205, 205, 205, 0.83);
+  font-size: 30px;
+  line-height: 54px;
+  color: #000000;
+}
+
+.community_page .chat_content {
+  position: relative;
+  padding: 17px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: auto;
+}
+
+.community_page .chat_content .chat_main {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.community_page .chat_frame .chat_bott {
+  width: 100%;
+  height: 103px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgba(205, 205, 205, 0.83);
+}
+
+.community_page .chat_bott .msg_input {
+  padding: 20px;
+  width: 276px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f7f7f7;
+  border-radius: 28px;
+  border: none;
+  outline-color: #257677;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.community_page .chat_bott .send_msg_btn {
+  margin-left: 14px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #55a99d 0%, #007665 100%);
+  border: none;
+}
+
+.community_page .chat_main .msg_left {
+  margin-left: 10px;
+  padding: 9px;
+  width: auto;
+  height: auto;
+  display: flex;
+  background: rgba(228, 228, 228, 0.83);
+  border-radius: 20px 20px 20px 0px;
+}
+
+.community_page .msg_right {
+  padding: 9px;
+  width: auto;
+  height: auto;
+  display: flex;
+  background: #d0ece8;
+  border-radius: 20px 20px 0px 20px;
+}
+
+.community_all_frame .article_tabs {
+  width: 100%;
+  height: 94px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(228, 228, 228, 0.83);
+}
+
+.article_main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.community_page .all_article_box {
+  width: 95%;
+  margin: 0 auto;
+  height: 170px;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  /* background: #182226; */
+  border-radius: 30px;
+  border: 1px solid #c8c7c7;
+  overflow: hidden;
+}
+.community_page .all_article_box:hover {
+  box-shadow: 0px 4px 40px rgb(0 0 0 / 25%);
+}
+.community_page .all_article_box .all_article_img {
+  width: 155px;
+  height: 100%;
+  border-radius: 30px 0px 0px 30px;
+  background-size: cover;
+}
+
+.community_page .all_article_box .all_article_container {
+  margin-left: 15px;
+  width: 75%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+}
+.article_img img {
+  border-radius: 50%;
+  width: 45px;
+}
+.community_page .all_article_author_user {
+  margin-left: 10px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.community_page .all_article_title {
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 33px;
+  color: #626262;
+}
+
+.community_page .all_article_desc {
+  margin-top: 5px;
+  font-size: 16px;
+  line-height: 26px;
+  color: #303030;
+}
+
+.community_page .article_share {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.article_share_main span {
+  color: #303030;
+}
+.article_share_main .view_btn {
+  color: #5c5c5c;
+  font-size: 22px;
+}
+.community_page .article_bott {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-top: 1px solid rgba(228, 228, 228, 0.83);
+}
