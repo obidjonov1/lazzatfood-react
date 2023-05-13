@@ -1,21 +1,17 @@
-import React, { useState } from "react";
-import { Box, Checkbox, Container, Link, Stack } from "@mui/material";
-import { AiFillLike } from "react-icons/ai";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import React, { ChangeEvent, useRef, useState } from "react";
+import { Box, Stack } from "@mui/material";
 import moment from "moment";
+import Checkbox from "@mui/material/Checkbox";
+import { AiFillLike } from "react-icons/ai";
 
-export function TargetArticles(props: any) {
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+
+export function MemberPosts(props: any) {
   return (
-    <Stack>
-      {/* targetBoArticles? - crashni oldidni olish ichida ma'lumot bo'lsa */}
-      {props.targetBoArticles?.map((article: any, index: string) => {
-        const art_image_url = "/images/burak.jpeg";
+    <Box className={"post_content"}>
+      {["1", "2", "3"].map((article) => {
         return (
-          <Link
-            className={"all_article_box"}
-            sx={{ textDecoration: "none" }}
-            href={""}
-          >
+          <Stack className={"all_article_box"} sx={{ cursor: "pointer" }}>
             <Box
               className={"all_article_img"}
               sx={{
@@ -65,16 +61,18 @@ export function TargetArticles(props: any) {
                       }
                       checked={false}
                     />
+
                     <span style={{ marginRight: "18px" }}>100</span>
+
                     <RemoveRedEyeIcon />
                     <span style={{ marginLeft: "8px" }}>100</span>
                   </Box>
                 </Box>
               </Box>
             </Box>
-          </Link>
+          </Stack>
         );
       })}
-    </Stack>
+    </Box>
   );
 }

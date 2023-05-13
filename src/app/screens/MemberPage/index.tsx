@@ -1,6 +1,23 @@
-import { Container } from "@mui/system";
 import React from "react";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { VisitOtherPage } from "./VisitOtherPage";
+import { VisitMyPage } from "./VisitMyPage";
+import "../../../css/my_page.css";
 
 export function MemberPage() {
-  return <Container>MemberPage</Container>;
+  let member = useRouteMatch();
+  console.log(member);
+
+  return (
+    <div className="">
+      <Switch>
+        <Route path={`${member.path}/other`}>
+          <VisitOtherPage />
+        </Route>
+        <Route path={`${member.path}`}>
+          <VisitMyPage />
+        </Route>
+      </Switch>
+    </div>
+  );
 }

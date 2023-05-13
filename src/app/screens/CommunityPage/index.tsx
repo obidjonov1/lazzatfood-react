@@ -78,7 +78,8 @@ export function CommunityPage(props: any) {
                           next: ArrowForwardIcon,
                         }}
                         {...item}
-                        color={"secondary"}
+                        color={"primary"}
+                        sx={{ color: "#43bb59" }}
                       />
                     )}
                     onChange={handlePaginationChange}
