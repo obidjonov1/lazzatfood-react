@@ -208,6 +208,9 @@ a {
   display: flex;
   flex-direction: column;
 }
+.chosenMarket .scroll-markets_bar h1 span {
+  color: var(--color);
+}
 
 .scroll-markets_bar .scroll-markets_swipper {
   display: flex;
@@ -371,4 +374,239 @@ a {
 .css-ahj2mt-MuiTypography-root {
   color: var(--sonic-silver);
   font-size: 15px !important;
+}
+
+/* ChosenProduct */
+.chosen_dish_page {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 40px 0;
+}
+.chosen_dish_page .dish_container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+.chosen_dish_page .chosen_dish_slider {
+  width: 48%;
+  height: 550px;
+}
+.chosen-dish_slider .swip {
+  margin-top: 0;
+}
+
+.chosen_dish_slider .chosen-dish_slider img {
+  width: 100%;
+  height: 550px;
+  border-radius: 16px;
+}
+.chosen_dish_page .chosen_dish_info_container {
+  padding: 30px 40px 0 40px;
+  width: 49%;
+  height: 550px;
+  display: flex;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #c8c7c7;
+}
+
+.chosen_dish_page .dish_swiper_down_swiper {
+  margin-top: 20px;
+  width: 500px;
+}
+
+.chosen_dish_page .chosen_dish_info_container .chosen_dish_info_box {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.chosen_dish_page .chosen_dish_info_box .dish_txt {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 36px;
+  color: #000000;
+}
+
+.chosen_dish_page .chosen_dish_info_box .resto_name {
+  margin-top: 16px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 15px;
+  color: #979797;
+}
+
+.chosen_dish_page .chosen_dish_info_box .rating_box {
+  margin-top: 20px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chosen_dish_page .rating_box .evaluation_box {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.chosen_dish_page .chosen_dish_info_box .dish_desc_info {
+  height: 200px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  line-height: 22px;
+  overflow: auto;
+  color: #000000;
+}
+
+.chosen_dish_page .chosen_dish_info_box .dish_price_box {
+  margin: 20px 0;
+}
+
+.chosen_dish_page .dish_price_box span {
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 22px;
+  color: #000000;
+  margin-right: 6px;
+}
+
+.chosen_dish_page .button_box {
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chosen_dish_page .button_box button {
+  width: 230px;
+  height: 44px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 22px;
+  color: #ffffff;
+}
+
+/* Product Review */
+.product-review_cont {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 640px;
+  margin: 30px auto 80px auto;
+  overflow: auto;
+}
+.product-review_cont h1 {
+  margin: 10px 0 30px 0;
+}
+.product-review_cont .product-review_box {
+  border: 1px solid #a7a7a7;
+  height: 180px;
+  width: 100%;
+  border-top-left-radius: 150px;
+  border-top-right-radius: 150px;
+  border-bottom-left-radius: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 10px;
+  margin: 15px 0;
+}
+
+.product-review_box .review_avatar {
+  width: 15%;
+}
+.product-review_box .review_avatar img {
+  width: 100%;
+}
+.review_body {
+  width: 80%;
+  margin-left: 18px;
+}
+.product-review_box .review_body .review_nick {
+  font-size: 22px;
+  font-weight: 500;
+}
+.product-review_box .review_body .review_info {
+  width: 45%;
+  display: flex;
+  justify-content: space-between;
+}
+.review_body .review_info .review_date,
+.review_body .review_info .review_like {
+  font-size: 17px;
+}
+.review_body .review_info .review_like {
+  display: flex;
+}
+.review_body .review_info .review_like_icon {
+  margin: 0 5px;
+  font-size: 20px;
+}
+.review_text {
+  overflow: auto;
+  width: 100%;
+  height: 85px;
+}
+
+.review-form {
+  margin: 0 auto 100px auto;
+  width: 500px;
+}
+
+.review-form h2 {
+  margin-bottom: 10px;
+}
+
+.review-form label {
+  display: block;
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+.review-form input,
+.review-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.review-form textarea {
+  height: 100px;
+}
+
+.review-form button[type="submit"] {
+  display: block;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.review-form button[type="submit"]:hover {
+  background-color: #3e8e41;
 }

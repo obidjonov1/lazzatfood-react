@@ -771,7 +771,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .swiper-button-prev {
   margin-left: 10px;
-  color: #fff !important;
+  /* color: #fff !important; */
 }
 .swiper-button-prev:after {
   font-size: 70px !important;
@@ -783,7 +783,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .swiper-button-next {
   margin-right: 10px;
-  color: #fff !important;
+  /* color: #fff !important; */
 }
 
 /**** */

@@ -72,7 +72,9 @@ export function OneMarket() {
       <div className="chosenMarket">
         <div className="container">
           <div className="scroll-markets_bar">
-            <h1>Lazzat Food Market</h1>
+            <h1>
+              Lazzat Food <span>Market</span>
+            </h1>
             <div className="scroll-markets_swipper">
               <Stack
                 style={{ width: "100%", display: "flex" }}
