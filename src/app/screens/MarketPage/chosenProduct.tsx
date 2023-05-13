@@ -150,7 +150,7 @@ export function ChosenProduct() {
           </div>
         </Container>
       </div>
-      <h1 className="product-review"> Product Reviews</h1>
+      <h1 className="product-review">Product Reviews</h1>
       <div className="product-review_cont">
         <div className="product-review_box">
           <div className="review_avatar">

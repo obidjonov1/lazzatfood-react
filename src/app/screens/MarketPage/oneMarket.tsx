@@ -6,7 +6,8 @@ import MuiAccordionSummary, {
   AccordionSummaryProps,
 } from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
-import { Box, Container, Stack } from "@mui/material";
+import { Box, Container, Stack, Rating } from "@mui/material";
+import StarIcon from "@mui/icons-material/Star";
 import { AiFillEye, AiFillHeart, AiOutlineSearch } from "react-icons/ai";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -60,6 +61,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 export function OneMarket() {
+  const value = 5;
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
 
   const handleChange =
@@ -264,10 +266,12 @@ export function OneMarket() {
                       return (
                         <div className="showcase">
                           <div className="showcase-banner">
-                            <p className="showcase-badge">normal size</p>
+                            <p className="showcase-badge">{size_volume}</p>
                             <div className="showcase-actions">
                               <button className="btn-action">
+                                <span className="product_view_cnt">9</span>
                                 <AiFillHeart className="like_btn" />
+                                <span className="product_like_cnt">1</span>
                                 <AiFillEye className="view_btn" />
                               </button>
                             </div>
@@ -280,6 +284,22 @@ export function OneMarket() {
                                 width="300"
                                 className="product-img rasim"
                               />
+                              <div className="product_rating">
+                                <Rating
+                                  sx={{ fontSize: "19px" }}
+                                  name="text-feedback"
+                                  value={value}
+                                  readOnly
+                                  precision={0.5}
+                                  emptyIcon={
+                                    <StarIcon
+                                      style={{ opacity: 0.55 }}
+                                      fontSize="inherit"
+                                    />
+                                  }
+                                />
+                                <span>(5)</span>
+                              </div>
                               <span className="product-title">
                                 Lorem, ipsum dolor sit
                               </span>
