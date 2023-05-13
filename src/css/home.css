@@ -368,7 +368,7 @@ body {
 .info_top .info-top_address .info_top-icon {
   font-size: 18px;
   margin-right: 3px;
-  color: #434242;
+  /* color: #434242; */
 }
 
 .info_bottom .market_bottom {
