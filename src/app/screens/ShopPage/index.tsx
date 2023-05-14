@@ -16,12 +16,9 @@ import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { BiShoppingBag } from "react-icons/bi";
+import "../../../css/shop.css";
 
-const restaurant_list = Array.from(Array(10).keys());
 const product_list = Array.from(Array(8).keys());
 
 const Accordion = styled((props: AccordionProps) => (
@@ -60,7 +57,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 
-export function OneMarket() {
+export function ShopPage(props: any) {
   const value = 5;
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
 
@@ -71,57 +68,8 @@ export function OneMarket() {
 
   return (
     <Container>
-      <div className="chosenMarket">
+      <div className="chosenMarket shop_cont">
         <div className="container">
-          <div className="scroll-markets_bar">
-            <h1>
-              Lazzat Food <span>Market</span>
-            </h1>
-            <div className="scroll-markets_swipper">
-              <Stack
-                style={{ width: "100%", display: "flex" }}
-                flexDirection={"row"}
-                sx={{ mt: "35px" }}
-              >
-                <Box className="prev_btn restaurant-prev">
-                  <ArrowBackIosNewIcon
-                    sx={{ fontSize: 40 }}
-                    style={{ color: "#172b4d" }}
-                  />
-                </Box>
-                <Swiper
-                  className="restaurant_avatars_wrapper"
-                  slidesPerView={7}
-                  centeredSlides={false}
-                  spaceBetween={30}
-                  navigation={{
-                    nextEl: ".restaurant-next",
-                    prevEl: ".restaurant-prev",
-                  }}
-                >
-                  {restaurant_list.map((ele, index) => {
-                    return (
-                      <SwiperSlide
-                        style={{ cursor: "pointer", marginRight: "4px" }}
-                        key={index}
-                        className="restaurant_avatars"
-                      >
-                        <img src="../images/burak.jpeg" alt="" />
-                        <span>Burak</span>
-                      </SwiperSlide>
-                    );
-                  })}
-                </Swiper>
-                <Box
-                  className="next_btn restaurant-next"
-                  style={{ color: "#172b4d" }}
-                >
-                  <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
-                </Box>
-              </Stack>
-            </div>
-          </div>
-
           <div className="products-container">
             <div className="product_container_box">
               <div className="product_search">

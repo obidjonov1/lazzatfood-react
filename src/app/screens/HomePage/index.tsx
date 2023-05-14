@@ -12,8 +12,9 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import "../../../css/home.css";
+import { NavLink } from "react-router-dom";
 
-export function HomePage() {
+export function HomePage(props: any) {
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
   const handleChange =
@@ -39,7 +40,9 @@ export function HomePage() {
                           alt="clothes"
                           className="menu-title-img"
                         />
-                        <p className="menu-title">Big Sale %</p>
+                        <NavLink className="menu-title" to={"/shop"}>
+                          Big Sale %
+                        </NavLink>
                       </div>
                     </div>
                   </li>
@@ -63,45 +66,61 @@ export function HomePage() {
                                 alt="footwear"
                                 className="menu-title-img"
                               />
-                              <p className="menu-title">Go'sht va Baliq</p>
+                              <p className="menu-title">Meat & Fish</p>
                             </div>
                           </AccordionSummary>
 
                           <AccordionDetails>
                             <ul className="sidebar-submenu-category-list">
                               <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">Mol (45)</p>
-                                </a>
+                                <p className="sidebar-submenu-title">
+                                  <NavLink
+                                    className="product-name"
+                                    to={"/shop"}
+                                  >
+                                    Beef (54)
+                                  </NavLink>
+                                </p>
                               </li>
                               <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">Qo'y (32)</p>
-                                </a>
+                                <p className="sidebar-submenu-title">
+                                  <NavLink
+                                    className="product-name"
+                                    to={"/shop"}
+                                  >
+                                    Lamb (24)
+                                  </NavLink>
+                                </p>
                               </li>
                               <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">Baliq (35)</p>
-                                </a>
+                                <p className="sidebar-submenu-title">
+                                  <NavLink
+                                    className="product-name"
+                                    to={"/shop"}
+                                  >
+                                    Fish (12)
+                                  </NavLink>
+                                </p>
                               </li>
                               <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">
-                                    Tovuq va O'rdak (20)
-                                  </p>
-                                </a>
+                                <p className="sidebar-submenu-title">
+                                  <NavLink
+                                    className="product-name"
+                                    to={"/shop"}
+                                  >
+                                    Chicken & Duck (30)
+                                  </NavLink>
+                                </p>
                               </li>
                               <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">Ot (3)</p>
-                                </a>
-                              </li>
-                              <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">
-                                    Kolbasa mahsulotlari (20)
-                                  </p>
-                                </a>
+                                <p className="sidebar-submenu-title">
+                                  <NavLink
+                                    className="product-name"
+                                    to={"/shop"}
+                                  >
+                                    Sausages
+                                  </NavLink>
+                                </p>
                               </li>
                             </ul>
                           </AccordionDetails>
@@ -128,46 +147,61 @@ export function HomePage() {
                                 alt="clothes"
                                 className="menu-title-img"
                               />
-                              <p className="menu-title">Oziq-ovqat</p>
+                              <p className="menu-title">Food</p>
                             </div>
                           </AccordionSummary>
 
                           <AccordionDetails>
                             <ul className="sidebar-submenu-category-list">
                               <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">
-                                    Muzlatilgan mahsulotlar
-                                  </p>
-                                </a>
+                                <p className="sidebar-submenu-title">
+                                  <NavLink
+                                    className="product-name"
+                                    to={"/shop"}
+                                  >
+                                    Sauces & Oils
+                                  </NavLink>
+                                </p>
                               </li>
                               <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">
-                                    Sous va Yog'lar
-                                  </p>
-                                </a>
+                                <p className="sidebar-submenu-title">
+                                  <NavLink
+                                    className="product-name"
+                                    to={"/shop"}
+                                  >
+                                    Cans & Jars
+                                  </NavLink>
+                                </p>
                               </li>
                               <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">
-                                    Guruch Va Ziravorlar
-                                  </p>
-                                </a>
+                                <p className="sidebar-submenu-title">
+                                  <NavLink
+                                    className="product-name"
+                                    to={"/shop"}
+                                  >
+                                    Vegetables
+                                  </NavLink>
+                                </p>
                               </li>
                               <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">
-                                    Konserva Mahsulotlar
-                                  </p>
-                                </a>
+                                <p className="sidebar-submenu-title">
+                                  <NavLink
+                                    className="product-name"
+                                    to={"/shop"}
+                                  >
+                                    Rice & Noodles
+                                  </NavLink>
+                                </p>
                               </li>
                               <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">
-                                    Sut Mahsulotlar
-                                  </p>
-                                </a>
+                                <p className="sidebar-submenu-title">
+                                  <NavLink
+                                    className="product-name"
+                                    to={"/shop"}
+                                  >
+                                    Dairy
+                                  </NavLink>
+                                </p>
                               </li>
                             </ul>
                           </AccordionDetails>
@@ -195,40 +229,61 @@ export function HomePage() {
                                 className="menu-title-img"
                               />
 
-                              <p className="menu-title">Tayyor yeguliklar</p>
+                              <p className="menu-title">Ready to Eat</p>
                             </div>
                           </AccordionSummary>
 
                           <AccordionDetails>
                             <ul className="sidebar-submenu-category-list">
                               <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">
-                                    Non Va Pishiriqlar
-                                  </p>
-                                </a>
+                                <p className="sidebar-submenu-title">
+                                  <NavLink
+                                    className="product-name"
+                                    to={"/shop"}
+                                  >
+                                    Bread & Bakery
+                                  </NavLink>
+                                </p>
                               </li>
                               <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">Kabob Va Pitsa</p>
-                                </a>
+                                <p className="sidebar-submenu-title">
+                                  <NavLink
+                                    className="product-name"
+                                    to={"/shop"}
+                                  >
+                                    Ramens
+                                  </NavLink>
+                                </p>
                               </li>
                               <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">Ramyonlar</p>
-                                </a>
+                                <p className="sidebar-submenu-title">
+                                  <NavLink
+                                    className="product-name"
+                                    to={"/shop"}
+                                  >
+                                    Snacks
+                                  </NavLink>
+                                </p>
                               </li>
                               <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">
-                                    Shirinlik Va Desertlar
-                                  </p>
-                                </a>
+                                <p className="sidebar-submenu-title">
+                                  <NavLink
+                                    className="product-name"
+                                    to={"/shop"}
+                                  >
+                                    Sweets & Desserts
+                                  </NavLink>
+                                </p>
                               </li>
                               <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">Chaq-Chuqlar</p>
-                                </a>
+                                <p className="sidebar-submenu-title">
+                                  <NavLink
+                                    className="product-name"
+                                    to={"/shop"}
+                                  >
+                                    Halal Meat Curry
+                                  </NavLink>
+                                </p>
                               </li>
                             </ul>
                           </AccordionDetails>
@@ -255,28 +310,41 @@ export function HomePage() {
                                 alt="cosmetics"
                                 className="menu-title-img"
                               />
-                              <p className="menu-title">Ichimliklar</p>
+                              <p className="menu-title">Dinks</p>
                             </div>
                           </AccordionSummary>
 
                           <AccordionDetails>
                             <ul className="sidebar-submenu-category-list">
                               <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">Choy</p>
-                                </a>
+                                <p className="sidebar-submenu-title">
+                                  <NavLink
+                                    className="product-name"
+                                    to={"/shop"}
+                                  >
+                                    Tea
+                                  </NavLink>
+                                </p>
                               </li>
                               <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">Sharbat</p>
-                                </a>
+                                <p className="sidebar-submenu-title">
+                                  <NavLink
+                                    className="product-name"
+                                    to={"/shop"}
+                                  >
+                                    Juice
+                                  </NavLink>
+                                </p>
                               </li>
                               <li className="sidebar-submenu-category">
-                                <a href="#" className="sidebar-submenu-title">
-                                  <p className="product-name">
-                                    Gazli Ichimliklar
-                                  </p>
-                                </a>
+                                <p className="sidebar-submenu-title">
+                                  <NavLink
+                                    className="product-name"
+                                    to={"/shop"}
+                                  >
+                                    Soda
+                                  </NavLink>
+                                </p>
                               </li>
                             </ul>
                           </AccordionDetails>
@@ -293,7 +361,9 @@ export function HomePage() {
                           alt="glasses"
                           className="menu-title-img"
                         />
-                        <p className="menu-title">Fresh & Fast</p>
+                        <NavLink className="menu-title" to={"/shop"}>
+                          Fresh & Fast
+                        </NavLink>
                       </div>
                     </div>
                   </li>

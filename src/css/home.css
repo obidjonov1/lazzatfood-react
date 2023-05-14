@@ -650,8 +650,14 @@ body {
   z-index: 99;
 }
 .product-grid .price {
-  font-weight: var(--weight-600);
+  font-weight: 500;
   color: #4f4f4f;
+  margin-left: 10px;
+  font-size: 19px;
+}
+.product-grid .prce_disc {
+  font-size: 17px;
+  color: rgb(252, 127, 148);
 }
 .cart-mobile {
   background: var(--cart-color);

@@ -320,7 +320,7 @@ body::-webkit-scrollbar-thumb:hover {
 .header-top-actions select {
   border: none;
   display: block;
-  min-width: 80px;
+  min-width: 50px;
   padding: 5px 0;
   font: inherit;
   color: var(--sonic-silver);

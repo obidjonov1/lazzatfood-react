@@ -44,8 +44,8 @@ export function CommunityPage(props: any) {
                       style={{ borderColor: "blue" }}
                     >
                       <Tab label="All articles" value="1" />
-                      <Tab label="celebrities" value="2" />
-                      <Tab label="evaluate market" value="3" />
+                      <Tab label="evaluate market" value="2" />
+                      <Tab label="evaluate product" value="3" />
                       <Tab label="stories" value="4" />
                     </TabList>
                   </Box>

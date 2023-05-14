@@ -65,16 +65,16 @@ export function NavbarMarket(props: any) {
               </ul>
               <div className="header-alert-news">
                 <p>
-                  <b>Bepul yetkazib berish </b>
-                  ₩50.000 dan boshlab
+                  <b>Free delivery </b>
+                  from ₩99.000
                 </p>
               </div>
               <div className="header-top-actions">
                 <select name="language">
-                  <option value="uz">Uzbek</option>
-                  <option value="ru">Russia</option>
-                  <option value="kr">Korean</option>
-                  <option value="en-US">English</option>
+                  <option value="en-US">Eng</option>
+                  <option value="uz">Uzb</option>
+                  <option value="ru">Rus</option>
+                  <option value="kr">Kor</option>
                 </select>
               </div>
             </div>
@@ -95,7 +95,7 @@ export function NavbarMarket(props: any) {
                   type="search"
                   name="search"
                   className="search-field"
-                  placeholder="Izlash, misol uchun kolbasa..."
+                  placeholder="Search ..."
                 />
                 <AiOutlineSearch className="search-btn" />
               </div>
@@ -155,15 +155,15 @@ export function NavbarMarket(props: any) {
                               <img src="/images/sigin.webp" alt="" />
                             </div>
                             <div className="form-box">
-                              <h2 className="welcome">Xush kelibsiz !</h2>
+                              <h2 className="welcome">Welcome !</h2>
                               <div className="top login-sigup">
                                 <p>
-                                  Aʼzo emasmisiz?
+                                  Not a member ?
                                   <span
                                     onClick={() => handleClick("#ff0066")}
                                     data-id="#ff0066"
                                   >
-                                    Roʻyxatdan oʻtish
+                                    Sign Up
                                   </span>
                                 </p>
                               </div>
@@ -173,7 +173,7 @@ export function NavbarMarket(props: any) {
                                   <div>
                                     <input
                                       type={showPassword ? "text" : "password"}
-                                      placeholder="Parol"
+                                      placeholder="Password"
                                     />
                                     <div
                                       className="icon form-icon"
@@ -192,7 +192,7 @@ export function NavbarMarket(props: any) {
                                   <input type="submit" value="Kirish" />
                                 </div>
                                 <div className="form-control">
-                                  <p>Yoki davom eting</p>
+                                  <p>Continue with</p>
                                   <div className="icons">
                                     <div className="icon">
                                       <img src="/images/search.svg" alt="" />
@@ -216,11 +216,11 @@ export function NavbarMarket(props: any) {
                           <div className="user signup">
                             <div className="form-box">
                               <h2 className="welcome-second">
-                                Welcome LazzatFood!
+                                Welcome to LazzatFood!
                               </h2>
                               <div className="top top-second">
                                 <p>
-                                  Allaqachon a'zomisiz?
+                                  Already registered ?
                                   <span
                                     onClick={() => handleClick("#1a1aff")}
                                     data-id="#1a1aff"
@@ -235,7 +235,7 @@ export function NavbarMarket(props: any) {
                                   <div>
                                     <input
                                       type={showPassword ? "text" : "password"}
-                                      placeholder="Parol"
+                                      placeholder="Password"
                                     />
                                     <div
                                       className="icon form-icon"
@@ -254,7 +254,7 @@ export function NavbarMarket(props: any) {
                                   <div>
                                     <input
                                       type={showPassword ? "text" : "password"}
-                                      placeholder="Parolni tasdiqlang"
+                                      placeholder="Confirm Password"
                                     />
                                     <div
                                       className="icon form-icon"
@@ -270,13 +270,10 @@ export function NavbarMarket(props: any) {
                                       />
                                     </div>
                                   </div>
-                                  <input
-                                    type="Submit"
-                                    value="Ro'yxatdan o'tish"
-                                  />
+                                  <input type="Submit" value="Sign Up" />
                                 </div>
                                 <div className="form-control">
-                                  <p>Yoki davom eting</p>
+                                  <p>Continue with</p>
                                   <div className="icons">
                                     <div className="icon">
                                       <img src="/images/search.svg" alt="" />
@@ -327,88 +324,120 @@ export function NavbarMarket(props: any) {
                 </NavLink>
               </li>
               <li className="menu-category" onClick={props.setPath}>
-                <p className="menu-title">Kategoriyalar</p>
+                <NavLink className="menu-title" to={"/shop"}>
+                  Shop
+                </NavLink>
                 <BiChevronDown />
                 <div className="dropdown-panel">
                   <ul className="dropdown-panel-list">
                     <li className="menu-title">
-                      <a href="#">Elektr qurilmalar</a>
+                      <NavLink to={"/shop"} onClick={props.setPath}>
+                        Texno
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="#">Uy jihozlari</a>
+                      <NavLink to={"/shop"} onClick={props.setPath}>
+                        Home appliances
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="#">Oshxona buyumlar</a>
+                      <NavLink to={"/shop"} onClick={props.setPath}>
+                        Kitchen appliances
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="#">Avoto anjomlar</a>
+                      <NavLink to={"/shop"} onClick={props.setPath}>
+                        Auto appliances
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="#">Tibbiy uskunalar</a>
+                      <NavLink to={"/shop"} onClick={props.setPath}>
+                        Medical appliances
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="#">
+                      <NavLink to={"/shop"} onClick={props.setPath}>
                         <img
                           src="/images/electro.JPEG"
                           alt=""
                           width="250"
                           height="119"
                         />
-                      </a>
+                      </NavLink>
                     </li>
                   </ul>
                   <ul className="dropdown-panel-list">
                     <li className="menu-title">
-                      <a href="#">Go'zallik va Sog'lik</a>
+                      <NavLink to={"/shop"} onClick={props.setPath}>
+                        Beauty & Health
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="#">Vitaminlar</a>
+                      <NavLink to={"/shop"} onClick={props.setPath}>
+                        Vitamins
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="#">Dorilar</a>
+                      <NavLink to={"/shop"} onClick={props.setPath}>
+                        Styling Accessories
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="#">Pardozlash anjomlari</a>
+                      <NavLink to={"/shop"} onClick={props.setPath}>
+                        Korean Cosmetics
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="#">Koreya kosmetikasi</a>
+                      <NavLink to={"/shop"} onClick={props.setPath}>
+                        Medical Equipment
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="#">
+                      <NavLink to={"/shop"} onClick={props.setPath}>
                         <img
                           src="/images/vitamin.JPEG"
                           alt=""
                           width="250"
                           height="119"
                         />
-                      </a>
+                      </NavLink>
                     </li>
                   </ul>
                   <ul className="dropdown-panel-list">
                     <li className="menu-title">
-                      <a href="#">Oila do'koni</a>
+                      <NavLink to={"/shop"} onClick={props.setPath}>
+                        Family Shop
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="#">Qishki buyumlar</a>
+                      <NavLink to={"/shop"} onClick={props.setPath}>
+                        Winter items
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="#">Joynamozlar</a>
+                      <NavLink to={"/shop"} onClick={props.setPath}>
+                        Prayer Mats
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="#">Bolalar uchun</a>
+                      <NavLink to={"/shop"} onClick={props.setPath}>
+                        Kids
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="#">Sport</a>
+                      <NavLink to={"/shop"} onClick={props.setPath}>
+                        Sport
+                      </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="#">
+                      <NavLink to={"/shop"} onClick={props.setPath}>
                         <img
                           src="/images/familyItem.JPEG"
                           alt=""
                           width="250"
                           height="119"
                         />
-                      </a>
+                      </NavLink>
                     </li>
                   </ul>
                   <ul className="dropdown-panel-list">

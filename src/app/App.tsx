@@ -4,6 +4,7 @@ import "../css/footer.css";
 import "../css/navbar.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { MarketPage } from "./screens/MarketPage";
+import { ShopPage } from "./screens/ShopPage";
 import { CommunityPage } from "./screens/CommunityPage";
 import { OrdersPage } from "./screens/OrdersPage";
 import { MemberPage } from "./screens/MemberPage";
@@ -43,6 +44,9 @@ function App() {
         <Route path="/markets">
           <MarketPage />
         </Route>
+        <Route path="/shop">
+          <ShopPage />
+        </Route>
         <Route path="/community">
           <CommunityPage />
         </Route>
@@ -81,7 +85,7 @@ function App() {
         </Route>
       </Switch>
 
-      <Footer />
+      <Footer setPath={setPath} />
     </Router>
   );
 }

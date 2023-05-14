@@ -66,7 +66,10 @@ export function RecommendedProducts(props: any) {
                           <span className="product-title">
                             Lorem, ipsum dolor sit
                           </span>
-                          <p className="price">$48.00</p>
+                          <div>
+                            <del className="prce_disc">₩50.000</del>
+                            <span className="price">₩39.000</span>
+                          </div>
                           <button className="cart-mobile" type="button">
                             <BiShoppingBag className="add-cart__btn" />
                             <p>Add To Cart</p>
