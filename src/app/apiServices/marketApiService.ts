@@ -1,6 +1,6 @@
 import axios from "axios";
 import assert from "assert";
-import { serviceApi } from "../../lib/config";
+import { serverApi } from "../../lib/config";
 import { Definer } from "../../lib/Definer";
 import { Market } from "../screens/types/user";
 import { SearchObj } from "../screens/types/others";
@@ -9,7 +9,7 @@ class MarketApiService {
   private readonly path: string;
 
   constructor() {
-    this.path = serviceApi;
+    this.path = serverApi;
   }
 
   async getTopMarkets() {

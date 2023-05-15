@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveTopMarkets } from "../../screens/HomePage/selector";
 import { Market } from "../types/user";
-import { serviceApi } from "../../../lib/config";
+import { serverApi } from "../../../lib/config";
 
 /** REDUX SELECTOR */
 const topMarketRetriever = createSelector(retrieveTopMarkets, (topMarkets) => ({
@@ -38,7 +38,7 @@ export function TopMarkets(props: any) {
               </h1>
               <div className="markets-grid_box">
                 {topMarkets.map((ele: Market) => {
-                  const image_path = `${serviceApi}/${ele.mb_image}`;
+                  const image_path = `${serverApi}/${ele.mb_image}`;
 
                   return (
                     <div className="markets_box">

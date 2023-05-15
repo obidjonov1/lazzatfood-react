@@ -13,6 +13,8 @@ export interface Product {
   product_discount: number;
   product_left_cnt: number;
   product_size: string;
+  product_weight: number;
+  product_family: number;
   product_volume: number;
   product_description: string;
   product_images: string[];
@@ -23,4 +25,3 @@ export interface Product {
   updatedAt: Date;
   me_liked: MeLiked[]; // Me liked
 }
-

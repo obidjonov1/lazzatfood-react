@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveBestMarkets } from "../../screens/HomePage/selector";
 import { Market } from "../types/user";
-import { serviceApi } from "../../../lib/config";
+import { serverApi } from "../../../lib/config";
 import { NavLink } from "react-router-dom";
 
 /** REDUX SELECTOR */
@@ -42,7 +42,7 @@ export function BestMarkets(props: any) {
               </h1>
               <div className="markets-grid_box">
                 {bestMarkets.map((ele: Market) => {
-                  const image_path = `${serviceApi}/${ele.mb_image}`;
+                  const image_path = `${serverApi}/${ele.mb_image}`;
 
                   return (
                     <div className="markets_box">

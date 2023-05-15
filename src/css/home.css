@@ -636,9 +636,10 @@ body {
 
 .product-grid .product-title {
   color: #525252;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 440;
   padding-left: 10px;
+  text-transform: capitalize;
 }
 .product-grid .product-cart_price_box {
   height: 26px;
