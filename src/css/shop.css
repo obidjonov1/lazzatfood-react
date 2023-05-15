@@ -1,3 +1,14 @@
 .shop_cont {
   margin: 125px 0 60px 0;
 }
+.which_market {
+  font-size: 14px;
+  color: #0071e3;
+  cursor: pointer;
+  z-index: 99;
+  margin-bottom: 2px;
+  padding-left: 10px;
+}
+.Toastify__toast-container--top-right {
+  width: 380px !important;
+}

@@ -14,6 +14,24 @@ import { BiShoppingBag, BiChevronDown } from "react-icons/bi";
 import { CssVarsProvider } from "@mui/joy/styles";
 import { ModalClose, Sheet } from "@mui/joy";
 import Modal from "@mui/joy/Modal";
+import Breadcrumbs from "@mui/joy/Breadcrumbs";
+import Link from "@mui/joy/Link";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const notify = () => {
+  toast.info("Login via SNS will be launched soon!", {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+};
 
 export function NavbarOthers(props: any) {
   const [open, setOpen] = React.useState<boolean>(false);
@@ -196,16 +214,16 @@ export function NavbarOthers(props: any) {
                                 <div className="form-control">
                                   <p>Continue with</p>
                                   <div className="icons">
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/search.svg" alt="" />
                                     </div>
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/facebook.png" alt="" />
                                     </div>
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/naver.png" alt="" />
                                     </div>
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/kakotalk.png" alt="" />
                                     </div>
                                   </div>
@@ -213,6 +231,7 @@ export function NavbarOthers(props: any) {
                               </form>
                             </div>
                           </div>
+                          <ToastContainer />
 
                           {/* <!-- Register --> */}
                           <div className="user signup">
@@ -277,16 +296,16 @@ export function NavbarOthers(props: any) {
                                 <div className="form-control">
                                   <p>Continue with</p>
                                   <div className="icons">
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/search.svg" alt="" />
                                     </div>
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/facebook.png" alt="" />
                                     </div>
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/naver.png" alt="" />
                                     </div>
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/kakotalk.png" alt="" />
                                     </div>
                                   </div>
@@ -542,8 +561,7 @@ export function NavbarOthers(props: any) {
       {/* <!-- Banner --> */}
       <div className="banner-container">
         <div className="banner-content">
-          {/* <h2 className="which_page">News Page</h2> */}
-          <ul className="pages">
+          {/* <ul className="pages">
             <li onClick={props.setPath}>
               <NavLink
                 to={"/"}
@@ -558,7 +576,7 @@ export function NavbarOthers(props: any) {
             <li>
               <p>This Page</p>
             </li>
-          </ul>
+          </ul> */}
         </div>
       </div>
       {/* <!-- Banner end --> */}

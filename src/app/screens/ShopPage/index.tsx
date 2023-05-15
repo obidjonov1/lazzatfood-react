@@ -284,6 +284,7 @@ export function ShopPage(props: any) {
                                 width="300"
                                 className="product-img rasim"
                               />
+                              <span className="which_market">LazzatFood</span>
                               <div className="product_rating">
                                 <Rating
                                   sx={{ fontSize: "19px" }}
@@ -303,7 +304,7 @@ export function ShopPage(props: any) {
                               <span className="product-title">
                                 Lorem, ipsum dolor sit
                               </span>
-                              <div>
+                              <div className="product-cart_price_box">
                                 <del className="prce_disc">₩50.000</del>
                                 <span className="price">₩39.000</span>
                               </div>

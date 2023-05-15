@@ -13,6 +13,22 @@ import { CssVarsProvider } from "@mui/joy/styles";
 import { ModalClose, Sheet } from "@mui/joy";
 import Modal from "@mui/joy/Modal";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const notify = () => {
+  toast.info("Login via SNS will be launched soon!", {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+};
+
 export function NavbarMarket(props: any) {
   const [open, setOpen] = React.useState<boolean>(false);
   const [isActive, setIsActive] = useState(false);
@@ -194,22 +210,23 @@ export function NavbarMarket(props: any) {
                                 <div className="form-control">
                                   <p>Continue with</p>
                                   <div className="icons">
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/search.svg" alt="" />
                                     </div>
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/facebook.png" alt="" />
                                     </div>
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/naver.png" alt="" />
                                     </div>
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/kakotalk.png" alt="" />
                                     </div>
                                   </div>
                                 </div>
                               </form>
                             </div>
+                            <ToastContainer />
                           </div>
 
                           {/* <!-- Register --> */}
@@ -275,16 +292,16 @@ export function NavbarMarket(props: any) {
                                 <div className="form-control">
                                   <p>Continue with</p>
                                   <div className="icons">
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/search.svg" alt="" />
                                     </div>
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/facebook.png" alt="" />
                                     </div>
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/naver.png" alt="" />
                                     </div>
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/kakotalk.png" alt="" />
                                     </div>
                                   </div>
@@ -467,14 +484,14 @@ export function NavbarMarket(props: any) {
                       </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="#">
+                      <NavLink to={"/certificates"} onClick={props.setPath}>
                         <img
                           src="/images/halalSer.JPEG"
                           alt=""
                           width="250"
                           height="119"
                         />
-                      </a>
+                      </NavLink>
                     </li>
                   </ul>
                 </div>

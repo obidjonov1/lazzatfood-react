@@ -19,7 +19,23 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 // import { Pagination, Navigation } from "swiper";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 SwiperCore.use([Autoplay, Navigation, Pagination]);
+
+const notify = () => {
+  toast.info("Login via SNS will be launched soon!", {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+};
 
 export function NavbarHome(props: any) {
   const [open, setOpen] = React.useState<boolean>(false);
@@ -202,22 +218,23 @@ export function NavbarHome(props: any) {
                                 <div className="form-control">
                                   <p>Continue with</p>
                                   <div className="icons">
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/search.svg" alt="" />
                                     </div>
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/facebook.png" alt="" />
                                     </div>
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/naver.png" alt="" />
                                     </div>
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/kakotalk.png" alt="" />
                                     </div>
                                   </div>
                                 </div>
                               </form>
                             </div>
+                            <ToastContainer />
                           </div>
 
                           {/* <!-- Register --> */}
@@ -283,16 +300,16 @@ export function NavbarHome(props: any) {
                                 <div className="form-control">
                                   <p>Continue with</p>
                                   <div className="icons">
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/search.svg" alt="" />
                                     </div>
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/facebook.png" alt="" />
                                     </div>
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/naver.png" alt="" />
                                     </div>
-                                    <div className="icon">
+                                    <div className="icon" onClick={notify}>
                                       <img src="/images/kakotalk.png" alt="" />
                                     </div>
                                   </div>
