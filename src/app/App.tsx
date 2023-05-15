@@ -22,19 +22,42 @@ import { TermsOfServicePage } from "./screens/TermsOfServicePage";
 import { PrivacyPage } from "./screens/PrivacyPage";
 import { DeliveryPolicyPage } from "./screens/DeliveryPolicyPage";
 import { PartnershipPage } from "./screens/PartnershipPage";
+// import AuthenticationModal from "./components/auth";
 
 function App() {
+  /* INITIALIZATIONS */
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
+
+  const [signUpOpen, setSignUpOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+
+  /* HABDLERS */
+  const handleSignUpOpen = () => setSignUpOpen(true);
+  const handleSignUpClose = () => setSignUpOpen(false);
+  const handleLoginOpen = () => setLoginOpen(true);
+  const handleLoginClose = () => setLoginOpen(false);
 
   return (
     <Router>
       {main_path === "/" ? (
-        <NavbarHome setPath={setPath} />
+        <NavbarHome
+          setPath={setPath}
+          handleLoginOpen={handleLoginOpen}
+          handleSignUpOpen={handleSignUpOpen}
+        />
       ) : main_path.includes("/markets") ? (
-        <NavbarMarket setPath={setPath} />
+        <NavbarMarket
+          setPath={setPath}
+          handleLoginOpen={handleLoginOpen}
+          handleSignUpOpen={handleSignUpOpen}
+        />
       ) : (
-        <NavbarOthers setPath={setPath} />
+        <NavbarOthers
+          setPath={setPath}
+          handleLoginOpen={handleLoginOpen}
+          handleSignUpOpen={handleSignUpOpen}
+        />
       )}
 
       <Switch>
@@ -86,6 +109,15 @@ function App() {
       </Switch>
 
       <Footer setPath={setPath} />
+
+      {/* <AuthenticationModal
+        loginOpen={loginOpen}
+        handleLoginOpen={handleLoginOpen}
+        handleLoginClose={handleLoginClose}
+        signUpOpen={signUpOpen}
+        handleSignUpOpen={handleSignUpOpen}
+        handleSignUpClose={handleSignUpClose}
+      /> */}
     </Router>
   );
 }
