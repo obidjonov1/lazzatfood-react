@@ -17,36 +17,38 @@ import "../../../css/home.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
-import { setTopMarkets } from "../../screens/HomePage/slice";
-import { retrieveTopMarkets } from "../../screens/HomePage/selector";
+import { setTopMarkets, setBestMarkets } from "../../screens/HomePage/slice";
+import {
+  retrieveTopMarkets,
+  retrieveBestMarkets,
+} from "../../screens/HomePage/selector";
 import { Market } from "../types/user";
 import MarketApiService from "../../apiServices/marketApiService";
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
   setTopMarkets: (data: Market[]) => dispatch(setTopMarkets(data)),
+  setBestMarkets: (data: Market[]) => dispatch(setBestMarkets(data)),
 });
-
-/** REDUX SELECTOR */
-const topMarketRetriever = createSelector(retrieveTopMarkets, (topMarkets) => ({
-  topMarkets,
-}));
 
 export function HomePage(props: any) {
   const [expanded, setExpanded] = React.useState<string | false>(false);
-  const { setTopMarkets } = actionDispatch(useDispatch());
-  const { topMarkets } = useSelector(topMarketRetriever);
+  const { setTopMarkets, setBestMarkets } = actionDispatch(useDispatch());
 
   // selector : takes data from store
-  console.log("topMarkets:::", topMarkets);
-  // TODO: console.log("bestRestaurants:::", bestRestaurants);
-
   useEffect(() => {
     const restaurantService = new MarketApiService();
     restaurantService
       .getTopMarkets()
       .then((data) => {
         setTopMarkets(data);
+      })
+      .catch((err) => console.log(err));
+
+    restaurantService
+      .getMarkets({ page: 1, limit: 3, order: "mb_point" })
+      .then((data) => {
+        setBestMarkets(data);
       })
       .catch((err) => console.log(err));
   }, []);

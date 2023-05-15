@@ -20,12 +20,11 @@ const topMarketRetriever = createSelector(retrieveTopMarkets, (topMarkets) => ({
 
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
-const product_list = Array.from(Array(3).keys());
-
 export function TopMarkets(props: any) {
+  /* INITIALIZATION */
   const { topMarkets } = useSelector(topMarketRetriever);
   // selector : takes data from store
-  console.log("topRestaurants:::", topMarkets);
+  console.log("topMarkets:::", topMarkets);
 
   return (
     <Container>

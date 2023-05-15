@@ -278,6 +278,7 @@ body {
   letter-spacing: 0.00938em;
 }
 .markets_info-box .info_top .info-top_nick {
+  text-transform: uppercase;
   font-size: 22px;
   text-align: center;
 }
@@ -358,6 +359,7 @@ body {
 }
 .markets_info .info_top .info-top_nick {
   font-size: 22px;
+  text-transform: uppercase;
   text-align: center;
 }
 .info_top .info-top_address {
@@ -423,6 +425,9 @@ body {
   background: #23285f;
   color: #fff;
   border-radius: 8px;
+}
+.view-markets .view-markets_btn p {
+  color: #fff;
 }
 .view-markets_btn .arrow {
   font-size: 21px;
