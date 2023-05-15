@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Container } from "@mui/system";
 import { ImLocation2 } from "react-icons/im";
 import { FiPhone } from "react-icons/fi";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { AiOutlineEye, AiFillHeart } from "react-icons/ai";
+import { NavLink } from "react-router-dom";
+import assert from "assert";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
+import { useHistory } from "react-router-dom";
 
 // REDUX
 import { useSelector } from "react-redux";
@@ -11,7 +18,9 @@ import { createSelector } from "reselect";
 import { retrieveBestMarkets } from "../../screens/HomePage/selector";
 import { Market } from "../types/user";
 import { serverApi } from "../../../lib/config";
-import { NavLink } from "react-router-dom";
+import { Definer } from "../../../lib/Definer";
+import MemberApiService from "../../apiServices/memberApiService";
+import { Button } from "@mui/material";
 
 /** REDUX SELECTOR */
 const bestMarketRetriever = createSelector(
@@ -23,9 +32,43 @@ const bestMarketRetriever = createSelector(
 
 export function BestMarkets(props: any) {
   /* INITIALIZATION */
-  const { bestMarkets } = useSelector(bestMarketRetriever);
+
   // selector : takes data from store
-  console.log("bestMarkets:::", bestMarkets);
+  const history = useHistory();
+  const { bestMarkets } = useSelector(bestMarketRetriever);
+  const refs: any = useRef([]);
+
+  /* HANDLERS */
+  const chosenMarketHandler = (id: string) => {
+    history.push(`/markets/${id}`);
+  };
+
+  const goMarketsHandler = () => history.push("/markets");
+
+  const targetLikeBest = async (e: any, id: string) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+
+      const memberService = new MemberApiService(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: id,
+          group_type: "member",
+        });
+      assert.ok(like_result, Definer.general_err1);
+
+      if (like_result.like_status > 0) {
+        e.target.style.fill = "red";
+        refs.current[like_result.like_ref_id].innerHTML++;
+      } else {
+        e.target.style.fill = "white";
+        refs.current[like_result.like_ref_id].innerHTML--;
+      }
+      await sweetTopSmallSuccessAlert("succes", 800, false);
+    } catch (err: any) {
+      console.log("targetLikeBest, ERROR:", err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <Container>
@@ -45,7 +88,11 @@ export function BestMarkets(props: any) {
                   const image_path = `${serverApi}/${ele.mb_image}`;
 
                   return (
-                    <div className="markets_box">
+                    <div
+                      className="markets_box"
+                      key={ele._id}
+                      onClick={() => chosenMarketHandler(ele._id)}
+                    >
                       <div className="markets_img">
                         <img src={image_path} alt="" />
                       </div>
@@ -76,13 +123,25 @@ export function BestMarkets(props: any) {
                                 className="icons"
                                 style={{ color: "#a19d9d" }}
                               />
-                              <p>{ele.mb_likes}</p>
+                              <div
+                                ref={(element) =>
+                                  (refs.current[ele._id] = element)
+                                }
+                              >
+                                {ele.mb_likes}
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div className="market_like">
+                      <div
+                        className="market_like"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
                         <AiFillHeart
+                          onClick={(e) => targetLikeBest(e, ele._id)}
                           style={{
                             fill:
                               ele?.me_liked && ele?.me_liked[0]?.my_favorite
@@ -97,12 +156,14 @@ export function BestMarkets(props: any) {
                 })}
               </div>
               <div className="view-markets">
-                <button type="button" className="view-markets_btn">
-                  <NavLink to={"/markets"}>
-                    <p>View All</p>
-                  </NavLink>
+                <Button
+                  type="button"
+                  className="view-markets_btn"
+                  onClick={goMarketsHandler}
+                >
+                  <p>View All</p>
                   <MdOutlineKeyboardDoubleArrowRight className="arrow" />
-                </button>
+                </Button>
               </div>
             </div>
           </div>

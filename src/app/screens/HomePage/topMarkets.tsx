@@ -37,7 +37,7 @@ export function TopMarkets(props: any) {
   const refs: any = useRef([]);
 
   /* HANDLERS */
-  const chosenRestaurantHandler = (id: string) => {
+  const chosenMarketHandler = (id: string) => {
     history.push(`/markets/${id}`);
   };
 
@@ -84,7 +84,7 @@ export function TopMarkets(props: any) {
                     <div
                       className="markets_box"
                       key={ele._id}
-                      onClick={() => chosenRestaurantHandler(ele._id)}
+                      onClick={() => chosenMarketHandler(ele._id)}
                     >
                       <div className="markets_img">
                         <img src={image_path} alt="" />
