@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "@mui/system";
 import { TopMarkets } from "./topMarkets";
 import { BestMarkets } from "./bestMarkets";
@@ -10,12 +10,49 @@ import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
-import "../../../css/home.css";
 import { NavLink } from "react-router-dom";
+import "../../../css/home.css";
+
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
+import { setTopMarkets } from "../../screens/HomePage/slice";
+import {
+  retrieveTopMarkets,
+  retrieveBestMarkets,
+} from "../../screens/HomePage/selector";
+import { Market } from "../types/user";
+
+/** REDUX SLICE */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setTopMarkets: (data: Market[]) => dispatch(setTopMarkets(data)),
+});
+
+/** REDUX SELECTOR */
+const topMarketRetriever = createSelector(retrieveTopMarkets, (topMarkets) => ({
+  topMarkets,
+}));
+
+// TODO: const bestMarketRetriever = createSelector(
+//   retrieveBestMarkets,
+//   (bestMarkets) => ({
+//     bestMarkets,
+//   })
+// );
 
 export function HomePage(props: any) {
   const [expanded, setExpanded] = React.useState<string | false>(false);
+  const { setTopMarkets } = actionDispatch(useDispatch());
+  const { topMarkets } = useSelector(topMarketRetriever);
+
+  // selector : takes data from store
+  console.log("topMarkets:::", topMarkets);
+  // TODO: console.log("bestRestaurants:::", bestRestaurants);
+
+  useEffect(() => {
+    TODO: setTopMarkets([]);
+  }, []);
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
