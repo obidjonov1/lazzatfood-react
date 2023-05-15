@@ -1,6 +1,6 @@
-import { Badge, IconButton } from "@mui/material";
-import { Box, Container, Stack } from "@mui/system";
 import React, { useEffect, useState } from "react";
+import { Logout } from "@mui/icons-material";
+import { Box, Container, Menu, MenuItem, ListItemIcon } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { BsFacebook, BsWhatsapp, BsFileEarmarkPerson } from "react-icons/bs";
 import {
@@ -8,11 +8,8 @@ import {
   AiOutlineInstagram,
   AiOutlineSearch,
 } from "react-icons/ai";
-import { IoPersonOutline, IoCallOutline } from "react-icons/io5";
+import { IoPersonOutline} from "react-icons/io5";
 import { BiShoppingBag, BiChevronDown } from "react-icons/bi";
-import { CssVarsProvider } from "@mui/joy/styles";
-import Modal from "@mui/joy/Modal";
-import { ModalClose, ModalDialog, Typography, Button, Sheet } from "@mui/joy";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -20,45 +17,10 @@ import "swiper/css/navigation";
 // import { Pagination, Navigation } from "swiper";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
-const notify = () => {
-  toast.info("Login via SNS will be launched soon!", {
-    position: "top-right",
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
-};
-
 export function NavbarHome(props: any) {
-  const [open, setOpen] = React.useState<boolean>(false);
-  const [isActive, setIsActive] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleClick = (color: string) => {
-    setIsActive(!isActive);
-    (document.querySelector(":root") as HTMLElement).style.setProperty(
-      "--custom",
-      color
-    );
-  };
-
-  const togglePassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // Login logic here
-  };
-
   return (
     <div className="format home-navbar">
       <div className="header_top">
@@ -124,25 +86,90 @@ export function NavbarHome(props: any) {
                 <AiOutlineSearch className="search-btn" />
               </div>
               <div className="header-user-actions">
-                <NavLink
-                  to={"/member-page"}
-                  activeClassName="underline"
-                  className="menu-title my_page"
-                  onClick={props.setPath}
+                {props.verifiedMemberData ? (
+                  <Box>
+                    <NavLink
+                      to={"/member-page"}
+                      activeClassName="underline"
+                      className="menu-title my_page"
+                      onClick={props.setPath}
+                    >
+                      <BsFileEarmarkPerson className="my-page_icon" />
+                      My page
+                    </NavLink>
+                  </Box>
+                ) : null}
+
+                {!props.verifiedMemberData ? (
+                  <Box>
+                    <button
+                      className="action-btn user-icon login-btn-action"
+                      id="myBtn"
+                      onClick={props.handleLoginOpen}
+                    >
+                      <IoPersonOutline className="icon_pers" />
+                      <p className="login-button">Login</p>
+                    </button>
+                  </Box>
+                ) : (
+                  <img
+                    style={{
+                      width: "48px",
+                      height: "48px",
+                      borderRadius: "24px",
+                    }}
+                    alt=""
+                    src={props.verifiedMemberData.mb_image}
+                    onClick={props.handleLogOutClick}
+                  />
+                )}
+
+                <Menu
+                  anchorEl={props.anchorEl}
+                  open={props.open}
+                  onClose={props.handleCloseLogOut}
+                  onClick={props.handleCloseLogOut}
+                  PaperProps={{
+                    elevation: 0,
+                    sx: {
+                      overflow: "visible",
+                      filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                      mt: 1.5,
+                      "& .MuiAvatar-root": {
+                        width: 32,
+                        height: 32,
+                        ml: -0.5,
+                        mr: 1,
+                      },
+                      "&:before": {
+                        content: '""',
+                        display: "block",
+                        position: "absolute",
+                        top: 0,
+                        right: 14,
+                        width: 10,
+                        height: 10,
+                        bgcolor: "background.paper",
+                        transform: "translateY(-50%) rotate(45deg)",
+                        zIndex: 0,
+                      },
+                    },
+                  }}
+                  transformOrigin={{ horizontal: "right", vertical: "top" }}
+                  anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                 >
-                  <BsFileEarmarkPerson className="my-page_icon" />
-                  My page
-                </NavLink>
-                <button
-                  className="action-btn user-icon login-btn-action"
-                  onClick={props.handleLoginOpen}
-                >
-                  <IoPersonOutline className="icon_pers" />
-                  <p className="login-button">Login</p>
-                </button>
-                <button className="action-btn shoppingbag">
-                  <BiShoppingBag />
-                </button>
+                  <MenuItem onClick={props.handleLogOutRequest}>
+                    <ListItemIcon>
+                      <Logout fontSize="small" style={{ color: "blue" }} />
+                    </ListItemIcon>
+                    Logout
+                  </MenuItem>
+                </Menu>
+                <Box>
+                  <button className="action-btn shoppingbag">
+                    <BiShoppingBag />
+                  </button>
+                </Box>
               </div>
             </div>
           </div>
@@ -306,14 +333,14 @@ export function NavbarHome(props: any) {
                       </NavLink>
                     </li>
                     <li className="panel-list-item">
-                      <a href="#">
+                      <NavLink to={"/certificates"} onClick={props.setPath}>
                         <img
                           src="/images/halalSer.JPEG"
                           alt=""
                           width="250"
                           height="119"
                         />
-                      </a>
+                      </NavLink>
                     </li>
                   </ul>
                 </div>

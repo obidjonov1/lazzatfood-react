@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/App.css";
 import "../css/footer.css";
 import "../css/navbar.css";
@@ -23,34 +23,104 @@ import { PrivacyPage } from "./screens/PrivacyPage";
 import { DeliveryPolicyPage } from "./screens/DeliveryPolicyPage";
 import { PartnershipPage } from "./screens/PartnershipPage";
 import AuthenticationModal from "./components/auth";
+import { Member } from "./screens/types/user";
+import { serverApi } from "../lib/config";
+import {
+  sweetFailureProvider,
+  sweetTopSmallSuccessAlert,
+} from "../lib/sweetAlert";
+import { Definer } from "../lib/Definer";
+import MemberApiService from "./apiServices/memberApiService";
+import "../app/apiServices/verify";
 
 function App() {
   /* INITIALIZATIONS */
+  const [verifiedMemberData, setVerifiedMemberData] = useState<Member | null>(
+    null
+  );
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
-
   const [loginOpen, setLoginOpen] = useState(false);
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  useEffect(() => {
+    console.log("==== useEffect: App ====");
+    const memberDataJson: any = localStorage.getItem("member_data")
+      ? localStorage.getItem("member_data")
+      : null;
+    //    ->  JSON.parse (memberDataJson) data bo'lsa obj ga aylantiryapti ->
+    const member_data = memberDataJson ? JSON.parse(memberDataJson) : null;
+    if (member_data) {
+      // agar mbni img bo'lmasa dafault imgni yuklaydi ->
+      member_data.mb_image = member_data.mb_image
+        ? `${serverApi}/${member_data.mb_image}`
+        : "/auth/profile.svg";
+      setVerifiedMemberData(member_data);
+    }
+  }, [loginOpen]); // <- ComponentDidUpdate
 
   /* HABDLERS */
   const handleLoginOpen = () => setLoginOpen(true);
   const handleLoginClose = () => setLoginOpen(false);
+
+  // LOGOUT handles ->
+  const handleLogOutClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseLogOut = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(null);
+  };
+
+  const handleLogOutRequest = async () => {
+    try {
+      const memberApiService = new MemberApiService();
+      await memberApiService.logOutRequest();
+      await sweetTopSmallSuccessAlert("success", 700, true);
+    } catch (err: any) {
+      console.log(err);
+      sweetFailureProvider(Definer.general_err1);
+    }
+  };
 
   return (
     <Router>
       {main_path === "/" ? (
         <NavbarHome
           setPath={setPath}
-          handleLoginOpen={handleLoginOpen}
+          handleLoginOpen={handleLoginOpen} // logout->
+          anchorEl={anchorEl}
+          open={open}
+          handleLogOutClick={handleLogOutClick}
+          handleCloseLogOut={handleCloseLogOut}
+          handleLogOutRequest={handleLogOutRequest}
+          // logout <-
+          verifiedMemberData={verifiedMemberData}
         />
       ) : main_path.includes("/markets") ? (
         <NavbarMarket
           setPath={setPath}
-          handleLoginOpen={handleLoginOpen}
+          handleLoginOpen={handleLoginOpen} // logout->
+          anchorEl={anchorEl}
+          open={open}
+          handleLogOutClick={handleLogOutClick}
+          handleCloseLogOut={handleCloseLogOut}
+          handleLogOutRequest={handleLogOutRequest}
+          // logout <-
+          verifiedMemberData={verifiedMemberData}
         />
       ) : (
         <NavbarOthers
           setPath={setPath}
-          handleLoginOpen={handleLoginOpen}
+          handleLoginOpen={handleLoginOpen} // logout->
+          anchorEl={anchorEl}
+          open={open}
+          handleLogOutClick={handleLogOutClick}
+          handleCloseLogOut={handleCloseLogOut}
+          handleLogOutRequest={handleLogOutRequest}
+          // logout <-
+          verifiedMemberData={verifiedMemberData}
         />
       )}
 
