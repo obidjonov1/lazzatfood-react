@@ -3,7 +3,7 @@ import assert from "assert";
 import { serverApi } from "../../lib/config";
 import { Member } from "../screens/types/user";
 import { Definer } from "../../lib/Definer";
-// import { MemberLiken } from "../screens/types/others";
+import { MemberLiken } from "../screens/types/others";
 
 class MemberApiService {
   private readonly path: string;
@@ -65,23 +65,23 @@ class MemberApiService {
     }
   }
 
-  // public async memberLikeTarget(data: any) {
-  //   try {
-  //     const url = "/member-liken",
-  //       result = await axios.post(this.path + url, data, {
-  //         withCredentials: true,
-  //       });
-  //     assert.ok(result?.data, Definer.general_err1);
-  //     assert.ok(result?.data?.state != "fail", result?.data?.message);
+  public async memberLikeTarget(data: any) {
+    try {
+      const url = "/member-liken",
+        result = await axios.post(this.path + url, data, {
+          withCredentials: true,
+        });
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data?.state != "fail", result?.data?.message);
 
-  //     console.log("state", result.data.data);
-  //     const like_result: MemberLiken = result.data.data;
-  //     return like_result;
-  //   } catch (err: any) {
-  //     console.log(`ERROR ::: memberLikeTarget ${err.message}`);
-  //     throw err;
-  //   }
-  // }
+      console.log("state", result.data.data);
+      const like_result: MemberLiken = result.data.data;
+      return like_result;
+    } catch (err: any) {
+      console.log(`ERROR ::: memberLikeTarget ${err.message}`);
+      throw err;
+    }
+  }
 }
 
 export default MemberApiService;

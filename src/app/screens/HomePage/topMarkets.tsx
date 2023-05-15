@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Container } from "@mui/system";
 import { ImLocation2 } from "react-icons/im";
 import { FiPhone } from "react-icons/fi";
 import { AiOutlineEye, AiFillHeart } from "react-icons/ai";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 // REDUX
 import { useSelector } from "react-redux";
@@ -12,6 +11,14 @@ import { createSelector } from "reselect";
 import { retrieveTopMarkets } from "../../screens/HomePage/selector";
 import { Market } from "../types/user";
 import { serverApi } from "../../../lib/config";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
+import assert from "assert";
+import { Definer } from "../../../lib/Definer";
+import MemberApiService from "../../apiServices/memberApiService";
+import { useHistory } from "react-router-dom";
 
 /** REDUX SELECTOR */
 const topMarketRetriever = createSelector(retrieveTopMarkets, (topMarkets) => ({
@@ -22,9 +29,42 @@ SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 export function TopMarkets(props: any) {
   /* INITIALIZATION */
+  const history = useHistory();
+
   const { topMarkets } = useSelector(topMarketRetriever);
   // selector : takes data from store
   console.log("topMarkets:::", topMarkets);
+  const refs: any = useRef([]);
+
+  /* HANDLERS */
+  const chosenRestaurantHandler = (id: string) => {
+    history.push(`/markets/${id}`);
+  };
+
+  const targetLikeTop = async (e: any, id: string) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+
+      const memberService = new MemberApiService(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: id,
+          group_type: "member",
+        });
+      assert.ok(like_result, Definer.general_err1);
+
+      if (like_result.like_status > 0) {
+        e.target.style.fill = "red";
+        refs.current[like_result.like_ref_id].innerHTML++;
+      } else {
+        e.target.style.fill = "white";
+        refs.current[like_result.like_ref_id].innerHTML--;
+      }
+      await sweetTopSmallSuccessAlert("succes", 800, false);
+    } catch (err: any) {
+      console.log("targetLikeTop, ERROR:", err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <Container>
@@ -41,7 +81,11 @@ export function TopMarkets(props: any) {
                   const image_path = `${serverApi}/${ele.mb_image}`;
 
                   return (
-                    <div className="markets_box">
+                    <div
+                      className="markets_box"
+                      key={ele._id}
+                      onClick={() => chosenRestaurantHandler(ele._id)}
+                    >
                       <div className="markets_img">
                         <img src={image_path} alt="" />
                       </div>
@@ -66,13 +110,25 @@ export function TopMarkets(props: any) {
                             <p></p>
                             <div className="market_likes">
                               <AiFillHeart className="icons" />
-                              {ele.mb_likes}
+                              <div
+                                ref={(element) =>
+                                  (refs.current[ele._id] = element)
+                                }
+                              >
+                                {ele.mb_likes}
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div className="market_like">
+                      <div
+                        className="market_like"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
                         <AiFillHeart
+                          onClick={(e) => targetLikeTop(e, ele._id)}
                           style={{
                             fill:
                               ele?.me_liked && ele?.me_liked[0]?.my_favorite
