@@ -20,7 +20,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { BiShoppingBag } from "react-icons/bi";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Checkbox from "@mui/material/Checkbox";
 import Badge from "@mui/material/Badge";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
@@ -42,9 +42,10 @@ import {
   setTargetProducts,
 } from "../../screens/MarketPage/slice";
 import { Product } from "../types/product";
-import { ProductSearchObj } from "../types/others";
+import { ProductSearchObj, SearchObj } from "../types/others";
 import ProductApiServise from "../../apiServices/productApiSevice";
 import { serverApi } from "../../../lib/config";
+import MarketApiService from "../../apiServices/marketApiService";
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -72,9 +73,6 @@ const targetProductsRetriver = createSelector(
     targetProducts,
   })
 );
-
-const restaurant_list = Array.from(Array(10).keys());
-const product_list = Array.from(Array(8).keys());
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -114,6 +112,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 export function OneMarket() {
   /* INITIALIZATIONS */
+  const history = useHistory();
   let { market_id } = useParams<{ market_id: string }>();
   const value = 5;
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
@@ -132,8 +131,22 @@ export function OneMarket() {
       market_mb_id: market_id,
       product_collection: "dish",
     });
+  const [targetSearchObject, setTargetSearchObject] = useState<SearchObj>({
+    page: 1,
+    limit: 8,
+    order: "mb_point",
+  });
 
   useEffect(() => {
+    // RandomMarket
+    const marketService = new MarketApiService();
+    marketService
+      .getMarkets({ page: 1, limit: 10, order: "random" })
+      .then((data) => setRandomMarkets(data))
+      .catch((err) => console.log(err));
+
+    // ChosenProduct
+
     const productService = new ProductApiServise();
     productService
       .getTargetProducts(targetProductSearchObj)
@@ -142,10 +155,23 @@ export function OneMarket() {
   }, [targetProductSearchObj]);
 
   /* HANDLERS */
+  const chosenMarketHandler = (id: string) => {
+    setChosenMarketId(id);
+    targetProductSearchObj.market_mb_id = id;
+    setTargetProductSearchObj({ ...targetProductSearchObj });
+    history.push(`/markets/${id}`);
+  };
+
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
       setExpanded(newExpanded ? panel : false);
     };
+
+  // Pagination handle
+  const handlePaginationChange = (evenet: any, value: number) => {
+    targetSearchObject.page = value;
+    setTargetSearchObject({ ...targetSearchObject });
+  };
 
   return (
     <Container>
@@ -177,15 +203,18 @@ export function OneMarket() {
                     prevEl: ".restaurant-prev",
                   }}
                 >
-                  {restaurant_list.map((ele, index) => {
+                  {randomMarkets.map((ele: Market) => {
+                    const image_path = `${serverApi}/${ele.mb_image}`;
+
                     return (
                       <SwiperSlide
                         style={{ cursor: "pointer", marginRight: "4px" }}
-                        key={index}
+                        key={ele._id}
                         className="restaurant_avatars"
+                        onClick={() => chosenMarketHandler(ele._id)}
                       >
-                        <img src="../images/burak.jpeg" alt="" />
-                        <span>Burak</span>
+                        <img src={image_path} alt="" />
+                        <span>{ele.mb_nick}</span>
                       </SwiperSlide>
                     );
                   })}
@@ -511,8 +540,12 @@ export function OneMarket() {
                 </div>
                 <div className="pagination">
                   <Pagination
-                    count={3}
-                    page={1}
+                    count={
+                      targetSearchObject.page >= 3
+                        ? targetSearchObject.page + 1
+                        : 3
+                    }
+                    page={targetSearchObject.page}
                     renderItem={(item) => (
                       <PaginationItem
                         components={{
@@ -524,6 +557,7 @@ export function OneMarket() {
                         sx={{ color: "#43bb59" }}
                       />
                     )}
+                    onChange={handlePaginationChange}
                   />
                 </div>
               </div>
