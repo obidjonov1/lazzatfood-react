@@ -1,5 +1,5 @@
 import { Container } from "@mui/system";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AiFillHeart, AiOutlineEye } from "react-icons/ai";
 import { FiPhone } from "react-icons/fi";
 import { ImLocation2 } from "react-icons/im";
@@ -15,6 +15,16 @@ import { retrieveTargetMarkets } from "../../screens/MarketPage/selector";
 import { Market } from "../../screens/types/user";
 import { Dispatch } from "@reduxjs/toolkit";
 import { setTargetMarkets } from "../../screens/MarketPage/slice";
+import MarketApiService from "../../apiServices/marketApiService";
+import { SearchObj } from "../types/others";
+import { serverApi } from "../../../lib/config";
+import assert from "assert";
+import { Definer } from "../../../lib/Definer";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
+import MemberApiService from "../../apiServices/memberApiService";
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -34,12 +44,62 @@ const targetMarketsRetriever = createSelector(
 
 export function AllMarkets() {
   /* INITIALIZATIONS */
+  const refs: any = useRef([]);
   const { setTargetMarkets } = actionDispatch(useDispatch());
   const { targetMarkets } = useSelector(targetMarketsRetriever);
+  const [targetSearchObject, setTargetSearchObject] = useState<SearchObj>({
+    page: 1,
+    limit: 8,
+    order: "mb_point",
+  });
 
   useEffect(() => {
     // TODO: Retrive targetMarketData
-  }, []);
+    const marketService = new MarketApiService();
+    marketService
+      .getMarkets(targetSearchObject)
+      .then((data) => setTargetMarkets(data))
+      .catch((err) => console.log(err));
+  }, [targetSearchObject]);
+
+  /* HANDLERS */
+  const searchHandler = (category: string) => {
+    targetSearchObject.page = 1;
+    targetSearchObject.order = category;
+    /* setTargetSearchObject(...) butunlay o'zgargan obj qilish(kirish) kerak
+      objni qiymatlarigina o'zgarsa "ComponentDidUpdate" bo'lmaydi[63]      */
+    setTargetSearchObject({ ...targetSearchObject });
+  };
+  // Pagination handle
+  const handlePaginationChange = (evenet: any, value: number) => {
+    targetSearchObject.page = value;
+    setTargetSearchObject({ ...targetSearchObject });
+  };
+  // LIKE handle
+  const targetLikeHandler = async (e: any, id: string) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+
+      const memberService = new MemberApiService(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: id,
+          group_type: "member",
+        });
+      assert.ok(like_result, Definer.general_err1);
+
+      if (like_result.like_status > 0) {
+        e.target.style.fill = "red";
+        refs.current[like_result.like_ref_id].innerHTML++;
+      } else {
+        e.target.style.fill = "white";
+        refs.current[like_result.like_ref_id].innerHTML--;
+      }
+      await sweetTopSmallSuccessAlert("succes", 800, false);
+    } catch (err: any) {
+      console.log("targetLikeTop, ERROR:", err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <Container>
@@ -49,10 +109,30 @@ export function AllMarkets() {
             <div className="markets">
               <div className="sorts">
                 <div className="sort_btns">
-                  <button className="sort_btn">Zo'r</button>
-                  <button className="sort_btn">Mashhur</button>
-                  <button className="sort_btn">Trendagi</button>
-                  <button className="sort_btn">Yangi</button>
+                  <button
+                    className="sort_btn"
+                    onClick={() => searchHandler("mb_point")}
+                  >
+                    Best
+                  </button>
+                  <button
+                    className="sort_btn"
+                    onClick={() => searchHandler("mb_views")}
+                  >
+                    Famous
+                  </button>
+                  <button
+                    className="sort_btn"
+                    onClick={() => searchHandler("mb_likes")}
+                  >
+                    In trend
+                  </button>
+                  <button
+                    className="sort_btn"
+                    onClick={() => searchHandler("createdAt")}
+                  >
+                    New
+                  </button>
                 </div>
               </div>
             </div>
@@ -60,22 +140,24 @@ export function AllMarkets() {
 
           <div className="markets-main">
             <div className="markets-grid">
-              {order_list.map((ele) => {
+              {targetMarkets.map((ele: Market) => {
+                const image_path = `${serverApi}/${ele.mb_image}`;
+
                 return (
                   <div className="markets_box">
                     <div className="markets_img">
-                      <img src="./images/burak.jpeg" alt="" />
+                      <img src={image_path} alt="" />
                     </div>
                     <div className="markets_info">
                       <div className="info_top">
-                        <p className="info-top_nick">LazzatFood</p>
+                        <p className="info-top_nick">{ele.mb_nick}</p>
                         <p className="info-top_address">
                           <ImLocation2 className="info_top-icon" />
-                          Toshkent, Chirchiq, Olmazor 4-9
+                          {ele?.mb_address}
                         </p>
                         <p className="info-top_address">
                           <FiPhone className="info_top-icon" />
-                          01054489811
+                          {ele.mb_phone}
                         </p>
                       </div>
                       <div className="info_bottom">
@@ -85,7 +167,7 @@ export function AllMarkets() {
                               style={{ color: "#3f3f3f" }}
                               className="icons"
                             />
-                            <p>99</p>
+                            <p>{ele.mb_views}</p>
                           </div>
                           <p></p>
                           <div className="market_likes">
@@ -93,13 +175,28 @@ export function AllMarkets() {
                               className="icons"
                               style={{ color: "#a19d9d" }}
                             />
-                            <p>99</p>
+                            <div
+                              ref={(element) =>
+                                (refs.current[ele._id] = element)
+                              }
+                            >
+                              {ele.mb_likes}
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="market_like">
-                      <AiFillHeart className="market-like_icon" />
+                      <AiFillHeart
+                        onClick={(e) => targetLikeHandler(e, ele._id)}
+                        style={{
+                          fill:
+                            ele?.me_liked && ele?.me_liked[0]?.my_favorite
+                              ? "red"
+                              : "white",
+                        }}
+                        className="market-like_icon"
+                      />
                     </div>
                   </div>
                 );
@@ -109,8 +206,10 @@ export function AllMarkets() {
         </div>
         <div className="pagination">
           <Pagination
-            count={3}
-            page={1}
+            count={
+              targetSearchObject.page >= 3 ? targetSearchObject.page + 1 : 3
+            }
+            page={targetSearchObject.page}
             renderItem={(item) => (
               <PaginationItem
                 components={{
@@ -122,6 +221,7 @@ export function AllMarkets() {
                 sx={{ color: "#43bb59" }}
               />
             )}
+            onChange={handlePaginationChange}
           />
         </div>
       </div>
