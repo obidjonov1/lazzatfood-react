@@ -7,14 +7,6 @@ import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-
-// REDUX
-import { useDispatch, useSelector } from "react-redux";
-import { createSelector } from "reselect";
-import { retrieveTargetMarkets } from "../../screens/MarketPage/selector";
-import { Market } from "../../screens/types/user";
-import { Dispatch } from "@reduxjs/toolkit";
-import { setTargetMarkets } from "../../screens/MarketPage/slice";
 import MarketApiService from "../../apiServices/marketApiService";
 import { SearchObj } from "../types/others";
 import { serverApi } from "../../../lib/config";
@@ -26,13 +18,19 @@ import {
 } from "../../../lib/sweetAlert";
 import MemberApiService from "../../apiServices/memberApiService";
 
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveTargetMarkets } from "../../screens/MarketPage/selector";
+import { Market } from "../../screens/types/user";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setTargetMarkets } from "../../screens/MarketPage/slice";
+import { useHistory } from "react-router-dom";
+
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
   setTargetMarkets: (data: Market[]) => dispatch(setTargetMarkets(data)),
 });
-
-// cardlarni ko'paytirish uchun->
-const order_list = Array.from(Array(8).keys());
 
 /** REDUX SELECTOR */
 const targetMarketsRetriever = createSelector(
@@ -45,6 +43,7 @@ const targetMarketsRetriever = createSelector(
 export function AllMarkets() {
   /* INITIALIZATIONS */
   const refs: any = useRef([]);
+  const history = useHistory();
   const { setTargetMarkets } = actionDispatch(useDispatch());
   const { targetMarkets } = useSelector(targetMarketsRetriever);
   const [targetSearchObject, setTargetSearchObject] = useState<SearchObj>({
@@ -63,6 +62,11 @@ export function AllMarkets() {
   }, [targetSearchObject]);
 
   /* HANDLERS */
+  // Chosen restaurnatHandler
+  const chosenMarketHandler = (id: string) => {
+    history.push(`/markets/${id}`);
+  };
+
   const searchHandler = (category: string) => {
     targetSearchObject.page = 1;
     targetSearchObject.order = category;
@@ -144,7 +148,10 @@ export function AllMarkets() {
                 const image_path = `${serverApi}/${ele.mb_image}`;
 
                 return (
-                  <div className="markets_box">
+                  <div
+                    className="markets_box"
+                    onClick={() => chosenMarketHandler(ele._id)}
+                  >
                     <div className="markets_img">
                       <img src={image_path} alt="" />
                     </div>

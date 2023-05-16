@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion, { AccordionProps } from "@mui/material/Accordion";
@@ -20,6 +20,58 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { BiShoppingBag } from "react-icons/bi";
+import { useParams } from "react-router-dom";
+import Checkbox from "@mui/material/Checkbox";
+import Badge from "@mui/material/Badge";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
+
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import {
+  retrieveRandomMarkets,
+  retrieveChosenMarket,
+  retrieveTargetProducts,
+} from "../../screens/MarketPage/selector";
+import { Market } from "../types/user";
+import { Dispatch } from "@reduxjs/toolkit";
+import {
+  setRandomMarkets,
+  setChosenMarket,
+  setTargetProducts,
+} from "../../screens/MarketPage/slice";
+import { Product } from "../types/product";
+import { ProductSearchObj } from "../types/others";
+import ProductApiServise from "../../apiServices/productApiSevice";
+import { serverApi } from "../../../lib/config";
+
+/** REDUX SLICE */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setRandomMarkets: (data: Market[]) => dispatch(setRandomMarkets(data)),
+  setChosenMarket: (data: Market) => dispatch(setChosenMarket(data)),
+  setTargetProducts: (data: Product[]) => dispatch(setTargetProducts(data)),
+});
+
+/** REDUX SELECTOR */
+const randomMarketRetriver = createSelector(
+  retrieveRandomMarkets,
+  (randomMarkets) => ({
+    randomMarkets,
+  })
+);
+const chosenMarketRetriver = createSelector(
+  retrieveChosenMarket,
+  (chosenMarket) => ({
+    chosenMarket,
+  })
+);
+const targetProductsRetriver = createSelector(
+  retrieveTargetProducts,
+  (targetProducts) => ({
+    targetProducts,
+  })
+);
 
 const restaurant_list = Array.from(Array(10).keys());
 const product_list = Array.from(Array(8).keys());
@@ -61,9 +113,35 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 export function OneMarket() {
+  /* INITIALIZATIONS */
+  let { market_id } = useParams<{ market_id: string }>();
   const value = 5;
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
 
+  const { setRandomMarkets, setChosenMarket, setTargetProducts } =
+    actionDispatch(useDispatch());
+  const { randomMarkets } = useSelector(randomMarketRetriver);
+  const { chosenMarket } = useSelector(chosenMarketRetriver);
+  const { targetProducts } = useSelector(targetProductsRetriver);
+  const [chosenMarketId, setChosenMarketId] = useState<string>(market_id);
+  const [targetProductSearchObj, setTargetProductSearchObj] =
+    useState<ProductSearchObj>({
+      page: 1,
+      limit: 8,
+      order: "createdAt",
+      market_mb_id: market_id,
+      product_collection: "dish",
+    });
+
+  useEffect(() => {
+    const productService = new ProductApiServise();
+    productService
+      .getTargetProducts(targetProductSearchObj)
+      .then((data) => setTargetProducts(data))
+      .catch((err) => console.log(err));
+  }, [targetProductSearchObj]);
+
+  /* HANDLERS */
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
       setExpanded(newExpanded ? panel : false);
@@ -312,18 +390,62 @@ export function OneMarket() {
               <div className="product-box">
                 <div className="product-main_box">
                   <div className="product-grid">
-                    {product_list.map((ele, index) => {
-                      const size_volume = "normal size";
+                    {targetProducts.map((ele: Product) => {
+                      const image_path = `${serverApi}/${ele.product_images[0]}`;
+                      const size_volume =
+                        ele.product_collection === "drink"
+                          ? ele.product_volume + " L"
+                          : ele.product_collection === "meat" ||
+                            ele.product_collection === "fresh"
+                          ? ele.product_weight + " kg"
+                          : ele.product_collection === "family" ||
+                            ele.product_collection === "readyToEat" ||
+                            ele.product_collection === "parfumerie" ||
+                            ele.product_collection === "texno"
+                          ? ele.product_family + " pc"
+                          : ele.product_size === "1" ||
+                            ele.product_size === "2" ||
+                            ele.product_size === "3"
+                          ? ele.product_size + " liter"
+                          : ele.product_size;
 
                       return (
-                        <div className="showcase">
+                        <div className="showcase" key={`${ele._id}`}>
                           <div className="showcase-banner">
                             <p className="showcase-badge">{size_volume}</p>
                             <div className="showcase-actions">
                               <button className="btn-action">
-                                <span className="product_view_cnt">9</span>
-                                <AiFillHeart className="like_btn" />
-                                <span className="product_like_cnt">1</span>
+                                <span className="product_view_cnt">
+                                  {ele.product_views}
+                                </span>
+
+                                <Checkbox
+                                  className="like_btn"
+                                  icon={
+                                    <AiFillHeart
+                                      // className="like_btn"
+                                      style={{
+                                        color: "#929292",
+                                        fontSize: "22px",
+                                      }}
+                                    />
+                                  }
+                                  id={`${ele._id}}`}
+                                  checkedIcon={
+                                    <AiFillHeart style={{ color: "red" }} />
+                                  }
+                                  /* @ts-ignore */
+                                  checked={
+                                    ele?.me_liked &&
+                                    ele?.me_liked[0]?.my_favorite
+                                      ? true
+                                      : false
+                                  }
+                                />
+                                {/* <AiFillHeart className="like_btn" /> */}
+                                <span className="product_like_cnt">
+                                  {ele.product_likes}
+                                </span>
                                 <AiFillEye className="view_btn" />
                               </button>
                             </div>
@@ -331,11 +453,12 @@ export function OneMarket() {
                           <div className="showcase-content">
                             <div className="price-box">
                               <img
-                                src="../images/food2.jpeg"
-                                alt="Mens Winter Leathers Jackets"
+                                src={image_path}
+                                alt=""
                                 width="300"
                                 className="product-img rasim"
                               />
+                              <span className="which_market"></span>
                               <div className="product_rating">
                                 <Rating
                                   sx={{ fontSize: "19px" }}
@@ -350,14 +473,30 @@ export function OneMarket() {
                                     />
                                   }
                                 />
-                                <span>(5)</span>
+                                <span>(0)</span>
                               </div>
                               <span className="product-title">
-                                Lorem, ipsum dolor sit
+                                {ele.product_name}
                               </span>
-                              <div>
-                                <del className="prce_disc">₩50.000</del>
-                                <span className="price">₩39.000</span>
+                              <div className="product-cart_price_box">
+                                {ele.product_discount && ele.product_price ? (
+                                  <>
+                                    <del className="prce_disc">
+                                      ₩{ele.product_discount}
+                                    </del>
+                                    <span className="price">
+                                      ₩{ele.product_price}
+                                    </span>
+                                  </>
+                                ) : ele.product_discount ? (
+                                  <del className="prce_disc">
+                                    ₩{ele.product_discount}
+                                  </del>
+                                ) : (
+                                  <span className="price">
+                                    ₩{ele.product_price}
+                                  </span>
+                                )}
                               </div>
                               <button className="cart-mobile" type="button">
                                 <BiShoppingBag className="add-cart__btn" />

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { AiFillEye, AiFillHeart } from "react-icons/ai";
 import { BiShoppingBag } from "react-icons/bi";
-import { Container, Rating } from "@mui/material";
+import { Checkbox, Container, Rating } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 
 // REDUX
@@ -79,14 +79,41 @@ export function RecommendedProducts(props: any) {
                       : ele.product_size;
 
                   return (
-                    <div className="showcase">
+                    <div className="showcase" key={`${ele._id}`}>
                       <div className="showcase-banner">
                         <p className="showcase-badge">{size_volume}</p>
                         <div className="showcase-actions">
                           <button className="btn-action">
-                            <span className="product_view_cnt">9</span>
-                            <AiFillHeart className="like_btn" />
-                            <span className="product_like_cnt">1</span>
+                            <span className="product_view_cnt">
+                              {ele.product_views}
+                            </span>
+
+                            <Checkbox
+                              className="like_btn"
+                              icon={
+                                <AiFillHeart
+                                  // className="like_btn"
+                                  style={{
+                                    color: "#929292",
+                                    fontSize: "22px",
+                                  }}
+                                />
+                              }
+                              id={`${ele._id}}`}
+                              checkedIcon={
+                                <AiFillHeart style={{ color: "red" }} />
+                              }
+                              /* @ts-ignore */
+                              checked={
+                                ele?.me_liked && ele?.me_liked[0]?.my_favorite
+                                  ? true
+                                  : false
+                              }
+                            />
+                            {/* <AiFillHeart className="like_btn" /> */}
+                            <span className="product_like_cnt">
+                              {ele.product_likes}
+                            </span>
                             <AiFillEye className="view_btn" />
                           </button>
                         </div>
@@ -95,11 +122,11 @@ export function RecommendedProducts(props: any) {
                         <div className="price-box">
                           <img
                             src={image_path}
-                            alt="Mens Winter Leathers Jackets"
+                            alt=""
                             width="300"
                             className="product-img rasim"
                           />
-                          <span className="which_market">LazzatFood</span>
+                          <span className="which_market"></span>
                           <div className="product_rating">
                             <Rating
                               sx={{ fontSize: "19px" }}
@@ -139,7 +166,6 @@ export function RecommendedProducts(props: any) {
                               </span>
                             )}
                           </div>
-
                           <button className="cart-mobile" type="button">
                             <BiShoppingBag className="add-cart__btn" />
                             <p>Add To Cart</p>
