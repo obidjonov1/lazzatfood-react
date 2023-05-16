@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { styled } from "@mui/material/styles";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion, { AccordionProps } from "@mui/material/Accordion";
@@ -46,6 +46,13 @@ import { ProductSearchObj, SearchObj } from "../types/others";
 import ProductApiServise from "../../apiServices/productApiSevice";
 import { serverApi } from "../../../lib/config";
 import MarketApiService from "../../apiServices/marketApiService";
+import { Definer } from "../../../lib/Definer";
+import assert from "assert";
+import MemberApiService from "../../apiServices/memberApiService";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -112,6 +119,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 export function OneMarket() {
   /* INITIALIZATIONS */
+  const refs: any = useRef([]);
   const history = useHistory();
   let { market_id } = useParams<{ market_id: string }>();
   const value = 5;
@@ -137,6 +145,8 @@ export function OneMarket() {
     order: "mb_point",
   });
 
+  const [productRebuild, setProductRebuild] = useState<Date>(new Date());
+
   useEffect(() => {
     // RandomMarket
     const marketService = new MarketApiService();
@@ -152,7 +162,7 @@ export function OneMarket() {
       .getTargetProducts(targetProductSearchObj)
       .then((data) => setTargetProducts(data))
       .catch((err) => console.log(err));
-  }, [targetProductSearchObj]);
+  }, [targetProductSearchObj, productRebuild]);
 
   /* HANDLERS */
   const chosenMarketHandler = (id: string) => {
@@ -171,6 +181,38 @@ export function OneMarket() {
   const handlePaginationChange = (evenet: any, value: number) => {
     targetSearchObject.page = value;
     setTargetSearchObject({ ...targetSearchObject });
+  };
+
+  // sort
+  const searchCollectionHandler = (collection: string) => {
+    targetProductSearchObj.page = 1;
+    targetProductSearchObj.product_collection = collection;
+    setTargetProductSearchObj({ ...targetProductSearchObj });
+  };
+  const searchOrderHandler = (order: string) => {
+    targetProductSearchObj.page = 1;
+    targetProductSearchObj.order = order;
+    setTargetProductSearchObj({ ...targetProductSearchObj });
+  };
+
+  // Like handle
+  const targetLikeProduct = async (e: any) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+
+      const memberService = new MemberApiService(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: e.target.id,
+          group_type: "product",
+        });
+      assert.ok(like_result, Definer.general_err1);
+
+      await sweetTopSmallSuccessAlert("succes", 800, false);
+      setProductRebuild(new Date());
+    } catch (err: any) {
+      console.log("targetLikeProduct, ERROR:", err);
+      sweetErrorHandling(err).then();
+    }
   };
 
   return (
@@ -275,28 +317,40 @@ export function OneMarket() {
                                   <RadioGroup
                                     className="accardion_det"
                                     aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue="All"
+                                    defaultValue="new"
                                     name="radio-buttons-group"
                                   >
                                     <FormControlLabel
-                                      value="All"
+                                      value="new"
                                       control={<Radio />}
-                                      label="All"
+                                      label="New"
+                                      onClick={() =>
+                                        searchOrderHandler("createdAt")
+                                      }
                                     />
                                     <FormControlLabel
                                       value="Price"
                                       control={<Radio />}
                                       label="Price"
+                                      onClick={() =>
+                                        searchOrderHandler("product_price")
+                                      }
                                     />
                                     <FormControlLabel
                                       value="Likes"
                                       control={<Radio />}
                                       label="Likes"
+                                      onClick={() =>
+                                        searchOrderHandler("product_likes")
+                                      }
                                     />
                                     <FormControlLabel
                                       value="Views"
                                       control={<Radio />}
                                       label="Views"
+                                      onClick={() =>
+                                        searchOrderHandler("product_views")
+                                      }
                                     />
                                   </RadioGroup>
                                 </AccordionDetails>
@@ -326,33 +380,48 @@ export function OneMarket() {
                                   <RadioGroup
                                     className="accardion_det"
                                     aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue="All"
+                                    // defaultValue="All"
                                     name="radio-buttons-group"
                                   >
                                     <FormControlLabel
                                       value="meat"
                                       control={<Radio />}
                                       label="Meat"
+                                      onClick={() =>
+                                        searchCollectionHandler("meat")
+                                      }
                                     />
                                     <FormControlLabel
                                       value="drink"
                                       control={<Radio />}
                                       label="Drink"
+                                      onClick={() =>
+                                        searchCollectionHandler("drink")
+                                      }
                                     />
                                     <FormControlLabel
                                       value="food"
                                       control={<Radio />}
                                       label="Food"
+                                      onClick={() =>
+                                        searchCollectionHandler("food")
+                                      }
                                     />
                                     <FormControlLabel
                                       value="fresh"
                                       control={<Radio />}
                                       label="Fresh & Fast"
+                                      onClick={() =>
+                                        searchCollectionHandler("fresh")
+                                      }
                                     />
                                     <FormControlLabel
                                       value="ready"
                                       control={<Radio />}
                                       label="Ready to Eat"
+                                      onClick={() =>
+                                        searchCollectionHandler("readyToEat")
+                                      }
                                     />
                                   </RadioGroup>
                                 </AccordionDetails>
@@ -386,7 +455,7 @@ export function OneMarket() {
                                   <RadioGroup
                                     className="accardion_det"
                                     aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue="All"
+                                    // defaultValue="All"
                                     name="radio-buttons-group"
                                   >
                                     <FormControlLabel
@@ -511,19 +580,19 @@ export function OneMarket() {
                                 {ele.product_discount && ele.product_price ? (
                                   <>
                                     <del className="prce_disc">
-                                      ₩{ele.product_discount}
+                                      ₩{ele.product_discount.toLocaleString()}
                                     </del>
                                     <span className="price">
-                                      ₩{ele.product_price}
+                                      ₩{ele.product_price.toLocaleString()}
                                     </span>
                                   </>
                                 ) : ele.product_discount ? (
                                   <del className="prce_disc">
-                                    ₩{ele.product_discount}
+                                    ₩{ele.product_discount.toLocaleString()}
                                   </del>
                                 ) : (
                                   <span className="price">
-                                    ₩{ele.product_price}
+                                    ₩{ele.product_price.toLocaleString()}
                                   </span>
                                 )}
                               </div>
