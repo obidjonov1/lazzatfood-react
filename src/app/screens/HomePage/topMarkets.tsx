@@ -4,12 +4,6 @@ import { ImLocation2 } from "react-icons/im";
 import { FiPhone } from "react-icons/fi";
 import { AiOutlineEye, AiFillHeart } from "react-icons/ai";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
-
-// REDUX
-import { useSelector } from "react-redux";
-import { createSelector } from "reselect";
-import { retrieveTopMarkets } from "../../screens/HomePage/selector";
-import { Market } from "../types/user";
 import { serverApi } from "../../../lib/config";
 import {
   sweetErrorHandling,
@@ -19,6 +13,12 @@ import assert from "assert";
 import { Definer } from "../../../lib/Definer";
 import MemberApiService from "../../apiServices/memberApiService";
 import { useHistory } from "react-router-dom";
+
+// REDUX
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveTopMarkets } from "../../screens/HomePage/selector";
+import { Market } from "../types/user";
 
 /** REDUX SELECTOR */
 const topMarketRetriever = createSelector(retrieveTopMarkets, (topMarkets) => ({

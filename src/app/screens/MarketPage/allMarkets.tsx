@@ -1,5 +1,5 @@
 import { Container } from "@mui/system";
-import React from "react";
+import React, { useEffect } from "react";
 import { AiFillHeart, AiOutlineEye } from "react-icons/ai";
 import { FiPhone } from "react-icons/fi";
 import { ImLocation2 } from "react-icons/im";
@@ -8,9 +8,39 @@ import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveTargetMarkets } from "../../screens/MarketPage/selector";
+import { Market } from "../../screens/types/user";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setTargetMarkets } from "../../screens/MarketPage/slice";
+
+/** REDUX SLICE */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setTargetMarkets: (data: Market[]) => dispatch(setTargetMarkets(data)),
+});
+
+// cardlarni ko'paytirish uchun->
 const order_list = Array.from(Array(8).keys());
 
+/** REDUX SELECTOR */
+const targetMarketsRetriever = createSelector(
+  retrieveTargetMarkets,
+  (targetMarkets) => ({
+    targetMarkets,
+  })
+);
+
 export function AllMarkets() {
+  /* INITIALIZATIONS */
+  const { setTargetMarkets } = actionDispatch(useDispatch());
+  const { targetMarkets } = useSelector(targetMarketsRetriever);
+
+  useEffect(() => {
+    // TODO: Retrive targetMarketData
+  }, []);
+
   return (
     <Container>
       <div className="markets-container">

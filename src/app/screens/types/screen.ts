@@ -5,9 +5,10 @@ import { Market } from "./user";
 /** REACT APP STATE */
 export interface AppRootState {
   homePage: HomePageState;
-  //   restaurantPage: RestaurantPageState;
+  marketPage: MarketPageState;
 }
 
+/* HOME PAGE INTERFACE */
 export interface HomePageState {
   topMarkets: Market[];
   bestMarkets: Market[];
@@ -16,4 +17,11 @@ export interface HomePageState {
   trendBoArticles: BoArticle[];
 }
 
-// export interface RestaurantPageState {}
+/* Mareket PAGE INTERFACE */
+export interface MarketPageState {
+  targetMarkets: Market[];
+  randomMarkets: Market[];
+  chosenMarket: Market | null;
+  targetProducts: Product[];
+  chosenProduct: Product | null;
+}
