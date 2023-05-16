@@ -5,6 +5,7 @@ import { BestMarkets } from "./bestMarkets";
 import { ActualProducts } from "./actualProducts";
 import { RecommendedProducts } from "./recommendedProducts";
 import { RecommendedArticles } from "./recommendedArticles";
+import { NavbarHomeBanner } from "./banner";
 
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -59,6 +60,7 @@ export function HomePage(props: any) {
     };
   return (
     <div className="home_page">
+      <NavbarHomeBanner />
       <Container className="product-container_home">
         <div className="product-container_home">
           <div className="container_home">

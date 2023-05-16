@@ -4,6 +4,7 @@ import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { ChosenProduct } from "./chosenProduct";
 import { OneMarket } from "./oneMarket";
 import { AllMarkets } from "./allMarkets";
+import { NavbarMarketBanner } from "./banner";
 import "../../../css/market.css";
 
 export function MarketPage() {
@@ -11,20 +12,19 @@ export function MarketPage() {
   console.log(market);
 
   return (
-    <Container>
-      <div>
-        <Switch>
-          <Route path={`${market.path}/product/:product_id`}>
-            <ChosenProduct />
-          </Route>
-          <Route path={`${market.path}/:product`}>
-            <OneMarket />
-          </Route>
-          <Route path={`${market.path}`}>
-            <AllMarkets />
-          </Route>
-        </Switch>
-      </div>
-    </Container>
+    <div>
+      <NavbarMarketBanner />
+      <Switch>
+        <Route path={`${market.path}/product/:product_id`}>
+          <ChosenProduct />
+        </Route>
+        <Route path={`${market.path}/:product`}>
+          <OneMarket />
+        </Route>
+        <Route path={`${market.path}`}>
+          <AllMarkets />
+        </Route>
+      </Switch>
+    </div>
   );
 }

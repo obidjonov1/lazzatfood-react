@@ -123,19 +123,19 @@ export function RecommendedProducts(props: any) {
                             {ele.product_discount && ele.product_price ? (
                               <>
                                 <del className="prce_disc">
-                                  ₩ {ele.product_discount}
+                                  ₩{ele.product_discount}
                                 </del>
                                 <span className="price">
-                                  ₩ {ele.product_price}
+                                  ₩{ele.product_price}
                                 </span>
                               </>
                             ) : ele.product_discount ? (
                               <del className="prce_disc">
-                                ₩ {ele.product_discount}
+                                ₩{ele.product_discount}
                               </del>
                             ) : (
                               <span className="price">
-                                ₩ {ele.product_price}
+                                ₩{ele.product_price}
                               </span>
                             )}
                           </div>

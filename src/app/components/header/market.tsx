@@ -395,7 +395,7 @@ export function NavbarMarket(props: any) {
       </Container>
 
       {/* <!-- Banner --> */}
-      <div className="banner_section">
+      {/* <div className="banner_section">
         <img
           className="banner_section_img banner_anim"
           src="/images/backgraund3.png"
@@ -406,7 +406,7 @@ export function NavbarMarket(props: any) {
           src="/images/background2.png"
           alt=""
         />
-      </div>
+      </div> */}
       {/* <!-- Banner end --> */}
     </div>
   );

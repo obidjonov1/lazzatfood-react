@@ -404,7 +404,7 @@ export function NavbarHome(props: any) {
       </Container>
 
       {/* <!-- Banner --> */}
-      <Container>
+      {/* <Container>
         <Swiper
           slidesPerView={1}
           spaceBetween={30}
@@ -433,7 +433,7 @@ export function NavbarHome(props: any) {
             <img src="/images/slide5.jpeg" alt="" className="slide_img" />
           </SwiperSlide>
         </Swiper>
-      </Container>
+      </Container> */}
       {/* <!-- Banner end --> */}
     </div>
   );
