@@ -103,7 +103,7 @@ function App() {
           // logout <-
           verifiedMemberData={verifiedMemberData}
         />
-      ) : main_path.includes("/markets") ? (
+      ) : main_path.includes("/market") ? (
         <NavbarMarket
           setPath={setPath}
           handleLoginOpen={handleLoginOpen}
@@ -137,7 +137,7 @@ function App() {
         <Route path="/certificates">
           <CertificatePage />
         </Route>
-        <Route path="/markets">
+        <Route path="/market">
           <MarketPage />
         </Route>
         <Route path="/shop">

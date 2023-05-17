@@ -64,7 +64,7 @@ export function AllMarkets() {
   /* HANDLERS */
   // Chosen restaurnatHandler
   const chosenMarketHandler = (id: string) => {
-    history.push(`/markets/${id}`);
+    history.push(`/market/${id}`);
   };
 
   const searchHandler = (category: string) => {

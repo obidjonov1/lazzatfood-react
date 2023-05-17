@@ -347,7 +347,7 @@ export function NavbarHome(props: any) {
               </li>
               <li className="menu-category" onClick={props.setPath}>
                 <NavLink
-                  to={"/markets"}
+                  to={"/market"}
                   activeClassName="underline"
                   className="menu-title"
                 >

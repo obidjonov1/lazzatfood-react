@@ -38,7 +38,7 @@ export function TopMarkets(props: any) {
 
   /* HANDLERS */
   const chosenMarketHandler = (id: string) => {
-    history.push(`/markets/${id}`);
+    history.push(`/market/${id}`);
   };
 
   const targetLikeTop = async (e: any, id: string) => {

@@ -18,7 +18,7 @@ export function MarketPage() {
         <Route path={`${market.path}/product/:product_id`}>
           <ChosenProduct />
         </Route>
-        <Route path={`${market.path}/:product`}>
+        <Route path={`${market.path}/:market_id`}>
           <OneMarket />
         </Route>
         <Route path={`${market.path}`}>

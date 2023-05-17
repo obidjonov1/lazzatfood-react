@@ -40,10 +40,10 @@ export function BestMarkets(props: any) {
 
   /* HANDLERS */
   const chosenMarketHandler = (id: string) => {
-    history.push(`/markets/${id}`);
+    history.push(`/market/${id}`);
   };
 
-  const goMarketsHandler = () => history.push("/markets");
+  const goMarketsHandler = () => history.push("/market");
 
   const targetLikeBest = async (e: any, id: string) => {
     try {

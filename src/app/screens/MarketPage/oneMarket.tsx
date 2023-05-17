@@ -117,11 +117,12 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 
-export function OneMarket() {
+export function OneMarket(props: any) {
   /* INITIALIZATIONS */
   const refs: any = useRef([]);
   const history = useHistory();
   let { market_id } = useParams<{ market_id: string }>();
+  console.log(market_id);
   const value = 5;
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
 
@@ -137,7 +138,7 @@ export function OneMarket() {
       limit: 8,
       order: "createdAt",
       market_mb_id: market_id,
-      product_collection: "dish",
+      product_collection: "food",
     });
   const [targetSearchObject, setTargetSearchObject] = useState<SearchObj>({
     page: 1,
@@ -169,7 +170,7 @@ export function OneMarket() {
     setChosenMarketId(id);
     targetProductSearchObj.market_mb_id = id;
     setTargetProductSearchObj({ ...targetProductSearchObj });
-    history.push(`/markets/${id}`);
+    history.push(`/market/${id}`);
   };
 
   const handleChange =
@@ -184,6 +185,20 @@ export function OneMarket() {
   };
 
   // sort
+  const searchMultipleCollectionsHandler = () => {
+    targetProductSearchObj.page = 1;
+    targetProductSearchObj.product_collection = [
+      "meat",
+      "drink",
+      "fresh",
+      "family",
+      "readyToEat",
+      "parfumerie",
+      "texno",
+    ].join(",");
+    setTargetProductSearchObj({ ...targetProductSearchObj });
+  };
+
   const searchCollectionHandler = (collection: string) => {
     targetProductSearchObj.page = 1;
     targetProductSearchObj.product_collection = collection;
@@ -309,6 +324,84 @@ export function OneMarket() {
                                   id="panel1d-header"
                                 >
                                   <div className="menu-title-flex">
+                                    <p className="menu-title">Food</p>
+                                  </div>
+                                </AccordionSummary>
+
+                                <AccordionDetails>
+                                  <RadioGroup
+                                    className="accardion_det"
+                                    aria-labelledby="demo-radio-buttons-group-label"
+                                    defaultValue="all"
+                                    name="radio-buttons-group"
+                                  >
+                                    <FormControlLabel
+                                      value="all"
+                                      control={<Radio />}
+                                      label="All"
+                                      onClick={() =>
+                                        searchCollectionHandler("food")
+                                      }
+                                    />
+                                    <FormControlLabel
+                                      value="meat"
+                                      control={<Radio />}
+                                      label="Meat"
+                                      onClick={() =>
+                                        searchCollectionHandler("meat")
+                                      }
+                                    />
+                                    <FormControlLabel
+                                      value="drink"
+                                      control={<Radio />}
+                                      label="Drink"
+                                      onClick={() =>
+                                        searchCollectionHandler("drink")
+                                      }
+                                    />
+                                    <FormControlLabel
+                                      value="food"
+                                      control={<Radio />}
+                                      label="Food"
+                                      onClick={() =>
+                                        searchCollectionHandler("food")
+                                      }
+                                    />
+                                    <FormControlLabel
+                                      value="fresh"
+                                      control={<Radio />}
+                                      label="Fresh & Fast"
+                                      onClick={() =>
+                                        searchCollectionHandler("fresh")
+                                      }
+                                    />
+                                    <FormControlLabel
+                                      value="ready"
+                                      control={<Radio />}
+                                      label="Ready to Eat"
+                                      onClick={() =>
+                                        searchCollectionHandler("readyToEat")
+                                      }
+                                    />
+                                  </RadioGroup>
+                                </AccordionDetails>
+                              </Accordion>
+                            </div>
+                          </div>
+                        </li>
+                        <li className="sidebar-menu-category">
+                          <div className="sidebar-accordion-menu_box">
+                            <div className="menu-title-flex">
+                              <Accordion
+                                className="category_accardion"
+                                expanded={expanded === "panel2"}
+                                onChange={handleChange("panel2")}
+                              >
+                                <AccordionSummary
+                                  aria-controls="panel1d-content"
+                                  id="panel1d-header"
+                                >
+                                  <div className="menu-title-flex">
                                     <p className="menu-title">Sorting By</p>
                                   </div>
                                 </AccordionSummary>
@@ -363,77 +456,6 @@ export function OneMarket() {
                           <div className="sidebar-accordion-menu_box">
                             <div className="menu-title-flex">
                               <Accordion
-                                className="category_accardion"
-                                expanded={expanded === "panel2"}
-                                onChange={handleChange("panel2")}
-                              >
-                                <AccordionSummary
-                                  aria-controls="panel1d-content"
-                                  id="panel1d-header"
-                                >
-                                  <div className="menu-title-flex">
-                                    <p className="menu-title">Food</p>
-                                  </div>
-                                </AccordionSummary>
-
-                                <AccordionDetails>
-                                  <RadioGroup
-                                    className="accardion_det"
-                                    aria-labelledby="demo-radio-buttons-group-label"
-                                    // defaultValue="All"
-                                    name="radio-buttons-group"
-                                  >
-                                    <FormControlLabel
-                                      value="meat"
-                                      control={<Radio />}
-                                      label="Meat"
-                                      onClick={() =>
-                                        searchCollectionHandler("meat")
-                                      }
-                                    />
-                                    <FormControlLabel
-                                      value="drink"
-                                      control={<Radio />}
-                                      label="Drink"
-                                      onClick={() =>
-                                        searchCollectionHandler("drink")
-                                      }
-                                    />
-                                    <FormControlLabel
-                                      value="food"
-                                      control={<Radio />}
-                                      label="Food"
-                                      onClick={() =>
-                                        searchCollectionHandler("food")
-                                      }
-                                    />
-                                    <FormControlLabel
-                                      value="fresh"
-                                      control={<Radio />}
-                                      label="Fresh & Fast"
-                                      onClick={() =>
-                                        searchCollectionHandler("fresh")
-                                      }
-                                    />
-                                    <FormControlLabel
-                                      value="ready"
-                                      control={<Radio />}
-                                      label="Ready to Eat"
-                                      onClick={() =>
-                                        searchCollectionHandler("readyToEat")
-                                      }
-                                    />
-                                  </RadioGroup>
-                                </AccordionDetails>
-                              </Accordion>
-                            </div>
-                          </div>
-                        </li>
-
-                        <li className="sidebar-menu-category">
-                          <div className="sidebar-accordion-menu_box">
-                            <div className="menu-title-flex">
-                              <Accordion
                                 sx={{
                                   borderBottomRightRadius: "10px",
                                   borderBottomLeftRadius: "10px",
@@ -455,23 +477,37 @@ export function OneMarket() {
                                   <RadioGroup
                                     className="accardion_det"
                                     aria-labelledby="demo-radio-buttons-group-label"
-                                    // defaultValue="All"
+                                    defaultValue="all"
                                     name="radio-buttons-group"
                                   >
+                                    <FormControlLabel
+                                      value="all"
+                                      control={<Radio />}
+                                      label="All"
+                                    />
                                     <FormControlLabel
                                       value="health"
                                       control={<Radio />}
                                       label="Beauty & Health"
+                                      onClick={() =>
+                                        searchCollectionHandler("health")
+                                      }
                                     />
                                     <FormControlLabel
                                       value="texno"
                                       control={<Radio />}
                                       label="Texno"
+                                      onClick={() =>
+                                        searchCollectionHandler("texno")
+                                      }
                                     />
                                     <FormControlLabel
                                       value="family"
                                       control={<Radio />}
                                       label="Family shop"
+                                      onClick={() =>
+                                        searchCollectionHandler("family")
+                                      }
                                     />
                                   </RadioGroup>
                                 </AccordionDetails>
@@ -484,152 +520,157 @@ export function OneMarket() {
                   </div>
                 </div>
               </div>
+              {targetProducts.length > 0 && (
+                <div className="product-box">
+                  <div className="product-main_box">
+                    <div className="product-grid">
+                      {targetProducts.map((ele: Product) => {
+                        const image_path = `${serverApi}/${ele.product_images[0]}`;
+                        const size_volume =
+                          ele.product_collection === "drink"
+                            ? ele.product_volume + " L"
+                            : ele.product_collection === "meat" ||
+                              ele.product_collection === "fresh"
+                            ? ele.product_weight + " kg"
+                            : ele.product_collection === "family" ||
+                              ele.product_collection === "readyToEat" ||
+                              ele.product_collection === "parfumerie" ||
+                              ele.product_collection === "texno"
+                            ? ele.product_family + " pc"
+                            : ele.product_size === "1" ||
+                              ele.product_size === "2" ||
+                              ele.product_size === "3"
+                            ? ele.product_size + " liter"
+                            : ele.product_size;
 
-              <div className="product-box">
-                <div className="product-main_box">
-                  <div className="product-grid">
-                    {targetProducts.map((ele: Product) => {
-                      const image_path = `${serverApi}/${ele.product_images[0]}`;
-                      const size_volume =
-                        ele.product_collection === "drink"
-                          ? ele.product_volume + " L"
-                          : ele.product_collection === "meat" ||
-                            ele.product_collection === "fresh"
-                          ? ele.product_weight + " kg"
-                          : ele.product_collection === "family" ||
-                            ele.product_collection === "readyToEat" ||
-                            ele.product_collection === "parfumerie" ||
-                            ele.product_collection === "texno"
-                          ? ele.product_family + " pc"
-                          : ele.product_size === "1" ||
-                            ele.product_size === "2" ||
-                            ele.product_size === "3"
-                          ? ele.product_size + " liter"
-                          : ele.product_size;
+                        return (
+                          <div className="showcase" key={`${ele._id}`}>
+                            <div className="showcase-banner">
+                              <p className="showcase-badge">{size_volume}</p>
+                              <div className="showcase-actions">
+                                <button className="btn-action">
+                                  <span className="product_view_cnt">
+                                    {ele.product_views}
+                                  </span>
 
-                      return (
-                        <div className="showcase" key={`${ele._id}`}>
-                          <div className="showcase-banner">
-                            <p className="showcase-badge">{size_volume}</p>
-                            <div className="showcase-actions">
-                              <button className="btn-action">
-                                <span className="product_view_cnt">
-                                  {ele.product_views}
-                                </span>
-
-                                <Checkbox
-                                  className="like_btn"
-                                  icon={
-                                    <AiFillHeart
-                                      // className="like_btn"
-                                      style={{
-                                        color: "#929292",
-                                        fontSize: "22px",
-                                      }}
-                                    />
-                                  }
-                                  id={`${ele._id}}`}
-                                  checkedIcon={
-                                    <AiFillHeart style={{ color: "red" }} />
-                                  }
-                                  /* @ts-ignore */
-                                  checked={
-                                    ele?.me_liked &&
-                                    ele?.me_liked[0]?.my_favorite
-                                      ? true
-                                      : false
-                                  }
-                                />
-                                {/* <AiFillHeart className="like_btn" /> */}
-                                <span className="product_like_cnt">
-                                  {ele.product_likes}
-                                </span>
-                                <AiFillEye className="view_btn" />
-                              </button>
-                            </div>
-                          </div>
-                          <div className="showcase-content">
-                            <div className="price-box">
-                              <img
-                                src={image_path}
-                                alt=""
-                                width="300"
-                                className="product-img rasim"
-                              />
-                              <span className="which_market"></span>
-                              <div className="product_rating">
-                                <Rating
-                                  sx={{ fontSize: "19px" }}
-                                  name="text-feedback"
-                                  value={value}
-                                  readOnly
-                                  precision={0.5}
-                                  emptyIcon={
-                                    <StarIcon
-                                      style={{ opacity: 0.55 }}
-                                      fontSize="inherit"
-                                    />
-                                  }
-                                />
-                                <span>(0)</span>
+                                  <Checkbox
+                                    className="like_btn"
+                                    icon={
+                                      <AiFillHeart
+                                        // className="like_btn"
+                                        style={{
+                                          color: "#929292",
+                                          fontSize: "22px",
+                                        }}
+                                      />
+                                    }
+                                    id={`${ele._id}}`}
+                                    checkedIcon={
+                                      <AiFillHeart style={{ color: "red" }} />
+                                    }
+                                    /* @ts-ignore */
+                                    checked={
+                                      ele?.me_liked &&
+                                      ele?.me_liked[0]?.my_favorite
+                                        ? true
+                                        : false
+                                    }
+                                  />
+                                  {/* <AiFillHeart className="like_btn" /> */}
+                                  <span className="product_like_cnt">
+                                    {ele.product_likes}
+                                  </span>
+                                  <AiFillEye className="view_btn" />
+                                </button>
                               </div>
-                              <span className="product-title">
-                                {ele.product_name}
-                              </span>
-                              <div className="product-cart_price_box">
-                                {ele.product_discount && ele.product_price ? (
-                                  <>
+                            </div>
+                            <div className="showcase-content">
+                              <div className="price-box">
+                                <img
+                                  src={image_path}
+                                  alt=""
+                                  width="300"
+                                  className="product-img rasim"
+                                />
+                                <span className="which_market"></span>
+                                <div className="product_rating">
+                                  <Rating
+                                    sx={{ fontSize: "19px" }}
+                                    name="text-feedback"
+                                    value={value}
+                                    readOnly
+                                    precision={0.5}
+                                    emptyIcon={
+                                      <StarIcon
+                                        style={{ opacity: 0.55 }}
+                                        fontSize="inherit"
+                                      />
+                                    }
+                                  />
+                                  <span>(0)</span>
+                                </div>
+                                <span className="product-title">
+                                  {ele.product_name}
+                                </span>
+                                <div className="product-cart_price_box">
+                                  {ele.product_discount && ele.product_price ? (
+                                    <>
+                                      <del className="prce_disc">
+                                        ₩{ele.product_discount.toLocaleString()}
+                                      </del>
+                                      <span className="price">
+                                        ₩{ele.product_price.toLocaleString()}
+                                      </span>
+                                    </>
+                                  ) : ele.product_discount ? (
                                     <del className="prce_disc">
                                       ₩{ele.product_discount.toLocaleString()}
                                     </del>
+                                  ) : (
                                     <span className="price">
                                       ₩{ele.product_price.toLocaleString()}
                                     </span>
-                                  </>
-                                ) : ele.product_discount ? (
-                                  <del className="prce_disc">
-                                    ₩{ele.product_discount.toLocaleString()}
-                                  </del>
-                                ) : (
-                                  <span className="price">
-                                    ₩{ele.product_price.toLocaleString()}
-                                  </span>
-                                )}
+                                  )}
+                                </div>
+                                <button className="cart-mobile" type="button">
+                                  <BiShoppingBag className="add-cart__btn" />
+                                  <p>Add To Cart</p>
+                                </button>
                               </div>
-                              <button className="cart-mobile" type="button">
-                                <BiShoppingBag className="add-cart__btn" />
-                                <p>Add To Cart</p>
-                              </button>
                             </div>
                           </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div className="pagination">
+                    <Pagination
+                      count={
+                        targetSearchObject.page >= 3
+                          ? targetSearchObject.page + 1
+                          : 3
+                      }
+                      page={targetSearchObject.page}
+                      renderItem={(item) => (
+                        <PaginationItem
+                          components={{
+                            previous: ArrowBackIcon,
+                            next: ArrowForwardIcon,
+                          }}
+                          {...item}
+                          color="primary"
+                          sx={{ color: "#43bb59" }}
+                        />
+                      )}
+                      onChange={handlePaginationChange}
+                    />
                   </div>
                 </div>
-                <div className="pagination">
-                  <Pagination
-                    count={
-                      targetSearchObject.page >= 3
-                        ? targetSearchObject.page + 1
-                        : 3
-                    }
-                    page={targetSearchObject.page}
-                    renderItem={(item) => (
-                      <PaginationItem
-                        components={{
-                          previous: ArrowBackIcon,
-                          next: ArrowForwardIcon,
-                        }}
-                        {...item}
-                        color="primary"
-                        sx={{ color: "#43bb59" }}
-                      />
-                    )}
-                    onChange={handlePaginationChange}
-                  />
-                </div>
-              </div>
+              )}
+              {targetProducts.length === 0 && (
+                <h1 className="no_product">Product not available</h1>
+              )}
             </div>
           </div>
         </div>
