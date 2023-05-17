@@ -40,6 +40,7 @@ function App() {
   );
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
+  const [signUpOpen, setSignUpOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -64,6 +65,8 @@ function App() {
   /* HABDLERS */
   const handleLoginOpen = () => setLoginOpen(true);
   const handleLoginClose = () => setLoginOpen(false);
+  const handleSignUpOpen = () => setSignUpOpen(true);
+  const handleSignUpClose = () => setSignUpOpen(false);
 
   // LOGOUT handles ->
   const handleLogOutClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -89,7 +92,9 @@ function App() {
       {main_path === "/" ? (
         <NavbarHome
           setPath={setPath}
-          handleLoginOpen={handleLoginOpen} // logout->
+          handleLoginOpen={handleLoginOpen}
+          handleSignUpOpen={handleSignUpOpen}
+          // logout->
           anchorEl={anchorEl}
           open={open}
           handleLogOutClick={handleLogOutClick}
@@ -101,7 +106,9 @@ function App() {
       ) : main_path.includes("/markets") ? (
         <NavbarMarket
           setPath={setPath}
-          handleLoginOpen={handleLoginOpen} // logout->
+          handleLoginOpen={handleLoginOpen}
+          handleSignUpOpen={handleSignUpOpen}
+          // logout->
           anchorEl={anchorEl}
           open={open}
           handleLogOutClick={handleLogOutClick}
@@ -113,7 +120,9 @@ function App() {
       ) : (
         <NavbarOthers
           setPath={setPath}
-          handleLoginOpen={handleLoginOpen} // logout->
+          handleLoginOpen={handleLoginOpen}
+          handleSignUpOpen={handleSignUpOpen}
+          // logout->
           anchorEl={anchorEl}
           open={open}
           handleLogOutClick={handleLogOutClick}
@@ -178,6 +187,9 @@ function App() {
         loginOpen={loginOpen}
         handleLoginOpen={handleLoginOpen}
         handleLoginClose={handleLoginClose}
+        signUpOpen={signUpOpen}
+        handleSignUpOpen={handleSignUpOpen}
+        handleSignUpClose={handleSignUpClose}
       />
     </Router>
   );

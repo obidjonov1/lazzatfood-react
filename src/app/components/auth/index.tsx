@@ -134,196 +134,267 @@ export default function AuthenticationModal(props: any) {
           timeout: 500,
         }}
       >
-        {/* <Fade in={props.loginOpen}> */}
-        <div className="user-form">
-          <div
-            className={`form-wrapper login-container ${
-              isActive ? "active" : ""
-            }`}
-          >
-            <div className="user login">
-              <div className="img-box">
-                <img src="/images/sigin.webp" alt="" />
-              </div>
-              <div className="form-box">
-                <h2 className="welcome">Welcome !</h2>
-                <div className="top login-sigup">
-                  <p>
-                    Not a member ?
-                    <span
-                      onClick={() => handleClick("#ff0066")}
-                      data-id="#ff0066"
-                    >
-                      Sign Up
-                    </span>
-                  </p>
+        <Fade in={props.loginOpen}>
+          <div className="user-form">
+            <div
+              className={`form-wrapper login-container ${
+                isActive ? "active" : ""
+              }`}
+            >
+              <div className="user login">
+                <div className="img-box">
+                  <img src="/images/sigin.webp" alt="" />
                 </div>
-                <form onSubmit={handleSubmit}>
-                  <div className="form-control">
-                    <input
-                      type="text"
-                      placeholder="Login"
-                      onChange={handleUsername}
-                    />
-                    <div>
+                <div className="form-box">
+                  <h2 className="welcome">Welcome !</h2>
+                  <div className="top login-sigup">
+                    <p>
+                      Not a member ?
+                      <span
+                        onClick={() => handleClick("#ff0066")}
+                        data-id="#ff0066"
+                      >
+                        Sign Up
+                      </span>
+                    </p>
+                  </div>
+                  <form onSubmit={handleSubmit}>
+                    <div className="form-control">
                       <input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Password"
-                        onChange={handlePassword}
+                        type="text"
+                        placeholder="Login"
+                        onChange={handleUsername}
                       />
-                      <div className="icon form-icon" onClick={togglePassword}>
-                        <img
-                          src={
-                            showPassword
-                              ? "/images/hide.svg"
-                              : "/images/eye.svg"
-                          }
-                          alt=""
+                      <div>
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          placeholder="Password"
+                          onChange={handlePassword}
                         />
+                        <div
+                          className="icon form-icon"
+                          onClick={togglePassword}
+                        >
+                          <img
+                            src={
+                              showPassword
+                                ? "/images/hide.svg"
+                                : "/images/eye.svg"
+                            }
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <input
+                        type="submit"
+                        value="Login"
+                        onClick={handleLoginRequest}
+                      />
+                    </div>
+                    <div className="form-control">
+                      <p>Continue with</p>
+                      <div className="icons">
+                        <div className="icon" onClick={notify}>
+                          <img src="/images/search.svg" alt="" />
+                        </div>
+                        <div className="icon" onClick={notify}>
+                          <img src="/images/facebook.png" alt="" />
+                        </div>
+                        <div className="icon" onClick={notify}>
+                          <img src="/images/naver.png" alt="" />
+                        </div>
+                        <div className="icon" onClick={notify}>
+                          <img src="/images/kakotalk.png" alt="" />
+                        </div>
                       </div>
                     </div>
-                    <input
-                      type="submit"
-                      value="Login"
-                      onClick={handleLoginRequest}
-                    />
-                  </div>
-                  <div className="form-control">
-                    <p>Continue with</p>
-                    <div className="icons">
-                      <div className="icon" onClick={notify}>
-                        <img src="/images/search.svg" alt="" />
-                      </div>
-                      <div className="icon" onClick={notify}>
-                        <img src="/images/facebook.png" alt="" />
-                      </div>
-                      <div className="icon" onClick={notify}>
-                        <img src="/images/naver.png" alt="" />
-                      </div>
-                      <div className="icon" onClick={notify}>
-                        <img src="/images/kakotalk.png" alt="" />
-                      </div>
-                    </div>
-                  </div>
-                </form>
+                  </form>
+                </div>
+                <ToastContainer />
               </div>
-              <ToastContainer />
-            </div>
 
-            <div className="user signup">
-              <div className="form-box">
-                <h2 className="welcome-second">Welcome to LazzatFood!</h2>
-                <div className="top top-second">
-                  <p>
-                    Already registered ?
-                    <span
-                      onClick={() => handleClick("#1a1aff")}
-                      data-id="#1a1aff"
-                    >
-                      Login
-                    </span>
-                  </p>
-                </div>
-                <form action="#" className="form-second">
-                  <div className="form-control">
-                    <input
-                      type="text"
-                      placeholder="Login"
-                      onChange={handleUsername}
-                    />
-                    <div>
+              <div className="user signup">
+                <div className="form-box">
+                  <h2 className="welcome-second">Welcome to LazzatFood!</h2>
+                  <div className="top top-second">
+                    <p>
+                      Already registered ?
+                      <span
+                        onClick={() => handleClick("#1a1aff")}
+                        data-id="#1a1aff"
+                      >
+                        Login
+                      </span>
+                    </p>
+                  </div>
+                  <form action="#" className="form-second">
+                    <div className="form-control">
                       <input
-                        type="number"
-                        placeholder="Phone number"
-                        onChange={handlePhone}
+                        type="text"
+                        placeholder="Login"
+                        onChange={handleUsername}
                       />
-                    </div>
-                    <div>
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Password"
-                        onChange={handlePassword}
-                      />
-                      <div className="icon form-icon" onClick={togglePassword}>
-                        <img
-                          src={
-                            showPassword
-                              ? "/images/hide.svg"
-                              : "/images/eye.svg"
-                          }
-                          alt=""
+                      <div>
+                        <input
+                          type="number"
+                          placeholder="Phone number"
+                          onChange={handlePhone}
                         />
                       </div>
+                      <div>
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          placeholder="Password"
+                          onChange={handlePassword}
+                        />
+                        <div
+                          className="icon form-icon"
+                          onClick={togglePassword}
+                        >
+                          <img
+                            src={
+                              showPassword
+                                ? "/images/hide.svg"
+                                : "/images/eye.svg"
+                            }
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <input
+                        type="Submit"
+                        value="Sign Up"
+                        onClick={handleSignupRequest}
+                      />
                     </div>
-                    <input
-                      type="Submit"
-                      value="Sign Up"
-                      onClick={handleSignupRequest}
-                    />
-                  </div>
-                  <div className="form-control">
-                    <p>Continue with</p>
-                    <div className="icons">
-                      <div className="icon" onClick={notify}>
-                        <img src="/images/search.svg" alt="" />
-                      </div>
-                      <div className="icon" onClick={notify}>
-                        <img src="/images/facebook.png" alt="" />
-                      </div>
-                      <div className="icon" onClick={notify}>
-                        <img src="/images/naver.png" alt="" />
-                      </div>
-                      <div className="icon" onClick={notify}>
-                        <img src="/images/kakotalk.png" alt="" />
+                    <div className="form-control">
+                      <p>Continue with</p>
+                      <div className="icons">
+                        <div className="icon" onClick={notify}>
+                          <img src="/images/search.svg" alt="" />
+                        </div>
+                        <div className="icon" onClick={notify}>
+                          <img src="/images/facebook.png" alt="" />
+                        </div>
+                        <div className="icon" onClick={notify}>
+                          <img src="/images/naver.png" alt="" />
+                        </div>
+                        <div className="icon" onClick={notify}>
+                          <img src="/images/kakotalk.png" alt="" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </form>
-              </div>
-              <div className="img-box">
-                <img src="/images/sign-up-form.svg" alt="" />
+                  </form>
+                </div>
+                <div className="img-box">
+                  <img src="/images/sign-up-form.svg" alt="" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        {/* <Stack
-            className={classes.paper}
-            direction={"row"}
-            sx={{ width: "700px" }}
-          >
-            <Stack
-              sx={{
-                marginLeft: "65px",
-                marginTop: "25px",
-                alignItems: "center",
-              }}
+        </Fade>
+      </Modal>
+
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={props.signUpOpen}
+        onClose={props.handleSignupClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={props.signUpOpen}>
+          <div className="user-form">
+            <div
+              className={`form-wrapper login-container ${
+                isActive ? "active" : ""
+              }`}
             >
-              <h2>Login Form</h2>
-              <TextField
-                onChange={handleUsername}
-                id="outlined-basic"
-                label="username"
-                variant="outlined"
-                sx={{ my: "10px" }}
-              />
-              <TextField
-                onChange={handlePassword}
-                id="outlined-basic"
-                label="password"
-                variant="outlined"
-              />
-              <Fab
-                onClick={handleLoginRequest}
-                sx={{ marginTop: "27px", width: "120px" }}
-                variant="extended"
-                color="primary"
-              >
-                <LoginIcon sx={{ mr: 1 }} />
-                Login
-              </Fab>
-            </Stack>
-          </Stack> */}
-        {/* </Fade> */}
+              <div className="user signup">
+                <div className="form-box">
+                  <h2 className="welcome-second">Welcome to LazzatFood!</h2>
+                  <div className="top top-second">
+                    <p>
+                      Already registered ?
+                      <span
+                        onClick={() => handleClick("#1a1aff")}
+                        data-id="#1a1aff"
+                      >
+                        Login
+                      </span>
+                    </p>
+                  </div>
+                  <form action="#" className="form-second">
+                    <div className="form-control">
+                      <input
+                        type="text"
+                        placeholder="Login"
+                        onChange={handleUsername}
+                      />
+                      <div>
+                        <input
+                          type="number"
+                          placeholder="Phone number"
+                          onChange={handlePhone}
+                        />
+                      </div>
+                      <div>
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          placeholder="Password"
+                          onChange={handlePassword}
+                        />
+                        <div
+                          className="icon form-icon"
+                          onClick={togglePassword}
+                        >
+                          <img
+                            src={
+                              showPassword
+                                ? "/images/hide.svg"
+                                : "/images/eye.svg"
+                            }
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <input
+                        type="Submit"
+                        value="Sign Up"
+                        onClick={handleSignupRequest}
+                      />
+                    </div>
+                    <div className="form-control">
+                      <p>Continue with</p>
+                      <div className="icons">
+                        <div className="icon" onClick={notify}>
+                          <img src="/images/search.svg" alt="" />
+                        </div>
+                        <div className="icon" onClick={notify}>
+                          <img src="/images/facebook.png" alt="" />
+                        </div>
+                        <div className="icon" onClick={notify}>
+                          <img src="/images/naver.png" alt="" />
+                        </div>
+                        <div className="icon" onClick={notify}>
+                          <img src="/images/kakotalk.png" alt="" />
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div className="img-box">
+                  <img src="/images/sign-up-form.svg" alt="" />
+                </div>
+                <ToastContainer />
+              </div>
+            </div>
+          </div>
+        </Fade>
       </Modal>
     </div>
   );
