@@ -185,20 +185,6 @@ export function OneMarket(props: any) {
   };
 
   // sort
-  const searchMultipleCollectionsHandler = () => {
-    targetProductSearchObj.page = 1;
-    targetProductSearchObj.product_collection = [
-      "meat",
-      "drink",
-      "fresh",
-      "family",
-      "readyToEat",
-      "parfumerie",
-      "texno",
-    ].join(",");
-    setTargetProductSearchObj({ ...targetProductSearchObj });
-  };
-
   const searchCollectionHandler = (collection: string) => {
     targetProductSearchObj.page = 1;
     targetProductSearchObj.product_collection = collection;
@@ -564,10 +550,16 @@ export function OneMarket(props: any) {
                                         }}
                                       />
                                     }
-                                    id={`${ele._id}}`}
+                                    id={ele._id}
                                     checkedIcon={
-                                      <AiFillHeart style={{ color: "red" }} />
+                                      <AiFillHeart
+                                        style={{
+                                          color: "red",
+                                          fontSize: "22px",
+                                        }}
+                                      />
                                     }
+                                    onClick={targetLikeProduct}
                                     /* @ts-ignore */
                                     checked={
                                       ele?.me_liked &&

@@ -60,7 +60,7 @@ function App() {
         : "/auth/profile.svg";
       setVerifiedMemberData(member_data);
     }
-  }, [loginOpen]); // <- ComponentDidUpdate
+  }, [signUpOpen, loginOpen]); // <- ComponentDidUpdate
 
   /* HABDLERS */
   const handleLoginOpen = () => setLoginOpen(true);
