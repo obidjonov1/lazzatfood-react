@@ -193,7 +193,12 @@ export function AllMarkets() {
                         </div>
                       </div>
                     </div>
-                    <div className="market_like">
+                    <div
+                      className="market_like"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                    >
                       <AiFillHeart
                         onClick={(e) => targetLikeHandler(e, ele._id)}
                         style={{

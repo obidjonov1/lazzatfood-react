@@ -184,10 +184,21 @@ a {
 .product-container .container {
   max-width: 1280px;
 }
+.product-box {
+  min-height: 445px;
+}
 .pagination {
   display: flex;
   justify-content: center;
   margin: 90px 0 70px 0;
+}
+.product_pagination {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 40px 0 100px 85px;
+}
+.css-wjh20t-MuiPagination-ul {
+  flex-wrap: nowrap !important;
 }
 .css-1evo18n-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
   color: #fff !important;
@@ -293,6 +304,9 @@ a {
 }
 
 /* PRODUCT SECTION */
+.products-container {
+  position: relative;
+}
 .products-container .product_container_box {
   display: flex;
   align-items: center;

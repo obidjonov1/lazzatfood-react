@@ -138,8 +138,9 @@ export function OneMarket(props: any) {
       limit: 8,
       order: "createdAt",
       market_mb_id: market_id,
-      product_collection: "food",
+      product_collection: "meat",
     });
+
   const [targetSearchObject, setTargetSearchObject] = useState<SearchObj>({
     page: 1,
     limit: 8,
@@ -165,6 +166,14 @@ export function OneMarket(props: any) {
       .catch((err) => console.log(err));
   }, [targetProductSearchObj, productRebuild]);
 
+  useEffect(() => {
+    const productServicePag = new ProductApiServise();
+    productServicePag
+      .getTargetProducts(targetSearchObject)
+      .then((data) => setTargetProducts(data))
+      .catch((err) => console.log(err));
+  }, [targetSearchObject]);
+
   /* HANDLERS */
   const chosenMarketHandler = (id: string) => {
     setChosenMarketId(id);
@@ -179,7 +188,11 @@ export function OneMarket(props: any) {
     };
 
   // Pagination handle
-  const handlePaginationChange = (evenet: any, value: number) => {
+  // const handlePaginationChange = (evenet: any, value: number) => {
+  //   targetSearchObject.page = value;
+  //   setTargetSearchObject({ ...targetSearchObject });
+  // };
+  const handlePaginationChange = (event: any, value: number) => {
     targetSearchObject.page = value;
     setTargetSearchObject({ ...targetSearchObject });
   };
@@ -326,17 +339,17 @@ export function OneMarket(props: any) {
                                       control={<Radio />}
                                       label="All"
                                       onClick={() =>
-                                        searchCollectionHandler("food")
+                                        searchCollectionHandler("meat")
                                       }
                                     />
-                                    <FormControlLabel
+                                    {/* <FormControlLabel
                                       value="meat"
                                       control={<Radio />}
                                       label="Meat"
                                       onClick={() =>
                                         searchCollectionHandler("meat")
                                       }
-                                    />
+                                    /> */}
                                     <FormControlLabel
                                       value="drink"
                                       control={<Radio />}
@@ -506,163 +519,158 @@ export function OneMarket(props: any) {
                   </div>
                 </div>
               </div>
-              {targetProducts.length > 0 && (
-                <div className="product-box">
-                  <div className="product-main_box">
-                    <div className="product-grid">
-                      {targetProducts.map((ele: Product) => {
-                        const image_path = `${serverApi}/${ele.product_images[0]}`;
-                        const size_volume =
-                          ele.product_collection === "drink"
-                            ? ele.product_volume + " L"
-                            : ele.product_collection === "meat" ||
-                              ele.product_collection === "fresh"
-                            ? ele.product_weight + " kg"
-                            : ele.product_collection === "family" ||
-                              ele.product_collection === "readyToEat" ||
-                              ele.product_collection === "parfumerie" ||
-                              ele.product_collection === "texno"
-                            ? ele.product_family + " pc"
-                            : ele.product_size === "1" ||
-                              ele.product_size === "2" ||
-                              ele.product_size === "3"
-                            ? ele.product_size + " liter"
-                            : ele.product_size;
+              <div className="product-box">
+                <div className="product-main_box">
+                  <div className="product-grid">
+                    {targetProducts.map((ele: Product) => {
+                      const image_path = `${serverApi}/${ele.product_images[0]}`;
+                      const size_volume =
+                        ele.product_collection === "drink"
+                          ? ele.product_volume + " L"
+                          : ele.product_collection === "meat" ||
+                            ele.product_collection === "fresh"
+                          ? ele.product_weight + " kg"
+                          : ele.product_collection === "family" ||
+                            ele.product_collection === "readyToEat" ||
+                            ele.product_collection === "parfumerie" ||
+                            ele.product_collection === "texno"
+                          ? ele.product_family + " pc"
+                          : ele.product_size === "1" ||
+                            ele.product_size === "2" ||
+                            ele.product_size === "3"
+                          ? ele.product_size + " liter"
+                          : ele.product_size;
 
-                        return (
-                          <div className="showcase" key={`${ele._id}`}>
-                            <div className="showcase-banner">
-                              <p className="showcase-badge">{size_volume}</p>
-                              <div className="showcase-actions">
-                                <button className="btn-action">
-                                  <span className="product_view_cnt">
-                                    {ele.product_views}
-                                  </span>
-
-                                  <Checkbox
-                                    className="like_btn"
-                                    icon={
-                                      <AiFillHeart
-                                        // className="like_btn"
-                                        style={{
-                                          color: "#929292",
-                                          fontSize: "22px",
-                                        }}
-                                      />
-                                    }
-                                    id={ele._id}
-                                    checkedIcon={
-                                      <AiFillHeart
-                                        style={{
-                                          color: "red",
-                                          fontSize: "22px",
-                                        }}
-                                      />
-                                    }
-                                    onClick={targetLikeProduct}
-                                    /* @ts-ignore */
-                                    checked={
-                                      ele?.me_liked &&
-                                      ele?.me_liked[0]?.my_favorite
-                                        ? true
-                                        : false
-                                    }
-                                  />
-                                  {/* <AiFillHeart className="like_btn" /> */}
-                                  <span className="product_like_cnt">
-                                    {ele.product_likes}
-                                  </span>
-                                  <AiFillEye className="view_btn" />
-                                </button>
-                              </div>
-                            </div>
-                            <div className="showcase-content">
-                              <div className="price-box">
-                                <img
-                                  src={image_path}
-                                  alt=""
-                                  width="300"
-                                  className="product-img rasim"
-                                />
-                                <span className="which_market"></span>
-                                <div className="product_rating">
-                                  <Rating
-                                    sx={{ fontSize: "19px" }}
-                                    name="text-feedback"
-                                    value={value}
-                                    readOnly
-                                    precision={0.5}
-                                    emptyIcon={
-                                      <StarIcon
-                                        style={{ opacity: 0.55 }}
-                                        fontSize="inherit"
-                                      />
-                                    }
-                                  />
-                                  <span>(0)</span>
-                                </div>
-                                <span className="product-title">
-                                  {ele.product_name}
+                      return (
+                        <div className="showcase" key={`${ele._id}`}>
+                          <div className="showcase-banner">
+                            <p className="showcase-badge">{size_volume}</p>
+                            <div className="showcase-actions">
+                              <button className="btn-action">
+                                <span className="product_view_cnt">
+                                  {ele.product_views}
                                 </span>
-                                <div className="product-cart_price_box">
-                                  {ele.product_discount && ele.product_price ? (
-                                    <>
-                                      <del className="prce_disc">
-                                        ₩{ele.product_discount.toLocaleString()}
-                                      </del>
-                                      <span className="price">
-                                        ₩{ele.product_price.toLocaleString()}
-                                      </span>
-                                    </>
-                                  ) : ele.product_discount ? (
+
+                                <Checkbox
+                                  className="like_btn"
+                                  icon={
+                                    <AiFillHeart
+                                      // className="like_btn"
+                                      style={{
+                                        color: "#929292",
+                                        fontSize: "22px",
+                                      }}
+                                    />
+                                  }
+                                  id={ele._id}
+                                  checkedIcon={
+                                    <AiFillHeart
+                                      style={{
+                                        color: "red",
+                                        fontSize: "22px",
+                                      }}
+                                    />
+                                  }
+                                  onClick={targetLikeProduct}
+                                  /* @ts-ignore */
+                                  checked={
+                                    ele?.me_liked &&
+                                    ele?.me_liked[0]?.my_favorite
+                                      ? true
+                                      : false
+                                  }
+                                />
+                                {/* <AiFillHeart className="like_btn" /> */}
+                                <span className="product_like_cnt">
+                                  {ele.product_likes}
+                                </span>
+                                <AiFillEye className="view_btn" />
+                              </button>
+                            </div>
+                          </div>
+                          <div className="showcase-content">
+                            <div className="price-box">
+                              <img
+                                src={image_path}
+                                alt=""
+                                width="300"
+                                className="product-img rasim"
+                              />
+                              <span className="which_market"></span>
+                              <div className="product_rating">
+                                <Rating
+                                  sx={{ fontSize: "19px" }}
+                                  name="text-feedback"
+                                  value={value}
+                                  readOnly
+                                  precision={0.5}
+                                  emptyIcon={
+                                    <StarIcon
+                                      style={{ opacity: 0.55 }}
+                                      fontSize="inherit"
+                                    />
+                                  }
+                                />
+                                <span>(0)</span>
+                              </div>
+                              <span className="product-title">
+                                {ele.product_name}
+                              </span>
+                              <div className="product-cart_price_box">
+                                {ele.product_discount && ele.product_price ? (
+                                  <>
                                     <del className="prce_disc">
                                       ₩{ele.product_discount.toLocaleString()}
                                     </del>
-                                  ) : (
                                     <span className="price">
                                       ₩{ele.product_price.toLocaleString()}
                                     </span>
-                                  )}
-                                </div>
-                                <button className="cart-mobile" type="button">
-                                  <BiShoppingBag className="add-cart__btn" />
-                                  <p>Add To Cart</p>
-                                </button>
+                                  </>
+                                ) : ele.product_discount ? (
+                                  <del className="prce_disc">
+                                    ₩{ele.product_discount.toLocaleString()}
+                                  </del>
+                                ) : (
+                                  <span className="price">
+                                    ₩{ele.product_price.toLocaleString()}
+                                  </span>
+                                )}
                               </div>
+                              <button className="cart-mobile" type="button">
+                                <BiShoppingBag className="add-cart__btn" />
+                                <p>Add To Cart</p>
+                              </button>
                             </div>
                           </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  <div className="pagination">
-                    <Pagination
-                      count={
-                        targetSearchObject.page >= 3
-                          ? targetSearchObject.page + 1
-                          : 3
-                      }
-                      page={targetSearchObject.page}
-                      renderItem={(item) => (
-                        <PaginationItem
-                          components={{
-                            previous: ArrowBackIcon,
-                            next: ArrowForwardIcon,
-                          }}
-                          {...item}
-                          color="primary"
-                          sx={{ color: "#43bb59" }}
-                        />
-                      )}
-                      onChange={handlePaginationChange}
-                    />
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
-              )}
-              {targetProducts.length === 0 && (
-                <h1 className="no_product">Product not available</h1>
-              )}
+              </div>
+            </div>
+            <div className="product_pagination">
+              <div></div>
+              <div></div>
+              <Pagination
+                count={
+                  targetSearchObject.page >= 3 ? targetSearchObject.page + 1 : 3
+                }
+                page={targetSearchObject.page}
+                renderItem={(item) => (
+                  <PaginationItem
+                    components={{
+                      previous: ArrowBackIcon,
+                      next: ArrowForwardIcon,
+                    }}
+                    {...item}
+                    color="primary"
+                    sx={{ color: "#43bb59" }}
+                  />
+                )}
+                onChange={handlePaginationChange}
+              />
+              <div></div>
             </div>
           </div>
         </div>
