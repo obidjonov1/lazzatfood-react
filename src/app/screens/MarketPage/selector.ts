@@ -19,7 +19,7 @@ export const retrieveTargetProducts = createSelector(
   selectMarketPage,
   (MarketPage) => MarketPage.targetProducts
 );
-export const retrieveChosenDish = createSelector(
+export const retrieveChosenProduct = createSelector(
   selectMarketPage,
   (MarketPage) => MarketPage.chosenProduct
 );

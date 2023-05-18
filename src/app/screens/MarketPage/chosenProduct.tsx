@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Favorite } from "@mui/icons-material";
 import { Container, Rating, Button, Box } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
@@ -14,6 +14,55 @@ import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { AiOutlineLike } from "react-icons/ai";
 import { IoMdTrash } from "react-icons/io";
+import { FreeMode, Thumbs } from "swiper";
+import { useParams } from "react-router-dom";
+import { Product } from "../../screens/types/product";
+import { Market } from "../../screens/types/user";
+import assert from "assert";
+import { Definer } from "../../../lib/Definer";
+import { useHistory } from "react-router-dom";
+
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import {
+  retrieveChosenProduct,
+  retrieveChosenMarket,
+} from "../../screens/MarketPage/selector";
+import { Dispatch } from "@reduxjs/toolkit";
+import {
+  setChosenProduct,
+  setChosenMarket,
+} from "../../screens/MarketPage/slice";
+import ProductApiService from "../../apiServices/productApiSevice";
+import MarketApiService from "../../apiServices/marketApiService";
+import { serverApi } from "../../../lib/config";
+import MemberApiService from "../../apiServices/memberApiService";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
+import { verifyMemberData } from "../../apiServices/verify";
+
+/** REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setChosenProduct: (data: Product) => dispach(setChosenProduct(data)),
+  setChosenMarket: (data: Market) => dispach(setChosenMarket(data)),
+});
+/** REDUX SELECTOR */
+const chosenProductRetriever = createSelector(
+  retrieveChosenProduct,
+  (chosenProduct) => ({
+    chosenProduct,
+  })
+);
+const chosenMarketRetriever = createSelector(
+  retrieveChosenMarket,
+  (chosenMarket) => ({
+    chosenMarket,
+  })
+);
+
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 // const labels: { [index: string]: string } = {
@@ -29,10 +78,60 @@ SwiperCore.use([Autoplay, Navigation, Pagination]);
 //   5: "Excellent+",
 // };
 
-export function ChosenProduct() {
+export function ChosenProduct(props: any) {
+  /* INITIALIZATION */
+  const history = useHistory();
   const value = 5;
+  let { product_id } = useParams<{ product_id: string }>();
+  const { setChosenProduct, setChosenMarket } = actionDispatch(useDispatch());
+  const { chosenProduct } = useSelector(chosenProductRetriever);
+  const { chosenMarket } = useSelector(chosenMarketRetriever);
+
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [message, setMessage] = useState("");
+
+  const [productRebuild, setProductRebuild] = useState<Date>(new Date());
+
+  const productRelatedProcess = async () => {
+    try {
+      const productService = new ProductApiService();
+      const product: Product = await productService.getChosenDish(product_id);
+      setChosenProduct(product);
+
+      const marketService = new MarketApiService();
+      const market = await marketService.getChosenMarket(product.market_mb_id);
+      setChosenMarket(market);
+    } catch (err) {
+      console.log(`productRelatedProcess, ERROR:`, err);
+    }
+  };
+
+  useEffect(() => {
+    productRelatedProcess().then();
+  }, [productRebuild]);
+
+  /** HANDLERS */
+  const targetLikeProduct = async (e: any) => {
+    try {
+      assert.ok(verifyMemberData, Definer.auth_err1);
+
+      const memberService = new MemberApiService(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: e.target.id,
+          group_type: "product",
+        });
+      assert.ok(like_result, Definer.general_err1);
+      await sweetTopSmallSuccessAlert("success", 700, false);
+      setProductRebuild(new Date());
+    } catch (err: any) {
+      console.log("targetLikeProduct, ERROR:", err);
+      sweetErrorHandling(err).then();
+    }
+  };
+
+  const chosenMarketHandler = (id: string) => {
+    history.push(`/market/${id}`);
+  };
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
@@ -55,30 +154,29 @@ export function ChosenProduct() {
               navigation={true}
               modules={[Pagination, Navigation]}
               className="swip"
-              // autoplay={{
-              //   delay: 30000,
-              //   disableOnInteraction: true,
-              // }}
             >
-              <SwiperSlide className="chosen-dish_slider">
-                <img src="/images/food2.jpeg" alt="" className="slide_img" />
-              </SwiperSlide>
-              <SwiperSlide className="chosen-dish_slider">
-                <img src="/images/food2.jpeg" alt="" className="slide_img" />
-              </SwiperSlide>
-              <SwiperSlide className="chosen-dish_slider">
-                <img src="/images/food2.jpeg" alt="" className="slide_img" />
-              </SwiperSlide>
-              <SwiperSlide className="chosen-dish_slider">
-                <img src="/images/food2.jpeg" alt="" className="slide_img" />
-              </SwiperSlide>
+              {chosenProduct?.product_images.map((ele: string) => {
+                const image_path = `${serverApi}/${ele}`;
+                return (
+                  <SwiperSlide className="chosen-dish_slider">
+                    <img src={image_path} alt="" className="slide_img" />
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
           </div>
 
           <div className={"chosen_dish_info_container"}>
             <div className={"chosen_dish_info_box"}>
-              <strong className={"dish_txt"}>Product Name</strong>
-              <span className={"resto_name"}>Market Name</span>
+              <strong
+                className={"dish_txt"}
+                // onClick={() => chosenMarketHandler(ele._id)}
+              >
+                {chosenProduct?.product_name}
+              </strong>
+              <span className={"resto_name"}>
+                {chosenMarket?.mb_nick} market
+              </span>
               <div className={"rating_box"}>
                 <Rating
                   name="text-feedback"
@@ -89,7 +187,7 @@ export function ChosenProduct() {
                     <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
                   }
                 />
-                <Box sx={{ ml: "-250px", mb: 0.5, fontSize: "18px" }}>(5)</Box>
+                <Box sx={{ ml: "-285px", mb: 0.5, fontSize: "18px" }}>(5)</Box>
                 <div className="evaluation_box">
                   <div
                     style={{
@@ -103,30 +201,26 @@ export function ChosenProduct() {
                       icon={<FavoriteBorder />}
                       checkedIcon={<Favorite style={{ color: "red" }} />}
                       /* @ts-ignore */
-                      checked={false}
+                      id={chosenProduct?._id}
+                      onClick={targetLikeProduct}
+                      checked={
+                        chosenProduct?.me_liked &&
+                        !!chosenProduct?.me_liked[0]?.my_favorite
+                      }
                     />
 
-                    <span>98</span>
+                    <span>{chosenProduct?.product_likes}</span>
                   </div>
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <RemoveRedEyeIcon sx={{ mr: "10px" }} />
-                    <span>1000</span>
+                    <span>{chosenProduct?.product_views}</span>
                   </div>
                 </div>
               </div>
               <p className={"dish_desc_info"}>
-                Juda mazzali sandwich Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Saepe optio possimus eveniet, corrupti, modi
-                neque delectus ullam repellat perspiciatis adipisci perferendis
-                aliquam. Labore ab consequatur alias exercitationem, ipsa,
-                mollitia culpa nam officiis omnis velit minima distinctio rem
-                suscipit reprehenderit voluptates! adipisicing elit. Saepe optio
-                possimus eveniet, corrupti, modi neque delectus ullam repellat
-                perspiciatis adipisci perferendis al adipisicing elit. Saepe
-                optio possimus eveniet, corrupti, modi neque delectus ullam
-                repellat perspiciatis adipisci perferendis al adipisicing elit.
-                Saepe optio possimus eveniet, corrupti, modi neque delectus
-                ullam repellat perspiciatis adipisci perferendis al
+                {chosenProduct?.product_description
+                  ? chosenProduct?.product_description
+                  : "No description"}
               </p>
               <Marginer
                 direction="horizontal"
@@ -134,14 +228,42 @@ export function ChosenProduct() {
                 width="100%"
                 bg="#c8c7c7"
               />
-              <div className={"dish_price_box"}>
-                <span>Price:</span>
-                <span>$10</span>
+              <div className="dish_price_box">
+                {chosenProduct?.product_discount &&
+                chosenProduct?.product_price ? (
+                  <>
+                    <span>Price:</span>
+                    <del>
+                      ₩{chosenProduct?.product_discount.toLocaleString()}
+                    </del>
+                    <span>
+                      ₩{chosenProduct?.product_price.toLocaleString()}
+                    </span>
+                  </>
+                ) : chosenProduct?.product_discount ? (
+                  <>
+                    <span>Price:</span>
+                    <del>
+                      ₩{chosenProduct?.product_discount.toLocaleString()}
+                    </del>
+                  </>
+                ) : (
+                  <>
+                    <span>Price:</span>
+                    <span>
+                      ₩{chosenProduct?.product_price.toLocaleString()}
+                    </span>
+                  </>
+                )}
               </div>
+
               <div className="button_box">
                 <Button
                   variant="contained"
                   style={{ color: "#fff", background: "#ff6600d3" }}
+                  onClick={() => {
+                    props.onAdd(chosenProduct);
+                  }}
                 >
                   Add To Cart
                 </Button>

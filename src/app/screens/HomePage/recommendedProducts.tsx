@@ -9,10 +9,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { setRecommendedProducts } from "./slice";
 import { Product } from "../types/product";
-import ProductApiServise from "../../apiServices/productApiSevice";
+import ProductApiService from "../../apiServices/productApiSevice";
 import { retrieveRecommendedProducts } from "./selector";
 import { createSelector } from "reselect";
 import { serverApi } from "../../../lib/config";
+import { useHistory } from "react-router-dom";
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -33,17 +34,24 @@ const recommendedProductsRetriever = createSelector(
 
 export function RecommendedProducts(props: any) {
   /* INITIALIZATION */
+  const value = 5;
+  const history = useHistory();
   const { setRecommendedProducts } = actionDispatch(useDispatch());
   const { recommendedProducts } = useSelector(recommendedProductsRetriever);
 
   useEffect(() => {
-    const productServise = new ProductApiServise();
+    const productServise = new ProductApiService();
     productServise
       .getTargetProducts({ order: "product_views", page: 1, limit: 8 })
       .then((data) => setRecommendedProducts(data))
       .catch((err) => console.log(err));
   }, []);
-  const value = 5;
+
+  /* HANDLERS */
+  // chosenDish
+  const chosenDishHandler = (id: string) => {
+    history.push(`/market/product/${id}`);
+  };
 
   return (
     <Container>
@@ -79,7 +87,11 @@ export function RecommendedProducts(props: any) {
                       : ele.product_size;
 
                   return (
-                    <div className="showcase" key={`${ele._id}`}>
+                    <div
+                      className="showcase"
+                      key={`${ele._id}`}
+                      onClick={() => chosenDishHandler(ele._id)}
+                    >
                       <div className="showcase-banner">
                         <p className="showcase-badge">{size_volume}</p>
                         <div className="showcase-actions">
@@ -89,6 +101,9 @@ export function RecommendedProducts(props: any) {
                             </span>
 
                             <Checkbox
+                              onClick={(e) => {
+                                e.stopPropagation();
+                              }}
                               className="like_btn"
                               icon={
                                 <AiFillHeart
@@ -101,7 +116,9 @@ export function RecommendedProducts(props: any) {
                               }
                               id={`${ele._id}}`}
                               checkedIcon={
-                                <AiFillHeart style={{ color: "red" }} />
+                                <AiFillHeart
+                                  style={{ color: "red", fontSize: "22px" }}
+                                />
                               }
                               /* @ts-ignore */
                               checked={
@@ -126,7 +143,7 @@ export function RecommendedProducts(props: any) {
                             width="300"
                             className="product-img rasim"
                           />
-                          <span className="which_market"></span>
+                          <span className="which_market">Lazzatfood</span>
                           <div className="product_rating">
                             <Rating
                               sx={{ fontSize: "19px" }}
@@ -150,19 +167,19 @@ export function RecommendedProducts(props: any) {
                             {ele.product_discount && ele.product_price ? (
                               <>
                                 <del className="prce_disc">
-                                  ₩{ele.product_discount}
+                                  ₩{ele.product_discount.toLocaleString()}
                                 </del>
                                 <span className="price">
-                                  ₩{ele.product_price}
+                                  ₩{ele.product_price.toLocaleString()}
                                 </span>
                               </>
                             ) : ele.product_discount ? (
                               <del className="prce_disc">
-                                ₩{ele.product_discount}
+                                ₩{ele.product_discount.toLocaleString()}
                               </del>
                             ) : (
                               <span className="price">
-                                ₩{ele.product_price}
+                                ₩{ele.product_price.toLocaleString()}
                               </span>
                             )}
                           </div>

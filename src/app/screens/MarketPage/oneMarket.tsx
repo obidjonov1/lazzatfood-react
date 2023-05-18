@@ -43,7 +43,7 @@ import {
 } from "../../screens/MarketPage/slice";
 import { Product } from "../types/product";
 import { ProductSearchObj, SearchObj } from "../types/others";
-import ProductApiServise from "../../apiServices/productApiSevice";
+import ProductApiService from "../../apiServices/productApiSevice";
 import { serverApi } from "../../../lib/config";
 import MarketApiService from "../../apiServices/marketApiService";
 import { Definer } from "../../../lib/Definer";
@@ -157,17 +157,22 @@ export function OneMarket(props: any) {
       .then((data) => setRandomMarkets(data))
       .catch((err) => console.log(err));
 
-    // ChosenProduct
+    // Chosen Market
+    marketService
+      .getChosenMarket(chosenMarketId)
+      .then((data) => setChosenMarket(data))
+      .catch((err) => console.log(err));
 
-    const productService = new ProductApiServise();
+    // ChosenProduct
+    const productService = new ProductApiService();
     productService
       .getTargetProducts(targetProductSearchObj)
       .then((data) => setTargetProducts(data))
       .catch((err) => console.log(err));
-  }, [targetProductSearchObj, productRebuild]);
+  }, [chosenMarketId, targetProductSearchObj, productRebuild]);
 
   useEffect(() => {
-    const productServicePag = new ProductApiServise();
+    const productServicePag = new ProductApiService();
     productServicePag
       .getTargetProducts(targetSearchObject)
       .then((data) => setTargetProducts(data))
@@ -207,6 +212,11 @@ export function OneMarket(props: any) {
     targetProductSearchObj.page = 1;
     targetProductSearchObj.order = order;
     setTargetProductSearchObj({ ...targetProductSearchObj });
+  };
+
+  // chosenDish
+  const chosenProductHandler = (id: string) => {
+    history.push(`/market/product/${id}`);
   };
 
   // Like handle
@@ -542,7 +552,11 @@ export function OneMarket(props: any) {
                           : ele.product_size;
 
                       return (
-                        <div className="showcase" key={`${ele._id}`}>
+                        <div
+                          className="showcase"
+                          key={`${ele._id}`}
+                          onClick={() => chosenProductHandler(ele._id)}
+                        >
                           <div className="showcase-banner">
                             <p className="showcase-badge">{size_volume}</p>
                             <div className="showcase-actions">

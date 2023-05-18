@@ -456,12 +456,14 @@ a {
   font-weight: 600;
   font-size: 26px;
   line-height: 36px;
+  text-transform: uppercase;
   color: #000000;
 }
 
 .chosen_dish_page .chosen_dish_info_box .resto_name {
   margin-top: 16px;
   font-style: normal;
+  text-transform: uppercase;
   font-weight: 600;
   font-size: 17px;
   line-height: 15px;
@@ -506,6 +508,13 @@ a {
   line-height: 22px;
   color: #000000;
   margin-right: 6px;
+}
+.chosen_dish_page .dish_price_box del {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 22px;
+  color: rgb(252, 127, 148);
+  margin-right: 8px;
 }
 
 .chosen_dish_page .button_box {

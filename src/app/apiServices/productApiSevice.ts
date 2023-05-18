@@ -5,7 +5,7 @@ import { Definer } from "../../lib/Definer";
 import { ProductSearchObj } from "../screens/types/others";
 import { Product } from "../screens/types/product";
 
-class ProductApiServise {
+class ProductApiService {
   private readonly path: string;
 
   constructor() {
@@ -28,6 +28,23 @@ class ProductApiServise {
       throw err;
     }
   }
+
+  async getChosenDish(product_id: string) {
+    try {
+      const url = `/products/${product_id}`,
+        result = await axios.get(this.path + url, {
+          withCredentials: true,
+        });
+      assert.ok(result, Definer.general_err1);
+
+      console.log("state::", result.data.state);
+      const product: Product = result.data.data;
+      return product;
+    } catch (err: any) {
+      console.log(`ERROR:: getChosenDish ${err.message}`);
+      throw err;
+    }
+  }
 }
 
-export default ProductApiServise;
+export default ProductApiService;

@@ -39,6 +39,21 @@ class MarketApiService {
       throw err;
     }
   }
+
+  async getChosenMarket(id: string) {
+    try {
+      const url = `/markets/${id}`,
+        result = await axios.get(this.path + url, { withCredentials: true });
+      assert.ok(result, Definer.general_err1);
+
+      console.log("state:::", result.data.data);
+      const market: Market = result.data.data; // 1st is from axios  2nd is from backend
+      return market;
+    } catch (err: any) {
+      console.log(`ERROR::: getChosenMarket ${err.message}`);
+      throw err;
+    }
+  }
 }
 
 export default MarketApiService;
