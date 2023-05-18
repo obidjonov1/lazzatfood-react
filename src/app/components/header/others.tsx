@@ -10,6 +10,7 @@ import {
 } from "react-icons/ai";
 import { IoPersonOutline } from "react-icons/io5";
 import { BiShoppingBag, BiChevronDown } from "react-icons/bi";
+import Basket from "./basket";
 
 export function NavbarOthers(props: any) {
   return (
@@ -158,7 +159,7 @@ export function NavbarOthers(props: any) {
                 </Menu>
                 <Box>
                   <button className="action-btn shoppingbag">
-                    <BiShoppingBag />
+                    <Basket />
                   </button>
                 </Box>
               </div>

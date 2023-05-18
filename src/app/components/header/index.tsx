@@ -16,7 +16,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 // import { Pagination, Navigation } from "swiper";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
-
+import Basket from "./basket";
 import "react-toastify/dist/ReactToastify.css";
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
@@ -167,7 +167,7 @@ export function NavbarHome(props: any) {
                 </Menu>
                 <Box>
                   <button className="action-btn shoppingbag">
-                    <BiShoppingBag />
+                    <Basket />
                   </button>
                 </Box>
               </div>
