@@ -7,6 +7,7 @@ import { Order } from "./oder";
 export interface AppRootState {
   homePage: HomePageState;
   marketPage: MarketPageState;
+  ordersPage: OrdersPageState;
 }
 
 /* HOME PAGE INTERFACE */

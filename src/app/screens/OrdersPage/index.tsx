@@ -10,8 +10,27 @@ import PausedOrders from "../../components/orders/pausedOrders";
 import ProcessOrders from "../../components/orders/processOrders";
 import FinishedOrders from "../../components/orders/finishedOrders";
 
+// REDUX
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import {
+  setPausedOrders,
+  setProcessOrders,
+  setFinishedOrders,
+} from "../../screens/OrdersPage/slice";
+import { Order } from "../../screens/types/oder";
+
+/** REDUX SLICE */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
+  setProcessOrders: (data: Order) => dispatch(setProcessOrders(data)),
+  setFinishedOrder: (data: Order[]) => dispatch(setFinishedOrders(data)),
+});
+
 export function OrdersPage() {
   // INITIALIZATIONS **/
+  const { setPausedOrders, setProcessOrders, setFinishedOrder } =
+    actionDispatch(useDispatch());
   // har doim 1 page, valu ochilichi uchun
   const [value, setValue] = useState("1");
 
