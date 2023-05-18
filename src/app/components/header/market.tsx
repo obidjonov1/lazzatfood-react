@@ -345,15 +345,17 @@ export function NavbarMarket(props: any) {
                   Markets
                 </NavLink>
               </li>
-              <li className="menu-category" onClick={props.setPath}>
-                <NavLink
-                  to={"/orders"}
-                  activeClassName="underline"
-                  className="menu-title"
-                >
-                  Order
-                </NavLink>
-              </li>
+              {props.verifiedMemberData ? (
+                <li className="menu-category" onClick={props.setPath}>
+                  <NavLink
+                    to={"/orders"}
+                    activeClassName="underline"
+                    className="menu-title"
+                  >
+                    Order
+                  </NavLink>
+                </li>
+              ) : null}
               <li className="menu-category" onClick={props.setPath}>
                 <NavLink
                   to={"/community"}

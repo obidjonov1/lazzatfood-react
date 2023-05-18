@@ -8,7 +8,7 @@ import {
   AiOutlineInstagram,
   AiOutlineSearch,
 } from "react-icons/ai";
-import { IoPersonOutline} from "react-icons/io5";
+import { IoPersonOutline } from "react-icons/io5";
 import { BiShoppingBag, BiChevronDown } from "react-icons/bi";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -354,15 +354,17 @@ export function NavbarHome(props: any) {
                   Markets
                 </NavLink>
               </li>
-              <li className="menu-category" onClick={props.setPath}>
-                <NavLink
-                  to={"/orders"}
-                  activeClassName="underline"
-                  className="menu-title"
-                >
-                  Order
-                </NavLink>
-              </li>
+              {props.verifiedMemberData ? (
+                <li className="menu-category" onClick={props.setPath}>
+                  <NavLink
+                    to={"/orders"}
+                    activeClassName="underline"
+                    className="menu-title"
+                  >
+                    Order
+                  </NavLink>
+                </li>
+              ) : null}
               <li className="menu-category" onClick={props.setPath}>
                 <NavLink
                   to={"/community"}
