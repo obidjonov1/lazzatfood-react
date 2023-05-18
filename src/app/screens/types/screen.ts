@@ -1,6 +1,7 @@
 import { BoArticle } from "./boArticle";
 import { Product } from "./product";
 import { Market } from "./user";
+import { Order } from "./oder";
 
 /** REACT APP STATE */
 export interface AppRootState {
@@ -24,4 +25,11 @@ export interface MarketPageState {
   chosenMarket: Market | null;
   targetProducts: Product[];
   chosenProduct: Product | null;
+}
+
+/* ORDER PAGE INTERFACE */
+export interface OrdersPageState {
+  pausedOrders: Order[];
+  processOrders: Order[];
+  finishedOrders: Order[];
 }
