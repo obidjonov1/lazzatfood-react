@@ -1,6 +1,6 @@
 import Cookies from "universal-cookie";
 
-const cookie = new Cookies()
+const cookie = new Cookies();
 let member_data: any = null;
 
 if (cookie.get("access_token")) {

@@ -14,6 +14,12 @@ import { MemberPosts } from "./memberPost";
 import { MemberFollowers } from "./memberFollowers";
 import { MemberFollowing } from "./memberFollowing";
 import { MySettings } from "./mySetting";
+import { Member } from "../../screens/types/user";
+import {
+  BoArticle,
+  SearchMemberArticlesObj,
+} from "../../screens/types/boArticle";
+
 //OTHERS
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
@@ -36,11 +42,6 @@ import {
   retriveChosenMemberBoArticles,
   retriveChosenSingleBoArticle,
 } from "./selector";
-import { Member } from "../../screens/types/user";
-import {
-  BoArticle,
-  SearchMemberArticlesObj,
-} from "../../screens/types/boArticle";
 import {
   sweetErrorHandling,
   sweetFailureProvider,
@@ -49,12 +50,12 @@ import CommunityApiService from "../../apiServices/communityApiService";
 import MemberApiService from "../../apiServices/memberApiService";
 
 /** REDUX SLICE */
-const actionDispatch = (dispatch: Dispatch) => ({
-  setChosenMember: (data: Member) => dispatch(setChosenMember(data)),
+const actionDispatch = (dispach: Dispatch) => ({
+  setChosenMember: (data: Member) => dispach(setChosenMember(data)),
   setChosenMemberBoArticles: (data: BoArticle[]) =>
-    dispatch(setChosenMemberBoArticles(data)),
+    dispach(setChosenMemberBoArticles(data)),
   setChosenSingleBoArticle: (data: BoArticle) =>
-    dispatch(setChosenSingleBoArticle(data)),
+    dispach(setChosenSingleBoArticle(data)),
 });
 
 /** REDUX SELECTOR */
@@ -92,7 +93,8 @@ export function VisitMyPage(props: any) {
   );
   const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriver);
   const [value, setValue] = useState("1");
-  const [ArticlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
+  const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
+  const [followRebuild, setFollowRebuild] = useState<boolean>(false);
 
   const [memberArticleSearchObj, setMemberArticleSearchObj] =
     useState<SearchMemberArticlesObj>({
@@ -120,10 +122,11 @@ export function VisitMyPage(props: any) {
       .getChosenMember(verifiedMemberData?._id)
       .then((data) => setChosenMember(data))
       .catch((err) => console.log(err));
-  }, [memberArticleSearchObj, ArticlesRebuild]);
+  }, [memberArticleSearchObj, articlesRebuild, followRebuild]);
 
   /** HANDLER **/
   const handleChange = (event: any, newValue: string) => {
+    memberArticleSearchObj.page = 1;
     setValue(newValue);
   };
 
@@ -173,8 +176,12 @@ export function VisitMyPage(props: any) {
                     >
                       <Box className={"bottom_box"}>
                         <Pagination
-                          count={3}
-                          page={1}
+                          count={
+                            memberArticleSearchObj.page >= 3
+                              ? memberArticleSearchObj.page + 1
+                              : 3
+                          }
+                          page={memberArticleSearchObj.page}
                           renderItem={(item) => (
                             <PaginationItem
                               components={{
@@ -196,14 +203,24 @@ export function VisitMyPage(props: any) {
                 <TabPanel value={"2"}>
                   <Box className={"menu_name"}>Followers</Box>
                   <Box className={"menu_content"}>
-                    <MemberFollowers actions_enabled={true} />
+                    <MemberFollowers
+                      actions_enabled={true}
+                      followRebuild={followRebuild}
+                      setFollowRebuild={setFollowRebuild}
+                      mb_id={props.verifiedMemberData?._id}
+                    />
                   </Box>
                 </TabPanel>
 
                 <TabPanel value={"3"}>
                   <Box className={"menu_name"}>Following</Box>
                   <Box className={"menu_content"}>
-                    <MemberFollowing actions_enabled={true} />
+                    <MemberFollowing
+                      actions_enabled={true}
+                      followRebuild={followRebuild}
+                      setFollowRebuild={setFollowRebuild}
+                      mb_id={props.verifiedMemberData?._id}
+                    />
                   </Box>
                 </TabPanel>
 
@@ -242,22 +259,39 @@ export function VisitMyPage(props: any) {
                 >
                   <div className={"order_user_img"}>
                     <img
-                      src={"/images/default_user.svg"}
+                      src={verifiedMemberData?.mb_image}
                       className={"order_user_avatar"}
                       alt=""
                     />
                     <div className={"order_user_icon_box"}>
-                      <img src={"/icons/user_icon.svg"} alt="" />
+                      <img
+                        src={
+                          chosenMember?.mb_type === "MARKET"
+                            ? "/icons/market-64.png"
+                            : "/icons/user_icon.svg"
+                        }
+                        alt=""
+                      />
                     </div>
                   </div>
-                  <span className={"order_user_name"}>Sarvar Obidjonov</span>
-                  <span className={"order_user_prof"}>USER</span>
+                  <span className={"order_user_name"}>
+                    {chosenMember?.mb_nick}
+                  </span>
+                  <span className={"order_user_prof"}>
+                    {chosenMember?.mb_type}
+                  </span>
                 </Box>
                 <Box className={"user_media_box"}>
-                  <p className={"follows"}>Followers: 3</p>
-                  <p className={"follows"}>Followings: 2</p>
+                  <p className={"follows"}>
+                    Followers: {chosenMember?.mb_subscriber_cnt}
+                  </p>
+                  <p className={"follows"}>
+                    Followings: {chosenMember?.mb_follow_cnt}
+                  </p>
                 </Box>
-                <p className={"user_desc"}>No additional information</p>
+                <p className={"user_desc"}>
+                  {chosenMember?.mb_description ?? "No additional information"}
+                </p>
               </Box>
 
               <Box className={"my_page_menu"}>
