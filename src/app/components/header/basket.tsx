@@ -26,10 +26,8 @@ export default function Basket(props: any) {
     (a: any, c: CartItem) => a + c.price * c.quantity,
     0
   );
-  // console.log("itemPrice", itemsPrice)
   const shippingPrice = itemsPrice > 99000 ? 0 : 4000;
   const totalPrice = itemsPrice + shippingPrice;
-
   /** HANDLERS **/
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -123,7 +121,7 @@ export default function Basket(props: any) {
                     <img src={image_path} className={"product_img"} alt="" />
                     <span className={"product_name"}>{item.name}</span>
                     <p className={"product_price"}>
-                      {item.price} x {item.quantity}
+                      ₩{item.price.toLocaleString()} x {item.quantity}
                     </p>
                     <Box sx={{ minWidth: 120 }}>
                       <div className="col-2">
@@ -146,11 +144,13 @@ export default function Basket(props: any) {
           {cartItems.length > 0 ? (
             <Box className={"to_order_box"}>
               <span className={"price_text"}>
-                Total: ₩{totalPrice} ({itemsPrice} + {shippingPrice})
+                Total: ₩{totalPrice.toLocaleString()} ( ₩
+                {itemsPrice.toLocaleString()} + ₩
+                {shippingPrice.toLocaleString()})
               </span>
               <Button
                 onClick={processOrderHandler}
-                startIcon={<ShoppingCartIcon />}
+                // startIcon={<ShoppingCartIcon />}
                 variant={"contained"}
                 sx={{ fontSize: "14px", marginRight: "8px" }}
               >
