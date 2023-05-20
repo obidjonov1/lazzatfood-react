@@ -12,8 +12,8 @@ export const TViewer = (props: any) => {
         <Viewer
           // @ts-ignore
           ref={editorRef}
-          // initialValue={props.chosenSingleBoArticle?.art_content}
-          initialValue={props.text}
+          initialValue={props.chosenSingleBoArticle?.art_content}
+          // initialValue={props.text}
           height={"600px"}
         />
       </Box>

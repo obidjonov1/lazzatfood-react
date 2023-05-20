@@ -139,7 +139,10 @@ export function VisitMyPage(props: any) {
       const communityService = new CommunityApiService();
       communityService
         .getChosenArticle(art_id)
-        .then((data) => setChosenSingleBoArticle(data))
+        .then((data) => {
+          setChosenSingleBoArticle(data);
+          setValue("5");
+        })
         .catch((err) => console.log(err));
     } catch (err: any) {
       console.log(err);
