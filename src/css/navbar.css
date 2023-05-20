@@ -252,6 +252,7 @@ body::-webkit-scrollbar-thumb:hover {
   border: 1px solid #9d9d9db1;
   border-radius: 18px;
   background: hsl(0, 0%, 97%);
+  padding: 5px;
 }
 
 .login-btn-action:hover {

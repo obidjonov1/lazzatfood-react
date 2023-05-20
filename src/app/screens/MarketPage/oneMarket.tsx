@@ -22,9 +22,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { BiShoppingBag } from "react-icons/bi";
 import { useHistory, useParams } from "react-router-dom";
 import Checkbox from "@mui/material/Checkbox";
-import Badge from "@mui/material/Badge";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import Favorite from "@mui/icons-material/Favorite";
 
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
@@ -122,7 +119,6 @@ export function OneMarket(props: any) {
   const refs: any = useRef([]);
   const history = useHistory();
   let { market_id } = useParams<{ market_id: string }>();
-  console.log(market_id);
   const value = 5;
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
 
@@ -171,13 +167,13 @@ export function OneMarket(props: any) {
       .catch((err) => console.log(err));
   }, [chosenMarketId, targetProductSearchObj, productRebuild]);
 
-  useEffect(() => {
-    const productServicePag = new ProductApiService();
-    productServicePag
-      .getTargetProducts(targetSearchObject)
-      .then((data) => setTargetProducts(data))
-      .catch((err) => console.log(err));
-  }, [targetSearchObject]);
+  // useEffect(() => {
+  //   const productServicePag = new ProductApiService();
+  //   productServicePag
+  //     .getTargetProducts(targetSearchObject)
+  //     .then((data) => setTargetProducts(data))
+  //     .catch((err) => console.log(err));
+  // }, [targetSearchObject]);
 
   /* HANDLERS */
   const chosenMarketHandler = (id: string) => {
@@ -197,10 +193,10 @@ export function OneMarket(props: any) {
   //   targetSearchObject.page = value;
   //   setTargetSearchObject({ ...targetSearchObject });
   // };
-  const handlePaginationChange = (event: any, value: number) => {
-    targetSearchObject.page = value;
-    setTargetSearchObject({ ...targetSearchObject });
-  };
+  // const handlePaginationChange = (event: any, value: number) => {
+  //   targetSearchObject.page = value;
+  //   setTargetSearchObject({ ...targetSearchObject });
+  // };
 
   // sort
   const searchCollectionHandler = (collection: string) => {
@@ -349,17 +345,17 @@ export function OneMarket(props: any) {
                                       control={<Radio />}
                                       label="All"
                                       onClick={() =>
-                                        searchCollectionHandler("meat")
+                                        searchCollectionHandler("food")
                                       }
                                     />
-                                    {/* <FormControlLabel
+                                    <FormControlLabel
                                       value="meat"
                                       control={<Radio />}
                                       label="Meat"
                                       onClick={() =>
                                         searchCollectionHandler("meat")
                                       }
-                                    /> */}
+                                    />
                                     <FormControlLabel
                                       value="drink"
                                       control={<Radio />}
@@ -682,7 +678,7 @@ export function OneMarket(props: any) {
                     sx={{ color: "#43bb59" }}
                   />
                 )}
-                onChange={handlePaginationChange}
+                // onChange={handlePaginationChange}
               />
               <div></div>
             </div>

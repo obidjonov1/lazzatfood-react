@@ -7,7 +7,7 @@ import { AllMarkets } from "./allMarkets";
 import { NavbarMarketBanner } from "./banner";
 import "../../../css/market.css";
 
-export function MarketPage() {
+export function MarketPage(props: any) {
   let market = useRouteMatch();
   console.log(market);
 
@@ -16,10 +16,10 @@ export function MarketPage() {
       <NavbarMarketBanner />
       <Switch>
         <Route path={`${market.path}/product/:product_id`}>
-          <ChosenProduct />
+          <ChosenProduct onAdd={props.onAdd} />
         </Route>
         <Route path={`${market.path}/:market_id`}>
-          <OneMarket />
+          <OneMarket onAdd={props.onAdd} />
         </Route>
         <Route path={`${market.path}`}>
           <AllMarkets />

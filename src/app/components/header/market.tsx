@@ -159,7 +159,7 @@ export function NavbarMarket(props: any) {
                 </Menu>
                 <Box>
                   <button className="action-btn shoppingbag">
-                    <Basket />
+                    <Basket cartItems={props.cartItems} onAdd={props.onAdd} />
                   </button>
                 </Box>
               </div>
