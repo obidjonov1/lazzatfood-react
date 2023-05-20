@@ -15,7 +15,7 @@ export default function Basket(props: any) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const { cartItems, onAdd } = props;
+  const { cartItems, onAdd, onRemove, onDelete } = props;
   const itemsPrice = cartItems.reduce(
     (a: any, c: CartItem) => a + c.price * c.quantity,
     0
@@ -96,8 +96,8 @@ export default function Basket(props: any) {
                   <Box className={"basket_info_box"}>
                     <div className={"cancel_btn"}>
                       <DeleteIcon
+                        onClick={() => onDelete(item)}
                         color={"primary"}
-                        // onClick={}
                       />
                     </div>
                     <img src={image_path} className={"product_img"} alt="" />
@@ -108,7 +108,7 @@ export default function Basket(props: any) {
                     <Box sx={{ minWidth: 120 }}>
                       <div className="col-2">
                         <button
-                          //   onClick={}
+                          onClick={() => onRemove(item)}
                           className="remove"
                         >
                           -
