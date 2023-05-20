@@ -9,6 +9,10 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { BiShoppingBag } from "react-icons/bi";
 import { CartItem } from "../../screens/types/others";
 import { serverApi } from "../../../lib/config";
+import OrderApiService from "../../apiServices/orderApiService";
+import assert from "assert";
+import { sweetErrorHandling } from "../../../lib/sweetAlert";
+import { Definer } from "../../../lib/Definer";
 
 export default function Basket(props: any) {
   /** INITIALIZATIONS **/
@@ -32,7 +36,13 @@ export default function Basket(props: any) {
     setAnchorEl(null);
   };
 
-  const processOrderHandler = async () => {};
+  const processOrderHandler = async () => {
+    try {
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <Box className={"hover-line"}>
