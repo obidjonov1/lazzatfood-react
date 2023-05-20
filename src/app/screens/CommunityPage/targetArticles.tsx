@@ -3,7 +3,6 @@ import { Box, Checkbox, Container, Link, Stack } from "@mui/material";
 import { AiFillLike } from "react-icons/ai";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import moment from "moment";
-import Favorite from "@mui/icons-material/Favorite";
 import { BoArticle } from "../../screens/types/boArticle";
 import { serverApi } from "../../../lib/config";
 import {
@@ -13,11 +12,27 @@ import {
 import assert from "assert";
 import { Definer } from "../../../lib/Definer";
 import MemberApiService from "../../apiServices/memberApiService";
-import { verifyMemberData } from "../../apiServices/verify";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 
 export function TargetArticles(props: any) {
   /** HANDLERS */
+
+  const targetLikeHandler = async (e: any) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+
+      const memberService = new MemberApiService();
+      const like_result = await memberService.memberLikeTarget({
+        like_ref_id: e.target.id,
+        group_type: "community",
+      });
+      assert.ok(like_result, Definer.general_err1);
+      await sweetTopSmallSuccessAlert("success", 700, false);
+      props.setArticlesRebuild(new Date());
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <Stack>
@@ -80,6 +95,8 @@ export function TargetArticles(props: any) {
                           style={{ color: "primary", fontSize: "22px" }}
                         />
                       }
+                      id={article?._id}
+                      onClick={targetLikeHandler}
                       checked={
                         article?.me_liked && article.me_liked[0]?.my_favorite
                           ? true

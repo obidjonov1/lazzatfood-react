@@ -44,9 +44,11 @@ export function CommunityPage(props: any) {
     {
       bo_id: "all",
       page: 1,
-      limit: 5,
+      limit: 4,
     }
   );
+
+  const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
 
   useEffect(() => {
     const communityService = new CommunityApiService();
@@ -56,7 +58,7 @@ export function CommunityPage(props: any) {
         setTargetBoArticles(data);
       })
       .catch((err) => console.log(err));
-  }, [searchArticlesObj]);
+  }, [searchArticlesObj, articlesRebuild]);
 
   /** HANDLERS **/
   const handleChange = (event: any, newValue: string) => {
@@ -114,20 +116,26 @@ export function CommunityPage(props: any) {
                     {/* parentga target qilyabmiz childga yuborish uchun [targetArticl.tsx[9]] */}
                     <TargetArticles
                       targetBoArticles={targetBoArticles}
-                      test={"Maqolalar"}
+                      setArticlesRebuild={setArticlesRebuild}
                     />
                   </TabPanel>
                   <TabPanel value="2">
                     <TargetArticles
                       targetBoArticles={targetBoArticles}
-                      test={"Mashxurlar"}
+                      setArticlesRebuild={setArticlesRebuild}
                     />
                   </TabPanel>
                   <TabPanel value="3">
-                    <TargetArticles targetBoArticles={targetBoArticles} />
+                    <TargetArticles
+                      targetBoArticles={targetBoArticles}
+                      setArticlesRebuild={setArticlesRebuild}
+                    />
                   </TabPanel>
                   <TabPanel value="4">
-                    <TargetArticles targetBoArticles={targetBoArticles} />
+                    <TargetArticles
+                      targetBoArticles={targetBoArticles}
+                      setArticlesRebuild={setArticlesRebuild}
+                    />
                   </TabPanel>
                 </Box>
 
