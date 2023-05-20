@@ -5,6 +5,7 @@ export interface OrderItem {
   item_quantity: number;
   item_price: number;
   order_id: string;
+  product_id: string;
   createdAt: Date;
   updatedAt: Date;
 }

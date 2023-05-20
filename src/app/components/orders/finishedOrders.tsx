@@ -1,11 +1,14 @@
 import React from "react";
 import TabPanel from "@mui/lab/TabPanel";
 import { Box, Stack } from "@mui/material";
+import { Order } from "../../screens/types/order";
 
 // REDUX
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveFinishedOrders } from "../../screens/OrdersPage/selector";
+import { serverApi } from "../../../lib/config";
+import { Product } from "../../screens/types/product";
 
 /** REDUX SELECTOR */
 const finishedOrdersRetriver = createSelector(
@@ -15,34 +18,35 @@ const finishedOrdersRetriver = createSelector(
   })
 );
 
-const finishedOrders = [
-  [1, 2, 3, 4, 5, 6],
-  [1, 2, 3],
-];
-
 export default function FinishedOrders(props: any) {
   /* INITIALIZATIONS */
-  // const { finishedOrders } = useSelector(finishedOrdersRetriver);
+  const { finishedOrders } = useSelector(finishedOrdersRetriver);
 
   return (
     <TabPanel value={"3"}>
       <Stack>
-        {finishedOrders?.map((order) => {
+        {finishedOrders?.map((order: Order) => {
           return (
             <Box className={"order_main_box"}>
               <Box className={"order_box_scroll"}>
-                {order.map((item) => {
-                  const image_path = `/images/food2.jpeg`;
+                {order.order_items.map((item) => {
+                  const product: Product = order.product_data.filter(
+                    (ele) => ele._id === item.product_id
+                  )[0];
+                  const image_path = `${serverApi}/${product.product_images[0]}`;
+
                   return (
                     <Box className={"ordersName_price"}>
                       <img src={image_path} className={"orderDishImg"} alt="" />
-                      <p className={"titleDish"}>Product</p>
+                      <p className={"titleDish"}>{product.product_name}</p>
                       <Box className={"priceBox"}>
-                        <p>30$</p>
+                        <p>₩{item.item_price}</p>
                         <img src={"/icons/Close.svg"} alt="" />
-                        <p>3</p>
+                        <p>{item.item_quantity}</p>
                         <img src={"/icons/pause.svg"} alt="" />
-                        <p style={{ marginLeft: "15px" }}>90$</p>
+                        <p style={{ marginLeft: "15px" }}>
+                          ₩{item.item_price * item.item_quantity}
+                        </p>
                       </Box>
                     </Box>
                   );
@@ -55,7 +59,7 @@ export default function FinishedOrders(props: any) {
               >
                 <Box className={"boxTotal red_solid"}>
                   <p>Price</p>
-                  <p>$90</p>
+                  <p>₩{order.order_total_amount - order.order_delivery_cost}</p>
                   <img
                     // src={"/icons/plus.svg"}
                     style={{ marginLeft: "20px" }}
@@ -63,7 +67,7 @@ export default function FinishedOrders(props: any) {
                   />
                   <span className="price_total_icon">+</span>
                   <p>Delivery</p>
-                  <p>$2</p>
+                  <p>₩{order.order_delivery_cost}</p>
                   <img
                     // src={"/icons/pause.svg"}
                     style={{ marginLeft: "20px" }}
@@ -71,7 +75,7 @@ export default function FinishedOrders(props: any) {
                   />
                   <span className="price_total_icon">=</span>
                   <p>Total:</p>
-                  <p>$92</p>
+                  <p>₩{order.order_total_amount}</p>
                 </Box>
               </Box>
             </Box>

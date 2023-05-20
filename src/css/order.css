@@ -80,6 +80,8 @@
   font-size: 28px;
   line-height: 36px;
   color: #08090d;
+  text-transform: capitalize;
+
 }
 
 .order_page .order_info_box .order_user_prof {

@@ -8,7 +8,7 @@ const initialState: OrdersPageState = {
 };
 
 const ordersPageSlce = createSlice({
-  name: "orderPage",
+  name: "ordersPage",
   initialState,
   reducers: {
     setPausedOrders: (state, action) => {

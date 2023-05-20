@@ -47,6 +47,7 @@ function App() {
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const [orderRebuild, setOrderRebuild] = useState<Date>(new Date());
 
   const cartJson: any = localStorage.getItem("cart_data");
   const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
@@ -68,7 +69,7 @@ function App() {
     }
   }, [signUpOpen, loginOpen]); // <- ComponentDidUpdate
 
-  /* HABDLERS */
+  /** HANDLERS */
   const handleLoginOpen = () => setLoginOpen(true);
   const handleLoginClose = () => setLoginOpen(false);
   const handleSignUpOpen = () => setSignUpOpen(true);
@@ -171,6 +172,7 @@ function App() {
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
+          setOrderRebuild={setOrderRebuild}
         />
       ) : main_path.includes("/market") ? (
         <NavbarMarket
@@ -190,6 +192,7 @@ function App() {
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
+          setOrderRebuild={setOrderRebuild}
         />
       ) : (
         <NavbarOthers
@@ -209,6 +212,7 @@ function App() {
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
+          setOrderRebuild={setOrderRebuild}
         />
       )}
 
@@ -226,7 +230,11 @@ function App() {
           <CommunityPage />
         </Route>
         <Route path="/orders">
-          <OrdersPage />
+          <OrdersPage
+            orderRebuild={orderRebuild}
+            setOrderRebuild={setOrderRebuild}
+            verifiedMemberData={verifiedMemberData}
+          />
         </Route>
         <Route path="/member-page">
           <MemberPage />

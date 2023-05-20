@@ -18,21 +18,48 @@ import {
   setProcessOrders,
   setFinishedOrders,
 } from "../../screens/OrdersPage/slice";
-import { Order } from "../../screens/types/oder";
+import { Order } from "../types/order";
+import OrderApiService from "../../apiServices/orderApiService";
+import { Member } from "../types/user";
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
   setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
   setProcessOrders: (data: Order) => dispatch(setProcessOrders(data)),
-  setFinishedOrder: (data: Order[]) => dispatch(setFinishedOrders(data)),
+  setFinishedOrders: (data: Order[]) => dispatch(setFinishedOrders(data)),
 });
 
-export function OrdersPage() {
+export function OrdersPage(props: any) {
   // INITIALIZATIONS **/
-  const { setPausedOrders, setProcessOrders, setFinishedOrder } =
-    actionDispatch(useDispatch());
+
   // har doim 1 page, valu ochilichi uchun
   const [value, setValue] = useState("1");
+
+  const { setPausedOrders, setProcessOrders, setFinishedOrders } =
+    actionDispatch(useDispatch());
+
+  const verifiedMemberData: Member | null = props.verifiedMemberData;
+
+  useEffect(() => {
+    const orderService = new OrderApiService();
+    orderService
+      .getMyOrders("paused")
+      .then((data) => setPausedOrders(data))
+      .catch((err) => console.log(err));
+    orderService
+      .getMyOrders("process")
+      .then((data) => setProcessOrders(data))
+      .catch((err) => console.log(err));
+    orderService
+      .getMyOrders("finished")
+      .then((data) => setFinishedOrders(data))
+      .catch((err) => console.log(err));
+  }, [
+    props.orderRebuild,
+    setFinishedOrders,
+    setPausedOrders,
+    setProcessOrders,
+  ]);
 
   // HANDLERS **/
   const handleChange = (event: any, newValue: string) => {
@@ -65,9 +92,9 @@ export function OrdersPage() {
               </Box>
             </Box>
             <Stack className={"order_main_content"}>
-              <PausedOrders />
-              <ProcessOrders />
-              <FinishedOrders />
+              <PausedOrders setOrderRebuild={props.setOrderRebuild} />
+              <ProcessOrders setOrderRebuild={props.setOrderRebuild} />
+              <FinishedOrders setOrderRebuild={props.setOrderRebuild} />
             </Stack>
           </TabContext>
         </Stack>
@@ -84,15 +111,19 @@ export function OrdersPage() {
               <div className={"order_user_img"}>
                 <img
                   className={"order_user_avatar"}
-                  src={"/icons/profile.svg"}
+                  src={verifiedMemberData?.mb_image}
                   alt=""
                 />
                 <div className={"order_user_icon_box"}>
                   <img src="/icons/user_icon.svg" alt="" />
                 </div>
               </div>
-              <span className={"order_user_name"}>Steve</span>
-              <span className={"order_user_prof"}>USER</span>
+              <span className={"order_user_name"}>
+                {verifiedMemberData?.mb_nick}
+              </span>
+              <span className={"order_user_prof"}>
+                {verifiedMemberData?.mb_type ?? "USER"}
+              </span>
             </Box>
             <div
               style={{
@@ -105,7 +136,9 @@ export function OrdersPage() {
               <div style={{ display: "flex" }}>
                 <LocationOnIcon />
               </div>
-              <div className={"spec_address_txt"}>Andijan, Asaka</div>
+              <div className={"spec_address_txt"}>
+                {verifiedMemberData?.mb_address ?? "No address"}
+              </div>
             </Box>
           </Box>
           <Box className={"order_info_box"} marginTop={"15px"}>

@@ -1,7 +1,7 @@
 import { BoArticle } from "./boArticle";
 import { Product } from "./product";
 import { Market } from "./user";
-import { Order } from "./oder";
+import { Order } from "./order";
 
 /** REACT APP STATE */
 export interface AppRootState {
