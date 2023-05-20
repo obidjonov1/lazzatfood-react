@@ -163,6 +163,10 @@ function App() {
           handleLogOutRequest={handleLogOutRequest}
           // logout <-
           verifiedMemberData={verifiedMemberData}
+          cartItems={cartItems}
+          onAdd={onAdd}
+          onRemove={onRemove}
+          onDelete={onDelete}
         />
       ) : main_path.includes("/market") ? (
         <NavbarMarket
@@ -195,6 +199,10 @@ function App() {
           handleLogOutRequest={handleLogOutRequest}
           // logout <-
           verifiedMemberData={verifiedMemberData}
+          cartItems={cartItems}
+          onAdd={onAdd}
+          onRemove={onRemove}
+          onDelete={onDelete}
         />
       )}
 

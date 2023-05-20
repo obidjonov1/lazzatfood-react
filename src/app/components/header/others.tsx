@@ -159,7 +159,12 @@ export function NavbarOthers(props: any) {
                 </Menu>
                 <Box>
                   <button className="action-btn shoppingbag">
-                    <Basket />
+                    <Basket
+                      cartItems={props.cartItems}
+                      onAdd={props.onAdd}
+                      onRemove={props.onRemove}
+                      onDelete={props.onDelete}
+                    />
                   </button>
                 </Box>
               </div>
