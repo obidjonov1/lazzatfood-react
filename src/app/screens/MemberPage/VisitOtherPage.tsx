@@ -14,8 +14,65 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { TViewer } from "../../components/tuiEditor/tuiViewer";
 
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { Dispatch } from "@reduxjs/toolkit";
+import {
+  setChosenMember,
+  setChosenMemberBoArticles,
+  setChosenSingleBoArticle,
+} from "./slice";
+import {
+  retriveChosenMember,
+  retriveChosenMemberBoArticles,
+  retriveChosenSingleBoArticle,
+} from "./selector";
+import { Member } from "../../screens/types/user";
+import { BoArticle } from "../../screens/types/boArticle";
+
+/** REDUX SLICE */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setChosenMember: (data: Member) => dispatch(setChosenMember(data)),
+  setChosenMemberBoArticles: (data: BoArticle[]) =>
+    dispatch(setChosenMemberBoArticles(data)),
+  setChosenSingleBoArticle: (data: BoArticle) =>
+    dispatch(setChosenSingleBoArticle(data)),
+});
+
+/** REDUX SELECTOR */
+const chosenMemberRetriver = createSelector(
+  retriveChosenMember,
+  (chosenMember) => ({
+    chosenMember,
+  })
+);
+const chosenMemberBoArticlesRetriver = createSelector(
+  retriveChosenMemberBoArticles,
+  (chosenMemberBoArticles) => ({
+    chosenMemberBoArticles,
+  })
+);
+const chosenSingleBoArticleRetriver = createSelector(
+  retriveChosenSingleBoArticle,
+  (chosenSingleBoArticle) => ({
+    chosenSingleBoArticle,
+  })
+);
+
 export function VisitOtherPage(props: any) {
   /** INITIALIZATIONS **/
+  const {
+    setChosenMember,
+    setChosenMemberBoArticles,
+    setChosenSingleBoArticle,
+  } = actionDispatch(useDispatch());
+  const { chosenMember } = useSelector(chosenMemberRetriver);
+  const { chosenMemberBoArticles } = useSelector(
+    chosenMemberBoArticlesRetriver
+  );
+  const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriver);
+
   const [value, setValue] = useState("4");
 
   /** HANDLER **/
