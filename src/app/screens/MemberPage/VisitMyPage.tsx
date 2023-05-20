@@ -37,7 +37,16 @@ import {
   retriveChosenSingleBoArticle,
 } from "./selector";
 import { Member } from "../../screens/types/user";
-import { BoArticle } from "../../screens/types/boArticle";
+import {
+  BoArticle,
+  SearchMemberArticlesObj,
+} from "../../screens/types/boArticle";
+import {
+  sweetErrorHandling,
+  sweetFailureProvider,
+} from "../../../lib/sweetAlert";
+import CommunityApiService from "../../apiServices/communityApiService";
+import MemberApiService from "../../apiServices/memberApiService";
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -70,6 +79,8 @@ const chosenSingleBoArticleRetriver = createSelector(
 
 export function VisitMyPage(props: any) {
   /** INITIALIZATIONS **/
+  const { verifiedMemberData } = props;
+
   const {
     setChosenMember,
     setChosenMemberBoArticles,
@@ -81,10 +92,59 @@ export function VisitMyPage(props: any) {
   );
   const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriver);
   const [value, setValue] = useState("1");
+  const [ArticlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
+
+  const [memberArticleSearchObj, setMemberArticleSearchObj] =
+    useState<SearchMemberArticlesObj>({
+      mb_id: "none",
+      page: 1,
+      limit: 5,
+    });
+
+  useEffect(() => {
+    if (!localStorage.getItem("member_data")) {
+      sweetFailureProvider("Please login first!", true, true);
+    }
+
+    const communityService = new CommunityApiService();
+    const memberService = new MemberApiService();
+
+    // setChosenMemberBoArticles
+    communityService
+      .getMemberCommunityArticles(memberArticleSearchObj)
+      .then((data) => setChosenMemberBoArticles(data))
+      .catch((err) => console.log(err));
+
+    // setChosenMember
+    memberService
+      .getChosenMember(verifiedMemberData?._id)
+      .then((data) => setChosenMember(data))
+      .catch((err) => console.log(err));
+  }, [memberArticleSearchObj, ArticlesRebuild]);
 
   /** HANDLER **/
   const handleChange = (event: any, newValue: string) => {
     setValue(newValue);
+  };
+
+  // pagination
+  const handlePaginationChange = (event: any, value: number) => {
+    memberArticleSearchObj.page = value;
+    setMemberArticleSearchObj({ ...memberArticleSearchObj });
+  };
+
+  // renderChosenArticlerHandler
+  const renderChosenArticleHandler = async (art_id: string) => {
+    try {
+      const communityService = new CommunityApiService();
+      communityService
+        .getChosenArticle(art_id)
+        .then((data) => setChosenSingleBoArticle(data))
+        .catch((err) => console.log(err));
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
   };
 
   return (
@@ -97,7 +157,11 @@ export function VisitMyPage(props: any) {
                 <TabPanel value={"1"}>
                   <Box className={"menu_name"}>My Articles</Box>
                   <Box className={"menu_content"}>
-                    <MemberPosts />
+                    <MemberPosts
+                      chosenMemberBoArticles={chosenMemberBoArticles}
+                      renderChosenArticleHandler={renderChosenArticleHandler}
+                      setArticlesRebuild={setArticlesRebuild}
+                    />
                     <Stack
                       sx={{ my: "40px" }}
                       direction="row"
@@ -119,6 +183,7 @@ export function VisitMyPage(props: any) {
                               sx={{ color: "#43bb59" }}
                             />
                           )}
+                          onChange={handlePaginationChange}
                         />
                       </Box>
                     </Stack>
@@ -164,9 +229,9 @@ export function VisitMyPage(props: any) {
 
             <Stack className={"my_page_right"}>
               <Box className={"order_info_box"}>
-                <a onClick={() => setValue("6")} className={"settings_btn"}>
+                <p onClick={() => setValue("6")} className={"settings_btn"}>
                   <SettingsIcon />
-                </a>
+                </p>
                 <Box
                   display={"flex"}
                   flexDirection={"column"}

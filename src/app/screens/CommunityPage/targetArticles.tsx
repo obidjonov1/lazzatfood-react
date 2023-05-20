@@ -86,7 +86,10 @@ export function TargetArticles(props: any) {
                       alignItems: "center",
                     }}
                   >
-                    <span>{moment().format("YY-MM-DD HH:mm")}</span>
+                    <span>
+                      {moment(article?.createdAt).format("YY-MM-DD HH:mm")}
+                    </span>
+
                     <Checkbox
                       sx={{ ml: "40px" }}
                       icon={<AiFillLike style={{ fontSize: "22px" }} />}
