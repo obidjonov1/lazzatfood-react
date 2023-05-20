@@ -164,6 +164,7 @@ export function NavbarOthers(props: any) {
                       onAdd={props.onAdd}
                       onRemove={props.onRemove}
                       onDelete={props.onDelete}
+                      onDeleteAll={props.onDeleteAll}
                     />
                   </button>
                 </Box>

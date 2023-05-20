@@ -22,9 +22,9 @@ class OrderApiService {
       assert.ok(result?.data?.state != "fail", result?.data?.message);
       console.log("state:", result.data.state);
 
-      // const order: any = result.data.data;
-      // console.log("order:", order);
-      // return true;
+      const order: any = result.data.data;
+      console.log("order:", order);
+      return true;
     } catch (err: any) {
       console.log(`createOrder, ERROR: ${err.message}`);
       throw err;
