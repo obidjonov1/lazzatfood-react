@@ -1,6 +1,13 @@
 import { MeLiked } from "./product";
 import { Member } from "./user";
 
+export interface BoArticleInput {
+  art_subject: string;
+  bo_id: string;
+  art_content: string;
+  art_image: string;
+}
+
 export interface BoArticle {
   _id: string;
   art_subject: string;
@@ -23,7 +30,6 @@ export interface SearchArticlesObj {
   bo_id: string;
   order?: number | null;
 }
-
 
 export interface SearchMemberArticlesObj {
   page: number;
