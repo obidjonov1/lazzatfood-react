@@ -646,7 +646,14 @@ export function OneMarket(props: any) {
                                   </span>
                                 )}
                               </div>
-                              <button className="cart-mobile" type="button">
+                              <button
+                                className="cart-mobile"
+                                type="button"
+                                onClick={(e) => {
+                                  props.onAdd(ele);
+                                  e.stopPropagation();
+                                }}
+                              >
                                 <BiShoppingBag className="add-cart__btn" />
                                 <p>Add To Cart</p>
                               </button>

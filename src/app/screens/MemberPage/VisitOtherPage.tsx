@@ -351,8 +351,17 @@ export function VisitOtherPage(props: any) {
 
               <Box className={"my_page_menu"}>
                 <TabList
+                  orientation="vertical"
+                  variant="scrollable"
+                  value={value}
                   onChange={handleChange}
-                  aria-label="lab API tabs example"
+                  aria-label="Vertical tabs example"
+                  sx={{
+                    borderRight: 1,
+                    borderColor: "divider",
+                    cursor: "pointer",
+                    width: "95%",
+                  }}
                 >
                   <Tab
                     style={{ flexDirection: "column" }}
@@ -371,10 +380,7 @@ export function VisitOtherPage(props: any) {
                     style={{ flexDirection: "column" }}
                     value={"2"}
                     component={() => (
-                      <div
-                        className={`menu_box ${value} `}
-                        onClick={() => setValue("2")}
-                      >
+                      <div className={`menu_box`} onClick={() => setValue("2")}>
                         <img src={"/icons/follower.svg"} alt="" />
                         <span>Followers</span>
                       </div>
@@ -384,10 +390,7 @@ export function VisitOtherPage(props: any) {
                     style={{ flexDirection: "column" }}
                     value={"3"}
                     component={() => (
-                      <div
-                        className={`menu_box ${value} `}
-                        onClick={() => setValue("3")}
-                      >
+                      <div className={`menu_box`} onClick={() => setValue("3")}>
                         <img src={"/icons/following.svg"} alt="" />
                         <span>Following</span>
                       </div>
