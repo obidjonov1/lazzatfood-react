@@ -1,13 +1,56 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import { Container } from "@mui/system";
 import { AiFillEye, AiFillHeart } from "react-icons/ai";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Container, Box, Stack } from "@mui/material";
-
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
+
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setTrendBoArticles } from "./slice";
+import { retrieveTrendBoArticles } from "./selector";
+import { BoArticle } from "../../screens/types/boArticle";
+import CommunityApiService from "../../apiServices/communityApiService";
+import { serverApi } from "../../../lib/config";
+import { TViewer } from "../../components/tuiEditor/tuiViewer";
+
+/** REDUX SLICE */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setTrendBoArticles: (data: BoArticle[]) => dispatch(setTrendBoArticles(data)),
+});
+
+/** REDUX SELECTOR */
+
+const trendBoArticlesRetriver = createSelector(
+  retrieveTrendBoArticles,
+  (trendBoArticles) => ({
+    trendBoArticles,
+  })
+);
+
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 export function RecommendedArticles(props: any) {
+  /** INITIALIZATIONS **/
+  const { setTrendBoArticles } = actionDispatch(useDispatch());
+  const { trendBoArticles } = useSelector(trendBoArticlesRetriver);
+
+  useEffect(() => {
+    const communityService = new CommunityApiService();
+
+    communityService
+      .getTargetArticles({
+        bo_id: "all",
+        page: 1,
+        limit: 10,
+        order: "art_likes",
+      })
+      .then((data) => setTrendBoArticles(data))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <Container>
       <div className="product-container">
@@ -19,16 +62,15 @@ export function RecommendedArticles(props: any) {
             >
               <div className="events_frame">
                 <div className="article-swiper_cont">
+                  <h1 className="title title-recommended title_sale">
+                    Best Articles
+                  </h1>
                   <Stack className="events_main">
-                    <h1 className="title title-recommended title_sale">
-                      Best Articles
-                    </h1>
                     <Box className={"prev_next_frame"}>
                       <div
                         className={"dot_frame_pagination swiper-pagination"}
                       ></div>
                     </Box>
-
                     <Swiper
                       className="events_info swiper-wrapper"
                       slidesPerView={"auto"}
@@ -43,104 +85,59 @@ export function RecommendedArticles(props: any) {
                       }}
                       autoplay={{
                         delay: 2000,
-                        disableOnInteraction: true, //slider to'xtatish uchun.
+                        disableOnInteraction: true,
                       }}
                     >
-                      <SwiperSlide className="events_info_frame">
-                        <div className="events-section">
-                          <div className="event-cards">
-                            <div className="event-card">
-                              <div className="event-card__image">
-                                <img src="./images/kolbasa.jpeg" alt="" />
-                              </div>
-                              <div className="event-card__items">
-                                <div className="event-card__title">
-                                  <img src="./images/burak.jpeg" alt="" />
-                                  <span>Admin</span>
-                                </div>
-                                <p className="article-text">
-                                  " Lorem ipsum dolor sit amet consectetur,
-                                  adipisicing elit. Beatae, eveniet! "
-                                </p>
-                                <div className="article-box_bottom">
-                                  <span>23-04-26 23:00</span>
-                                  <div className="article-box_views">
-                                    <AiFillEye className="icons" />
-                                    <p>99</p>
-                                    <p className="stick"></p>
-                                    <AiFillHeart className="icons" />
-                                    <p>99</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
+                      {trendBoArticles?.map((article: BoArticle) => {
+                        const art_image_url = article?.art_image
+                          ? `${serverApi}/${article?.art_image}`
+                          : "/community/article_img.svg";
 
-                      <SwiperSlide className={"events_info_frame"}>
-                        <div className="events-section">
-                          <div className="event-cards">
-                            <div className="event-card">
-                              <div className="event-card__image">
-                                <img src="./images/kolbasa.jpeg" alt="" />
-                              </div>
-                              <div className="event-card__items">
-                                <div className="event-card__title">
-                                  <img src="./images/burak.jpeg" alt="" />
-                                  <span>Admin</span>
-                                </div>
-                                <p className="article-text">
-                                  " Lorem ipsum dolor sit amet consectetur,
-                                  adipisicing elit. Beatae, eveniet! "
-                                </p>
-                                <div className="article-box_bottom">
-                                  <span>23-04-26 23:00</span>
-                                  <div className="article-box_views">
-                                    <AiFillEye className="icons" />
-                                    <p>99</p>
-                                    <p className="stick"></p>
-                                    <AiFillHeart className="icons" />
-                                    <p>99</p>
+                        return (
+                          <SwiperSlide
+                            className="events_info_frame"
+                            key={article._id}
+                          >
+                            <div className="events-section">
+                              <div className="event-cards">
+                                <div className="event-card">
+                                  <div className="event-card__image">
+                                    <img src={art_image_url} alt="" />
+                                  </div>
+                                  <div className="event-card__items">
+                                    <div className="event-card__title">
+                                      <img
+                                        src={
+                                          article?.member_data?.mb_image
+                                            ? `${serverApi}/${article?.member_data?.mb_image}`
+                                            : "/auth/profile.svg"
+                                        }
+                                        alt=""
+                                      />
+                                      <span>
+                                        {article?.member_data?.mb_nick}
+                                      </span>
+                                    </div>
+                                    <p className="article-text">
+                                      {article?.art_subject}
+                                    </p>
+                                    <div className="article-box_bottom">
+                                      <span>23-04-26 23:00</span>
+                                      <div className="article-box_views">
+                                        <AiFillEye className="icons" />
+                                        <p>{article?.art_views}</p>
+                                        <p className="stick"></p>
+                                        <AiFillHeart className="icons" />
+                                        <p>{article?.art_likes}</p>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-
-                      <SwiperSlide className={"events_info_frame"}>
-                        <div className="events-section">
-                          <div className="event-cards">
-                            <div className="event-card">
-                              <div className="event-card__image">
-                                <img src="./images/kolbasa.jpeg" alt="" />
-                              </div>
-                              <div className="event-card__items">
-                                <div className="event-card__title">
-                                  <img src="./images/burak.jpeg" alt="" />
-                                  <span>Admin</span>
-                                </div>
-                                <p className="article-text">
-                                  " Lorem ipsum dolor sit amet consectetur,
-                                  adipisicing elit. Beatae, eveniet! "
-                                </p>
-                                <div className="article-box_bottom">
-                                  <span>23-04-26 23:00</span>
-                                  <div className="article-box_views">
-                                    <AiFillEye className="icons" />
-                                    <p>99</p>
-                                    <p className="stick"></p>
-                                    <AiFillHeart className="icons" />
-                                    <p>99</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
+                          </SwiperSlide>
+                        );
+                      })}
                     </Swiper>
                   </Stack>
                 </div>
@@ -151,39 +148,4 @@ export function RecommendedArticles(props: any) {
       </div>
     </Container>
   );
-}
-
-{
-  /* <h1 className="title title-recommended title_sale">
-                Best Articles
-              </h1>
-              <div className="events-section">
-                <div className="event-cards">
-                  <div className="event-card">
-                    <div className="event-card__image">
-                      <img src="./images/kolbasa.jpeg" alt="" />
-                    </div>
-                    <div className="event-card__items">
-                      <div className="event-card__title">
-                        <img src="./images/burak.jpeg" alt="" />
-                        <span>Admin</span>
-                      </div>
-                      <p className="article-text">
-                        " Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Beatae, eveniet! "
-                      </p>
-                      <div className="article-box_bottom">
-                        <span>23-04-26 23:00</span>
-                        <div className="article-box_views">
-                          <AiFillEye className="icons" />
-                          <p>99</p>
-                          <p className="stick"></p>
-                          <AiFillHeart className="icons" />
-                          <p>99</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> */
 }
