@@ -113,8 +113,8 @@ export const TuiEditor = (props: any) => {
               <MenuItem value={""}>
                 <span>Select category</span>
               </MenuItem>
-              <MenuItem value={"market"}>Review market</MenuItem>
-              <MenuItem value={"product"}>Review product</MenuItem>
+              <MenuItem value={"evaluation"}>Evaulate market</MenuItem>
+              <MenuItem value={"review"}>Review product</MenuItem>
               <MenuItem value={"story"}>My story</MenuItem>
             </Select>
           </FormControl>
@@ -135,6 +135,7 @@ export const TuiEditor = (props: any) => {
       <Editor
         //  @ts-ignore
         ref={editorRef}
+        initialValue="Type here"
         placeholder="Type here"
         previewStyle="vertical"
         height="640px"

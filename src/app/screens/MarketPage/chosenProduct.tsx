@@ -21,6 +21,7 @@ import { Market } from "../../screens/types/user";
 import assert from "assert";
 import { Definer } from "../../../lib/Definer";
 import { useHistory } from "react-router-dom";
+import { verifiedMemberData } from "../../apiServices/verify";
 
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
@@ -42,7 +43,6 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
-import { verifyMemberData } from "../../apiServices/verify";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -113,7 +113,7 @@ export function ChosenProduct(props: any) {
   /** HANDLERS */
   const targetLikeProduct = async (e: any) => {
     try {
-      assert.ok(verifyMemberData, Definer.auth_err1);
+      assert.ok(verifiedMemberData, Definer.auth_err1);
 
       const memberService = new MemberApiService(),
         like_result: any = await memberService.memberLikeTarget({

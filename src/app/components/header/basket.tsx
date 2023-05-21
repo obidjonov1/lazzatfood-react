@@ -14,6 +14,7 @@ import assert from "assert";
 import { sweetErrorHandling } from "../../../lib/sweetAlert";
 import { Definer } from "../../../lib/Definer";
 import { useHistory } from "react-router-dom";
+import { verifiedMemberData } from "../../apiServices/verify";
 
 export default function Basket(props: any) {
   /** INITIALIZATIONS **/

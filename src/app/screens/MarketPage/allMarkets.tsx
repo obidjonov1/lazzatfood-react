@@ -17,6 +17,7 @@ import {
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
 import MemberApiService from "../../apiServices/memberApiService";
+import { verifiedMemberData } from "../../apiServices/verify";
 
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
@@ -82,7 +83,7 @@ export function AllMarkets() {
   // LIKE handle
   const targetLikeHandler = async (e: any, id: string) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifiedMemberData, Definer.auth_err1);
 
       const memberService = new MemberApiService(),
         like_result: any = await memberService.memberLikeTarget({

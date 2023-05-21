@@ -11,6 +11,7 @@ import { IoPersonOutline } from "react-icons/io5";
 import { BiShoppingBag, BiChevronDown } from "react-icons/bi";
 import { Logout } from "@mui/icons-material";
 import Basket from "./basket";
+import { verifiedMemberData } from "../../apiServices/verify";
 
 export function NavbarMarket(props: any) {
   return (
@@ -78,7 +79,7 @@ export function NavbarMarket(props: any) {
                 <AiOutlineSearch className="search-btn" />
               </div>
               <div className="header-user-actions">
-                {props.verifiedMemberData ? (
+                {verifiedMemberData ? (
                   <Box>
                     <NavLink
                       to={"/member-page"}
@@ -92,7 +93,7 @@ export function NavbarMarket(props: any) {
                   </Box>
                 ) : null}
 
-                {!props.verifiedMemberData ? (
+                {!verifiedMemberData ? (
                   <Box>
                     <button
                       className="action-btn user-icon login-btn-action"
@@ -111,7 +112,7 @@ export function NavbarMarket(props: any) {
                       borderRadius: "24px",
                     }}
                     alt=""
-                    src={props.verifiedMemberData.mb_image}
+                    src={verifiedMemberData.mb_image}
                     onClick={props.handleLogOutClick}
                   />
                 )}
@@ -352,7 +353,7 @@ export function NavbarMarket(props: any) {
                   Markets
                 </NavLink>
               </li>
-              {props.verifiedMemberData ? (
+              {verifiedMemberData ? (
                 <li className="menu-category" onClick={props.setPath}>
                   <NavLink
                     to={"/orders"}

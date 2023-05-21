@@ -68,10 +68,10 @@ export function CommunityPage(props: any) {
         searchArticlesObj.bo_id = "all";
         break;
       case "2":
-        searchArticlesObj.bo_id = "evaulate";
+        searchArticlesObj.bo_id = "evaluation";
         break;
       case "3":
-        searchArticlesObj.bo_id = "evaluation";
+        searchArticlesObj.bo_id = "review";
         break;
       case "4":
         searchArticlesObj.bo_id = "story";
@@ -105,7 +105,7 @@ export function CommunityPage(props: any) {
                     >
                       <Tab label="All articles" value="1" />
                       <Tab label="evaluate market" value="2" />
-                      <Tab label="evaluate product" value="3" />
+                      <Tab label="review product" value="3" />
                       <Tab label="stories" value="4" />
                     </TabList>
                   </Box>

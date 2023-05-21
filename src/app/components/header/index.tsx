@@ -17,6 +17,7 @@ import "swiper/css/navigation";
 // import { Pagination, Navigation } from "swiper";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 import Basket from "./basket";
+import { verifiedMemberData } from "../../apiServices/verify";
 import "react-toastify/dist/ReactToastify.css";
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
@@ -86,7 +87,7 @@ export function NavbarHome(props: any) {
                 <AiOutlineSearch className="search-btn" />
               </div>
               <div className="header-user-actions">
-                {props.verifiedMemberData ? (
+                {verifiedMemberData ? (
                   <Box>
                     <NavLink
                       to={"/member-page"}
@@ -100,7 +101,7 @@ export function NavbarHome(props: any) {
                   </Box>
                 ) : null}
 
-                {!props.verifiedMemberData ? (
+                {!verifiedMemberData ? (
                   <Box>
                     <button
                       className="action-btn user-icon login-btn-action"
@@ -119,7 +120,7 @@ export function NavbarHome(props: any) {
                       borderRadius: "24px",
                     }}
                     alt=""
-                    src={props.verifiedMemberData.mb_image}
+                    src={verifiedMemberData.mb_image}
                     onClick={props.handleLogOutClick}
                   />
                 )}
@@ -360,7 +361,7 @@ export function NavbarHome(props: any) {
                   Markets
                 </NavLink>
               </li>
-              {props.verifiedMemberData ? (
+              {verifiedMemberData ? (
                 <li className="menu-category" onClick={props.setPath}>
                   <NavLink
                     to={"/orders"}

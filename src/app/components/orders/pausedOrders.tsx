@@ -15,6 +15,8 @@ import {
   sweetFailureProvider,
 } from "../../../lib/sweetAlert";
 import OrderApiService from "../../apiServices/orderApiService";
+import { verifiedMemberData } from "../../apiServices/verify";
+
 
 /** REDUX SELECTOR */
 const pausedOrdersRetriever = createSelector(
@@ -35,7 +37,7 @@ export default function PausedOrders(props: any) {
       const order_id = event.target.value;
       const data = { order_id: order_id, order_status: "DELETED" };
 
-      if (!localStorage.getItem("member_data")) {
+      if (!verifiedMemberData) {
         sweetFailureProvider("Please login first", true);
       }
 
@@ -56,7 +58,7 @@ export default function PausedOrders(props: any) {
       const order_id = event.target.value;
       const data = { order_id: order_id, order_status: "PROCESS" };
 
-      if (!localStorage.getItem("member_data")) {
+      if (!verifiedMemberData) {
         sweetFailureProvider("Please login first", true);
       }
 

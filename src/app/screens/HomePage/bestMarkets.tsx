@@ -21,6 +21,7 @@ import { serverApi } from "../../../lib/config";
 import { Definer } from "../../../lib/Definer";
 import MemberApiService from "../../apiServices/memberApiService";
 import { Button } from "@mui/material";
+import { verifiedMemberData } from "../../apiServices/verify";
 
 /** REDUX SELECTOR */
 const bestMarketRetriever = createSelector(
@@ -47,7 +48,7 @@ export function BestMarkets(props: any) {
 
   const targetLikeBest = async (e: any, id: string) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifiedMemberData, Definer.auth_err1);
 
       const memberService = new MemberApiService(),
         like_result: any = await memberService.memberLikeTarget({

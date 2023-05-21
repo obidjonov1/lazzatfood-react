@@ -19,6 +19,7 @@ import {
   BoArticle,
   SearchMemberArticlesObj,
 } from "../../screens/types/boArticle";
+import { verifiedMemberData } from "../../apiServices/verify";
 
 //OTHERS
 import Pagination from "@mui/material/Pagination";
@@ -80,7 +81,6 @@ const chosenSingleBoArticleRetriver = createSelector(
 
 export function VisitMyPage(props: any) {
   /** INITIALIZATIONS **/
-  const { verifiedMemberData } = props;
 
   const {
     setChosenMember,
@@ -104,7 +104,7 @@ export function VisitMyPage(props: any) {
     });
 
   useEffect(() => {
-    if (!localStorage.getItem("member_data")) {
+    if (!verifiedMemberData) {
       sweetFailureProvider("Please login first!", true, true);
     }
 
@@ -207,7 +207,7 @@ export function VisitMyPage(props: any) {
                       actions_enabled={true}
                       followRebuild={followRebuild}
                       setFollowRebuild={setFollowRebuild}
-                      mb_id={props.verifiedMemberData?._id}
+                      mb_id={verifiedMemberData?._id}
                     />
                   </Box>
                 </TabPanel>
@@ -219,7 +219,7 @@ export function VisitMyPage(props: any) {
                       actions_enabled={true}
                       followRebuild={followRebuild}
                       setFollowRebuild={setFollowRebuild}
-                      mb_id={props.verifiedMemberData?._id}
+                      mb_id={verifiedMemberData?._id}
                     />
                   </Box>
                 </TabPanel>
