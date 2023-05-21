@@ -70,7 +70,7 @@ export function MemberFollowers(props: any) {
       assert.ok(verifiedMemberData, Definer.auth_err1);
 
       const followService = new FollowApiService();
-      followService.subscribe(id);
+      await followService.subscribe(id);
 
       await sweetTopSmallSuccessAlert("Subscribed successfully!", 700, false);
       setFollowRebuild(!followRebuild);
