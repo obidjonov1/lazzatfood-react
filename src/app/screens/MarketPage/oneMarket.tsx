@@ -6,7 +6,7 @@ import MuiAccordionSummary, {
   AccordionSummaryProps,
 } from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
-import { Box, Container, Stack, Rating } from "@mui/material";
+import { Box, Container, Stack, Rating, Badge } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import { AiFillEye, AiFillHeart, AiOutlineSearch } from "react-icons/ai";
 import Radio from "@mui/material/Radio";
@@ -561,41 +561,46 @@ export function OneMarket(props: any) {
                                 <span className="product_view_cnt">
                                   {ele.product_views}
                                 </span>
-
-                                <Checkbox
-                                  className="like_btn"
-                                  icon={
-                                    <AiFillHeart
-                                      // className="like_btn"
-                                      style={{
-                                        color: "#929292",
-                                        fontSize: "22px",
-                                      }}
-                                    />
-                                  }
-                                  id={ele._id}
-                                  checkedIcon={
-                                    <AiFillHeart
-                                      style={{
-                                        color: "red",
-                                        fontSize: "22px",
-                                      }}
-                                    />
-                                  }
-                                  onClick={targetLikeProduct}
-                                  /* @ts-ignore */
-                                  checked={
-                                    ele?.me_liked &&
-                                    ele?.me_liked[0]?.my_favorite
-                                      ? true
-                                      : false
-                                  }
-                                />
-                                {/* <AiFillHeart className="like_btn" /> */}
+                                <Badge
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                  }}
+                                >
+                                  <Checkbox
+                                    className="like_btn"
+                                    icon={
+                                      <AiFillHeart
+                                        // className="like_btn"
+                                        style={{
+                                          color: "#929292",
+                                          fontSize: "22px",
+                                        }}
+                                      />
+                                    }
+                                    id={ele._id}
+                                    checkedIcon={
+                                      <AiFillHeart
+                                        style={{
+                                          color: "red",
+                                          fontSize: "22px",
+                                        }}
+                                      />
+                                    }
+                                    onClick={targetLikeProduct}
+                                    /* @ts-ignore */
+                                    checked={
+                                      ele?.me_liked &&
+                                      ele?.me_liked[0]?.my_favorite
+                                        ? true
+                                        : false
+                                    }
+                                  />
                                 <span className="product_like_cnt">
                                   {ele.product_likes}
                                 </span>
+                                </Badge>
                                 <AiFillEye className="view_btn" />
+                                {/* <AiFillHeart className="like_btn" /> */}
                               </button>
                             </div>
                           </div>
