@@ -413,8 +413,8 @@ export function HomePage(props: any) {
       </Container>
       <TopMarkets />
       <BestMarkets />
-      <ActualProducts />
-      <RecommendedProducts />
+      <ActualProducts onAdd={props.onAdd} />
+      <RecommendedProducts onAdd={props.onAdd} />
       <RecommendedArticles />
     </div>
   );

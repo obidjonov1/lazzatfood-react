@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillEye, AiFillHeart } from "react-icons/ai";
 import { BiShoppingBag } from "react-icons/bi";
-import { Checkbox, Container, Rating } from "@mui/material";
+import { Badge, Checkbox, Container, Rating } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 
 // REDUX
@@ -14,6 +14,14 @@ import { retrieveRecommendedProducts } from "./selector";
 import { createSelector } from "reselect";
 import { serverApi } from "../../../lib/config";
 import { useHistory } from "react-router-dom";
+import { verifiedMemberData } from "../../apiServices/verify";
+import { Definer } from "../../../lib/Definer";
+import assert from "assert";
+import MemberApiService from "../../apiServices/memberApiService";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -38,6 +46,7 @@ export function RecommendedProducts(props: any) {
   const history = useHistory();
   const { setRecommendedProducts } = actionDispatch(useDispatch());
   const { recommendedProducts } = useSelector(recommendedProductsRetriever);
+  const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 
   useEffect(() => {
     const productServise = new ProductApiService();
@@ -45,12 +54,33 @@ export function RecommendedProducts(props: any) {
       .getTargetProducts({ order: "product_views", page: 1, limit: 8 })
       .then((data) => setRecommendedProducts(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [productRebuild]);
 
   /* HANDLERS */
   // chosenDish
-  const chosenDishHandler = (id: string) => {
+  const chosenProductHandler = (id: string) => {
     history.push(`/market/product/${id}`);
+  };
+
+
+  // Like handle
+  const targetLikeProduct = async (e: any) => {
+    try {
+      assert.ok(verifiedMemberData, Definer.auth_err1);
+
+      const memberService = new MemberApiService(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: e.target.id,
+          group_type: "product",
+        });
+      assert.ok(like_result, Definer.general_err1);
+
+      await sweetTopSmallSuccessAlert("succes", 800, false);
+      setProductRebuild(new Date());
+    } catch (err: any) {
+      console.log("targetLikeProduct, ERROR:", err);
+      sweetErrorHandling(err).then();
+    }
   };
 
   return (
@@ -90,7 +120,7 @@ export function RecommendedProducts(props: any) {
                     <div
                       className="showcase"
                       key={`${ele._id}`}
-                      onClick={() => chosenDishHandler(ele._id)}
+                      onClick={() => chosenProductHandler(ele._id)}
                     >
                       <div className="showcase-banner">
                         <p className="showcase-badge">{size_volume}</p>
@@ -99,39 +129,45 @@ export function RecommendedProducts(props: any) {
                             <span className="product_view_cnt">
                               {ele.product_views}
                             </span>
-
-                            <Checkbox
+                            <Badge
                               onClick={(e) => {
                                 e.stopPropagation();
                               }}
-                              className="like_btn"
-                              icon={
-                                <AiFillHeart
-                                  // className="like_btn"
-                                  style={{
-                                    color: "#929292",
-                                    fontSize: "22px",
-                                  }}
-                                />
-                              }
-                              id={`${ele._id}}`}
-                              checkedIcon={
-                                <AiFillHeart
-                                  style={{ color: "red", fontSize: "22px" }}
-                                />
-                              }
-                              /* @ts-ignore */
-                              checked={
-                                ele?.me_liked && ele?.me_liked[0]?.my_favorite
-                                  ? true
-                                  : false
-                              }
-                            />
-                            {/* <AiFillHeart className="like_btn" /> */}
-                            <span className="product_like_cnt">
-                              {ele.product_likes}
-                            </span>
+                            >
+                              <Checkbox
+                                className="like_btn"
+                                icon={
+                                  <AiFillHeart
+                                    // className="like_btn"
+                                    style={{
+                                      color: "#929292",
+                                      fontSize: "22px",
+                                    }}
+                                  />
+                                }
+                                id={ele._id}
+                                checkedIcon={
+                                  <AiFillHeart
+                                    style={{
+                                      color: "red",
+                                      fontSize: "22px",
+                                    }}
+                                  />
+                                }
+                                onClick={targetLikeProduct}
+                                /* @ts-ignore */
+                                checked={
+                                  ele?.me_liked && ele?.me_liked[0]?.my_favorite
+                                    ? true
+                                    : false
+                                }
+                              />
+                              <span className="product_like_cnt">
+                                {ele.product_likes}
+                              </span>
+                            </Badge>
                             <AiFillEye className="view_btn" />
+                            {/* <AiFillHeart className="like_btn" /> */}
                           </button>
                         </div>
                       </div>
@@ -183,7 +219,14 @@ export function RecommendedProducts(props: any) {
                               </span>
                             )}
                           </div>
-                          <button className="cart-mobile" type="button">
+                          <button
+                            className="cart-mobile"
+                            type="button"
+                            onClick={(e) => {
+                              props.onAdd(ele);
+                              e.stopPropagation();
+                            }}
+                          >
                             <BiShoppingBag className="add-cart__btn" />
                             <p>Add To Cart</p>
                           </button>

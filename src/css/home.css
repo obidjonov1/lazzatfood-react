@@ -470,12 +470,12 @@ body {
   width: 140px;
 }
 .aktual-body {
-  /* z-index: 100; */
-  margin-left: 10px;
+  margin-left: 40px;
 }
 .aktual-body .aktual-title {
   color: var(--sonic-silver);
   font-size: var(--fs-6);
+  text-transform: capitalize;
 }
 .aktual-body .aktual-price {
   font-size: 1.2rem;
@@ -489,7 +489,6 @@ body {
   padding: 3px;
 }
 .actual-product_tablist {
-  /* border: 1px solid #23285f; */
   border-radius: 10px;
   background: #f4f4f4;
 }
@@ -497,31 +496,29 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  /* z-index: 101; */
   display: none;
 }
-
 .aktual-product:hover .actual_cart {
-  background: rgba(0, 0, 0, 0.2);
-  /* background: #f4f4f4; */
-  /* z-index: 101; */
+  background: rgba(92, 92, 92, 0.2);
+  backdrop-filter: blur(0.7px);
 }
 .actual-cart_btn {
   position: absolute;
   top: 50%;
-  left: 47%;
+  left: 42%;
   transform: translate(0, -50%);
-  padding: 2px 6px;
-  background: #43bb59;
-  border-radius: 10%;
+  display: flex;
+  align-items: baseline;
 }
-.actual-cart_btn:hover {
-  /* color: #43bb59; */
-  /* border: 1px solid #d0d1d0; */
-}
+
+.actual_view_btn,
 .actual_btn {
-  font-size: 27px;
+  font-size: 35px;
   color: #fff;
+  background: rgba(0, 0, 0, 0.4);
+  margin-left: 10px;
+  border-radius: 50%;
+  padding: 4px;
 }
 /* ActualProducts end */
 

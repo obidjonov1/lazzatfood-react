@@ -223,6 +223,7 @@ body::-webkit-scrollbar-thumb:hover {
   position: relative;
   font-size: 25px;
   color: var(--onyx);
+  outline: none;
 }
 .help .help_call {
   font-size: 25px;
