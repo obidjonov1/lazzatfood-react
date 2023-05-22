@@ -9,6 +9,8 @@ import {
   AiOutlineSearch,
 } from "react-icons/ai";
 import { IoPersonOutline } from "react-icons/io5";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import PersonIcon from "@mui/icons-material/Person";
 import { BiShoppingBag, BiChevronDown } from "react-icons/bi";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -108,7 +110,7 @@ export function NavbarHome(props: any) {
                       id="myBtn"
                       onClick={props.handleLoginOpen}
                     >
-                      <IoPersonOutline className="icon_pers" />
+                      <PersonIcon className="icon_pers" />
                       <p className="login-button">Login</p>
                     </button>
                   </Box>
@@ -124,7 +126,18 @@ export function NavbarHome(props: any) {
                     onClick={props.handleLogOutClick}
                   />
                 )}
-
+                {!verifiedMemberData ? (
+                  <Box>
+                    <button
+                      className="action-btn user-icon login-btn-action"
+                      id="myBtn"
+                      onClick={props.handleSignUpOpen}
+                    >
+                      <PersonAddIcon className="icon_pers" />
+                      <p className="login-button">Sign Up</p>
+                    </button>
+                  </Box>
+                ) : null}
                 <Menu
                   anchorEl={props.anchorEl}
                   open={props.open}

@@ -39,14 +39,13 @@ const useStyles = makeStyles((theme) => ({
 export default function AuthenticationModal(props: any) {
   /** INITIALIZATIONS */
   const classes = useStyles();
-
-  const [isActive, setIsActive] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const [mb_nick, set_mb_nick] = useState<string>("");
   const [mb_phone, set_mb_phone] = useState<number>(0);
   const [mb_password, set_mb_password] = useState<string>("");
 
+  /** HANDLERS */
   const handleUsername = (e: any) => {
     set_mb_nick(e.target.value);
   };
@@ -102,21 +101,16 @@ export default function AuthenticationModal(props: any) {
     }
   };
 
-  const handleClick = (color: string) => {
-    setIsActive(!isActive);
-    (document.querySelector(":root") as HTMLElement).style.setProperty(
-      "--custom",
-      color
-    );
-  };
-
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // Login logic here
+  const passwordKeyPressHandler = (e: any) => {
+    if (e.key == "Enter" && props.signUpOpen) {
+      handleSignupRequest().then();
+    } else if (e.key == "Enter" && props.loginOpen) {
+      handleLoginRequest().then();
+    }
   };
 
   return (
@@ -136,29 +130,14 @@ export default function AuthenticationModal(props: any) {
       >
         <Fade in={props.loginOpen}>
           <div className="user-form">
-            <div
-              className={`form-wrapper login-container ${
-                isActive ? "active" : ""
-              }`}
-            >
+            <div className="form-wrapper login-container">
               <div className="user login">
                 <div className="img-box">
                   <img src="/images/sigin.webp" alt="" />
                 </div>
                 <div className="form-box">
                   <h2 className="welcome">Welcome !</h2>
-                  <div className="top login-sigup">
-                    <p>
-                      Not a member ?
-                      <span
-                        onClick={() => handleClick("#ff0066")}
-                        data-id="#ff0066"
-                      >
-                        Sign Up
-                      </span>
-                    </p>
-                  </div>
-                  <form onSubmit={handleSubmit}>
+                  <div className="form-second">
                     <div className="form-control">
                       <input
                         type="text"
@@ -208,99 +187,22 @@ export default function AuthenticationModal(props: any) {
                         </div>
                       </div>
                     </div>
-                  </form>
+                  </div>
                 </div>
                 <ToastContainer />
-              </div>
-
-              <div className="user signup">
-                <div className="form-box">
-                  <h2 className="welcome-second">Welcome to LazzatFood!</h2>
-                  <div className="top top-second">
-                    <p>
-                      Already registered ?
-                      <span
-                        onClick={() => handleClick("#1a1aff")}
-                        data-id="#1a1aff"
-                      >
-                        Login
-                      </span>
-                    </p>
-                  </div>
-                  <form action="#" className="form-second">
-                    <div className="form-control">
-                      <input
-                        type="text"
-                        placeholder="Login"
-                        onChange={handleUsername}
-                      />
-                      <div>
-                        <input
-                          type="number"
-                          placeholder="Phone number"
-                          onChange={handlePhone}
-                        />
-                      </div>
-                      <div>
-                        <input
-                          type={showPassword ? "text" : "password"}
-                          placeholder="Password"
-                          onChange={handlePassword}
-                        />
-                        <div
-                          className="icon form-icon"
-                          onClick={togglePassword}
-                        >
-                          <img
-                            src={
-                              showPassword
-                                ? "/images/hide.svg"
-                                : "/images/eye.svg"
-                            }
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                      <input
-                        type="Submit"
-                        value="Sign Up"
-                        onClick={handleSignupRequest}
-                      />
-                    </div>
-                    <div className="form-control">
-                      <p>Continue with</p>
-                      <div className="icons">
-                        <div className="icon" onClick={notify}>
-                          <img src="/images/search.svg" alt="" />
-                        </div>
-                        <div className="icon" onClick={notify}>
-                          <img src="/images/facebook.png" alt="" />
-                        </div>
-                        <div className="icon" onClick={notify}>
-                          <img src="/images/naver.png" alt="" />
-                        </div>
-                        <div className="icon" onClick={notify}>
-                          <img src="/images/kakotalk.png" alt="" />
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <div className="img-box">
-                  <img src="/images/sign-up-form.svg" alt="" />
-                </div>
               </div>
             </div>
           </div>
         </Fade>
       </Modal>
 
+      {/*@ts-ignore*/}
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
         open={props.signUpOpen}
-        onClose={props.handleSignupClose}
+        onClose={props.handleSignUpClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -309,26 +211,11 @@ export default function AuthenticationModal(props: any) {
       >
         <Fade in={props.signUpOpen}>
           <div className="user-form">
-            <div
-              className={`form-wrapper login-container ${
-                isActive ? "active" : ""
-              }`}
-            >
+            <div className="form-wrapper signup-container ">
               <div className="user signup">
                 <div className="form-box">
                   <h2 className="welcome-second">Welcome to LazzatFood!</h2>
-                  <div className="top top-second">
-                    <p>
-                      Already registered ?
-                      <span
-                        onClick={() => handleClick("#1a1aff")}
-                        data-id="#1a1aff"
-                      >
-                        Login
-                      </span>
-                    </p>
-                  </div>
-                  <form action="#" className="form-second">
+                  <div className="form-second">
                     <div className="form-control">
                       <input
                         type="text"
@@ -346,6 +233,7 @@ export default function AuthenticationModal(props: any) {
                         <input
                           type={showPassword ? "text" : "password"}
                           placeholder="Password"
+                          onKeyPress={passwordKeyPressHandler}
                           onChange={handlePassword}
                         />
                         <div
@@ -385,7 +273,7 @@ export default function AuthenticationModal(props: any) {
                         </div>
                       </div>
                     </div>
-                  </form>
+                  </div>
                 </div>
                 <div className="img-box">
                   <img src="/images/sign-up-form.svg" alt="" />

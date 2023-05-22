@@ -51,10 +51,10 @@ function App() {
   const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
 
   /** HANDLERS */
-  const handleLoginOpen = () => setLoginOpen(true);
-  const handleLoginClose = () => setLoginOpen(false);
   const handleSignUpOpen = () => setSignUpOpen(true);
   const handleSignUpClose = () => setSignUpOpen(false);
+  const handleLoginOpen = () => setLoginOpen(true);
+  const handleLoginClose = () => setLoginOpen(false);
 
   // LOGOUT handles ->
   const handleLogOutClick = (event: React.MouseEvent<HTMLElement>) => {
