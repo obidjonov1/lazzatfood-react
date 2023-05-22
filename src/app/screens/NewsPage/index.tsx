@@ -13,14 +13,11 @@ export function NewsPage() {
                 <img src="./images/e-commerse.png" alt="" />
               </div>
               <div className="box_content_title">
-                <h2 className="content_title">
-                  Ajoyib yangilik. Bizning mobil ilovamiz...
-                </h2>
+                <h2 className="content_title">Great news. Our mobile app...</h2>
                 <p className="content_desc">
-                  Janubiy Koreyada halol go'sht mahsulotlari, ichimliklar,
-                  konserva, kolbasa va boshqa xil turdagi barcha mahsulotlarni online harid
-                  qilish va yetkazib berish ilovasi. Hammasi siz mijozlarimiz
-                  uchun.
+                  In South Korea, halal meat products, beverages, canned goods,
+                  sausages and all other types of products online shopping and
+                  delivery app. It's all you for our customers.
                 </p>
                 <p className="content_date">23.05.15 23:00</p>
               </div>
@@ -32,13 +29,12 @@ export function NewsPage() {
               </div>
               <div className="box_content_title">
                 <h2 className="content_title">
-                  Tez kunda LazzatFood halol kolbasalari sotuvda
+                  LazzatFood's halal sausages are on sale
                 </h2>
                 <p className="content_desc">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Perspiciatis, minus! Repellendus, soluta sint quasi totam,
-                  ipsum praesentium asperiores, molestiae a placeat harum vero
-                  rerum exercitationem?
+                  - if you are our regular customer, we have a special gift for
+                  you!!! - If you are the owner of Uzbek halal restaurants and
+                  stores in Korea, we invite you for reliable cooperation!
                 </p>
                 <p className="content_date">23.04.30 15:00</p>
               </div>
@@ -49,13 +45,12 @@ export function NewsPage() {
               </div>
               <div className="box_content_title">
                 <h2 className="content_title">
-                  Tez kunda www.lazzatfood.com websitening mobile versiasi
+                  Mobile version of www.lazzatfood.com website coming soon
                 </h2>
                 <p className="content_desc">
-                  Endi mobile qurilmangiz orqali bizning www.lazzatfood.com ga
-                  tashrif buyurib qulay haridingizni amalga oshirishingiz
-                  mumkin. Mahsulotlarni savtchaga joylash va boshqa qulayliklar
-                  mavjud bo'ladi
+                  Now go to our www.lazzatfood.com via your mobile device visit
+                  and make your convenient purchase possible Place products in
+                  the shopping cart and other facilities will be available
                 </p>
                 <p className="content_date">23.04.16 23:00</p>
               </div>
@@ -66,12 +61,11 @@ export function NewsPage() {
                 <img src="./images/pay.jpg" alt="" />
               </div>
               <div className="box_content_title">
-                <h2 className="content_title">Web site orqali to'lov</h2>
+                <h2 className="content_title">Payment through the website</h2>
                 <p className="content_desc">
-                  Tez orada barcha turdagi mahsulotlar uchun to'lov tizmini
-                  yanada yaxshilab, qulay tizmini yo'lga qo'ymoqdamiz. Siz "Bank
-                  kartasi", "Pul o'tkazish" to'lovni amalga oshirishingiz mumki
-                  bo'ladi.
+                  Payment system for all types of products coming soon We are
+                  launching a better and more convenient system. You "Bank
+                  card", "Money transfer" you can make a payment will be
                 </p>
                 <p className="content_date">23.04.15 11:00</p>
               </div>
