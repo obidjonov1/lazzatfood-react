@@ -20,6 +20,7 @@ import {
   SearchMemberArticlesObj,
 } from "../../screens/types/boArticle";
 import { verifiedMemberData } from "../../apiServices/verify";
+import { NavLink } from "react-router-dom";
 
 //OTHERS
 import Pagination from "@mui/material/Pagination";
@@ -49,6 +50,7 @@ import {
 } from "../../../lib/sweetAlert";
 import CommunityApiService from "../../apiServices/communityApiService";
 import MemberApiService from "../../apiServices/memberApiService";
+import { Link } from "react-router-dom";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -155,7 +157,7 @@ export function VisitMyPage(props: any) {
 
   return (
     <div className={"my_page"}>
-      <Container maxWidth="lg" sx={{ mt: "50px", mb: "50px" }}>
+      <Container maxWidth="lg" sx={{ mt: "70px", mb: "70px" }}>
         <Stack className={"my_page_frame"}>
           <TabContext value={value}>
             <Stack className={"my_page_left"}>
@@ -295,6 +297,16 @@ export function VisitMyPage(props: any) {
                 <p className={"user_desc"}>
                   {chosenMember?.mb_description ?? "No additional information"}
                 </p>
+                {chosenMember?.mb_type === "MARKET" ||
+                chosenMember?.mb_type === "ADMIN" ? (
+                  <a
+                    className="dashboard_link"
+                    href="http://localhost:3003/resto"
+                    target="_blank"
+                  >
+                    go dashboard
+                  </a>
+                ) : null}
               </Box>
 
               <Box className={"my_page_menu"}>

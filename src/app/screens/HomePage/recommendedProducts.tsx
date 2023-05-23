@@ -22,6 +22,8 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
+import { ProductSearchObj } from "../types/others";
+import { setTargetProducts } from "../MarketPage/slice";
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -38,7 +40,6 @@ const recommendedProductsRetriever = createSelector(
   })
 );
 
-// const product_list = Array.from(Array(8).keys());
 
 export function RecommendedProducts(props: any) {
   /* INITIALIZATION */
@@ -47,14 +48,22 @@ export function RecommendedProducts(props: any) {
   const { setRecommendedProducts } = actionDispatch(useDispatch());
   const { recommendedProducts } = useSelector(recommendedProductsRetriever);
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
-
+  const [targetProductSearchObj, setTargetProductSearchObj] =
+    useState<ProductSearchObj>({
+      page: 1,
+      limit: 8,
+      order: "product_views",
+      // market_mb_id: market_id,
+      // product_collection: "food",
+    });
+    
   useEffect(() => {
     const productServise = new ProductApiService();
     productServise
-      .getTargetProducts({ order: "product_views", page: 1, limit: 8 })
-      .then((data) => setRecommendedProducts(data))
+      .getTargetProducts(targetProductSearchObj)
+      .then((data) => setTargetProducts(data))
       .catch((err) => console.log(err));
-  }, [productRebuild]);
+  }, [productRebuild, targetProductSearchObj]);
 
   /* HANDLERS */
   // chosenDish

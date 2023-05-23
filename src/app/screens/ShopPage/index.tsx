@@ -69,7 +69,6 @@ const targetProductsRetriver = createSelector(
   })
 );
 
-
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
@@ -124,13 +123,13 @@ export function ShopPage(props: any) {
       page: 1,
       limit: 12,
       order: "createdAt",
-      market_mb_id: market_id,
-      product_collection: "meat",
+      // market_mb_id: market_id,
+      product_collection: "food",
     });
 
   const [targetSearchObject, setTargetSearchObject] = useState<SearchObj>({
     page: 1,
-    limit: 8,
+    limit: 12,
     order: "mb_point",
   });
 
@@ -252,13 +251,13 @@ export function ShopPage(props: any) {
                                   <RadioGroup
                                     className="accardion_det"
                                     aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue="all"
+                                    defaultValue="food"
                                     name="radio-buttons-group"
                                   >
                                     <FormControlLabel
-                                      value="all"
+                                      value="food"
                                       control={<Radio />}
-                                      label="All"
+                                      label="Food"
                                       onClick={() =>
                                         searchCollectionHandler("food")
                                       }
@@ -277,14 +276,6 @@ export function ShopPage(props: any) {
                                       label="Drink"
                                       onClick={() =>
                                         searchCollectionHandler("drink")
-                                      }
-                                    />
-                                    <FormControlLabel
-                                      value="food"
-                                      control={<Radio />}
-                                      label="Food"
-                                      onClick={() =>
-                                        searchCollectionHandler("food")
                                       }
                                     />
                                     <FormControlLabel
@@ -397,14 +388,8 @@ export function ShopPage(props: any) {
                                   <RadioGroup
                                     className="accardion_det"
                                     aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue="all"
                                     name="radio-buttons-group"
                                   >
-                                    <FormControlLabel
-                                      value="all"
-                                      control={<Radio />}
-                                      label="All"
-                                    />
                                     <FormControlLabel
                                       value="health"
                                       control={<Radio />}
@@ -527,7 +512,7 @@ export function ShopPage(props: any) {
                                 width="300"
                                 className="product-img rasim"
                               />
-                              <span className="which_market">Lazzatfood</span>
+                              <span className="which_market"></span>
                               <div className="product_rating">
                                 <Rating
                                   sx={{ fontSize: "19px" }}

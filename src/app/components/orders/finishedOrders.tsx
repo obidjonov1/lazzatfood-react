@@ -40,12 +40,15 @@ export default function FinishedOrders(props: any) {
                       <img src={image_path} className={"orderDishImg"} alt="" />
                       <p className={"titleDish"}>{product.product_name}</p>
                       <Box className={"priceBox"}>
-                        <p>₩{item.item_price}</p>
+                        <p>₩{item.item_price.toLocaleString()}</p>
                         <img src={"/icons/Close.svg"} alt="" />
                         <p>{item.item_quantity}</p>
                         <img src={"/icons/pause.svg"} alt="" />
                         <p style={{ marginLeft: "15px" }}>
-                          ₩{item.item_price * item.item_quantity}
+                          ₩
+                          {(
+                            item.item_price * item.item_quantity
+                          ).toLocaleString()}
                         </p>
                       </Box>
                     </Box>
@@ -59,7 +62,12 @@ export default function FinishedOrders(props: any) {
               >
                 <Box className={"boxTotal red_solid"}>
                   <p>Price</p>
-                  <p>₩{order.order_total_amount - order.order_delivery_cost}</p>
+                  <p>
+                    ₩
+                    {(
+                      order.order_total_amount - order.order_delivery_cost
+                    ).toLocaleString()}
+                  </p>
                   <img
                     // src={"/icons/plus.svg"}
                     style={{ marginLeft: "20px" }}
@@ -67,7 +75,7 @@ export default function FinishedOrders(props: any) {
                   />
                   <span className="price_total_icon">+</span>
                   <p>Delivery</p>
-                  <p>₩{order.order_delivery_cost}</p>
+                  <p>₩{order.order_delivery_cost.toLocaleString()}</p>
                   <img
                     // src={"/icons/pause.svg"}
                     style={{ marginLeft: "20px" }}
@@ -75,7 +83,7 @@ export default function FinishedOrders(props: any) {
                   />
                   <span className="price_total_icon">=</span>
                   <p>Total:</p>
-                  <p>₩{order.order_total_amount}</p>
+                  <p>₩{order.order_total_amount.toLocaleString()}</p>
                 </Box>
               </Box>
             </Box>

@@ -15,6 +15,7 @@ import { BoArticle } from "../../screens/types/boArticle";
 import CommunityApiService from "../../apiServices/communityApiService";
 import { serverApi } from "../../../lib/config";
 import { TViewer } from "../../components/tuiEditor/tuiViewer";
+import { useHistory } from "react-router-dom";
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -34,8 +35,11 @@ SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 export function RecommendedArticles(props: any) {
   /** INITIALIZATIONS **/
+  const history = useHistory();
   const { setTrendBoArticles } = actionDispatch(useDispatch());
   const { trendBoArticles } = useSelector(trendBoArticlesRetriver);
+
+  const goCommunityHandler = () => history.push("/community");
 
   useEffect(() => {
     const communityService = new CommunityApiService();
@@ -100,7 +104,10 @@ export function RecommendedArticles(props: any) {
                           >
                             <div className="events-section">
                               <div className="event-cards">
-                                <div className="event-card">
+                                <div
+                                  className="event-card"
+                                  onClick={goCommunityHandler}
+                                >
                                   <div className="event-card__image">
                                     <img src={art_image_url} alt="" />
                                   </div>

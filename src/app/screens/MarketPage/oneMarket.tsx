@@ -338,17 +338,9 @@ export function OneMarket(props: any) {
                                   <RadioGroup
                                     className="accardion_det"
                                     aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue="all"
+                                    defaultValue="meat"
                                     name="radio-buttons-group"
                                   >
-                                    <FormControlLabel
-                                      value="all"
-                                      control={<Radio />}
-                                      label="All"
-                                      onClick={() =>
-                                        searchCollectionHandler("food")
-                                      }
-                                    />
                                     <FormControlLabel
                                       value="meat"
                                       control={<Radio />}
@@ -483,14 +475,9 @@ export function OneMarket(props: any) {
                                   <RadioGroup
                                     className="accardion_det"
                                     aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue="all"
+                                    // defaultValue="health"
                                     name="radio-buttons-group"
                                   >
-                                    <FormControlLabel
-                                      value="all"
-                                      control={<Radio />}
-                                      label="All"
-                                    />
                                     <FormControlLabel
                                       value="health"
                                       control={<Radio />}
@@ -595,9 +582,9 @@ export function OneMarket(props: any) {
                                         : false
                                     }
                                   />
-                                <span className="product_like_cnt">
-                                  {ele.product_likes}
-                                </span>
+                                  <span className="product_like_cnt">
+                                    {ele.product_likes}
+                                  </span>
                                 </Badge>
                                 <AiFillEye className="view_btn" />
                                 {/* <AiFillHeart className="like_btn" /> */}
