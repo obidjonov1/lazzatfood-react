@@ -1,3 +1,5 @@
+import { Member } from "./user";
+
 export interface MeLiked {
   mb_id: string;
   like_ref_id: string;
@@ -24,4 +26,5 @@ export interface Product {
   createdAt: Date;
   updatedAt: Date;
   me_liked: MeLiked[]; // Me liked
+  member_data: Member[];
 }

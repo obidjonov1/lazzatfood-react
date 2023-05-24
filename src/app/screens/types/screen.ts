@@ -51,3 +51,5 @@ export interface MemberPageState {
   memberFollowers: Follower[];
   memberFollowings: Following[];
 }
+
+/* Shop Page */

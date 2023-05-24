@@ -241,7 +241,7 @@ function App() {
           <LoginPage />
         </Route>
         <Route path="/">
-          <HomePage onAdd={onAdd} />
+          <HomePage setPath={setPath} onAdd={onAdd} />
         </Route>
       </Switch>
 

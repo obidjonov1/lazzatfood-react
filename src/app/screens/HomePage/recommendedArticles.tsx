@@ -16,6 +16,7 @@ import CommunityApiService from "../../apiServices/communityApiService";
 import { serverApi } from "../../../lib/config";
 import { TViewer } from "../../components/tuiEditor/tuiViewer";
 import { useHistory } from "react-router-dom";
+import moment from "moment";
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -99,6 +100,7 @@ export function RecommendedArticles(props: any) {
 
                         return (
                           <SwiperSlide
+                            style={{ cursor: "pointer" }}
                             className="events_info_frame"
                             key={article._id}
                           >
@@ -129,7 +131,11 @@ export function RecommendedArticles(props: any) {
                                       {article?.art_subject}
                                     </p>
                                     <div className="article-box_bottom">
-                                      <span>23-04-26 23:00</span>
+                                      <span>
+                                        {moment(article?.createdAt).format(
+                                          "YY-MM-DD HH:mm"
+                                        )}
+                                      </span>
                                       <div className="article-box_views">
                                         <AiFillEye className="icons" />
                                         <p>{article?.art_views}</p>

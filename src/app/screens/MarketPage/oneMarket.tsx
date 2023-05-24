@@ -138,11 +138,11 @@ export function OneMarket(props: any) {
       product_collection: "meat",
     });
 
-  const [targetSearchObject, setTargetSearchObject] = useState<SearchObj>({
-    page: 1,
-    limit: 8,
-    order: "mb_point",
-  });
+  // const [targetSearchObject, setTargetSearchObject] = useState<SearchObj>({
+  //   page: 1,
+  //   limit: 8,
+  //   order: "mb_point",
+  // });
 
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 
@@ -168,14 +168,6 @@ export function OneMarket(props: any) {
       .catch((err) => console.log(err));
   }, [chosenMarketId, targetProductSearchObj, productRebuild]);
 
-  // useEffect(() => {
-  //   const productServicePag = new ProductApiService();
-  //   productServicePag
-  //     .getTargetProducts(targetSearchObject)
-  //     .then((data) => setTargetProducts(data))
-  //     .catch((err) => console.log(err));
-  // }, [targetSearchObject]);
-
   /* HANDLERS */
   const chosenMarketHandler = (id: string) => {
     setChosenMarketId(id);
@@ -190,14 +182,10 @@ export function OneMarket(props: any) {
     };
 
   // Pagination handle
-  // const handlePaginationChange = (evenet: any, value: number) => {
-  //   targetSearchObject.page = value;
-  //   setTargetSearchObject({ ...targetSearchObject });
-  // };
-  // const handlePaginationChange = (event: any, value: number) => {
-  //   targetSearchObject.page = value;
-  //   setTargetSearchObject({ ...targetSearchObject });
-  // };
+  const handlePaginationChange = (evenet: any, value: number) => {
+    targetProductSearchObj.page = value;
+    setTargetProductSearchObj({ ...targetProductSearchObj });
+  };
 
   // sort
   const searchCollectionHandler = (collection: string) => {
@@ -664,9 +652,11 @@ export function OneMarket(props: any) {
               <div></div>
               <Pagination
                 count={
-                  targetSearchObject.page >= 3 ? targetSearchObject.page + 1 : 3
+                  targetProductSearchObj.page >= 3
+                    ? targetProductSearchObj.page + 1
+                    : 3
                 }
-                page={targetSearchObject.page}
+                page={targetProductSearchObj.page}
                 renderItem={(item) => (
                   <PaginationItem
                     components={{
@@ -674,11 +664,11 @@ export function OneMarket(props: any) {
                       next: ArrowForwardIcon,
                     }}
                     {...item}
-                    color="primary"
+                    color={"primary"}
                     sx={{ color: "#43bb59" }}
                   />
                 )}
-                // onChange={handlePaginationChange}
+                onChange={handlePaginationChange}
               />
               <div></div>
             </div>

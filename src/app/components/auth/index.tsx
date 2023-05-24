@@ -148,6 +148,7 @@ export default function AuthenticationModal(props: any) {
                         <input
                           type={showPassword ? "text" : "password"}
                           placeholder="Password"
+                          onKeyPress={passwordKeyPressHandler}
                           onChange={handlePassword}
                         />
                         <div

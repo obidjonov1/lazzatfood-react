@@ -123,15 +123,7 @@ export function ShopPage(props: any) {
       page: 1,
       limit: 12,
       order: "createdAt",
-      // market_mb_id: market_id,
-      product_collection: "food",
     });
-
-  const [targetSearchObject, setTargetSearchObject] = useState<SearchObj>({
-    page: 1,
-    limit: 12,
-    order: "mb_point",
-  });
 
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 
@@ -153,16 +145,21 @@ export function ShopPage(props: any) {
   }, [chosenMarketId, targetProductSearchObj, productRebuild]);
 
   /* HANDLERS */
-  const chosenMarketHandler = (id: string) => {
-    setChosenMarketId(id);
-    targetProductSearchObj.market_mb_id = id;
-    setTargetProductSearchObj({ ...targetProductSearchObj });
-    history.push(`/market/${id}`);
-  };
+  // const chosenMarketHandler = (id: string) => {
+  //   setChosenMarketId(id);
+  //   targetProductSearchObj.market_mb_id = id;
+  //   setTargetProductSearchObj({ ...targetProductSearchObj });
+  //   history.push(`/market/${id}`);
+  // };
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
       setExpanded(newExpanded ? panel : false);
     };
+
+  const handlePaginationChange = (event: any, value: number) => {
+    targetProductSearchObj.page = value;
+    setTargetProductSearchObj({ ...targetProductSearchObj }); //backendan data chaqiryapti
+  };
 
   // sort
   const searchCollectionHandler = (collection: string) => {
@@ -251,9 +248,17 @@ export function ShopPage(props: any) {
                                   <RadioGroup
                                     className="accardion_det"
                                     aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue="food"
+                                    defaultValue="all"
                                     name="radio-buttons-group"
                                   >
+                                    <FormControlLabel
+                                      value="all"
+                                      control={<Radio />}
+                                      label="All"
+                                      onClick={() =>
+                                        searchCollectionHandler("")
+                                      }
+                                    />
                                     <FormControlLabel
                                       value="food"
                                       control={<Radio />}
@@ -512,7 +517,9 @@ export function ShopPage(props: any) {
                                 width="300"
                                 className="product-img rasim"
                               />
-                              <span className="which_market"></span>
+                              <span className="which_market">
+                                {ele.member_data[0].mb_nick} market
+                              </span>
                               <div className="product_rating">
                                 <Rating
                                   sx={{ fontSize: "19px" }}
@@ -572,8 +579,12 @@ export function ShopPage(props: any) {
                 </div>
                 <div className="pagination">
                   <Pagination
-                    count={3}
-                    page={1}
+                    count={
+                      targetProductSearchObj.page >= 3
+                        ? targetProductSearchObj.page + 1
+                        : 3
+                    }
+                    page={targetProductSearchObj.page}
                     renderItem={(item) => (
                       <PaginationItem
                         components={{
@@ -581,10 +592,11 @@ export function ShopPage(props: any) {
                           next: ArrowForwardIcon,
                         }}
                         {...item}
-                        color="primary"
+                        color={"primary"}
                         sx={{ color: "#43bb59" }}
                       />
                     )}
+                    onChange={handlePaginationChange}
                   />
                 </div>
               </div>

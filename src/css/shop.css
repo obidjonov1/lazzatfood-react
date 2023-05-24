@@ -8,6 +8,7 @@
   z-index: 99;
   margin-bottom: 2px;
   padding-left: 10px;
+  text-transform: capitalize;
 }
 .Toastify__toast-container--top-right {
   width: 380px !important;

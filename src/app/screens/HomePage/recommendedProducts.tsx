@@ -60,10 +60,10 @@ export function RecommendedProducts(props: any) {
   useEffect(() => {
     const productServise = new ProductApiService();
     productServise
-      .getTargetProducts(targetProductSearchObj)
-      .then((data) => setTargetProducts(data))
+      .getTargetProducts({ order: "product_views", page: 1, limit: 8 })
+      .then((data) => setRecommendedProducts(data))
       .catch((err) => console.log(err));
-  }, [productRebuild, targetProductSearchObj]);
+  }, [productRebuild]);
 
   /* HANDLERS */
   // chosenDish
@@ -188,7 +188,9 @@ export function RecommendedProducts(props: any) {
                             width="300"
                             className="product-img rasim"
                           />
-                          <span className="which_market">Lazzatfood</span>
+                          <span className="which_market">
+                            {ele.member_data[0].mb_nick} market
+                          </span>
                           <div className="product_rating">
                             <Rating
                               sx={{ fontSize: "19px" }}

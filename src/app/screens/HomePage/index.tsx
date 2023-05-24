@@ -6,6 +6,7 @@ import { ActualProducts } from "./actualProducts";
 import { RecommendedProducts } from "./recommendedProducts";
 import { RecommendedArticles } from "./recommendedArticles";
 import { NavbarHomeBanner } from "./banner";
+import { ShopPage } from "../ShopPage/index";
 
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -17,12 +18,8 @@ import "../../../css/home.css";
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
-import { createSelector } from "reselect";
 import { setTopMarkets, setBestMarkets } from "../../screens/HomePage/slice";
-import {
-  retrieveTopMarkets,
-  retrieveBestMarkets,
-} from "../../screens/HomePage/selector";
+
 import { Market } from "../types/user";
 import MarketApiService from "../../apiServices/marketApiService";
 
@@ -78,7 +75,11 @@ export function HomePage(props: any) {
                           alt="clothes"
                           className="menu-title-img"
                         />
-                        <NavLink className="menu-title" to={"/shop"}>
+                        <NavLink
+                          className="menu-title"
+                          to={"/shop"}
+                          onClick={props.setPath}
+                        >
                           Big Sale %
                         </NavLink>
                       </div>
@@ -104,7 +105,9 @@ export function HomePage(props: any) {
                                 alt="footwear"
                                 className="menu-title-img"
                               />
-                              <p className="menu-title">Meat & Fish</p>
+                              <p className="menu-title" onClick={props.setPath}>
+                                Meat & Fish
+                              </p>
                             </div>
                           </AccordionSummary>
 
@@ -115,8 +118,9 @@ export function HomePage(props: any) {
                                   <NavLink
                                     className="product-name"
                                     to={"/shop"}
+                                    onClick={props.setPath}
                                   >
-                                    Beef (54)
+                                    Beef
                                   </NavLink>
                                 </p>
                               </li>
@@ -125,8 +129,9 @@ export function HomePage(props: any) {
                                   <NavLink
                                     className="product-name"
                                     to={"/shop"}
+                                    onClick={props.setPath}
                                   >
-                                    Lamb (24)
+                                    Lamb
                                   </NavLink>
                                 </p>
                               </li>
@@ -135,8 +140,9 @@ export function HomePage(props: any) {
                                   <NavLink
                                     className="product-name"
                                     to={"/shop"}
+                                    onClick={props.setPath}
                                   >
-                                    Fish (12)
+                                    Fish
                                   </NavLink>
                                 </p>
                               </li>
@@ -145,8 +151,9 @@ export function HomePage(props: any) {
                                   <NavLink
                                     className="product-name"
                                     to={"/shop"}
+                                    onClick={props.setPath}
                                   >
-                                    Chicken & Duck (30)
+                                    Chicken & Duck
                                   </NavLink>
                                 </p>
                               </li>
@@ -155,6 +162,7 @@ export function HomePage(props: any) {
                                   <NavLink
                                     className="product-name"
                                     to={"/shop"}
+                                    onClick={props.setPath}
                                   >
                                     Sausages
                                   </NavLink>
@@ -196,6 +204,7 @@ export function HomePage(props: any) {
                                   <NavLink
                                     className="product-name"
                                     to={"/shop"}
+                                    onClick={props.setPath}
                                   >
                                     Sauces & Oils
                                   </NavLink>
@@ -206,6 +215,7 @@ export function HomePage(props: any) {
                                   <NavLink
                                     className="product-name"
                                     to={"/shop"}
+                                    onClick={props.setPath}
                                   >
                                     Cans & Jars
                                   </NavLink>
@@ -216,6 +226,7 @@ export function HomePage(props: any) {
                                   <NavLink
                                     className="product-name"
                                     to={"/shop"}
+                                    onClick={props.setPath}
                                   >
                                     Vegetables
                                   </NavLink>
@@ -226,6 +237,7 @@ export function HomePage(props: any) {
                                   <NavLink
                                     className="product-name"
                                     to={"/shop"}
+                                    onClick={props.setPath}
                                   >
                                     Rice & Noodles
                                   </NavLink>
@@ -236,6 +248,7 @@ export function HomePage(props: any) {
                                   <NavLink
                                     className="product-name"
                                     to={"/shop"}
+                                    onClick={props.setPath}
                                   >
                                     Dairy
                                   </NavLink>
@@ -278,6 +291,7 @@ export function HomePage(props: any) {
                                   <NavLink
                                     className="product-name"
                                     to={"/shop"}
+                                    onClick={props.setPath}
                                   >
                                     Bread & Bakery
                                   </NavLink>
@@ -288,6 +302,7 @@ export function HomePage(props: any) {
                                   <NavLink
                                     className="product-name"
                                     to={"/shop"}
+                                    onClick={props.setPath}
                                   >
                                     Ramens
                                   </NavLink>
@@ -298,6 +313,7 @@ export function HomePage(props: any) {
                                   <NavLink
                                     className="product-name"
                                     to={"/shop"}
+                                    onClick={props.setPath}
                                   >
                                     Snacks
                                   </NavLink>
@@ -308,6 +324,7 @@ export function HomePage(props: any) {
                                   <NavLink
                                     className="product-name"
                                     to={"/shop"}
+                                    onClick={props.setPath}
                                   >
                                     Sweets & Desserts
                                   </NavLink>
@@ -318,6 +335,7 @@ export function HomePage(props: any) {
                                   <NavLink
                                     className="product-name"
                                     to={"/shop"}
+                                    onClick={props.setPath}
                                   >
                                     Halal Meat Curry
                                   </NavLink>
@@ -359,6 +377,7 @@ export function HomePage(props: any) {
                                   <NavLink
                                     className="product-name"
                                     to={"/shop"}
+                                    onClick={props.setPath}
                                   >
                                     Tea
                                   </NavLink>
@@ -369,6 +388,7 @@ export function HomePage(props: any) {
                                   <NavLink
                                     className="product-name"
                                     to={"/shop"}
+                                    onClick={props.setPath}
                                   >
                                     Juice
                                   </NavLink>
@@ -379,6 +399,7 @@ export function HomePage(props: any) {
                                   <NavLink
                                     className="product-name"
                                     to={"/shop"}
+                                    onClick={props.setPath}
                                   >
                                     Soda
                                   </NavLink>
@@ -399,7 +420,11 @@ export function HomePage(props: any) {
                           alt="glasses"
                           className="menu-title-img"
                         />
-                        <NavLink className="menu-title" to={"/shop"}>
+                        <NavLink
+                          className="menu-title"
+                          to={"/shop"}
+                          onClick={props.setPath}
+                        >
                           Fresh & Fast
                         </NavLink>
                       </div>
@@ -415,6 +440,7 @@ export function HomePage(props: any) {
       <BestMarkets />
       <ActualProducts onAdd={props.onAdd} />
       <RecommendedProducts onAdd={props.onAdd} />
+      {/* <ShopPage /> */}
       <RecommendedArticles />
     </div>
   );

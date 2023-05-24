@@ -82,7 +82,9 @@ export function ChosenProduct(props: any) {
   const productRelatedProcess = async () => {
     try {
       const productService = new ProductApiService();
-      const product: Product = await productService.getChosenDish(product_id);
+      const product: Product = await productService.getChosenProduct(
+        product_id
+      );
       setChosenProduct(product);
 
       const marketService = new MarketApiService();

@@ -30,7 +30,7 @@ class ProductApiService {
     }
   }
 
-  async getChosenDish(product_id: string) {
+  async getChosenProduct(product_id: string) {
     try {
       const url = `/products/${product_id}`,
         result = await axios.get(this.path + url, {
@@ -43,7 +43,7 @@ class ProductApiService {
       const product: Product = result.data.data;
       return product;
     } catch (err: any) {
-      console.log(`ERROR:: getChosenDish ${err.message}`);
+      console.log(`ERROR:: getChosenProduct ${err.message}`);
       throw err;
     }
   }
