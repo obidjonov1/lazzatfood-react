@@ -210,7 +210,7 @@ function App() {
           <MarketPage onAdd={onAdd} />
         </Route>
         <Route path="/shop">
-          <ShopPage onAdd={onAdd} />
+          <ShopPage setPath={setPath} onAdd={onAdd} />
         </Route>
         <Route path="/community">
           <CommunityPage />

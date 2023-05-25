@@ -542,22 +542,23 @@ export function OneMarket(props: any) {
                                   }}
                                 >
                                   <Checkbox
-                                    className="like_btn"
+                                    // className="like_btn"
                                     icon={
                                       <AiFillHeart
-                                        // className="like_btn"
+                                        className="like_btn"
                                         style={{
-                                          color: "#929292",
-                                          fontSize: "22px",
+                                          color: "#fff",
+                                          fontSize: "32px",
                                         }}
                                       />
                                     }
                                     id={ele._id}
                                     checkedIcon={
                                       <AiFillHeart
+                                        className="like_btn"
                                         style={{
                                           color: "red",
-                                          fontSize: "22px",
+                                          fontSize: "32px",
                                         }}
                                       />
                                     }

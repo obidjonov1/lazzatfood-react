@@ -144,13 +144,6 @@ export function ShopPage(props: any) {
       .catch((err) => console.log(err));
   }, [chosenMarketId, targetProductSearchObj, productRebuild]);
 
-  /* HANDLERS */
-  // const chosenMarketHandler = (id: string) => {
-  //   setChosenMarketId(id);
-  //   targetProductSearchObj.market_mb_id = id;
-  //   setTargetProductSearchObj({ ...targetProductSearchObj });
-  //   history.push(`/market/${id}`);
-  // };
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
       setExpanded(newExpanded ? panel : false);
@@ -173,6 +166,7 @@ export function ShopPage(props: any) {
     setTargetProductSearchObj({ ...targetProductSearchObj });
   };
 
+  
   // chosenDish
   const chosenProductHandler = (id: string) => {
     history.push(`/market/product/${id}`);
@@ -433,7 +427,7 @@ export function ShopPage(props: any) {
 
               <div className="product-box">
                 <div className="product-main_box">
-                  <div className="product-grid">
+                  <div className="product-grid" onClick={props.setPath}>
                     {targetProducts.map((ele: Product) => {
                       const image_path = `${serverApi}/${ele.product_images[0]}`;
                       const size_volume =
@@ -475,19 +469,20 @@ export function ShopPage(props: any) {
                                     className="like_btn"
                                     icon={
                                       <AiFillHeart
-                                        // className="like_btn"
+                                        className="like_btn"
                                         style={{
-                                          color: "#929292",
-                                          fontSize: "22px",
+                                          color: "#fff",
+                                          fontSize: "27px",
                                         }}
                                       />
                                     }
                                     id={ele._id}
                                     checkedIcon={
                                       <AiFillHeart
+                                        className="like_btn"
                                         style={{
                                           color: "red",
-                                          fontSize: "22px",
+                                          fontSize: "27px",
                                         }}
                                       />
                                     }
@@ -504,7 +499,13 @@ export function ShopPage(props: any) {
                                     {ele.product_likes}
                                   </span>
                                 </Badge>
-                                <AiFillEye className="view_btn" />
+                                <AiFillEye
+                                  style={{
+                                    color: "#fff",
+                                    fontSize: "27px",
+                                  }}
+                                  className="view_btn"
+                                />
                                 {/* <AiFillHeart className="like_btn" /> */}
                               </button>
                             </div>

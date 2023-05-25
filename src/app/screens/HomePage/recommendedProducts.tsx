@@ -147,19 +147,20 @@ export function RecommendedProducts(props: any) {
                                 className="like_btn"
                                 icon={
                                   <AiFillHeart
-                                    // className="like_btn"
+                                    className="like_btn"
                                     style={{
-                                      color: "#929292",
-                                      fontSize: "22px",
+                                      color: "#fff",
+                                      fontSize: "27px",
                                     }}
                                   />
                                 }
                                 id={ele._id}
                                 checkedIcon={
                                   <AiFillHeart
+                                    className="like_btn"
                                     style={{
                                       color: "red",
-                                      fontSize: "22px",
+                                      fontSize: "27px",
                                     }}
                                   />
                                 }
@@ -175,7 +176,13 @@ export function RecommendedProducts(props: any) {
                                 {ele.product_likes}
                               </span>
                             </Badge>
-                            <AiFillEye className="view_btn" />
+                            <AiFillEye
+                              style={{
+                                color: "#fff",
+                                fontSize: "27px",
+                              }}
+                              className="view_btn"
+                            />
                             {/* <AiFillHeart className="like_btn" /> */}
                           </button>
                         </div>

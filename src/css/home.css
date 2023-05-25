@@ -591,7 +591,13 @@ body {
 .btn-action .css-14y7qef-MuiButtonBase-root-MuiCheckbox-root {
   position: absolute !important;
   right: 0;
-  top: -24px;
+  top: -28px;
+}
+.like_btn {
+  padding: 4px;
+  background: rgba(92, 92, 92, 0.3);
+  backdrop-filter: blur(0.8px);
+  border-radius: 50%;
 }
 .product_view_cnt {
   position: absolute;
@@ -604,8 +610,8 @@ body {
   width: 20px;
   height: 20px;
   padding: 1px;
-  top: -6px;
-  left: -185px;
+  top: -10px;
+  left: -172px;
   border-radius: 50%;
   font-size: 12px;
 }
@@ -620,16 +626,20 @@ body {
   width: 20px;
   height: 20px;
   padding: 1px;
-  top: -33px;
+  top: -37px;
   right: 0;
   border-radius: 50%;
   font-size: 12px;
 }
 .product-grid .btn-action .view_btn {
   position: absolute;
-  left: -196px;
-  top: 10px;
+  left: -191px;
+  top: 6px;
   z-index: 99;
+  padding: 3px;
+  background: rgba(92, 92, 92, 0.3);
+  backdrop-filter: blur(0.8px);
+  border-radius: 50%;
 }
 
 .product-grid .showcase-content {

@@ -11,6 +11,7 @@ export interface ProductSearchObj {
   market_mb_id?: string;
   mb_nick?: string;
   product_collection?: string;
+  product_discount?: number;
 }
 
 export interface MemberLiken {
