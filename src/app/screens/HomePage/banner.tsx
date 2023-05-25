@@ -29,13 +29,16 @@ export function NavbarHomeBanner(props: any) {
           <img src="/images/slide.jpeg" alt="" className="slide_img" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/images/slide1.png" alt="" className="slide_img" />
+          <img src="/images/slide4.jpeg" alt="" className="slide_img" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/images/slide3.jpeg" alt="" className="slide_img" />
+          <img src="/images/slide1.jpeg" alt="" className="slide_img" />
         </SwiperSlide>
         <SwiperSlide>
           <img src="/images/slide5.jpeg" alt="" className="slide_img" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="/images/slide3.jpeg" alt="" className="slide_img" />
         </SwiperSlide>
       </Swiper>
     </Container>

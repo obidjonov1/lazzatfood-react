@@ -34,6 +34,7 @@ import MemberApiService from "./apiServices/memberApiService";
 import "../app/apiServices/verify";
 import { CartItem } from "./screens/types/others";
 import { Product } from "./screens/types/product";
+import { BiUpArrowAlt } from "react-icons/bi";
 
 function App() {
   /* INITIALIZATIONS */
@@ -133,8 +134,15 @@ function App() {
     localStorage.removeItem("cart_data");
   };
 
+  const top = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <Router>
+      <p onClick={top} className="top_btn">
+        <BiUpArrowAlt className="top-btn_arrow" />
+      </p>
       {main_path === "/" ? (
         <NavbarHome
           setPath={setPath}
