@@ -112,6 +112,7 @@ export function ShopPage(props: any) {
   let { market_id } = useParams<{ market_id: string }>();
   const value = 5;
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const { setRandomMarkets, setChosenMarket, setTargetProducts } =
     actionDispatch(useDispatch());
@@ -166,7 +167,6 @@ export function ShopPage(props: any) {
     setTargetProductSearchObj({ ...targetProductSearchObj });
   };
 
-  
   // chosenDish
   const chosenProductHandler = (id: string) => {
     history.push(`/market/product/${id}`);
@@ -192,6 +192,20 @@ export function ShopPage(props: any) {
     }
   };
 
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredProducts = targetProducts.filter((val: Product) => {
+    if (searchTerm === "") {
+      return val;
+    } else if (
+      val.product_name.toLowerCase().includes(searchTerm.toLowerCase())
+    ) {
+      return val;
+    }
+  });
+
   return (
     <Container>
       <div className="chosenMarket shop_cont">
@@ -202,9 +216,11 @@ export function ShopPage(props: any) {
                 <div className="product-search_box">
                   <input
                     className="product-search_input"
-                    type="search"
+                    type="text"
                     name="search"
-                    placeholder="Searching"
+                    placeholder="Searching..."
+                    value={searchTerm}
+                    onChange={handleSearch}
                   />
                   <button className="product-search_btn">
                     <AiOutlineSearch className="search_btn" />
@@ -428,7 +444,7 @@ export function ShopPage(props: any) {
               <div className="product-box">
                 <div className="product-main_box">
                   <div className="product-grid" onClick={props.setPath}>
-                    {targetProducts.map((ele: Product) => {
+                    {filteredProducts.map((ele: Product) => {
                       const image_path = `${serverApi}/${ele.product_images[0]}`;
                       const size_volume =
                         ele.product_collection === "drink"
@@ -578,29 +594,32 @@ export function ShopPage(props: any) {
                     })}
                   </div>
                 </div>
-                <div className="pagination">
-                  <Pagination
-                    count={
-                      targetProductSearchObj.page >= 3
-                        ? targetProductSearchObj.page + 1
-                        : 3
-                    }
-                    page={targetProductSearchObj.page}
-                    renderItem={(item) => (
-                      <PaginationItem
-                        components={{
-                          previous: ArrowBackIcon,
-                          next: ArrowForwardIcon,
-                        }}
-                        {...item}
-                        color={"primary"}
-                        sx={{ color: "#43bb59" }}
-                      />
-                    )}
-                    onChange={handlePaginationChange}
-                  />
-                </div>
               </div>
+            </div>
+            <div className="product_pagination">
+              <div></div>
+              <div></div>
+              <Pagination
+                count={
+                  targetProductSearchObj.page >= 3
+                    ? targetProductSearchObj.page + 1
+                    : 3
+                }
+                page={targetProductSearchObj.page}
+                renderItem={(item) => (
+                  <PaginationItem
+                    components={{
+                      previous: ArrowBackIcon,
+                      next: ArrowForwardIcon,
+                    }}
+                    {...item}
+                    color={"primary"}
+                    sx={{ color: "#43bb59" }}
+                  />
+                )}
+                onChange={handlePaginationChange}
+              />
+              <div></div>
             </div>
           </div>
         </div>

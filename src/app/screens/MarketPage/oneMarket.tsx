@@ -122,6 +122,7 @@ export function OneMarket(props: any) {
   let { market_id } = useParams<{ market_id: string }>();
   const value = 5;
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const { setRandomMarkets, setChosenMarket, setTargetProducts } =
     actionDispatch(useDispatch());
@@ -224,6 +225,20 @@ export function OneMarket(props: any) {
     }
   };
 
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredProducts = targetProducts.filter((val: Product) => {
+    if (searchTerm === "") {
+      return val;
+    } else if (
+      val.product_name.toLowerCase().includes(searchTerm.toLowerCase())
+    ) {
+      return val;
+    }
+  });
+
   return (
     <Container>
       <div className="chosenMarket">
@@ -286,9 +301,11 @@ export function OneMarket(props: any) {
                 <div className="product-search_box">
                   <input
                     className="product-search_input"
-                    type="search"
+                    type="text"
                     name="search"
-                    placeholder="Searching"
+                    value={searchTerm}
+                    onChange={handleSearch}
+                    placeholder="Searching..."
                   />
                   <button className="product-search_btn">
                     <AiOutlineSearch className="search_btn" />
@@ -504,7 +521,7 @@ export function OneMarket(props: any) {
               <div className="product-box">
                 <div className="product-main_box">
                   <div className="product-grid">
-                    {targetProducts.map((ele: Product) => {
+                    {filteredProducts.map((ele: Product) => {
                       const image_path = `${serverApi}/${ele.product_images[0]}`;
                       const size_volume =
                         ele.product_collection === "drink"
@@ -542,13 +559,13 @@ export function OneMarket(props: any) {
                                   }}
                                 >
                                   <Checkbox
-                                    // className="like_btn"
+                                    className="like_btn"
                                     icon={
                                       <AiFillHeart
                                         className="like_btn"
                                         style={{
                                           color: "#fff",
-                                          fontSize: "32px",
+                                          fontSize: "27px",
                                         }}
                                       />
                                     }
@@ -558,7 +575,7 @@ export function OneMarket(props: any) {
                                         className="like_btn"
                                         style={{
                                           color: "red",
-                                          fontSize: "32px",
+                                          fontSize: "27px",
                                         }}
                                       />
                                     }
@@ -575,7 +592,13 @@ export function OneMarket(props: any) {
                                     {ele.product_likes}
                                   </span>
                                 </Badge>
-                                <AiFillEye className="view_btn" />
+                                <AiFillEye
+                                  style={{
+                                    color: "#fff",
+                                    fontSize: "27px",
+                                  }}
+                                  className="view_btn"
+                                />
                                 {/* <AiFillHeart className="like_btn" /> */}
                               </button>
                             </div>
