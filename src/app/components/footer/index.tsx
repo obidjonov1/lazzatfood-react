@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { BsFacebook, BsWhatsapp } from "react-icons/bs";
+import { BsFacebook, BsWhatsapp, BsTelegram } from "react-icons/bs";
 import { AiFillYoutube, AiOutlineInstagram } from "react-icons/ai";
 import { Container } from "@mui/material";
 
@@ -35,7 +35,7 @@ export function Footer(props: any) {
                 </li>
                 <li>
                   <NavLink to={"#"} className="social-link">
-                    <BsWhatsapp />
+                    <BsTelegram />
                   </NavLink>
                 </li>
               </ul>

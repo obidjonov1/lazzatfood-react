@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Logout } from "@mui/icons-material";
 import { Box, Container, Menu, MenuItem, ListItemIcon } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import { BsFacebook, BsWhatsapp, BsFileEarmarkPerson } from "react-icons/bs";
+import { BsFacebook, BsTelegram, BsFileEarmarkPerson } from "react-icons/bs";
 import {
   AiFillYoutube,
   AiOutlineInstagram,
@@ -37,7 +37,7 @@ export function NavbarHome(props: any) {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to={"#"} className="social-link">
+                  <NavLink to={""} className="social-link">
                     <AiFillYoutube />
                   </NavLink>
                 </li>
@@ -48,7 +48,7 @@ export function NavbarHome(props: any) {
                 </li>
                 <li>
                   <NavLink to={"#"} className="social-link">
-                    <BsWhatsapp />
+                    <BsTelegram />
                   </NavLink>
                 </li>
               </ul>
