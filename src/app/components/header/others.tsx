@@ -71,15 +71,250 @@ export function NavbarOthers(props: any) {
                 <img className="logo" src="/images/logo_lazzat.png" alt="" />
               </NavLink>
 
-              <div className="header-search-container">
-                <input
-                  type="search"
-                  name="search"
-                  className="search-field"
-                  placeholder="Search ..."
-                />
-                <AiOutlineSearch className="search-btn" />
-              </div>
+              <Container sx={{ width: "auto" }}>
+                <nav className="desktop-navigation-menu">
+                  <div className="container">
+                    <ul className="desktop-menu-category-list">
+                      <li className="menu-category" onClick={props.setPath}>
+                        <NavLink
+                          to={"/"}
+                          activeClassName="underline"
+                          className="menu-title"
+                        >
+                          Home
+                        </NavLink>
+                      </li>
+                      <li className="menu-category" onClick={props.setPath}>
+                        <NavLink className="menu-title" to={"/shop"}>
+                          Shop
+                        </NavLink>
+                        <BiChevronDown />
+                        <div className="dropdown-panel">
+                          <ul className="dropdown-panel-list">
+                            <li className="menu-title">
+                              <NavLink to={"/shop"} onClick={props.setPath}>
+                                Texno
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink to={"/shop"} onClick={props.setPath}>
+                                Home appliances
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink to={"/shop"} onClick={props.setPath}>
+                                Kitchen appliances
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink to={"/shop"} onClick={props.setPath}>
+                                Auto appliances
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink to={"/shop"} onClick={props.setPath}>
+                                Medical appliances
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink to={"/shop"} onClick={props.setPath}>
+                                <img
+                                  src="/images/electro.JPEG"
+                                  alt=""
+                                  width="250"
+                                  height="119"
+                                />
+                              </NavLink>
+                            </li>
+                          </ul>
+                          <ul className="dropdown-panel-list">
+                            <li className="menu-title">
+                              <NavLink to={"/shop"} onClick={props.setPath}>
+                                Beauty & Health
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink to={"/shop"} onClick={props.setPath}>
+                                Vitamins
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink to={"/shop"} onClick={props.setPath}>
+                                Styling Accessories
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink to={"/shop"} onClick={props.setPath}>
+                                Korean Cosmetics
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink to={"/shop"} onClick={props.setPath}>
+                                Medical Equipment
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink to={"/shop"} onClick={props.setPath}>
+                                <img
+                                  src="/images/vitamin.JPEG"
+                                  alt=""
+                                  width="250"
+                                  height="119"
+                                />
+                              </NavLink>
+                            </li>
+                          </ul>
+                          <ul className="dropdown-panel-list">
+                            <li className="menu-title">
+                              <NavLink to={"/shop"} onClick={props.setPath}>
+                                Family Shop
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink to={"/shop"} onClick={props.setPath}>
+                                Winter items
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink to={"/shop"} onClick={props.setPath}>
+                                Prayer Mats
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink to={"/shop"} onClick={props.setPath}>
+                                Kids
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink to={"/shop"} onClick={props.setPath}>
+                                Sport
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink to={"/shop"} onClick={props.setPath}>
+                                <img
+                                  src="/images/familyItem.JPEG"
+                                  alt=""
+                                  width="250"
+                                  height="119"
+                                />
+                              </NavLink>
+                            </li>
+                          </ul>
+                          <ul className="dropdown-panel-list">
+                            <li className="menu-title">
+                              <NavLink
+                                to={"/certificates"}
+                                onClick={props.setPath}
+                              >
+                                Halal Certificates
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink
+                                to={"/certificates"}
+                                onClick={props.setPath}
+                              >
+                                Salami and Sausage
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink
+                                to={"/certificates"}
+                                onClick={props.setPath}
+                              >
+                                Meat
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink
+                                to={"/certificates"}
+                                onClick={props.setPath}
+                              >
+                                Diary Products
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <NavLink
+                                to={"/certificates"}
+                                onClick={props.setPath}
+                              >
+                                Other Products
+                              </NavLink>
+                            </li>
+                            <li className="panel-list-item">
+                              <a href="#">
+                                <img
+                                  src="/images/halalSer.JPEG"
+                                  alt=""
+                                  width="250"
+                                  height="119"
+                                />
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li className="menu-category" onClick={props.setPath}>
+                        <NavLink
+                          to={"/market"}
+                          activeClassName="underline"
+                          className="menu-title"
+                        >
+                          Markets
+                        </NavLink>
+                      </li>
+                      {verifiedMemberData ? (
+                        <li className="menu-category" onClick={props.setPath}>
+                          <NavLink
+                            to={"/orders"}
+                            activeClassName="underline"
+                            className="menu-title"
+                          >
+                            Order
+                          </NavLink>
+                        </li>
+                      ) : null}
+                      <li className="menu-category" onClick={props.setPath}>
+                        <NavLink
+                          to={"/community"}
+                          activeClassName="underline"
+                          className="menu-title"
+                        >
+                          Community
+                        </NavLink>
+                      </li>
+
+                      <li className="menu-category" onClick={props.setPath}>
+                        <p className="menu-title">About Us</p>
+                        <BiChevronDown />
+                        <ul className="dropdown-list">
+                          <li className="dropdown-item">
+                            <NavLink to={"/news"} onClick={props.setPath}>
+                              News
+                            </NavLink>
+                          </li>
+                          <li className="dropdown-item">
+                            <NavLink to={"/about-us"} onClick={props.setPath}>
+                              About us
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </li>
+                      <li className="menu-category" onClick={props.setPath}>
+                        <NavLink
+                          to={"/help"}
+                          activeClassName="underline"
+                          className="menu-title"
+                        >
+                          Help
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
+              </Container>
+
               <div className="header-user-actions">
                 {verifiedMemberData ? (
                   <Box>
@@ -187,235 +422,6 @@ export function NavbarOthers(props: any) {
           </div>
         </Container>
       </div>
-
-      <Container>
-        <nav className="desktop-navigation-menu">
-          <div className="container">
-            <ul className="desktop-menu-category-list">
-              <li className="menu-category" onClick={props.setPath}>
-                <NavLink
-                  to={"/"}
-                  activeClassName="underline"
-                  className="menu-title"
-                >
-                  Home
-                </NavLink>
-              </li>
-              <li className="menu-category" onClick={props.setPath}>
-                <NavLink className="menu-title" to={"/shop"}>
-                  Shop
-                </NavLink>
-                <BiChevronDown />
-                <div className="dropdown-panel">
-                  <ul className="dropdown-panel-list">
-                    <li className="menu-title">
-                      <NavLink to={"/shop"} onClick={props.setPath}>
-                        Texno
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/shop"} onClick={props.setPath}>
-                        Home appliances
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/shop"} onClick={props.setPath}>
-                        Kitchen appliances
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/shop"} onClick={props.setPath}>
-                        Auto appliances
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/shop"} onClick={props.setPath}>
-                        Medical appliances
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/shop"} onClick={props.setPath}>
-                        <img
-                          src="/images/electro.JPEG"
-                          alt=""
-                          width="250"
-                          height="119"
-                        />
-                      </NavLink>
-                    </li>
-                  </ul>
-                  <ul className="dropdown-panel-list">
-                    <li className="menu-title">
-                      <NavLink to={"/shop"} onClick={props.setPath}>
-                        Beauty & Health
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/shop"} onClick={props.setPath}>
-                        Vitamins
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/shop"} onClick={props.setPath}>
-                        Styling Accessories
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/shop"} onClick={props.setPath}>
-                        Korean Cosmetics
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/shop"} onClick={props.setPath}>
-                        Medical Equipment
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/shop"} onClick={props.setPath}>
-                        <img
-                          src="/images/vitamin.JPEG"
-                          alt=""
-                          width="250"
-                          height="119"
-                        />
-                      </NavLink>
-                    </li>
-                  </ul>
-                  <ul className="dropdown-panel-list">
-                    <li className="menu-title">
-                      <NavLink to={"/shop"} onClick={props.setPath}>
-                        Family Shop
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/shop"} onClick={props.setPath}>
-                        Winter items
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/shop"} onClick={props.setPath}>
-                        Prayer Mats
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/shop"} onClick={props.setPath}>
-                        Kids
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/shop"} onClick={props.setPath}>
-                        Sport
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/shop"} onClick={props.setPath}>
-                        <img
-                          src="/images/familyItem.JPEG"
-                          alt=""
-                          width="250"
-                          height="119"
-                        />
-                      </NavLink>
-                    </li>
-                  </ul>
-                  <ul className="dropdown-panel-list">
-                    <li className="menu-title">
-                      <NavLink to={"/certificates"} onClick={props.setPath}>
-                        Halal Certificates
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/certificates"} onClick={props.setPath}>
-                        Salami and Sausage
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/certificates"} onClick={props.setPath}>
-                        Meat
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/certificates"} onClick={props.setPath}>
-                        Diary Products
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <NavLink to={"/certificates"} onClick={props.setPath}>
-                        Other Products
-                      </NavLink>
-                    </li>
-                    <li className="panel-list-item">
-                      <a href="#">
-                        <img
-                          src="/images/halalSer.JPEG"
-                          alt=""
-                          width="250"
-                          height="119"
-                        />
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li className="menu-category" onClick={props.setPath}>
-                <NavLink
-                  to={"/market"}
-                  activeClassName="underline"
-                  className="menu-title"
-                >
-                  Markets
-                </NavLink>
-              </li>
-              {verifiedMemberData ? (
-                <li className="menu-category" onClick={props.setPath}>
-                  <NavLink
-                    to={"/orders"}
-                    activeClassName="underline"
-                    className="menu-title"
-                  >
-                    Order
-                  </NavLink>
-                </li>
-              ) : null}
-              <li className="menu-category" onClick={props.setPath}>
-                <NavLink
-                  to={"/community"}
-                  activeClassName="underline"
-                  className="menu-title"
-                >
-                  Community
-                </NavLink>
-              </li>
-
-              <li className="menu-category" onClick={props.setPath}>
-                <p className="menu-title">About Us</p>
-                <BiChevronDown />
-                <ul className="dropdown-list">
-                  <li className="dropdown-item">
-                    <NavLink to={"/news"} onClick={props.setPath}>
-                      News
-                    </NavLink>
-                  </li>
-                  <li className="dropdown-item">
-                    <NavLink to={"/about-us"} onClick={props.setPath}>
-                      About us
-                    </NavLink>
-                  </li>
-                </ul>
-              </li>
-              <li className="menu-category" onClick={props.setPath}>
-                <NavLink
-                  to={"/help"}
-                  activeClassName="underline"
-                  className="menu-title"
-                >
-                  Help
-                </NavLink>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </Container>
 
       {/* <!-- Banner --> */}
       <div className="banner-container">
