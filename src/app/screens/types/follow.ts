@@ -30,3 +30,4 @@ export interface FollowSearchObj {
   limit: number;
   mb_id: string;
 }
+

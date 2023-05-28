@@ -1,3 +1,4 @@
+import { Review } from "./review";
 import { Member } from "./user";
 
 export interface MeLiked {
@@ -27,4 +28,5 @@ export interface Product {
   updatedAt: Date;
   me_liked: MeLiked[]; // Me liked
   member_data: Member[];
+  reviews?: Review[];
 }

@@ -51,6 +51,7 @@ import {
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
 import { verifiedMemberData } from "../../apiServices/verify";
+import { Review } from "../types/review";
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -616,7 +617,12 @@ export function OneMarket(props: any) {
                                 <Rating
                                   sx={{ fontSize: "19px" }}
                                   name="text-feedback"
-                                  value={value}
+                                  value={
+                                    ele.reviews && ele.reviews.length > 0
+                                      ? (ele.reviews as Review[])[0]
+                                          ?.average_rating
+                                      : 0 // Provide a default value if there are no reviews
+                                  }
                                   readOnly
                                   precision={0.5}
                                   emptyIcon={
@@ -626,7 +632,12 @@ export function OneMarket(props: any) {
                                     />
                                   }
                                 />
-                                <span>(0)</span>
+                                <span className="reviews_cnt">
+                                  {(ele.reviews as Review[])[0]?.reviews_cnt
+                                    ? (ele.reviews as Review[])[0]?.reviews_cnt
+                                    : 0}{" "}
+                                  <span>reviews</span>
+                                </span>
                               </div>
                               <span className="product-title">
                                 {ele.product_name}

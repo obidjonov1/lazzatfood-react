@@ -480,6 +480,10 @@ a {
   align-items: center;
 }
 
+.chosen_dish_info_box .rating_box .reviews_cnt span {
+  margin-left: 4px;
+}
+
 .chosen_dish_page .rating_box .evaluation_box {
   width: auto;
   height: auto;

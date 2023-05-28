@@ -642,8 +642,11 @@ body {
   border-radius: 50%;
 }
 
-.product-grid .showcase-content {
-  /* padding: 10px 10px 0 10px; */
+.product-grid .reviews_cnt {
+  color: #919191;
+  margin-left: 6px;
+  margin-top: 2px;
+  /* font-size: 14px; */
 }
 
 .product-grid .product-title {

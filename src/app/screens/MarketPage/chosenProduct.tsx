@@ -43,6 +43,7 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
+import { Review } from "../types/review";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -169,14 +170,30 @@ export function ChosenProduct(props: any) {
               <div className={"rating_box"}>
                 <Rating
                   name="text-feedback"
-                  value={value}
+                  value={
+                    chosenProduct?.reviews && chosenProduct?.reviews.length > 0
+                      ? (chosenProduct?.reviews as Review[])[0]?.average_rating
+                      : 0 // Provide a default value if there are no reviews
+                  }
                   readOnly
                   precision={0.5}
                   emptyIcon={
                     <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
                   }
                 />
-                <Box sx={{ ml: "-285px", mb: 0.5, fontSize: "18px" }}>(5)</Box>
+                <Box sx={{ ml: "-210px", mb: 0.5, fontSize: "18px" }}>
+                  {chosenProduct?.reviews &&
+                  chosenProduct?.reviews.length > 0 ? (
+                    <span className="reviews_cnt">
+                      {(chosenProduct?.reviews as Review[])[0]?.reviews_cnt}
+                      <span>reviews</span>
+                    </span>
+                  ) : (
+                    <span className="reviews_cnt">
+                      0<span>reviews</span>
+                    </span>
+                  )}
+                </Box>
                 <div className="evaluation_box">
                   <div
                     style={{
@@ -195,6 +212,8 @@ export function ChosenProduct(props: any) {
                       checked={
                         chosenProduct?.me_liked &&
                         !!chosenProduct?.me_liked[0]?.my_favorite
+                          ? true
+                          : false
                       }
                     />
 

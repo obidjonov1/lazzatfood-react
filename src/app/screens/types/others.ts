@@ -1,3 +1,5 @@
+import { Review } from "./review";
+
 export interface SearchObj {
   page: number;
   limit: number;
@@ -12,6 +14,8 @@ export interface ProductSearchObj {
   mb_nick?: string;
   product_collection?: string;
   product_discount?: number;
+  reviews?: Review[];
+  product_storage?: string;
 }
 
 export interface MemberLiken {
