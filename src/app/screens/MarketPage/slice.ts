@@ -8,6 +8,7 @@ const initialState: MarketPageState = {
   chosenMarket: null,
   targetProducts: [],
   chosenProduct: null,
+  memberReviews: null,
 };
 
 const marketPageSlice = createSlice({
@@ -29,6 +30,9 @@ const marketPageSlice = createSlice({
     setChosenProduct: (state, action) => {
       state.chosenProduct = action.payload;
     },
+    setMemberReviews: (state, action) => {
+      state.memberReviews = action.payload;
+    },
   },
 });
 
@@ -38,6 +42,7 @@ export const {
   setChosenMarket,
   setTargetProducts,
   setChosenProduct,
+  setMemberReviews,
 } = marketPageSlice.actions;
 
 const MarketPageReducer = marketPageSlice.reducer;

@@ -3,6 +3,7 @@ import { Product } from "./product";
 import { Member, Market } from "./user";
 import { Follower, Following } from "./follow";
 import { Order } from "./order";
+import { Review } from "./review";
 
 /** REACT APP STATE */
 export interface AppRootState {
@@ -29,6 +30,7 @@ export interface MarketPageState {
   chosenMarket: Market | null;
   targetProducts: Product[];
   chosenProduct: Product | null;
+  memberReviews: Review | null;
 }
 
 /* ORDER PAGE INTERFACE */

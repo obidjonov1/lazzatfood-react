@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Favorite } from "@mui/icons-material";
 import { Container, Rating, Button, Box } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
@@ -29,11 +29,15 @@ import { createSelector } from "reselect";
 import {
   retrieveChosenProduct,
   retrieveChosenMarket,
+  retrieveMemberReviews,
+  retrieveTargetProducts,
 } from "../../screens/MarketPage/selector";
 import { Dispatch } from "@reduxjs/toolkit";
 import {
   setChosenProduct,
   setChosenMarket,
+  setMemberReviews,
+  setTargetProducts,
 } from "../../screens/MarketPage/slice";
 import ProductApiService from "../../apiServices/productApiSevice";
 import MarketApiService from "../../apiServices/marketApiService";
@@ -43,14 +47,31 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
-import { Review } from "../types/review";
+import {
+  Review,
+  ReviewInput,
+  Reviews,
+  SearchReviewsObj,
+} from "../types/review";
+import { ProductSearchByCategoryObj } from "../types/others";
+import moment from "moment";
 
 /** REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
   setChosenProduct: (data: Product) => dispach(setChosenProduct(data)),
   setChosenMarket: (data: Market) => dispach(setChosenMarket(data)),
+  setMemberReviews: (data: Reviews) => dispach(setMemberReviews(data)),
+  setTargetProducts: (data: Product[]) => dispach(setTargetProducts(data)),
 });
+
 /** REDUX SELECTOR */
+const targetProductsRetriver = createSelector(
+  retrieveTargetProducts,
+  (targetProducts) => ({
+    targetProducts,
+  })
+);
+
 const chosenProductRetriever = createSelector(
   retrieveChosenProduct,
   (chosenProduct) => ({
@@ -63,22 +84,99 @@ const chosenMarketRetriever = createSelector(
     chosenMarket,
   })
 );
+const memberReviewsRetriever = createSelector(
+  retrieveMemberReviews,
+  (memberReviews) => ({
+    memberReviews,
+  })
+);
 
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 export function ChosenProduct(props: any) {
   /* INITIALIZATION */
+  const editorRef = useRef();
   const history = useHistory();
-  const value = 5;
+  const [value, setValue] = React.useState("1");
+
+  const [reviewsRebuild, setReviewsRebuild] = useState<Date>(new Date());
   let { product_id } = useParams<{ product_id: string }>();
-  const { setChosenProduct, setChosenMarket } = actionDispatch(useDispatch());
+  const {
+    setChosenProduct,
+    setChosenMarket,
+    setMemberReviews,
+    setTargetProducts,
+  } = actionDispatch(useDispatch());
   const { chosenProduct } = useSelector(chosenProductRetriever);
   const { chosenMarket } = useSelector(chosenMarketRetriever);
+  const { memberReviews } = useSelector(memberReviewsRetriever);
+  const { targetProducts } = useSelector(targetProductsRetriver);
 
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [message, setMessage] = useState("");
 
+  //** for Creating values *//
+  const [rating, setRating] = useState<number | null>(0);
+  const [comment, setComment] = useState<string>("");
+
+  const handleCommentChange = (e: any) => {
+    setComment(e.target.value);
+  };
+
+  const handleCommentRequest = async () => {
+    try {
+      assert.ok(verifiedMemberData, Definer.auth_err1);
+      const is_fulfilled = comment !== "" && rating !== 0;
+      assert.ok(is_fulfilled, Definer.input_err1);
+      const comment_data = {
+        cmt_content: comment,
+        rating_stars: rating,
+        rating_ref_id: chosenProduct?._id,
+      };
+      const productService = new ProductApiService();
+      await productService.createReview(comment_data);
+      await sweetTopSmallSuccessAlert("Review is created successfully!");
+
+      setReviewsRebuild(new Date());
+    } catch (err) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
+
+  const CommentDelteHandler = async (review_id: string) => {
+    try {
+      assert.ok(verifiedMemberData, Definer.auth_err1);
+      let confirmation = window.confirm(
+        "Are you sure to delete your comment ?"
+      );
+      if (confirmation) {
+        const productService = new ProductApiService();
+        const review_result = await productService.deleteReview(review_id);
+        assert.ok(review_result, Definer.auth_err1);
+        await sweetTopSmallSuccessAlert("success", 700, false);
+        setReviewsRebuild(new Date());
+      }
+    } catch (err) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
+
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
+
+  const [targetSearchObj, setTargetSearchObj] = useState<SearchReviewsObj>({
+    page: 1,
+    limit: 100,
+    order: "createdAt",
+    rating_ref_id: product_id,
+  });
+
+  const chosenReviewHandler = (id: string) => {
+    targetSearchObj.rating_ref_id = id;
+    setTargetSearchObj({ ...targetSearchObj });
+    setProductRebuild(new Date());
+  };
 
   const productRelatedProcess = async () => {
     try {
@@ -87,6 +185,11 @@ export function ChosenProduct(props: any) {
         product_id
       );
       setChosenProduct(product);
+
+      const productReviews: Reviews = await productService.getReviewsChosenItem(
+        targetSearchObj
+      );
+      setMemberReviews(productReviews);
 
       const marketService = new MarketApiService();
       const market = await marketService.getChosenMarket(product.market_mb_id);
@@ -98,17 +201,23 @@ export function ChosenProduct(props: any) {
 
   useEffect(() => {
     productRelatedProcess().then();
-  }, [productRebuild]);
+  }, [productRebuild, reviewsRebuild]);
 
   /** HANDLERS */
-  const targetLikeProduct = async (e: any) => {
+
+  const handlePaginationPage = (event: any, value: number) => {
+    targetSearchObj.page = value;
+    setTargetSearchObj({ ...targetSearchObj });
+  };
+
+  const targetLikeProduct = async (e: any, groupType: string) => {
     try {
       assert.ok(verifiedMemberData, Definer.auth_err1);
 
       const memberService = new MemberApiService(),
         like_result: any = await memberService.memberLikeTarget({
           like_ref_id: e.target.id,
-          group_type: "product",
+          group_type: groupType,
         });
       assert.ok(like_result, Definer.general_err1);
       await sweetTopSmallSuccessAlert("success", 700, false);
@@ -125,6 +234,8 @@ export function ChosenProduct(props: any) {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
+    setRating(0);
+    setComment("");
     console.log("Submitted review:", { message });
     // add code to send review data to server or do something else with it
   };
@@ -208,7 +319,7 @@ export function ChosenProduct(props: any) {
                       checkedIcon={<Favorite style={{ color: "red" }} />}
                       /* @ts-ignore */
                       id={chosenProduct?._id}
-                      onClick={targetLikeProduct}
+                      onClick={(e) => targetLikeProduct(e, "product")}
                       checked={
                         chosenProduct?.me_liked &&
                         !!chosenProduct?.me_liked[0]?.my_favorite
@@ -282,144 +393,96 @@ export function ChosenProduct(props: any) {
       </div>
       <h2 className="product-review">Product Reviews</h2>
       <div className="product-review_cont">
-        <div className="product-review_box">
-          <div className="review_avatar">
-            <img src="/images/default_user.svg" alt="" />
-          </div>
-          <div className="review_body">
-            <div className="review_nick">Sarvar</div>
-            <div className="review_info">
-              <Rating
-                name="text-feedback"
-                value={value}
-                readOnly
-                precision={0.5}
-                emptyIcon={
-                  <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-                }
-              />
-              <span className="review_date">23-05-13</span>
-              <span className="review_like">
-                99
-                <AiOutlineLike className="review_like_icon" />
-                <IoMdTrash className="review_like_icon" />
-              </span>
-            </div>
-            <div className="review_text">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut,
-              maxime ad deleniti dicta aliquid perspiciatis non repudiandae
-              mollitia facere accusantium. maxime ad deleniti dicta aliquid
-              perspiciatis non repudiandae mollitia facere accusantium
-            </div>
-          </div>
-        </div>
-        <div className="product-review_box">
-          <div className="review_avatar">
-            <img src="/images/default_user.svg" alt="" />
-          </div>
-          <div className="review_body">
-            <div className="review_nick">Sarvar</div>
-            <div className="review_info">
-              <Rating
-                name="text-feedback"
-                value={value}
-                readOnly
-                precision={0.5}
-                emptyIcon={
-                  <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-                }
-              />
-              <span className="review_date">23-05-13</span>
-              <span className="review_like">
-                99
-                <AiOutlineLike className="review_like_icon" />
-                <IoMdTrash className="review_like_icon" />
-              </span>
-            </div>
-            <div className="review_text">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut,
-              maxime ad deleniti dicta aliquid perspiciatis non repudiandae
-              mollitia facere accusantium. maxime ad deleniti dicta aliquid
-              perspiciatis non repudiandae mollitia facere accusantium
-            </div>
-          </div>
-        </div>
-        <div className="product-review_box">
-          <div className="review_avatar">
-            <img src="/images/default_user.svg" alt="" />
-          </div>
-          <div className="review_body">
-            <div className="review_nick">Sarvar</div>
-            <div className="review_info">
-              <Rating
-                name="text-feedback"
-                value={value}
-                readOnly
-                precision={0.5}
-                emptyIcon={
-                  <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-                }
-              />
-              <span className="review_date">23-05-13</span>
-              <span className="review_like">
-                99
-                <AiOutlineLike className="review_like_icon" />
-                <IoMdTrash className="review_like_icon" />
-              </span>
-            </div>
-            <div className="review_text">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut,
-              maxime ad deleniti dicta aliquid perspiciatis non repudiandae
-              mollitia facere accusantium. maxime ad deleniti dicta aliquid
-              perspiciatis non repudiandae mollitia facere accusantium
-            </div>
-          </div>
-        </div>
-        <div className="product-review_box">
-          <div className="review_avatar">
-            <img src="/images/default_user.svg" alt="" />
-          </div>
-          <div className="review_body">
-            <div className="review_nick">Sarvar</div>
-            <div className="review_info">
-              <Rating
-                name="text-feedback"
-                value={value}
-                readOnly
-                precision={0.5}
-                emptyIcon={
-                  <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-                }
-              />
-              <span className="review_date">23-05-13</span>
-              <span className="review_like">
-                99
-                <AiOutlineLike className="review_like_icon" />
-                <IoMdTrash className="review_like_icon" />
-              </span>
-            </div>
-            <div className="review_text">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut,
-              maxime ad deleniti dicta aliquid perspiciatis non repudiandae
-              mollitia facere accusantium. maxime ad deleniti dicta aliquid
-              perspiciatis non repudiandae mollitia facere accusantium
-            </div>
-          </div>
-        </div>
+        {Array.isArray(memberReviews) &&
+          memberReviews.map((reviews: Reviews, index: any) => {
+            const image_url = reviews?.member_data[0].mb_image
+              ? `${serverApi}/${reviews?.member_data[0].mb_image}`
+              : "/images/default_user.svg";
+
+            return (
+              <div className="product-review_box" key={reviews._id}>
+                {/* <div className="review_avatar"> */}
+                <img src={image_url} alt="" className="review_avatar" />
+                {/* </div> */}
+                <div className="review_body">
+                  <div className="review_info">
+                    <div className="review_nick">
+                      {reviews?.member_data[0]?.mb_nick}
+                    </div>
+                    <Rating
+                      sx={{ marginRight: "15px" }}
+                      name="text-feedback"
+                      value={reviews.rating_stars}
+                      readOnly
+                      precision={0.5}
+                      emptyIcon={
+                        <StarIcon
+                          style={{ opacity: 0.55 }}
+                          fontSize="inherit"
+                        />
+                      }
+                    />
+                    <span className="review_date">
+                      {moment(reviews?.createdAt).format("LLL")}
+                    </span>
+                    <span className="review_like">
+                      {reviews?.cmt_likes}
+                      <Checkbox
+                        className="review_like_icon"
+                        icon={<AiOutlineLike style={{ fontSize: "20px" }} />}
+                        id={reviews?._id}
+                        checkedIcon={
+                          <AiOutlineLike
+                            style={{ color: "#000", fontSize: "20px" }}
+                          />
+                        }
+                        checked={
+                          reviews?.member_data[0]?.me_liked &&
+                          reviews.member_data[0]?.me_liked[0].my_favorite
+                            ? true
+                            : false
+                        }
+                        onClick={(e) => targetLikeProduct(e, "review")}
+                      />
+                      {(verifiedMemberData?._id ===
+                        reviews?.member_data[0]._id ||
+                        verifiedMemberData?.mb_type === "ADMIN") && (
+                        <IoMdTrash
+                          className="review_like_icon"
+                          onClick={() => CommentDelteHandler(reviews?._id)}
+                        />
+                      )}
+                      {/* <IoMdTrash className="review_like_icon" /> */}
+                    </span>
+                  </div>
+                  <div className="review_text">{reviews.cmt_content}</div>
+                </div>
+              </div>
+            );
+          })}
       </div>
       <div className="review-form">
         <h2>Write Review</h2>
         <form onSubmit={handleSubmit}>
-          <Rating name="half-rating" defaultValue={0} precision={0.5} />
+          <Rating
+            name="half-rating"
+            value={rating}
+            onChange={(event, rating) => {
+              setRating(rating);
+            }}
+          />
           <label htmlFor="review-message">Write your comment:</label>
           <textarea
             id="review-message"
             name="review-message"
+            value={comment}
             required
-            value={message}
-            onChange={(event) => setMessage(event.target.value)}
+            onChange={handleCommentChange}
+            // onChange={(event) => setMessage(event.target.value)}
           ></textarea>
-          <button type="submit">Submit Review</button>
+          <button type="submit" onClick={handleCommentRequest}>
+            Submit Review
+          </button>
         </form>
       </div>
     </Container>

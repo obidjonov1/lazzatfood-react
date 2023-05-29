@@ -18,6 +18,10 @@ export interface ProductSearchObj {
   product_storage?: string;
 }
 
+export interface ProductSearchByCategoryObj {
+  types: string;
+}
+
 export interface MemberLiken {
   like_group: string;
   like_status: number;

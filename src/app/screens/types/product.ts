@@ -1,5 +1,5 @@
 import { Review } from "./review";
-import { Member } from "./user";
+import { Market, Member } from "./user";
 
 export interface MeLiked {
   mb_id: string;

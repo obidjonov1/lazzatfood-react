@@ -23,3 +23,7 @@ export const retrieveChosenProduct = createSelector(
   selectMarketPage,
   (MarketPage) => MarketPage.chosenProduct
 );
+export const retrieveMemberReviews = createSelector(
+  selectMarketPage,
+  (MarketPage) => MarketPage.memberReviews
+);
