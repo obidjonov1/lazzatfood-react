@@ -391,6 +391,30 @@ export function ChosenProduct(props: any) {
           </div>
         </Container>
       </div>
+      <div className="review-form">
+        <h2>Write Review</h2>
+        <form onSubmit={handleSubmit}>
+          <Rating
+            name="half-rating"
+            value={rating}
+            onChange={(event, rating) => {
+              setRating(rating);
+            }}
+          />
+          <label htmlFor="review-message">Write your comment:</label>
+          <textarea
+            id="review-message"
+            name="review-message"
+            value={comment}
+            required
+            onChange={handleCommentChange}
+            // onChange={(event) => setMessage(event.target.value)}
+          ></textarea>
+          <button type="submit" onClick={handleCommentRequest}>
+            Submit Review
+          </button>
+        </form>
+      </div>
       <h2 className="product-review">Product Reviews</h2>
       <div className="product-review_cont">
         {Array.isArray(memberReviews) &&
@@ -452,7 +476,6 @@ export function ChosenProduct(props: any) {
                           onClick={() => CommentDelteHandler(reviews?._id)}
                         />
                       )}
-                      {/* <IoMdTrash className="review_like_icon" /> */}
                     </span>
                   </div>
                   <div className="review_text">{reviews.cmt_content}</div>
@@ -460,30 +483,6 @@ export function ChosenProduct(props: any) {
               </div>
             );
           })}
-      </div>
-      <div className="review-form">
-        <h2>Write Review</h2>
-        <form onSubmit={handleSubmit}>
-          <Rating
-            name="half-rating"
-            value={rating}
-            onChange={(event, rating) => {
-              setRating(rating);
-            }}
-          />
-          <label htmlFor="review-message">Write your comment:</label>
-          <textarea
-            id="review-message"
-            name="review-message"
-            value={comment}
-            required
-            onChange={handleCommentChange}
-            // onChange={(event) => setMessage(event.target.value)}
-          ></textarea>
-          <button type="submit" onClick={handleCommentRequest}>
-            Submit Review
-          </button>
-        </form>
       </div>
     </Container>
   );
