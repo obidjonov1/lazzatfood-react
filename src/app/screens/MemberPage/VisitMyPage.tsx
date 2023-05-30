@@ -301,7 +301,7 @@ export function VisitMyPage(props: any) {
                 chosenMember?.mb_type === "ADMIN" ? (
                   <a
                     className="dashboard_link"
-                    href="http://localhost:3003/resto"
+                    href="http://lazzatfood.com:3003/resto"
                     target="_blank"
                   >
                     go dashboard
