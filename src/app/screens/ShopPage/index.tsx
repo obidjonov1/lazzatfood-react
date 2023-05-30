@@ -17,6 +17,7 @@ import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { BiShoppingBag } from "react-icons/bi";
+import { NavbarOthersBanner } from "./banner";
 import "../../../css/shop.css";
 
 // REDUX
@@ -208,434 +209,438 @@ export function ShopPage(props: any) {
   });
 
   return (
-    <Container>
-      <div className="chosenMarket shop_cont">
-        <div className="container">
-          <div className="products-container">
-            <div className="product_container_box">
-              <div className="product_search">
-                <div className="product-search_box">
-                  <input
-                    className="product-search_input"
-                    type="text"
-                    name="search"
-                    placeholder="Searching..."
-                    value={searchTerm}
-                    onChange={handleSearch}
-                  />
-                  <button className="product-search_btn">
-                    <AiOutlineSearch className="search_btn" />
-                  </button>
+    <div>
+      <NavbarOthersBanner />
+      <Container>
+        <div className="chosenMarket shop_cont">
+          <div className="container">
+            <div className="products-container">
+              <div className="product_container_box">
+                <div className="product_search">
+                  <div className="product-search_box">
+                    <input
+                      className="product-search_input"
+                      type="text"
+                      name="search"
+                      placeholder="Searching..."
+                      value={searchTerm}
+                      onChange={handleSearch}
+                    />
+                    <button className="product-search_btn">
+                      <AiOutlineSearch className="search_btn" />
+                    </button>
+                  </div>
                 </div>
-              </div>
-              {/* <!-- SIDEBAR  --> */}
-              <div className="product-container_home_box">
-                <div className="container_home">
-                  <div className="sidebar_box">
-                    <div className="sidebar-category_box">
-                      <ul className="sidebar-menu-category-list">
-                        <li className="sidebar-menu-category">
-                          <div className="sidebar-accordion-menu_box">
-                            <div className="menu-title-flex">
-                              <Accordion
-                                sx={{
-                                  borderTopRightRadius: "10px",
-                                  borderTopLeftRadius: "10px",
-                                }}
-                                className="category_accardion"
-                                expanded={expanded === "panel1"}
-                                onChange={handleChange("panel1")}
-                              >
-                                <AccordionSummary
-                                  aria-controls="panel1d-content"
-                                  id="panel1d-header"
+                {/* <!-- SIDEBAR  --> */}
+                <div className="product-container_home_box">
+                  <div className="container_home">
+                    <div className="sidebar_box">
+                      <div className="sidebar-category_box">
+                        <ul className="sidebar-menu-category-list">
+                          <li className="sidebar-menu-category">
+                            <div className="sidebar-accordion-menu_box">
+                              <div className="menu-title-flex">
+                                <Accordion
+                                  sx={{
+                                    borderTopRightRadius: "10px",
+                                    borderTopLeftRadius: "10px",
+                                  }}
+                                  className="category_accardion"
+                                  expanded={expanded === "panel1"}
+                                  onChange={handleChange("panel1")}
                                 >
-                                  <div className="menu-title-flex">
-                                    <p className="menu-title">Food</p>
-                                  </div>
-                                </AccordionSummary>
-
-                                <AccordionDetails>
-                                  <RadioGroup
-                                    className="accardion_det"
-                                    aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue="all"
-                                    name="radio-buttons-group"
+                                  <AccordionSummary
+                                    aria-controls="panel1d-content"
+                                    id="panel1d-header"
                                   >
-                                    <FormControlLabel
-                                      value="all"
-                                      control={<Radio />}
-                                      label="All"
-                                      onClick={() =>
-                                        searchCollectionHandler("")
+                                    <div className="menu-title-flex">
+                                      <p className="menu-title">Food</p>
+                                    </div>
+                                  </AccordionSummary>
+
+                                  <AccordionDetails>
+                                    <RadioGroup
+                                      className="accardion_det"
+                                      aria-labelledby="demo-radio-buttons-group-label"
+                                      defaultValue="all"
+                                      name="radio-buttons-group"
+                                    >
+                                      <FormControlLabel
+                                        value="all"
+                                        control={<Radio />}
+                                        label="All"
+                                        onClick={() =>
+                                          searchCollectionHandler("")
+                                        }
+                                      />
+                                      <FormControlLabel
+                                        value="food"
+                                        control={<Radio />}
+                                        label="Food"
+                                        onClick={() =>
+                                          searchCollectionHandler("food")
+                                        }
+                                      />
+                                      <FormControlLabel
+                                        value="meat"
+                                        control={<Radio />}
+                                        label="Meat"
+                                        onClick={() =>
+                                          searchCollectionHandler("meat")
+                                        }
+                                      />
+                                      <FormControlLabel
+                                        value="drink"
+                                        control={<Radio />}
+                                        label="Drink"
+                                        onClick={() =>
+                                          searchCollectionHandler("drink")
+                                        }
+                                      />
+                                      <FormControlLabel
+                                        value="fresh"
+                                        control={<Radio />}
+                                        label="Fresh & Fast"
+                                        onClick={() =>
+                                          searchCollectionHandler("fresh")
+                                        }
+                                      />
+                                      <FormControlLabel
+                                        value="ready"
+                                        control={<Radio />}
+                                        label="Ready to Eat"
+                                        onClick={() =>
+                                          searchCollectionHandler("readyToEat")
+                                        }
+                                      />
+                                    </RadioGroup>
+                                  </AccordionDetails>
+                                </Accordion>
+                              </div>
+                            </div>
+                          </li>
+                          <li className="sidebar-menu-category">
+                            <div className="sidebar-accordion-menu_box">
+                              <div className="menu-title-flex">
+                                <Accordion
+                                  className="category_accardion"
+                                  expanded={expanded === "panel2"}
+                                  onChange={handleChange("panel2")}
+                                >
+                                  <AccordionSummary
+                                    aria-controls="panel1d-content"
+                                    id="panel1d-header"
+                                  >
+                                    <div className="menu-title-flex">
+                                      <p className="menu-title">Sorting By</p>
+                                    </div>
+                                  </AccordionSummary>
+
+                                  <AccordionDetails>
+                                    <RadioGroup
+                                      className="accardion_det"
+                                      aria-labelledby="demo-radio-buttons-group-label"
+                                      defaultValue="new"
+                                      name="radio-buttons-group"
+                                    >
+                                      <FormControlLabel
+                                        value="new"
+                                        control={<Radio />}
+                                        label="New"
+                                        onClick={() =>
+                                          searchOrderHandler("createdAt")
+                                        }
+                                      />
+                                      <FormControlLabel
+                                        value="Price"
+                                        control={<Radio />}
+                                        label="Price"
+                                        onClick={() =>
+                                          searchOrderHandler("product_price")
+                                        }
+                                      />
+                                      <FormControlLabel
+                                        value="Likes"
+                                        control={<Radio />}
+                                        label="Likes"
+                                        onClick={() =>
+                                          searchOrderHandler("product_likes")
+                                        }
+                                      />
+                                      <FormControlLabel
+                                        value="Views"
+                                        control={<Radio />}
+                                        label="Views"
+                                        onClick={() =>
+                                          searchOrderHandler("product_views")
+                                        }
+                                      />
+                                    </RadioGroup>
+                                  </AccordionDetails>
+                                </Accordion>
+                              </div>
+                            </div>
+                          </li>
+
+                          <li className="sidebar-menu-category">
+                            <div className="sidebar-accordion-menu_box">
+                              <div className="menu-title-flex">
+                                <Accordion
+                                  sx={{
+                                    borderBottomRightRadius: "10px",
+                                    borderBottomLeftRadius: "10px",
+                                  }}
+                                  className="category_accardion"
+                                  expanded={expanded === "panel3"}
+                                  onChange={handleChange("panel3")}
+                                >
+                                  <AccordionSummary
+                                    aria-controls="panel1d-content"
+                                    id="panel1d-header"
+                                  >
+                                    <div className="menu-title-flex">
+                                      <p className="menu-title">Collection</p>
+                                    </div>
+                                  </AccordionSummary>
+
+                                  <AccordionDetails>
+                                    <RadioGroup
+                                      className="accardion_det"
+                                      aria-labelledby="demo-radio-buttons-group-label"
+                                      name="radio-buttons-group"
+                                    >
+                                      <FormControlLabel
+                                        value="health"
+                                        control={<Radio />}
+                                        label="Beauty & Health"
+                                        onClick={() =>
+                                          searchCollectionHandler("health")
+                                        }
+                                      />
+                                      <FormControlLabel
+                                        value="texno"
+                                        control={<Radio />}
+                                        label="Texno"
+                                        onClick={() =>
+                                          searchCollectionHandler("texno")
+                                        }
+                                      />
+                                      <FormControlLabel
+                                        value="family"
+                                        control={<Radio />}
+                                        label="Family shop"
+                                        onClick={() =>
+                                          searchCollectionHandler("family")
+                                        }
+                                      />
+                                    </RadioGroup>
+                                  </AccordionDetails>
+                                </Accordion>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="product-box">
+                  <div className="product-main_box">
+                    <div className="product-grid" onClick={props.setPath}>
+                      {filteredProducts.map((ele: Product) => {
+                        const image_path = `${serverApi}/${ele.product_images[0]}`;
+                        const size_volume =
+                          ele.product_collection === "drink"
+                            ? ele.product_volume + " L"
+                            : ele.product_collection === "meat" ||
+                              ele.product_collection === "fresh"
+                            ? ele.product_weight + " kg"
+                            : ele.product_collection === "family" ||
+                              ele.product_collection === "readyToEat" ||
+                              ele.product_collection === "parfumerie" ||
+                              ele.product_collection === "texno"
+                            ? ele.product_family + " pc"
+                            : ele.product_size === "1" ||
+                              ele.product_size === "2" ||
+                              ele.product_size === "3"
+                            ? ele.product_size + " liter"
+                            : ele.product_size;
+
+                        return (
+                          <div
+                            className="showcase"
+                            key={`${ele._id}`}
+                            onClick={() => chosenProductHandler(ele._id)}
+                          >
+                            <div className="showcase-banner">
+                              <p className="showcase-badge">{size_volume}</p>
+                              <div className="showcase-actions">
+                                <button className="btn-action">
+                                  <span className="product_view_cnt">
+                                    {ele.product_views}
+                                  </span>
+                                  <Badge
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                    }}
+                                  >
+                                    <Checkbox
+                                      className="like_btn"
+                                      icon={
+                                        <AiFillHeart
+                                          className="like_btn"
+                                          style={{
+                                            color: "#fff",
+                                            fontSize: "27px",
+                                          }}
+                                        />
+                                      }
+                                      id={ele._id}
+                                      checkedIcon={
+                                        <AiFillHeart
+                                          className="like_btn"
+                                          style={{
+                                            color: "red",
+                                            fontSize: "27px",
+                                          }}
+                                        />
+                                      }
+                                      onClick={targetLikeProduct}
+                                      /* @ts-ignore */
+                                      checked={
+                                        ele?.me_liked &&
+                                        ele?.me_liked[0]?.my_favorite
+                                          ? true
+                                          : false
                                       }
                                     />
-                                    <FormControlLabel
-                                      value="food"
-                                      control={<Radio />}
-                                      label="Food"
-                                      onClick={() =>
-                                        searchCollectionHandler("food")
-                                      }
-                                    />
-                                    <FormControlLabel
-                                      value="meat"
-                                      control={<Radio />}
-                                      label="Meat"
-                                      onClick={() =>
-                                        searchCollectionHandler("meat")
-                                      }
-                                    />
-                                    <FormControlLabel
-                                      value="drink"
-                                      control={<Radio />}
-                                      label="Drink"
-                                      onClick={() =>
-                                        searchCollectionHandler("drink")
-                                      }
-                                    />
-                                    <FormControlLabel
-                                      value="fresh"
-                                      control={<Radio />}
-                                      label="Fresh & Fast"
-                                      onClick={() =>
-                                        searchCollectionHandler("fresh")
-                                      }
-                                    />
-                                    <FormControlLabel
-                                      value="ready"
-                                      control={<Radio />}
-                                      label="Ready to Eat"
-                                      onClick={() =>
-                                        searchCollectionHandler("readyToEat")
-                                      }
-                                    />
-                                  </RadioGroup>
-                                </AccordionDetails>
-                              </Accordion>
+                                    <span className="product_like_cnt">
+                                      {ele.product_likes}
+                                    </span>
+                                  </Badge>
+                                  <AiFillEye
+                                    style={{
+                                      color: "#fff",
+                                      fontSize: "27px",
+                                    }}
+                                    className="view_btn"
+                                  />
+                                  {/* <AiFillHeart className="like_btn" /> */}
+                                </button>
+                              </div>
+                            </div>
+                            <div className="showcase-content">
+                              <div className="price-box">
+                                <img
+                                  src={image_path}
+                                  alt=""
+                                  width="300"
+                                  className="product-img rasim"
+                                />
+                                <span className="which_market">
+                                  {ele.member_data[0].mb_nick} market
+                                </span>
+                                <div className="product_rating">
+                                  <Rating
+                                    sx={{ fontSize: "19px" }}
+                                    name="text-feedback"
+                                    value={
+                                      ele.reviews && ele.reviews.length > 0
+                                        ? (ele.reviews as Review[])[0]
+                                            ?.average_rating
+                                        : 0 // Provide a default value if there are no reviews
+                                    }
+                                    // value={value}
+                                    readOnly
+                                    precision={0.5}
+                                    emptyIcon={
+                                      <StarIcon
+                                        style={{ opacity: 0.55 }}
+                                        fontSize="inherit"
+                                      />
+                                    }
+                                  />
+                                  <span className="reviews_cnt">
+                                    {(ele.reviews as Review[])[0]?.reviews_cnt
+                                      ? (ele.reviews as Review[])[0]
+                                          ?.reviews_cnt
+                                      : 0}{" "}
+                                    <span>reviews</span>
+                                  </span>
+                                </div>
+                                <span className="product-title">
+                                  {ele.product_name}
+                                </span>
+                                <div className="product-cart_price_box">
+                                  {ele.product_discount && ele.product_price ? (
+                                    <>
+                                      <del className="prce_disc">
+                                        ₩{ele.product_discount.toLocaleString()}
+                                      </del>
+                                      <span className="price">
+                                        ₩{ele.product_price.toLocaleString()}
+                                      </span>
+                                    </>
+                                  ) : ele.product_discount ? (
+                                    <del className="prce_disc">
+                                      ₩{ele.product_discount.toLocaleString()}
+                                    </del>
+                                  ) : (
+                                    <span className="price">
+                                      ₩{ele.product_price.toLocaleString()}
+                                    </span>
+                                  )}
+                                </div>
+                                <button
+                                  className="cart-mobile"
+                                  type="button"
+                                  onClick={(e) => {
+                                    props.onAdd(ele);
+                                    e.stopPropagation();
+                                  }}
+                                >
+                                  <BiShoppingBag className="add-cart__btn" />
+                                  <p>Add To Cart</p>
+                                </button>
+                              </div>
                             </div>
                           </div>
-                        </li>
-                        <li className="sidebar-menu-category">
-                          <div className="sidebar-accordion-menu_box">
-                            <div className="menu-title-flex">
-                              <Accordion
-                                className="category_accardion"
-                                expanded={expanded === "panel2"}
-                                onChange={handleChange("panel2")}
-                              >
-                                <AccordionSummary
-                                  aria-controls="panel1d-content"
-                                  id="panel1d-header"
-                                >
-                                  <div className="menu-title-flex">
-                                    <p className="menu-title">Sorting By</p>
-                                  </div>
-                                </AccordionSummary>
-
-                                <AccordionDetails>
-                                  <RadioGroup
-                                    className="accardion_det"
-                                    aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue="new"
-                                    name="radio-buttons-group"
-                                  >
-                                    <FormControlLabel
-                                      value="new"
-                                      control={<Radio />}
-                                      label="New"
-                                      onClick={() =>
-                                        searchOrderHandler("createdAt")
-                                      }
-                                    />
-                                    <FormControlLabel
-                                      value="Price"
-                                      control={<Radio />}
-                                      label="Price"
-                                      onClick={() =>
-                                        searchOrderHandler("product_price")
-                                      }
-                                    />
-                                    <FormControlLabel
-                                      value="Likes"
-                                      control={<Radio />}
-                                      label="Likes"
-                                      onClick={() =>
-                                        searchOrderHandler("product_likes")
-                                      }
-                                    />
-                                    <FormControlLabel
-                                      value="Views"
-                                      control={<Radio />}
-                                      label="Views"
-                                      onClick={() =>
-                                        searchOrderHandler("product_views")
-                                      }
-                                    />
-                                  </RadioGroup>
-                                </AccordionDetails>
-                              </Accordion>
-                            </div>
-                          </div>
-                        </li>
-
-                        <li className="sidebar-menu-category">
-                          <div className="sidebar-accordion-menu_box">
-                            <div className="menu-title-flex">
-                              <Accordion
-                                sx={{
-                                  borderBottomRightRadius: "10px",
-                                  borderBottomLeftRadius: "10px",
-                                }}
-                                className="category_accardion"
-                                expanded={expanded === "panel3"}
-                                onChange={handleChange("panel3")}
-                              >
-                                <AccordionSummary
-                                  aria-controls="panel1d-content"
-                                  id="panel1d-header"
-                                >
-                                  <div className="menu-title-flex">
-                                    <p className="menu-title">Collection</p>
-                                  </div>
-                                </AccordionSummary>
-
-                                <AccordionDetails>
-                                  <RadioGroup
-                                    className="accardion_det"
-                                    aria-labelledby="demo-radio-buttons-group-label"
-                                    name="radio-buttons-group"
-                                  >
-                                    <FormControlLabel
-                                      value="health"
-                                      control={<Radio />}
-                                      label="Beauty & Health"
-                                      onClick={() =>
-                                        searchCollectionHandler("health")
-                                      }
-                                    />
-                                    <FormControlLabel
-                                      value="texno"
-                                      control={<Radio />}
-                                      label="Texno"
-                                      onClick={() =>
-                                        searchCollectionHandler("texno")
-                                      }
-                                    />
-                                    <FormControlLabel
-                                      value="family"
-                                      control={<Radio />}
-                                      label="Family shop"
-                                      onClick={() =>
-                                        searchCollectionHandler("family")
-                                      }
-                                    />
-                                  </RadioGroup>
-                                </AccordionDetails>
-                              </Accordion>
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
               </div>
-
-              <div className="product-box">
-                <div className="product-main_box">
-                  <div className="product-grid" onClick={props.setPath}>
-                    {filteredProducts.map((ele: Product) => {
-                      const image_path = `${serverApi}/${ele.product_images[0]}`;
-                      const size_volume =
-                        ele.product_collection === "drink"
-                          ? ele.product_volume + " L"
-                          : ele.product_collection === "meat" ||
-                            ele.product_collection === "fresh"
-                          ? ele.product_weight + " kg"
-                          : ele.product_collection === "family" ||
-                            ele.product_collection === "readyToEat" ||
-                            ele.product_collection === "parfumerie" ||
-                            ele.product_collection === "texno"
-                          ? ele.product_family + " pc"
-                          : ele.product_size === "1" ||
-                            ele.product_size === "2" ||
-                            ele.product_size === "3"
-                          ? ele.product_size + " liter"
-                          : ele.product_size;
-
-                      return (
-                        <div
-                          className="showcase"
-                          key={`${ele._id}`}
-                          onClick={() => chosenProductHandler(ele._id)}
-                        >
-                          <div className="showcase-banner">
-                            <p className="showcase-badge">{size_volume}</p>
-                            <div className="showcase-actions">
-                              <button className="btn-action">
-                                <span className="product_view_cnt">
-                                  {ele.product_views}
-                                </span>
-                                <Badge
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                  }}
-                                >
-                                  <Checkbox
-                                    className="like_btn"
-                                    icon={
-                                      <AiFillHeart
-                                        className="like_btn"
-                                        style={{
-                                          color: "#fff",
-                                          fontSize: "27px",
-                                        }}
-                                      />
-                                    }
-                                    id={ele._id}
-                                    checkedIcon={
-                                      <AiFillHeart
-                                        className="like_btn"
-                                        style={{
-                                          color: "red",
-                                          fontSize: "27px",
-                                        }}
-                                      />
-                                    }
-                                    onClick={targetLikeProduct}
-                                    /* @ts-ignore */
-                                    checked={
-                                      ele?.me_liked &&
-                                      ele?.me_liked[0]?.my_favorite
-                                        ? true
-                                        : false
-                                    }
-                                  />
-                                  <span className="product_like_cnt">
-                                    {ele.product_likes}
-                                  </span>
-                                </Badge>
-                                <AiFillEye
-                                  style={{
-                                    color: "#fff",
-                                    fontSize: "27px",
-                                  }}
-                                  className="view_btn"
-                                />
-                                {/* <AiFillHeart className="like_btn" /> */}
-                              </button>
-                            </div>
-                          </div>
-                          <div className="showcase-content">
-                            <div className="price-box">
-                              <img
-                                src={image_path}
-                                alt=""
-                                width="300"
-                                className="product-img rasim"
-                              />
-                              <span className="which_market">
-                                {ele.member_data[0].mb_nick} market
-                              </span>
-                              <div className="product_rating">
-                                <Rating
-                                  sx={{ fontSize: "19px" }}
-                                  name="text-feedback"
-                                  value={
-                                    ele.reviews && ele.reviews.length > 0
-                                      ? (ele.reviews as Review[])[0]
-                                          ?.average_rating
-                                      : 0 // Provide a default value if there are no reviews
-                                  }
-                                  // value={value}
-                                  readOnly
-                                  precision={0.5}
-                                  emptyIcon={
-                                    <StarIcon
-                                      style={{ opacity: 0.55 }}
-                                      fontSize="inherit"
-                                    />
-                                  }
-                                />
-                                <span className="reviews_cnt">
-                                  {(ele.reviews as Review[])[0]?.reviews_cnt
-                                    ? (ele.reviews as Review[])[0]?.reviews_cnt
-                                    : 0}{" "}
-                                  <span>reviews</span>
-                                </span>
-                              </div>
-                              <span className="product-title">
-                                {ele.product_name}
-                              </span>
-                              <div className="product-cart_price_box">
-                                {ele.product_discount && ele.product_price ? (
-                                  <>
-                                    <del className="prce_disc">
-                                      ₩{ele.product_discount.toLocaleString()}
-                                    </del>
-                                    <span className="price">
-                                      ₩{ele.product_price.toLocaleString()}
-                                    </span>
-                                  </>
-                                ) : ele.product_discount ? (
-                                  <del className="prce_disc">
-                                    ₩{ele.product_discount.toLocaleString()}
-                                  </del>
-                                ) : (
-                                  <span className="price">
-                                    ₩{ele.product_price.toLocaleString()}
-                                  </span>
-                                )}
-                              </div>
-                              <button
-                                className="cart-mobile"
-                                type="button"
-                                onClick={(e) => {
-                                  props.onAdd(ele);
-                                  e.stopPropagation();
-                                }}
-                              >
-                                <BiShoppingBag className="add-cart__btn" />
-                                <p>Add To Cart</p>
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
+              <div className="product_pagination">
+                <div></div>
+                <div></div>
+                <Pagination
+                  count={
+                    targetProductSearchObj.page >= 3
+                      ? targetProductSearchObj.page + 1
+                      : 3
+                  }
+                  page={targetProductSearchObj.page}
+                  renderItem={(item) => (
+                    <PaginationItem
+                      components={{
+                        previous: ArrowBackIcon,
+                        next: ArrowForwardIcon,
+                      }}
+                      {...item}
+                      color={"primary"}
+                      sx={{ color: "#43bb59" }}
+                    />
+                  )}
+                  onChange={handlePaginationChange}
+                />
+                <div></div>
               </div>
-            </div>
-            <div className="product_pagination">
-              <div></div>
-              <div></div>
-              <Pagination
-                count={
-                  targetProductSearchObj.page >= 3
-                    ? targetProductSearchObj.page + 1
-                    : 3
-                }
-                page={targetProductSearchObj.page}
-                renderItem={(item) => (
-                  <PaginationItem
-                    components={{
-                      previous: ArrowBackIcon,
-                      next: ArrowForwardIcon,
-                    }}
-                    {...item}
-                    color={"primary"}
-                    sx={{ color: "#43bb59" }}
-                  />
-                )}
-                onChange={handlePaginationChange}
-              />
-              <div></div>
             </div>
           </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 }

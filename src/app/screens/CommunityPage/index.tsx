@@ -13,6 +13,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { BoArticle, SearchArticlesObj } from "../../screens/types/boArticle";
 import CommunityApiService from "../../apiServices/communityApiService";
+import { NavbarOthersBanner } from "./banner";
 
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
@@ -87,84 +88,87 @@ export function CommunityPage(props: any) {
   };
 
   return (
-    <div className={"community_page"}>
-      <div className={"community_frame"}>
-        <Container sx={{ mt: "80px", mb: "80px" }}>
-          <Stack flexDirection={"row"} justifyContent={"space-between"}>
-            <CommunityChats />
-            <Stack className={"community_all_frame"} inputMode={"text"}>
-              <TabContext value={value}>
-                <Box className={"article_tabs"}>
-                  <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                    <TabList
-                      value={value}
-                      TabIndicatorProps={{ style: { background: "#1976d2" } }}
-                      onChange={handleChange}
-                      aria-label="lab API tabs example"
-                      style={{ borderColor: "blue" }}
-                    >
-                      <Tab label="All articles" value="1" />
-                      <Tab label="evaluate market" value="2" />
-                      <Tab label="review product" value="3" />
-                      <Tab label="stories" value="4" />
-                    </TabList>
+    <div>
+      <NavbarOthersBanner/>
+      <div className={"community_page"}>
+        <div className={"community_frame"}>
+          <Container sx={{ mt: "80px", mb: "80px" }}>
+            <Stack flexDirection={"row"} justifyContent={"space-between"}>
+              <CommunityChats />
+              <Stack className={"community_all_frame"} inputMode={"text"}>
+                <TabContext value={value}>
+                  <Box className={"article_tabs"}>
+                    <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                      <TabList
+                        value={value}
+                        TabIndicatorProps={{ style: { background: "#1976d2" } }}
+                        onChange={handleChange}
+                        aria-label="lab API tabs example"
+                        style={{ borderColor: "blue" }}
+                      >
+                        <Tab label="All articles" value="1" />
+                        <Tab label="evaluate market" value="2" />
+                        <Tab label="review product" value="3" />
+                        <Tab label="stories" value="4" />
+                      </TabList>
+                    </Box>
                   </Box>
-                </Box>
 
-                <Box className={"article_main"}>
-                  <TabPanel value="1">
-                    {/* parentga target qilyabmiz childga yuborish uchun [targetArticl.tsx[9]] */}
-                    <TargetArticles
-                      targetBoArticles={targetBoArticles}
-                      setArticlesRebuild={setArticlesRebuild}
-                    />
-                  </TabPanel>
-                  <TabPanel value="2">
-                    <TargetArticles
-                      targetBoArticles={targetBoArticles}
-                      setArticlesRebuild={setArticlesRebuild}
-                    />
-                  </TabPanel>
-                  <TabPanel value="3">
-                    <TargetArticles
-                      targetBoArticles={targetBoArticles}
-                      setArticlesRebuild={setArticlesRebuild}
-                    />
-                  </TabPanel>
-                  <TabPanel value="4">
-                    <TargetArticles
-                      targetBoArticles={targetBoArticles}
-                      setArticlesRebuild={setArticlesRebuild}
-                    />
-                  </TabPanel>
-                </Box>
-
-                <Box className={"article_bott"}>
-                  <Pagination
-                    count={
-                      searchArticlesObj.page >= 3
-                        ? searchArticlesObj.page + 1
-                        : 3
-                    }
-                    page={searchArticlesObj.page}
-                    renderItem={(item) => (
-                      <PaginationItem
-                        components={{
-                          previous: ArrowBackIcon,
-                          next: ArrowForwardIcon,
-                        }}
-                        {...item}
-                        color={"primary"}
-                        sx={{ color: "#43bb59" }}
+                  <Box className={"article_main"}>
+                    <TabPanel value="1">
+                      {/* parentga target qilyabmiz childga yuborish uchun [targetArticl.tsx[9]] */}
+                      <TargetArticles
+                        targetBoArticles={targetBoArticles}
+                        setArticlesRebuild={setArticlesRebuild}
                       />
-                    )}
-                    onChange={handlePaginationChange}
-                  />
-                </Box>
-              </TabContext>
+                    </TabPanel>
+                    <TabPanel value="2">
+                      <TargetArticles
+                        targetBoArticles={targetBoArticles}
+                        setArticlesRebuild={setArticlesRebuild}
+                      />
+                    </TabPanel>
+                    <TabPanel value="3">
+                      <TargetArticles
+                        targetBoArticles={targetBoArticles}
+                        setArticlesRebuild={setArticlesRebuild}
+                      />
+                    </TabPanel>
+                    <TabPanel value="4">
+                      <TargetArticles
+                        targetBoArticles={targetBoArticles}
+                        setArticlesRebuild={setArticlesRebuild}
+                      />
+                    </TabPanel>
+                  </Box>
+
+                  <Box className={"article_bott"}>
+                    <Pagination
+                      count={
+                        searchArticlesObj.page >= 3
+                          ? searchArticlesObj.page + 1
+                          : 3
+                      }
+                      page={searchArticlesObj.page}
+                      renderItem={(item) => (
+                        <PaginationItem
+                          components={{
+                            previous: ArrowBackIcon,
+                            next: ArrowForwardIcon,
+                          }}
+                          {...item}
+                          color={"primary"}
+                          sx={{ color: "#43bb59" }}
+                        />
+                      )}
+                      onChange={handlePaginationChange}
+                    />
+                  </Box>
+                </TabContext>
+              </Stack>
             </Stack>
-          </Stack>
-        </Container>
+          </Container>
+        </div>
       </div>
     </div>
   );

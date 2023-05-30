@@ -21,6 +21,7 @@ import {
 import { Order } from "../types/order";
 import OrderApiService from "../../apiServices/orderApiService";
 import { verifiedMemberData } from "../../apiServices/verify";
+import { NavbarOthersBanner } from "./banner";
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -65,122 +66,125 @@ export function OrdersPage(props: any) {
   };
 
   return (
-    <div className={"order_page"}>
-      <Container
-        maxWidth="lg"
-        style={{ display: "flex", flexDirection: "row" }}
-        sx={{ mt: "50px", mb: "50px" }}
-      >
-        <Stack className={"order_left"}>
-          {/* ochilishi kerak bo'lgan value(page) */}
-          <TabContext value={value}>
-            <Box className={"order_nav_frame"}>
-              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                <TabList
-                  TabIndicatorProps={{ style: { background: "#1976d2" } }}
-                  onChange={handleChange}
-                  value={value}
-                  aria-label="basic tabs example"
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <Tab label="orders" value="1" />
-                  <Tab label="process" value="2" />
-                  <Tab label="delivered" value="3" />
-                </TabList>
+    <div>
+      <NavbarOthersBanner />
+      <div className={"order_page"}>
+        <Container
+          maxWidth="lg"
+          style={{ display: "flex", flexDirection: "row" }}
+          sx={{ mt: "50px", mb: "50px" }}
+        >
+          <Stack className={"order_left"}>
+            {/* ochilishi kerak bo'lgan value(page) */}
+            <TabContext value={value}>
+              <Box className={"order_nav_frame"}>
+                <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                  <TabList
+                    TabIndicatorProps={{ style: { background: "#1976d2" } }}
+                    onChange={handleChange}
+                    value={value}
+                    aria-label="basic tabs example"
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Tab label="orders" value="1" />
+                    <Tab label="process" value="2" />
+                    <Tab label="delivered" value="3" />
+                  </TabList>
+                </Box>
+              </Box>
+              <Stack className={"order_main_content"}>
+                <PausedOrders setOrderRebuild={props.setOrderRebuild} />
+                <ProcessOrders setOrderRebuild={props.setOrderRebuild} />
+                <FinishedOrders setOrderRebuild={props.setOrderRebuild} />
+              </Stack>
+            </TabContext>
+          </Stack>
+          <Stack className={"order_right"}>
+            <Box className={"order_info_box"}>
+              <Box
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <div className={"order_user_img"}>
+                  <img
+                    className={"order_user_avatar"}
+                    src={verifiedMemberData?.mb_image}
+                    alt=""
+                  />
+                  <div className={"order_user_icon_box"}>
+                    <img src="/icons/user_icon.svg" alt="" />
+                  </div>
+                </div>
+                <span className={"order_user_name"}>
+                  {verifiedMemberData?.mb_nick}
+                </span>
+                <span className={"order_user_prof"}>
+                  {verifiedMemberData?.mb_type ?? "USER"}
+                </span>
+              </Box>
+              <div
+                style={{
+                  border: `1px solid rgb(221, 221, 221)`,
+                  marginTop: "40px",
+                  width: "100%",
+                }}
+              ></div>
+              <Box className={"order_user_address"}>
+                <div style={{ display: "flex" }}>
+                  <LocationOnIcon />
+                </div>
+                <div className={"spec_address_txt"}>
+                  {verifiedMemberData?.mb_address ?? "No address"}
+                </div>
               </Box>
             </Box>
-            <Stack className={"order_main_content"}>
-              <PausedOrders setOrderRebuild={props.setOrderRebuild} />
-              <ProcessOrders setOrderRebuild={props.setOrderRebuild} />
-              <FinishedOrders setOrderRebuild={props.setOrderRebuild} />
-            </Stack>
-          </TabContext>
-        </Stack>
-        <Stack className={"order_right"}>
-          <Box className={"order_info_box"}>
-            <Box
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <div className={"order_user_img"}>
-                <img
-                  className={"order_user_avatar"}
-                  src={verifiedMemberData?.mb_image}
-                  alt=""
+            <Box className={"order_info_box"} marginTop={"15px"}>
+              <input
+                type={"text"}
+                name={"card_number"}
+                placeholder={"Card number: 0000 1111 2222 3333"}
+                className={"card_input"}
+              />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <input
+                  type={"text"}
+                  name={"card_period"}
+                  placeholder={"07 / 25"}
+                  className={"card_half_input"}
                 />
-                <div className={"order_user_icon_box"}>
-                  <img src="/icons/user_icon.svg" alt="" />
-                </div>
+                <input
+                  type={"text"}
+                  name={"card_period"}
+                  placeholder={"CVV : 007"}
+                  className={"card_half_input"}
+                />
               </div>
-              <span className={"order_user_name"}>
-                {verifiedMemberData?.mb_nick}
-              </span>
-              <span className={"order_user_prof"}>
-                {verifiedMemberData?.mb_type ?? "USER"}
-              </span>
-            </Box>
-            <div
-              style={{
-                border: `1px solid rgb(221, 221, 221)`,
-                marginTop: "40px",
-                width: "100%",
-              }}
-            ></div>
-            <Box className={"order_user_address"}>
-              <div style={{ display: "flex" }}>
-                <LocationOnIcon />
-              </div>
-              <div className={"spec_address_txt"}>
-                {verifiedMemberData?.mb_address ?? "No address"}
-              </div>
-            </Box>
-          </Box>
-          <Box className={"order_info_box"} marginTop={"15px"}>
-            <input
-              type={"text"}
-              name={"card_number"}
-              placeholder={"Card number: 0000 1111 2222 3333"}
-              className={"card_input"}
-            />
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
               <input
                 type={"text"}
-                name={"card_period"}
-                placeholder={"07 / 25"}
-                className={"card_half_input"}
+                name={"card_creator"}
+                placeholder={"Steve Sb"}
+                className={"card_input"}
               />
-              <input
-                type={"text"}
-                name={"card_period"}
-                placeholder={"CVV : 007"}
-                className={"card_half_input"}
-              />
-            </div>
-            <input
-              type={"text"}
-              name={"card_creator"}
-              placeholder={"Steve Sb"}
-              className={"card_input"}
-            />
-            <div className={"cards_box"}>
-              <img src="/icons/western.svg" alt="" />
-              <img src="/icons/master.svg" alt="" />
-              <img src="/icons/paypal.svg" alt="" />
-              <img src="/icons/visa.svg" alt="" />
-            </div>
-          </Box>
-        </Stack>
-      </Container>
+              <div className={"cards_box"}>
+                <img src="/icons/western.svg" alt="" />
+                <img src="/icons/master.svg" alt="" />
+                <img src="/icons/paypal.svg" alt="" />
+                <img src="/icons/visa.svg" alt="" />
+              </div>
+            </Box>
+          </Stack>
+        </Container>
+      </div>
     </div>
   );
 }

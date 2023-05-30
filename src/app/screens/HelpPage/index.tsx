@@ -10,7 +10,9 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Box, Stack } from "@mui/material";
-import "../../../css/help.css"
+import { NavbarOthersBanner } from "./banner";
+
+import "../../../css/help.css";
 
 export function HelpPage() {
   /** INITIALIZATIONS **/
@@ -94,62 +96,65 @@ export function HelpPage() {
   ];
 
   return (
-    <Container>
-      <div className="help_page">
-        <h2 className="help-page_top">Contact Us: 010-5448-9811</h2>
+    <div>
+      <NavbarOthersBanner />
+      <Container>
+        <div className="help_page">
+          <h2 className="help-page_top">Contact Us: 010-5448-9811</h2>
 
-        <TabContext value={value}>
-          <TabList
-            onChange={handleChanges}
-            aria-label="simple tabs example"
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <Tab label="Rules" value="1" />
-            <Tab label="FAQ" value="2" />
-          </TabList>
+          <TabContext value={value}>
+            <TabList
+              onChange={handleChanges}
+              aria-label="simple tabs example"
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              <Tab label="Rules" value="1" />
+              <Tab label="FAQ" value="2" />
+            </TabList>
 
-          <TabPanel value="1">
-            <Stack className={"theRules_box"}>
-              <Box className={"theRulesFrame"}>
-                {rules.map((ele) => {
-                  return <p>{ele}</p>;
-                })}
-              </Box>
-            </Stack>
-          </TabPanel>
+            <TabPanel value="1">
+              <Stack className={"theRules_box"}>
+                <Box className={"theRulesFrame"}>
+                  {rules.map((ele) => {
+                    return <p>{ele}</p>;
+                  })}
+                </Box>
+              </Stack>
+            </TabPanel>
 
-          <TabPanel value="2">
-            <Stack className="help_accardin">
-              {FAQ.map((ele) => {
-                return (
-                  <Accordion className="help_accardion">
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1bh-content"
-                      id="panel1bh-header"
-                    >
-                      <Typography
-                        style={{ width: "100%" }}
-                        sx={{ width: "33%", flexShrink: 0 }}
+            <TabPanel value="2">
+              <Stack className="help_accardin">
+                {FAQ.map((ele) => {
+                  return (
+                    <Accordion className="help_accardion">
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1bh-content"
+                        id="panel1bh-header"
                       >
-                        <p className="help-accardion_title">{ele.question}</p>
-                      </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Typography className="help-accardion_subtitle">
-                        {ele.answer}
-                      </Typography>
-                    </AccordionDetails>
-                  </Accordion>
-                );
-              })}
-            </Stack>
-          </TabPanel>
-        </TabContext>
-      </div>
-    </Container>
+                        <Typography
+                          style={{ width: "100%" }}
+                          sx={{ width: "33%", flexShrink: 0 }}
+                        >
+                          <p className="help-accardion_title">{ele.question}</p>
+                        </Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Typography className="help-accardion_subtitle">
+                          {ele.answer}
+                        </Typography>
+                      </AccordionDetails>
+                    </Accordion>
+                  );
+                })}
+              </Stack>
+            </TabPanel>
+          </TabContext>
+        </div>
+      </Container>
+    </div>
   );
 }

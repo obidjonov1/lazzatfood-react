@@ -3,6 +3,7 @@ import { Route, Switch, useLocation, useRouteMatch } from "react-router-dom";
 import { VisitOtherPage } from "./VisitOtherPage";
 import { VisitMyPage } from "./VisitMyPage";
 import "../../../css/my_page.css";
+import { NavbarOthersBanner } from "./banner";
 
 function useQuery() {
   const { search } = useLocation();
@@ -20,7 +21,8 @@ export function MemberPage(props: any) {
   console.log("TEST QUERY::", query.get("mb_id"));
 
   return (
-    <div className="">
+    <div>
+      <NavbarOthersBanner/>
       <Switch>
         <Route path={`${member.path}/other`}>
           <VisitOtherPage

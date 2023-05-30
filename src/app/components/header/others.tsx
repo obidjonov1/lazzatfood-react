@@ -436,9 +436,9 @@ export function NavbarOthers(props: any) {
       </div>
 
       {/* <!-- Banner --> */}
-      <div className="banner-container">
+      {/* <div className="banner-container">
         <div className="banner-content">
-          {/* <ul className="pages">
+          <ul className="pages">
             <li onClick={props.setPath}>
               <NavLink
                 to={"/"}
@@ -453,9 +453,9 @@ export function NavbarOthers(props: any) {
             <li>
               <p>This Page</p>
             </li>
-          </ul> */}
+          </ul>
         </div>
-      </div>
+      </div> */}
       {/* <!-- Banner end --> */}
     </div>
   );
