@@ -87,6 +87,7 @@ export function CommunityChats() {
             textAlign: "center",
             fontSize: "large",
             fontFamily: "serif",
+            textTransform:"capitalize"
           }}
         >
           {msg.text}, {verifiedMemberData?.mb_nick ?? "guest"}

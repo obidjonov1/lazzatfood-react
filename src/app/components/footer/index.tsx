@@ -19,24 +19,33 @@ export function Footer(props: any) {
             <div className="footer__social">
               <ul className="footer-social__items">
                 <li>
-                  <NavLink to={"#"} className="social-link">
+                  <a
+                    href="https://www.facebook.com/sarvar19"
+                    className="social-link"
+                  >
                     <BsFacebook />
-                  </NavLink>
+                  </a>
                 </li>
                 <li>
-                  <NavLink to={"#"} className="social-link">
+                  <a
+                    href="https://youtube.com/@SarvarObidjonov"
+                    className="social-link"
+                  >
                     <AiFillYoutube />
-                  </NavLink>
+                  </a>
                 </li>
                 <li>
-                  <NavLink to={"#"} className="social-link">
+                  <a
+                    href="https://www.instagram.com/sarvar_obidjonov1"
+                    className="social-link"
+                  >
                     <AiOutlineInstagram />
-                  </NavLink>
+                  </a>
                 </li>
                 <li>
-                  <NavLink to={"#"} className="social-link">
+                  <a href="https://t.me/sarvarobidjonov" className="social-link">
                     <BsTelegram />
-                  </NavLink>
+                  </a>
                 </li>
               </ul>
             </div>

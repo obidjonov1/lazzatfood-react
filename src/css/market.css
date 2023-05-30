@@ -540,6 +540,26 @@ a {
 }
 
 /* Product Review */
+.write_review_btn {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #111f38;
+  right: 0;
+  bottom: -3px;
+  box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.2);
+}
+.write_review_btn:hover {
+  box-shadow: 0px 0px 20px 0px rgba(50, 50, 50, 0.3);
+}
+.write_review_btn .pencil {
+  font-size: 20px;
+  margin-right: 8px;
+  color: #111f38;
+}
+
 .product-review {
   text-align: center;
   margin: 10px 0 30px 0;
@@ -556,8 +576,9 @@ a {
 }
 
 .product-review_cont .product-review_box {
-  border: 1px solid #a7a7a7;
-  height: 180px;
+  /* border: 1px solid #a7a7a7; */
+  box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.2);
+  min-height: 130px;
   width: 90%;
   border-top-left-radius: 40px;
   border-top-right-radius: 80px;
@@ -610,6 +631,9 @@ a {
   margin-bottom: 8px;
   align-items: center;
 }
+.review_info .review_like .review_like_cnt {
+  margin-top: 4px;
+}
 
 .review_body .review_info .review_like_icon {
   /* margin: 0 5px; */
@@ -619,14 +643,22 @@ a {
 .review_text {
   overflow: auto;
   width: 98%;
-  height: 85px;
   font-size: 15px;
   color: #626262;
 }
 
+.review-form_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .review-form {
-  margin: 0 auto 100px auto;
+  margin: 0 auto;
+  position: absolute;
+  top: 33%;
   width: 580px;
+  height: 325px;
   background: #f4f4f4;
   padding: 20px;
   border-radius: 12px;

@@ -80,7 +80,7 @@ export function HomePage(props: any) {
                           to={"/shop"}
                           onClick={props.setPath}
                         >
-                          Big Sale %
+                          On Sale
                         </NavLink>
                       </div>
                     </div>

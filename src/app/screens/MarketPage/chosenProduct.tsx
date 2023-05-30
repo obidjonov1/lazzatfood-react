@@ -1,6 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Favorite } from "@mui/icons-material";
-import { Container, Rating, Button, Box } from "@mui/material";
+import {
+  Container,
+  Rating,
+  Button,
+  Box,
+  Modal,
+  Fade,
+  makeStyles,
+} from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import "swiper/css";
@@ -13,6 +21,7 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { AiOutlineLike } from "react-icons/ai";
+import { TbPencil } from "react-icons/tb";
 import { IoMdTrash } from "react-icons/io";
 import { FreeMode, Thumbs } from "swiper";
 import { useParams } from "react-router-dom";
@@ -22,6 +31,7 @@ import assert from "assert";
 import { Definer } from "../../../lib/Definer";
 import { useHistory } from "react-router-dom";
 import { verifiedMemberData } from "../../apiServices/verify";
+import Backdrop from "@material-ui/core/Backdrop";
 
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
@@ -95,9 +105,12 @@ SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 export function ChosenProduct(props: any) {
   /* INITIALIZATION */
-  const editorRef = useRef();
+  const refs: any = useRef([]);
   const history = useHistory();
-  const [value, setValue] = React.useState("1");
+
+  const [reviewOpen, setReviewOpen] = useState(false);
+  const handleReviewOpen = () => setReviewOpen(true);
+  const handleReviewClose = () => setReviewOpen(false);
 
   const [reviewsRebuild, setReviewsRebuild] = useState<Date>(new Date());
   let { product_id } = useParams<{ product_id: string }>();
@@ -115,7 +128,6 @@ export function ChosenProduct(props: any) {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [message, setMessage] = useState("");
 
-  //** for Creating values *//
   const [rating, setRating] = useState<number | null>(0);
   const [comment, setComment] = useState<string>("");
 
@@ -123,7 +135,7 @@ export function ChosenProduct(props: any) {
     setComment(e.target.value);
   };
 
-  const handleCommentRequest = async () => {
+  const handleReview = async () => {
     try {
       assert.ok(verifiedMemberData, Definer.auth_err1);
       const is_fulfilled = comment !== "" && rating !== 0;
@@ -137,14 +149,24 @@ export function ChosenProduct(props: any) {
       await productService.createReview(comment_data);
       await sweetTopSmallSuccessAlert("Review is created successfully!");
 
+      handleReviewClose();
       setReviewsRebuild(new Date());
     } catch (err) {
       console.log(err);
+      handleReviewClose();
       sweetErrorHandling(err).then();
     }
   };
 
-  const CommentDelteHandler = async (review_id: string) => {
+  const passwordKeyPressHandler = (e: any) => {
+    if (e.key === "Enter" && reviewOpen) {
+      handleReview().then();
+    } else if (e.key === "Enter" && reviewOpen) {
+      handleReview().then();
+    }
+  };
+
+  const ReviewDeleteHandler = async (review_id: string) => {
     try {
       assert.ok(verifiedMemberData, Definer.auth_err1);
       let confirmation = window.confirm(
@@ -391,31 +413,51 @@ export function ChosenProduct(props: any) {
           </div>
         </Container>
       </div>
-      <div className="review-form">
-        <h2>Write Review</h2>
-        <form onSubmit={handleSubmit}>
-          <Rating
-            name="half-rating"
-            value={rating}
-            onChange={(event, rating) => {
-              setRating(rating);
-            }}
-          />
-          <label htmlFor="review-message">Write your comment:</label>
-          <textarea
-            id="review-message"
-            name="review-message"
-            value={comment}
-            required
-            onChange={handleCommentChange}
-            // onChange={(event) => setMessage(event.target.value)}
-          ></textarea>
-          <button type="submit" onClick={handleCommentRequest}>
-            Submit Review
-          </button>
-        </form>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={reviewOpen}
+        onClose={handleReviewClose}
+        closeAfterTransition
+      >
+        <Fade in={reviewOpen}>
+          <div className="review-form_container">
+            <div className="review-form">
+              <h2>Write Review</h2>
+              <form onSubmit={handleSubmit}>
+                <Rating
+                  name="half-rating"
+                  value={rating}
+                  onChange={(event, rating) => {
+                    setRating(rating);
+                  }}
+                />
+                <label htmlFor="review-message">Write your comment:</label>
+                <textarea
+                  id="review-message"
+                  name="review-message"
+                  value={comment}
+                  required
+                  // onKeyPress={passwordKeyPressHandler}
+                  onChange={handleCommentChange}
+                  // onChange={(event) => setMessage(event.target.value)}
+                ></textarea>
+                <button type="submit" onClick={handleReview}>
+                  Submit Review
+                </button>
+              </form>
+            </div>
+          </div>
+        </Fade>
+      </Modal>
+      <div style={{ position: "relative" }}>
+        <h2 className="product-review">Product Reviews</h2>
+        <button onClick={handleReviewOpen} className="write_review_btn">
+          {/* <img src={"/icons/pencil.svg"} alt="" /> */}
+          <TbPencil className="pencil"/>
+          Write review
+        </button>
       </div>
-      <h2 className="product-review">Product Reviews</h2>
       <div className="product-review_cont">
         {Array.isArray(memberReviews) &&
           memberReviews.map((reviews: Reviews, index: any) => {
@@ -450,32 +492,35 @@ export function ChosenProduct(props: any) {
                       {moment(reviews?.createdAt).format("LLL")}
                     </span>
                     <span className="review_like">
-                      {reviews?.cmt_likes}
+                      <span className="review_like_cnt">
+                        {reviews?.cmt_likes}
+                      </span>
                       <Checkbox
                         className="review_like_icon"
                         icon={<AiOutlineLike style={{ fontSize: "20px" }} />}
-                        id={reviews?._id}
+                        id={reviews._id}
                         checkedIcon={
                           <AiOutlineLike
-                            style={{ color: "#000", fontSize: "20px" }}
+                            style={{ color: "red", fontSize: "20px" }}
                           />
                         }
                         checked={
                           reviews?.member_data[0]?.me_liked &&
-                          reviews.member_data[0]?.me_liked[0].my_favorite
+                          !!reviews.member_data[0]?.me_liked[0].my_favorite
                             ? true
                             : false
                         }
                         onClick={(e) => targetLikeProduct(e, "review")}
                       />
-                      {(verifiedMemberData?._id ===
+
+                      {/* {(verifiedMemberData?._id ===
                         reviews?.member_data[0]._id ||
                         verifiedMemberData?.mb_type === "ADMIN") && (
                         <IoMdTrash
                           className="review_like_icon"
-                          onClick={() => CommentDelteHandler(reviews?._id)}
+                          onClick={() => ReviewDeleteHandler(reviews?._id)}
                         />
-                      )}
+                      )} */}
                     </span>
                   </div>
                   <div className="review_text">{reviews.cmt_content}</div>
@@ -487,3 +532,6 @@ export function ChosenProduct(props: any) {
     </Container>
   );
 }
+// function useStyles() {
+//   throw new Error("Function not implemented.");
+// }

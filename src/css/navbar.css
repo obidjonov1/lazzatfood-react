@@ -410,7 +410,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 .dropdown-panel {
   position: absolute;
-  top: 133%;
+  top: 100%;
   left: -200px;
   background: var(--white);
   width: 1100px;

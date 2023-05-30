@@ -43,6 +43,10 @@ export function TargetArticles(props: any) {
           ? `${serverApi}/${article.art_image}`
           : "/community/article_img.svg";
 
+        const user_image = article?.member_data.mb_image
+          ? `${serverApi}/${article?.member_data.mb_image}`
+          : "/images/default_user.svg";
+
         return (
           <Link
             className={"all_article_box"}
@@ -59,7 +63,7 @@ export function TargetArticles(props: any) {
                 display={"flex"}
                 className="article_img"
               >
-                <img src={"/images/default_user.svg"} alt="" />
+                <img src={user_image} alt="" />
                 <span className={"all_article_author_user"}>
                   {article?.member_data.mb_nick}
                 </span>

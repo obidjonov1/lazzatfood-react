@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Container, Menu, MenuItem, ListItemIcon } from "@mui/material";
 import { Logout } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
-import { BsFacebook, BsWhatsapp, BsFileEarmarkPerson } from "react-icons/bs";
+import { BsFacebook, BsTelegram, BsFileEarmarkPerson } from "react-icons/bs";
 import {
   AiFillYoutube,
   AiOutlineInstagram,
@@ -24,24 +24,36 @@ export function NavbarOthers(props: any) {
             <div className="container">
               <ul className="header-social-container">
                 <li>
-                  <NavLink to={"#"} className="social-link">
+                  <a
+                    href="https://www.facebook.com/sarvar19"
+                    className="social-link"
+                  >
                     <BsFacebook />
-                  </NavLink>
+                  </a>
                 </li>
                 <li>
-                  <NavLink to={"#"} className="social-link">
+                  <a
+                    href="https://youtube.com/@SarvarObidjonov"
+                    className="social-link"
+                  >
                     <AiFillYoutube />
-                  </NavLink>
+                  </a>
                 </li>
                 <li>
-                  <NavLink to={"#"} className="social-link">
+                  <a
+                    href="https://www.instagram.com/sarvar_obidjonov1"
+                    className="social-link"
+                  >
                     <AiOutlineInstagram />
-                  </NavLink>
+                  </a>
                 </li>
                 <li>
-                  <NavLink to={"#"} className="social-link">
-                    <BsWhatsapp />
-                  </NavLink>
+                  <a
+                    href="https://t.me/sarvarobidjonov"
+                    className="social-link"
+                  >
+                    <BsTelegram />
+                  </a>
                 </li>
               </ul>
               <div className="header-alert-news">

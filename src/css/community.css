@@ -181,6 +181,7 @@
   font-size: 16px;
   line-height: 26px;
   color: #fff;
+  text-transform: capitalize;
 }
 
 .community_page .all_article_title {
