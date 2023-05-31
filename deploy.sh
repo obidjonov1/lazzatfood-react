@@ -9,7 +9,7 @@ git pull origin master
 npm i yarn -g
 yarn global add serve
 yarn
-yarn run build
+# yarn run build
 pm2 start "yarn run start:prod" --name=LAZZATFOOD-REACT
 
 # DEVELOPMENT
