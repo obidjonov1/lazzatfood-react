@@ -38,7 +38,7 @@ export function NavbarHomeBanner(props: any) {
           <img src="/images/slide5.jpeg" alt="" className="slide_img" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/images/slide3.jpeg" alt="" className="slide_img" />
+          <img src="/images/slider3.jpeg" alt="" className="slide_img" />
         </SwiperSlide>
       </Swiper>
     </Container>
