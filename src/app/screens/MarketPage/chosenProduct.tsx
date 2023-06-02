@@ -271,9 +271,9 @@ export function ChosenProduct(props: any) {
               slidesPerView={1}
               spaceBetween={30}
               loop={true}
-              pagination={{
-                clickable: true,
-              }}
+              // pagination={{
+              //   clickable: true,
+              // }}
               navigation={true}
               modules={[Pagination, Navigation]}
               className="swip"

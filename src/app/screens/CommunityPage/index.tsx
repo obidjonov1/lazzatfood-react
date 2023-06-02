@@ -89,7 +89,7 @@ export function CommunityPage(props: any) {
 
   return (
     <div>
-      <NavbarOthersBanner/>
+      <NavbarOthersBanner />
       <div className={"community_page"}>
         <div className={"community_frame"}>
           <Container sx={{ mt: "80px", mb: "80px" }}>
@@ -157,8 +157,8 @@ export function CommunityPage(props: any) {
                             next: ArrowForwardIcon,
                           }}
                           {...item}
-                          color={"primary"}
-                          sx={{ color: "#43bb59" }}
+                          color="standard"
+                          sx={{ color: "#424242" }}
                         />
                       )}
                       onChange={handlePaginationChange}

@@ -560,7 +560,7 @@ export function OneMarket(props: any) {
                                   }}
                                 >
                                   <Checkbox
-                                    className="like_btn"
+                                    className="like_btn like_btn_action"
                                     icon={
                                       <AiFillHeart
                                         className="like_btn"
@@ -699,8 +699,8 @@ export function OneMarket(props: any) {
                       next: ArrowForwardIcon,
                     }}
                     {...item}
-                    color={"primary"}
-                    sx={{ color: "#43bb59" }}
+                    color="standard"
+                    sx={{ color: "#424242" }}
                   />
                 )}
                 onChange={handlePaginationChange}

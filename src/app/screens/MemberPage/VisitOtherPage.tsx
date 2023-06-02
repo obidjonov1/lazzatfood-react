@@ -48,6 +48,7 @@ import { Definer } from "../../../lib/Definer";
 import assert from "assert";
 import FollowApiService from "../../apiServices/followApiService";
 import { verifiedMemberData } from "../../apiServices/verify";
+import { serverApi } from "../../../lib/config";
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -226,8 +227,8 @@ export function VisitOtherPage(props: any) {
                                 next: ArrowForwardIcon,
                               }}
                               {...item}
-                              color="primary"
-                              sx={{ color: "#43bb59" }}
+                              color="standard"
+                              sx={{ color: "#424242" }}
                             />
                           )}
                           onChange={handlePaginationChange}
@@ -278,7 +279,11 @@ export function VisitOtherPage(props: any) {
                 >
                   <div className={"order_user_img"}>
                     <img
-                      src={"/images/default_user.svg"}
+                      src={
+                        chosenMember?.mb_image
+                          ? `${serverApi}/${chosenMember?.mb_image}`
+                          : "/images/default_user.svg"
+                      }
                       className={"order_user_avatar"}
                       alt=""
                     />

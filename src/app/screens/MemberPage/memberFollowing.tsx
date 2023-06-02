@@ -160,8 +160,8 @@ export function MemberFollowing(props: any) {
                   next: ArrowForwardIcon,
                 }}
                 {...item}
-                color="primary"
-                sx={{ color: "#43bb59" }}
+                color="standard"
+                sx={{ color: "#424242" }}
               />
             )}
             onChange={handlePaginationChange}

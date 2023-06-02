@@ -179,6 +179,7 @@ export function HomePage(props: any) {
                     <div className="sidebar-accordion-menu">
                       <div className="menu-title-flex">
                         <Accordion
+                          className="category_accardion"
                           expanded={expanded === "panel2"}
                           onChange={handleChange("panel2")}
                         >
@@ -265,6 +266,7 @@ export function HomePage(props: any) {
                     <div className="sidebar-accordion-menu">
                       <div className="menu-title-flex">
                         <Accordion
+                          className="category_accardion"
                           expanded={expanded === "panel3"}
                           onChange={handleChange("panel3")}
                         >
@@ -352,6 +354,7 @@ export function HomePage(props: any) {
                     <div className="sidebar-accordion-menu">
                       <div className="menu-title-flex">
                         <Accordion
+                          className="category_accardion"
                           expanded={expanded === "panel4"}
                           onChange={handleChange("panel4")}
                         >

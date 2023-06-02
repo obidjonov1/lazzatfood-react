@@ -145,7 +145,7 @@ export function RecommendedProducts(props: any) {
                               }}
                             >
                               <Checkbox
-                                className="like_btn"
+                                className="like_btn like_btn_action"
                                 icon={
                                   <AiFillHeart
                                     className="like_btn"

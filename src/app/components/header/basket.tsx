@@ -104,7 +104,11 @@ export default function Basket(props: any) {
       >
         <Stack className={"basket_frame"}>
           <Box className={"all_check_box"}>
-            {false ? <div>Cart is empty!</div> : <div>My Cart Products:</div>}
+            {cartItems.length === 0 ? (
+              <div>Cart is empty!</div>
+            ) : (
+              <div>My Cart Products:</div>
+            )}
           </Box>
 
           <Box className={"orders_main_wrapper"}>

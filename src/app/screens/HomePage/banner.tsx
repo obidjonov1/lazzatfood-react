@@ -17,7 +17,7 @@ export function NavbarHomeBanner(props: any) {
         pagination={{
           clickable: true,
         }}
-        navigation={true}
+        // navigation={true}
         modules={[Pagination, Navigation]}
         className="mySwiper"
         autoplay={{
