@@ -121,14 +121,13 @@ export function OneMarket(props: any) {
   const refs: any = useRef([]);
   const history = useHistory();
   let { market_id } = useParams<{ market_id: string }>();
-  const value = 5;
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
   const [searchTerm, setSearchTerm] = useState("");
 
   const { setRandomMarkets, setChosenMarket, setTargetProducts } =
     actionDispatch(useDispatch());
   const { randomMarkets } = useSelector(randomMarketRetriver);
-  const { chosenMarket } = useSelector(chosenMarketRetriver);
+  const { chosenMarket: chosenMarket } = useSelector(chosenMarketRetriver);
   const { targetProducts } = useSelector(targetProductsRetriver);
   const [chosenMarketId, setChosenMarketId] = useState<string>(market_id);
   const [targetProductSearchObj, setTargetProductSearchObj] =
@@ -245,8 +244,8 @@ export function OneMarket(props: any) {
       <div className="chosenMarket">
         <div className="container">
           <div className="scroll-markets_bar">
-            <h1>
-              Lazzat Food <span>Market</span>
+            <h1 style={{ textTransform: "capitalize" }}>
+              {chosenMarket?.mb_nick} Market
             </h1>
             <div className="scroll-markets_swipper">
               <Stack
@@ -281,7 +280,9 @@ export function OneMarket(props: any) {
                         onClick={() => chosenMarketHandler(ele._id)}
                       >
                         <img src={image_path} alt="" />
-                        <span>{ele.mb_nick}</span>
+                        <span style={{ textTransform: "capitalize" }}>
+                          {ele.mb_nick}
+                        </span>
                       </SwiperSlide>
                     );
                   })}
@@ -521,7 +522,7 @@ export function OneMarket(props: any) {
               </div>
               <div className="product-box">
                 <div className="product-main_box">
-                  <div className="product-grid">
+                  <div className="product-grid product-grid_shop">
                     {filteredProducts.map((ele: Product) => {
                       const image_path = `${serverApi}/${ele.product_images[0]}`;
                       const size_volume =

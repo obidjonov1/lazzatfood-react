@@ -14,7 +14,7 @@ class MarketApiService {
 
   async getTopMarkets() {
     try {
-      const url = "/markets?order=top&page=1&limit=6",
+      const url = "/markets?order=top&page=1&limit=4",
         result = await axios.get(this.path + url, { withCredentials: true });
 
       assert.ok(result, Definer.general_err1);

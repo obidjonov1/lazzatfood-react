@@ -22,6 +22,7 @@ import assert from "assert";
 import { serverApi } from "../../../lib/config";
 import { useHistory } from "react-router-dom";
 import { verifiedMemberData } from "../../apiServices/verify";
+import { BsPersonFillX } from "react-icons/bs";
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -124,18 +125,13 @@ export function MemberFollowing(props: any) {
 
             {props.actions_enabled && (
               <Button
-                variant={"contained"}
-                startIcon={
-                  <img
-                    src={"/icons/follow_icon.svg"}
-                    style={{ width: "40px", marginLeft: "16px" }}
-                    alt=""
-                  />
-                }
                 className={"follow_cancel_btn"}
                 onClick={(e) => unsubscriberHandler(e, following?.follow_id)}
               >
-                un follow
+                <BsPersonFillX
+                  style={{ fontSize: "25px", marginRight: "6px" }}
+                />
+                unfollow
               </Button>
             )}
           </Box>

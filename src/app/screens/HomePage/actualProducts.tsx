@@ -39,17 +39,17 @@ export function ActualProducts(props: any) {
   const { setTrendProducts: setTrandProducts } = actionDispatch(useDispatch());
   const { trendProducts } = useSelector(trendProductsRetriever);
 
-useEffect(() => {
-  const productService = new ProductApiService();
-  productService
-    .getTargetProducts({
-      order: "product_likes",
-      page: 1,
-      limit: 12,
-    })
-    .then((data) => setTrandProducts(data))
-    .catch((err) => console.log(err));
-}, []);
+  useEffect(() => {
+    const productService = new ProductApiService();
+    productService
+      .getTargetProducts({
+        order: "product_likes",
+        page: 1,
+        limit: 12,
+      })
+      .then((data) => setTrandProducts(data))
+      .catch((err) => console.log(err));
+  }, []);
   /* HANDLERS */
   // chosenDish
   const chosenDishHandler = (id: string) => {
@@ -61,10 +61,7 @@ useEffect(() => {
       <div className="product-container">
         <div className="container">
           <div className="product-box actual_products">
-            <div
-              className="product-main"
-              style={{ margin: "0px 10px 30px 60px" }}
-            >
+            <div className="product-main">
               <h1 className="title title_sale title_title">
                 Actual <span>Products</span>
               </h1>

@@ -775,7 +775,7 @@ body::-webkit-scrollbar-thumb:hover {
 /**** */
 .banner_section {
   position: relative;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   background-image: url("/public/images/background.png");
   background-position: center;
   width: 100%;
@@ -823,15 +823,16 @@ body::-webkit-scrollbar-thumb:hover {
   height: 280px;
   background: url("/public/images/banner1.png");
   background-position: center;
+  /* background-repeat: no-repeat; */
   margin-top: 20px;
   position: relative;
 }
-.banner-container .banner-content {
+.banner-content {
   position: absolute;
   bottom: 40px;
   left: 100px;
 }
-.banner-container .which_page {
+.which_page {
   color: #171427;
   font-weight: 530;
 }

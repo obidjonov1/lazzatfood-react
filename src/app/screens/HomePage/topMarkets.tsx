@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { Container } from "@mui/system";
 import { ImLocation2 } from "react-icons/im";
 import { FiPhone } from "react-icons/fi";
-import { AiOutlineEye, AiFillHeart } from "react-icons/ai";
+import { AiOutlineEye, AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 import { serverApi } from "../../../lib/config";
 import {
@@ -69,12 +69,12 @@ export function TopMarkets(props: any) {
 
   return (
     <Container>
-      <div className="product-container">
+      <div className="market-container">
         <div className="container">
           {/* hero */}
           <div className="product-box">
             <div className="product-main">
-              <h1 className="title">
+              <h1 className="title" style={{ marginTop: "100px" }}>
                 Top <span>Markets</span>
               </h1>
               <div className="markets-grid_box">
@@ -110,7 +110,10 @@ export function TopMarkets(props: any) {
                             </div>
                             <p></p>
                             <div className="market_likes">
-                              <AiFillHeart className="icons" />
+                              <AiFillHeart
+                                className="icons"
+                                style={{ color: "rgb(161, 157, 157)" }}
+                              />
                               <div
                                 ref={(element) =>
                                   (refs.current[ele._id] = element)

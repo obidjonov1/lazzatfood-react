@@ -73,9 +73,6 @@ export function NavbarHome(props: any) {
               <div className="header-top-actions">
                 <select name="language">
                   <option value="en-US">Eng</option>
-                  <option value="uz">Uzb</option>
-                  <option value="ru">Ru</option>
-                  <option value="kr">Kor</option>
                 </select>
               </div>
             </div>
@@ -113,27 +110,27 @@ export function NavbarHome(props: any) {
                           <ul className="dropdown-panel-list">
                             <li className="menu-title">
                               <NavLink to={"/shop"} onClick={props.setPath}>
-                                Texno
+                                Meat & Fish
                               </NavLink>
                             </li>
                             <li className="panel-list-item">
                               <NavLink to={"/shop"} onClick={props.setPath}>
-                                Home appliances
+                                Beef
                               </NavLink>
                             </li>
                             <li className="panel-list-item">
                               <NavLink to={"/shop"} onClick={props.setPath}>
-                                Kitchen appliances
+                                Lamb
                               </NavLink>
                             </li>
                             <li className="panel-list-item">
                               <NavLink to={"/shop"} onClick={props.setPath}>
-                                Auto appliances
+                                Chicken & Duck
                               </NavLink>
                             </li>
                             <li className="panel-list-item">
                               <NavLink to={"/shop"} onClick={props.setPath}>
-                                Medical appliances
+                                Fish
                               </NavLink>
                             </li>
                             <li className="panel-list-item">
@@ -150,27 +147,27 @@ export function NavbarHome(props: any) {
                           <ul className="dropdown-panel-list">
                             <li className="menu-title">
                               <NavLink to={"/shop"} onClick={props.setPath}>
-                                Beauty & Health
+                                Food
                               </NavLink>
                             </li>
                             <li className="panel-list-item">
                               <NavLink to={"/shop"} onClick={props.setPath}>
-                                Vitamins
+                                Sauces & Oils
                               </NavLink>
                             </li>
                             <li className="panel-list-item">
                               <NavLink to={"/shop"} onClick={props.setPath}>
-                                Styling Accessories
+                                Cans & Jars
                               </NavLink>
                             </li>
                             <li className="panel-list-item">
                               <NavLink to={"/shop"} onClick={props.setPath}>
-                                Korean Cosmetics
+                                Vegetables
                               </NavLink>
                             </li>
                             <li className="panel-list-item">
                               <NavLink to={"/shop"} onClick={props.setPath}>
-                                Medical Equipment
+                                Rice & Noodles
                               </NavLink>
                             </li>
                             <li className="panel-list-item">
@@ -187,27 +184,27 @@ export function NavbarHome(props: any) {
                           <ul className="dropdown-panel-list">
                             <li className="menu-title">
                               <NavLink to={"/shop"} onClick={props.setPath}>
-                                Family Shop
+                                Ready to Eat
                               </NavLink>
                             </li>
                             <li className="panel-list-item">
                               <NavLink to={"/shop"} onClick={props.setPath}>
-                                Winter items
+                                Bread & Bakery
                               </NavLink>
                             </li>
                             <li className="panel-list-item">
                               <NavLink to={"/shop"} onClick={props.setPath}>
-                                Prayer Mats
+                                Ramens
                               </NavLink>
                             </li>
                             <li className="panel-list-item">
                               <NavLink to={"/shop"} onClick={props.setPath}>
-                                Kids
+                                Snacks
                               </NavLink>
                             </li>
                             <li className="panel-list-item">
                               <NavLink to={"/shop"} onClick={props.setPath}>
-                                Sport
+                                Sweets & Desserts
                               </NavLink>
                             </li>
                             <li className="panel-list-item">

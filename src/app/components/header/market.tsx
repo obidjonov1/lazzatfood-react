@@ -65,9 +65,6 @@ export function NavbarMarket(props: any) {
               <div className="header-top-actions">
                 <select name="language">
                   <option value="en-US">Eng</option>
-                  <option value="uz">Uzb</option>
-                  <option value="ru">Rus</option>
-                  <option value="kr">Kor</option>
                 </select>
               </div>
             </div>

@@ -17,6 +17,12 @@ import { verifiedMemberData } from "../../apiServices/verify";
 export function TargetArticles(props: any) {
   /** HANDLERS */
 
+  const {
+    chosenMemberBoArticles,
+    renderChosenArticleHandler,
+    setArticlesRebuild,
+  } = props;
+
   const targetLikeHandler = async (e: any) => {
     try {
       assert.ok(verifiedMemberData, Definer.auth_err1);
@@ -27,8 +33,9 @@ export function TargetArticles(props: any) {
         group_type: "community",
       });
       assert.ok(like_result, Definer.general_err1);
+
       await sweetTopSmallSuccessAlert("success", 700, false);
-      props.setArticlesRebuild(new Date());
+      setArticlesRebuild(new Date());
     } catch (err: any) {
       console.log(err);
       sweetErrorHandling(err).then();
@@ -85,7 +92,7 @@ export function TargetArticles(props: any) {
                   <Box
                     className={"article_share_main article_share_main_box"}
                     style={{
-                      color: "#fff",
+                      color: "#606060",
                       marginLeft: "150px",
                       display: "flex",
                       alignItems: "center",

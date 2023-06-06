@@ -447,7 +447,10 @@ export function ShopPage(props: any) {
 
                 <div className="product-box">
                   <div className="product-main_box">
-                    <div className="product-grid" onClick={props.setPath}>
+                    <div
+                      className="product-grid product-grid_shop"
+                      onClick={props.setPath}
+                    >
                       {filteredProducts.map((ele: Product) => {
                         const image_path = `${serverApi}/${ele.product_images[0]}`;
                         const size_volume =

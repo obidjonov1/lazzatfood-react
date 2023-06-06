@@ -65,9 +65,6 @@ export function NavbarOthers(props: any) {
               <div className="header-top-actions">
                 <select name="language">
                   <option value="en-US">Eng</option>
-                  <option value="uz">Uzb</option>
-                  <option value="ru">Ru</option>
-                  <option value="kr">Kor</option>
                 </select>
               </div>
             </div>

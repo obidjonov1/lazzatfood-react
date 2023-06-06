@@ -123,12 +123,10 @@ export function MemberPosts(props: any) {
                       }
                       onClick={targetLikeHandler}
                     />
-
                     <span style={{ marginRight: "18px" }}>
                       {article?.art_likes}
                     </span>
-
-                    <RemoveRedEyeIcon />
+                    <RemoveRedEyeIcon style={{ color: "#606060" }} />
                     <span style={{ marginLeft: "8px" }}>
                       {article?.art_views}
                     </span>

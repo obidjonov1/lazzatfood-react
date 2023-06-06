@@ -44,7 +44,6 @@ const recommendedProductsRetriever = createSelector(
 
 export function RecommendedProducts(props: any) {
   /* INITIALIZATION */
-  const value = 5;
   const history = useHistory();
   const { setRecommendedProducts } = actionDispatch(useDispatch());
   const { recommendedProducts } = useSelector(recommendedProductsRetriever);
@@ -52,7 +51,7 @@ export function RecommendedProducts(props: any) {
   const [targetProductSearchObj, setTargetProductSearchObj] =
     useState<ProductSearchObj>({
       page: 1,
-      limit: 8,
+      limit: 10,
       order: "product_views",
       // market_mb_id: market_id,
       // product_collection: "food",
@@ -61,7 +60,7 @@ export function RecommendedProducts(props: any) {
   useEffect(() => {
     const productServise = new ProductApiService();
     productServise
-      .getTargetProducts({ order: "product_views", page: 1, limit: 8 })
+      .getTargetProducts({ order: "product_views", page: 1, limit: 10 })
       .then((data) => setRecommendedProducts(data))
       .catch((err) => console.log(err));
   }, [productRebuild]);

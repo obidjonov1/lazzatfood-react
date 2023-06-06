@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { BsFacebook, BsWhatsapp, BsTelegram } from "react-icons/bs";
 import { AiFillYoutube, AiOutlineInstagram } from "react-icons/ai";
 import { Container } from "@mui/material";
+import moment from "moment";
 
 export function Footer(props: any) {
   return (
@@ -43,7 +44,10 @@ export function Footer(props: any) {
                   </a>
                 </li>
                 <li>
-                  <a href="https://t.me/sarvarobidjonov" className="social-link">
+                  <a
+                    href="https://t.me/sarvarobidjonov"
+                    className="social-link"
+                  >
                     <BsTelegram />
                   </a>
                 </li>
@@ -122,6 +126,11 @@ export function Footer(props: any) {
               </li>
             </ul>
           </div>
+        </div>
+        <div className="liner"></div>
+        <div className="copyrights" style={{ marginTop: "15px" }}>
+          Copyrights Lazzatfood 2022 - {moment().format("YYYY")}. All rights
+          reserved
         </div>
       </Container>
     </div>

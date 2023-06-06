@@ -1,6 +1,8 @@
 .shop_cont {
-  margin: 125px 0 60px 0;
+  /* margin: 125px 0 60px 0; */
+  margin-bottom: 60px;
 }
+
 .which_market {
   font-size: 14px;
   color: #0071e3;

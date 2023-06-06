@@ -22,6 +22,7 @@ import {
 import { serverApi } from "../../../lib/config";
 import { useHistory } from "react-router-dom";
 import { verifiedMemberData } from "../../apiServices/verify";
+import { BsPersonFillAdd, BsPersonFillCheck } from "react-icons/bs";
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -127,21 +128,20 @@ export function MemberFollowers(props: any) {
                   className={"following_already"}
                   disabled
                 >
+                  <BsPersonFillCheck
+                    style={{ fontSize: "25px", marginRight: "7px" }}
+                  />
                   following
                 </Button>
               ) : (
                 <Button
                   variant={"contained"}
-                  startIcon={
-                    <img
-                      src={"/icons/follow_icon.svg"}
-                      style={{ width: "40px" }}
-                      alt=""
-                    />
-                  }
                   className={"follow_btn"}
                   onClick={(e) => subscriberHandler(e, follower?.subscriber_id)}
                 >
+                  <BsPersonFillAdd
+                    style={{ fontSize: "25px", marginRight: "7px" }}
+                  />
                   Follow Back
                 </Button>
               ))}

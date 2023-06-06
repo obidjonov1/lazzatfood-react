@@ -79,13 +79,11 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: linear-gradient(
-    180deg,
-    rgba(38, 112, 129, 0.9) 0%,
-    rgba(21, 61, 70, 0.9) 100%
-  );
-  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+  background: #fff;
+  /* background: #000000; */
+  box-shadow: 0px 0px 15px 0px rgba(50, 50, 50, 0.2);
   border-radius: 30px;
+  border: 1px solid #d9d9d9;
   overflow: hidden;
 }
 
@@ -109,13 +107,15 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 26px;
-  color: #ffffff;
+  color: #363636;
+  text-transform: capitalize;
 }
 
 .my_page .all_article_title {
   font-size: 22px;
   line-height: 33px;
-  color: #e3c08d;
+  color: #1a1818;
+  font-weight: 500;
 }
 
 .my_page .all_article_desc {
@@ -123,7 +123,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 26px;
-  color: #ffffff;
+  color: #363636;
 }
 
 .my_page .article_share {
@@ -141,24 +141,23 @@
   flex-direction: row;
 }
 .article_share_main_box span {
-  color: #fff;
+  /* color: #fff; */
 }
 
 .my_page .menu_content .follow_box {
   margin-top: 15px;
   padding: 25px 45px;
-  width: 100%;
+  width: 95%;
   height: 140px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: linear-gradient(
-    180deg,
-    rgba(38, 112, 129, 0.9) 0%,
-    rgba(21, 61, 70, 0.9) 100%
-  );
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15),
-    inset 3px 2px 9px rgba(255, 255, 255, 0.25);
+  background: #fff;
+  /* background: #000; */
+  box-shadow: 0px 0px 15px 0px rgba(50, 50, 50, 0.2);
+  border: 1px solid #d9d9d9;
+  /* box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15),
+    inset 3px 2px 9px rgba(255, 255, 255, 0.25); */
   border-radius: 17px;
 }
 
@@ -167,7 +166,7 @@
   width: 100%;
   font-size: 16px;
   line-height: 12px;
-  color: #ffffff;
+  color: #444444;
 }
 
 .my_page .follow_box .name_text {
@@ -175,7 +174,7 @@
   font-weight: 400;
   font-size: 26px;
   line-height: 24px;
-  color: #ffffff;
+  color: #444444;
   text-transform: capitalize;
 }
 
@@ -184,38 +183,40 @@
   height: 57px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   background: #30945e;
   border: 1px solid #ffffff;
   box-shadow: 1px 4px 6px rgba(211, 211, 211, 0.25),
     inset 0px 4px 4px rgba(255, 255, 255, 0.25);
   border-radius: 43px;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 24px;
   color: #ffffff;
+  text-transform: capitalize;
 }
 
 .my_page .follow_box .follow_cancel_btn {
-  width: 185px;
+  width: 175px;
   height: 57px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   background: #e81010b8;
   border: 1px solid #ffffff;
   box-shadow: 1px 4px 6px rgba(211, 211, 211, 0.25),
     inset 0px 4px 4px rgba(255, 255, 255, 0.25);
   border-radius: 43px;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 24px;
   color: #ffffff;
+  text-transform: capitalize;
 }
 
 .my_page .follow_box .following_already {
-  margin-left: 11px;
-  width: 160px;
+  /* margin-left: 11px; */
+  width: 175px;
   height: 50px;
   display: flex;
   flex-direction: row;
@@ -224,9 +225,10 @@
   box-shadow: 1px 4px 6px rgba(211, 211, 211, 0.25),
     inset 0px 4px 4px rgba(255, 255, 255, 0.25);
   border-radius: 26px;
-  font-size: 20px;
+  font-size: 14px;
   line-height: 24px;
   color: #ffffff;
+  text-transform: capitalize;
 }
 
 .my_page_frame .my_page_right {
@@ -267,9 +269,9 @@
 
 .my_page .order_info_box .order_user_img .order_user_avatar {
   width: 117px;
-  height: 112px;
+  height: 117px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  border-radius: 37px;
+  border-radius: 50%;
   margin-top: 40px;
 }
 
@@ -526,8 +528,9 @@
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
-.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-  padding: 28px 14px !important;
+
+#filled-basic {
+  height: auto;
 }
 
 .dashboard_link {

@@ -68,7 +68,10 @@ export function AllMarkets() {
     history.push(`/market/${id}`);
   };
 
+  const [activeLink, setActiveLink] = useState("mb_point");
+
   const searchHandler = (category: string) => {
+    setActiveLink(category);
     targetSearchObject.page = 1;
     targetSearchObject.order = category;
     /* setTargetSearchObject(...) butunlay o'zgargan obj qilish(kirish) kerak
@@ -116,24 +119,71 @@ export function AllMarkets() {
                 <div className="sort_btns">
                   <button
                     className="sort_btn"
+                    style={{
+                      backgroundColor:
+                        activeLink === "mb_point" ? "#43bb59" : "",
+                      color: activeLink === "mb_point" ? "white" : "",
+                      borderRadius: activeLink === "mb_point" ? "10px" : "",
+                      transform: activeLink === "mb_point" ? "scale(1.05)" : "",
+                      transition:
+                        activeLink === "mb_point"
+                          ? "all .3s cubic-bezier(0.445, 0.05, 0.55, 0.95)"
+                          : "",
+                    }}
                     onClick={() => searchHandler("mb_point")}
                   >
                     Best
                   </button>
                   <button
                     className="sort_btn"
+                    style={
+                      activeLink === "mb_views"
+                        ? {
+                            backgroundColor: "#43bb59",
+                            color: "white",
+                            borderRadius: "10px",
+                            transform: "scale(1.05)",
+                            transition:
+                              "all .3s cubic-bezier(0.445, 0.05, 0.55, 0.95)",
+                          }
+                        : {}
+                    }
                     onClick={() => searchHandler("mb_views")}
                   >
                     Famous
                   </button>
                   <button
                     className="sort_btn"
+                    style={
+                      activeLink === "mb_likes"
+                        ? {
+                            backgroundColor: "#43bb59",
+                            color: "white",
+                            borderRadius: "10px",
+                            transform: "scale(1.05)",
+                            transition:
+                              "all .3s cubic-bezier(0.445, 0.05, 0.55, 0.95)",
+                          }
+                        : {}
+                    }
                     onClick={() => searchHandler("mb_likes")}
                   >
                     In trend
                   </button>
                   <button
                     className="sort_btn"
+                    style={
+                      activeLink === "createdAt"
+                        ? {
+                            backgroundColor: "#43bb59",
+                            color: "white",
+                            borderRadius: "10px",
+                            transform: "scale(1.05)",
+                            transition:
+                              "all .3s cubic-bezier(0.445, 0.05, 0.55, 0.95)",
+                          }
+                        : {}
+                    }
                     onClick={() => searchHandler("createdAt")}
                   >
                     New

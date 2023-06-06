@@ -81,7 +81,6 @@
   line-height: 36px;
   color: #08090d;
   text-transform: capitalize;
-
 }
 
 .order_page .order_info_box .order_user_prof {
@@ -295,5 +294,12 @@
 .order_page .total_price_box .boxTotal .data_compl {
   font-size: 14px;
   line-height: 36px;
+  color: #000000;
+}
+
+.order_empty {
+  text-align: center;
+  margin-top: 90px;
+  font-size: 19px;
   color: #000000;
 }

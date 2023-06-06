@@ -123,7 +123,9 @@ export function RecommendedArticles(props: any) {
                                         }
                                         alt=""
                                       />
-                                      <span>
+                                      <span
+                                        style={{ textTransform: "capitalize" }}
+                                      >
                                         {article?.member_data?.mb_nick}
                                       </span>
                                     </div>
