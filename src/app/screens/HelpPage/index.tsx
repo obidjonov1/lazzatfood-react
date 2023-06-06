@@ -103,17 +103,29 @@ export function HelpPage() {
           <h2 className="help-page_top">Contact Us: 010-5448-9811</h2>
 
           <TabContext value={value}>
-            <TabList
-              onChange={handleChanges}
-              aria-label="simple tabs example"
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              <Tab label="Rules" value="1" />
-              <Tab label="FAQ" value="2" />
-            </TabList>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <TabList
+                TabIndicatorProps={{ style: { background: "#43bb59" } }}
+                onChange={handleChanges}
+                aria-label="simple tabs example"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  padding: "3px",
+                }}
+              >
+                <Tab
+                  label="Rules"
+                  value="1"
+                  style={{ color: "#000000", fontSize: "18px" }}
+                />
+                <Tab
+                  label="FAQ"
+                  value="2"
+                  style={{ color: "#000000", fontSize: "18px" }}
+                />
+              </TabList>
+            </div>
 
             <TabPanel value="1">
               <Stack className={"theRules_box"}>

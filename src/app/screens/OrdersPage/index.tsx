@@ -78,17 +78,37 @@ export function OrdersPage(props: any) {
             {/* ochilishi kerak bo'lgan value(page) */}
             <TabContext value={value}>
               <Box className={"order_nav_frame"}>
-                <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                <Box sx={{ width: "73%" }} className="order-frame_box">
                   <TabList
-                    TabIndicatorProps={{ style: { background: "#1976d2" } }}
+                    TabIndicatorProps={{ style: { background: "#43bb59" } }}
                     onChange={handleChange}
                     value={value}
                     aria-label="basic tabs example"
-                    style={{ display: "flex", justifyContent: "space-between" }}
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      background: "#f4f4f4",
+                      borderRadius: "16px",
+                    }}
                   >
-                    <Tab label="orders" value="1" />
-                    <Tab label="process" value="2" />
-                    <Tab label="delivered" value="3" />
+                    <Tab
+                      label="my orders"
+                      value="1"
+                      style={{
+                        marginRight: "15px",
+                        marginLeft: "115px",
+                      }}
+                    />
+                    <Tab
+                      label="process"
+                      value="2"
+                      style={{ marginRight: "15px" }}
+                    />
+                    <Tab
+                      label="delivered"
+                      value="3"
+                      // style={{ marginRight: "15px" }}
+                    />
                   </TabList>
                 </Box>
               </Box>

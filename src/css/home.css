@@ -379,10 +379,10 @@ body {
 .css-10zgwri-MuiTabPanel-root {
   padding: 0 !important;
 }
-.css-heg063-MuiTabs-flexContainer {
+/* .css-heg063-MuiTabs-flexContainer {
   justify-content: center;
   padding: 3px;
-}
+} */
 .actual-product_tablist {
   border-radius: 10px;
   background: #f4f4f4;
