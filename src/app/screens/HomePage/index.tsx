@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { HeroSection } from "./heroSection";
 import { ActualProducts } from "./actualProducts";
 import { RecommendedProducts } from "./recommendedProducts";
+import { RecommendedHealthProducts } from "./recommendedHealthProducts";
 import { RecommendedArticles } from "./recommendedArticles";
 import { NavbarHomeBanner } from "./banner";
 import { Advertisements } from "./advertisements";
 import { TopMarkets } from "./topMarkets";
-
 
 import "../../../css/home.css";
 
@@ -57,6 +57,7 @@ export function HomePage(props: any) {
       <Advertisements />
       <TopMarkets />
       <ActualProducts onAdd={props.onAdd} />
+      <RecommendedHealthProducts onAdd={props.onAdd} />
       <RecommendedProducts onAdd={props.onAdd} />
       <RecommendedArticles />
     </div>

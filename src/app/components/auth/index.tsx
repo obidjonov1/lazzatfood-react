@@ -171,7 +171,7 @@ export default function AuthenticationModal(props: any) {
                         onClick={handleLoginRequest}
                       />
                     </div>
-                    <div className="form-control">
+                    {/* <div className="form-control">
                       <p>Continue with</p>
                       <div className="icons">
                         <div className="icon" onClick={notify}>
@@ -187,7 +187,7 @@ export default function AuthenticationModal(props: any) {
                           <img src="/images/kakotalk.png" alt="" />
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <ToastContainer />
@@ -257,7 +257,7 @@ export default function AuthenticationModal(props: any) {
                         onClick={handleSignupRequest}
                       />
                     </div>
-                    <div className="form-control">
+                    {/* <div className="form-control">
                       <p>Continue with</p>
                       <div className="icons">
                         <div className="icon" onClick={notify}>
@@ -273,7 +273,7 @@ export default function AuthenticationModal(props: any) {
                           <img src="/images/kakotalk.png" alt="" />
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="img-box">

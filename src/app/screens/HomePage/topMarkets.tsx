@@ -75,7 +75,7 @@ export function TopMarkets(props: any) {
           <div className="product-box">
             <div className="product-main">
               <h1 className="title" style={{ marginTop: "100px" }}>
-                Top <span>Markets</span>
+                Our Top <span>Sellers</span>
               </h1>
               <div className="markets-grid_box">
                 {topMarkets.map((ele: Market) => {

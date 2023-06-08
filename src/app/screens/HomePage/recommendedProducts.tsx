@@ -41,7 +41,6 @@ const recommendedProductsRetriever = createSelector(
   })
 );
 
-
 export function RecommendedProducts(props: any) {
   /* INITIALIZATION */
   const history = useHistory();
@@ -51,16 +50,16 @@ export function RecommendedProducts(props: any) {
   const [targetProductSearchObj, setTargetProductSearchObj] =
     useState<ProductSearchObj>({
       page: 1,
-      limit: 10,
+      limit: 5,
       order: "product_views",
       // market_mb_id: market_id,
       // product_collection: "food",
     });
-    
+
   useEffect(() => {
     const productServise = new ProductApiService();
     productServise
-      .getTargetProducts({ order: "product_views", page: 1, limit: 10 })
+      .getTargetProducts({ order: "product_views", page: 1, limit: 5 })
       .then((data) => setRecommendedProducts(data))
       .catch((err) => console.log(err));
   }, [productRebuild]);
@@ -70,7 +69,6 @@ export function RecommendedProducts(props: any) {
   const chosenProductHandler = (id: string) => {
     history.push(`/market/product/${id}`);
   };
-
 
   // Like handle
   const targetLikeProduct = async (e: any) => {
@@ -101,9 +99,7 @@ export function RecommendedProducts(props: any) {
               className="product-main"
               style={{ margin: "0px 0px 30px 0px" }}
             >
-              <h1 className="title title_sale">
-                Recommended <span>products</span>
-              </h1>
+              <h1 className="title title_sale">Recommended products</h1>
 
               <div className="product-grid">
                 {recommendedProducts.map((ele: Product) => {
@@ -224,7 +220,9 @@ export function RecommendedProducts(props: any) {
                             </span>
                           </div>
                           <span className="product-title">
-                            {ele.product_name}
+                            {ele.product_name.length > 23
+                              ? ele.product_name.slice(0, 23) + ".."
+                              : ele.product_name}
                           </span>
                           <div className="product-cart_price_box">
                             {ele.product_discount && ele.product_price ? (

@@ -13,6 +13,9 @@ import assert from "assert";
 import { Definer } from "../../../lib/Definer";
 import MemberApiService from "../../apiServices/memberApiService";
 import { verifiedMemberData } from "../../apiServices/verify";
+import { url } from "inspector";
+import { MdDateRange } from "react-icons/md";
+import { RiArrowRightSLine } from "react-icons/ri";
 
 export function TargetArticles(props: any) {
   /** HANDLERS */
@@ -43,7 +46,7 @@ export function TargetArticles(props: any) {
   };
 
   return (
-    <Stack>
+    <div className="community_container">
       {/* targetBoArticles? - crashni oldidni olish ichida ma'lumot bo'lsa */}
       {props.targetBoArticles?.map((article: BoArticle) => {
         const art_image_url = article?.art_image
@@ -55,83 +58,68 @@ export function TargetArticles(props: any) {
           : "/images/default_user.svg";
 
         return (
-          <Link
-            className={"all_article_box"}
-            sx={{ textDecoration: "none" }}
-            href={`/member-page/other?mb_id=${article.mb_id}&art_id=${article._id}`}
-          >
-            <Box
-              className={"all_article_img"}
-              sx={{ backgroundImage: `url(${art_image_url})` }}
-            ></Box>
-            <Box className={"all_article_container"}>
-              <Box
-                alignItems={"center"}
-                display={"flex"}
-                className="article_img"
-              >
+          <div className="community_box">
+            <div className="community_image">
+              <img src={art_image_url} alt="" />
+            </div>
+            <div className="community_body">
+              <div className="community_user">
                 <img src={user_image} alt="" />
-                <span className={"all_article_author_user"}>
-                  {article?.member_data.mb_nick}
-                </span>
-              </Box>
-              <Box
-                display={"flex"}
-                flexDirection={"column"}
-                sx={{ mt: "10px" }}
-              >
-                <span className={"all_article_title"}>{article?.bo_id}</span>
-                <p className={"all_article_desc"}>{article?.art_subject}</p>
-              </Box>
-              <Box>
-                <Box
-                  className={"article_share"}
-                  style={{ width: "100%", height: "auto" }}
-                  sx={{ mb: "10px" }}
-                >
-                  <Box
-                    className={"article_share_main article_share_main_box"}
-                    style={{
-                      color: "#606060",
-                      marginLeft: "150px",
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    <span>
-                      {moment(article?.createdAt).format("YY-MM-DD HH:mm")}
-                    </span>
+                <span>{article?.member_data.mb_nick}</span>
+               
+              </div>
+              <p className="community_title">
+                {article?.art_subject.length > 33
+                  ? article?.art_subject.slice(0, 30) + "..."
+                  : article?.art_subject}
+              </p>
 
-                    <Checkbox
-                      sx={{ ml: "40px" }}
-                      icon={<AiFillLike style={{ fontSize: "22px" }} />}
-                      checkedIcon={
-                        <AiFillLike
-                          style={{ color: "primary", fontSize: "22px" }}
-                        />
-                      }
-                      id={article?._id}
-                      onClick={targetLikeHandler}
-                      checked={
-                        article?.me_liked && article.me_liked[0]?.my_favorite
-                          ? true
-                          : false
-                      }
+              <div className="like_vs_view">
+                <span className="community_date">
+                  <MdDateRange
+                    style={{ fontSize: "16px", marginRight: "5px" }}
+                  />
+                  {moment(article?.createdAt).format("LL")}
+                </span>
+                <Checkbox
+                  icon={
+                    <AiFillLike
+                      style={{ fontSize: "19px", color: "#4c4a4a" }}
                     />
-                    <span style={{ marginRight: "18px" }}>
-                      {article?.art_likes}
-                    </span>
-                    <RemoveRedEyeIcon />
-                    <span style={{ marginLeft: "8px" }}>
-                      {article?.art_views}
-                    </span>
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
-          </Link>
+                  }
+                  checkedIcon={
+                    <AiFillLike
+                      style={{ color: "primary", fontSize: "19px" }}
+                    />
+                  }
+                  id={article?._id}
+                  onClick={targetLikeHandler}
+                  checked={
+                    article?.me_liked && article.me_liked[0]?.my_favorite
+                      ? true
+                      : false
+                  }
+                />
+                <span style={{ marginRight: "18px" }}>
+                  {article?.art_likes}
+                </span>
+                <RemoveRedEyeIcon
+                  style={{ fontSize: "19px", color: "#4c4a4a" }}
+                />
+                <span style={{ marginLeft: "8px" }}>{article?.art_views}</span>
+              </div>
+              <a
+                style={{ display: "inline-block" }}
+                href={`/member-page/other?mb_id=${article.mb_id}&art_id=${article._id}`}
+              >
+                <button className="community-read_btn">
+                  read more <RiArrowRightSLine style={{ fontSize: "15px" }} />
+                </button>
+              </a>
+            </div>
+          </div>
         );
       })}
-    </Stack>
+    </div>
   );
 }

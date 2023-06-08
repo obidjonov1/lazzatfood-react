@@ -7,6 +7,7 @@ const initialState: HomePageState = {
   trendProducts: [],
   recommendedProducts: [],
   trendBoArticles: [],
+  healthProducts: [],
 };
 
 const HomePageSlice = createSlice({
@@ -28,6 +29,9 @@ const HomePageSlice = createSlice({
     setTrendBoArticles: (state, action) => {
       state.trendBoArticles = action.payload;
     },
+    setHealthProducts: (state, action) => {
+      state.healthProducts = action.payload;
+    },
   },
 });
 
@@ -37,6 +41,7 @@ export const {
   setTrendProducts,
   setRecommendedProducts,
   setTrendBoArticles,
+  setHealthProducts,
 } = HomePageSlice.actions;
 
 const HomePageReducer = HomePageSlice.reducer;

@@ -67,9 +67,17 @@ export function RecommendedArticles(props: any) {
             >
               <div className="events_frame">
                 <div className="article-swiper_cont">
-                  <h1 className="title title-recommended title_sale">
-                    Best Articles
-                  </h1>
+                  <div className="rec-community_art">
+                    <h1 className="title title-recommended title_sale">
+                      Best Articles
+                    </h1>
+                    <p
+                      onClick={goCommunityHandler}
+                      className="rec-community_art_view"
+                    >
+                      View All
+                    </p>
+                  </div>
                   <Stack className="events_main">
                     <Box className={"prev_next_frame"}>
                       <div
@@ -106,9 +114,10 @@ export function RecommendedArticles(props: any) {
                           >
                             <div className="events-section">
                               <div className="event-cards">
-                                <div
+                                <a
                                   className="event-card"
-                                  onClick={goCommunityHandler}
+                                  // onClick={goCommunityHandler}
+                                  href={`/member-page/other?mb_id=${article.mb_id}&art_id=${article._id}`}
                                 >
                                   <div className="event-card__image">
                                     <img src={art_image_url} alt="" />
@@ -147,7 +156,7 @@ export function RecommendedArticles(props: any) {
                                       </div>
                                     </div>
                                   </div>
-                                </div>
+                                </a>
                               </div>
                             </div>
                           </SwiperSlide>

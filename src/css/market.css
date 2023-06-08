@@ -5,12 +5,12 @@
   box-sizing: border-box;
 }
 img,
-button,
+/* button, */
 a {
   display: block;
 }
 
-.title {
+/* .title {
   text-align: center;
   color: #23285f;
   font-size: 32px;
@@ -18,15 +18,15 @@ a {
   letter-spacing: 0.4px;
   text-transform: capitalize;
   margin-bottom: 50px;
-}
+} */
 
 .title span {
   color: var(--color);
 }
 
-.title_sale {
+/* .title_sale {
   margin-top: 50px;
-}
+} */
 
 .markets-container {
   width: 100%;
@@ -179,9 +179,9 @@ a {
   color: #fff;
 }
 
-.product-container {
+/* .product-container {
   margin-bottom: 60px;
-}
+} */
 
 .product-container .container {
   max-width: 1280px;
@@ -370,15 +370,16 @@ a {
   padding-right: 50px;
   border: 1px solid var(--cultured);
   border-radius: var(--border-radius-md);
-  background: #f7f7f7;
+  background: #fff;
   outline: none;
+  box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.2);
 }
 
 .product_search .product-search_btn {
   position: absolute;
   right: 0;
   background: #43bb59;
-  padding: 14px 18px;
+  padding: 13px 18px;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -432,7 +433,7 @@ a {
   display: flex;
   background: #ffffff;
   border-radius: 16px;
-  border: 1px solid #c8c7c7;
+  /* border: 1px solid #c8c7c7; */
 }
 
 .chosen_dish_page .dish_swiper_down_swiper {
@@ -546,6 +547,7 @@ a {
   right: 0;
   bottom: -3px;
   box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.2);
+  background: #fff;
 }
 .write_review_btn:hover {
   box-shadow: 0px 0px 20px 0px rgba(50, 50, 50, 0.3);
@@ -584,6 +586,7 @@ a {
   align-items: center;
   padding: 10px 0;
   margin: 15px 0;
+  background: #fff;
 }
 
 .product-review_box .review_avatar {

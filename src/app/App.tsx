@@ -35,6 +35,8 @@ import "../app/apiServices/verify";
 import { CartItem } from "./screens/types/others";
 import { Product } from "./screens/types/product";
 import { BiUpArrowAlt } from "react-icons/bi";
+import { CommunityChats } from "./components/header/communityChats";
+import { AiFillMessage } from "react-icons/ai";
 
 function App() {
   /* INITIALIZATIONS */
@@ -42,7 +44,6 @@ function App() {
   const main_path = window.location.pathname;
   const [signUpOpen, setSignUpOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
-
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -135,15 +136,15 @@ function App() {
     localStorage.removeItem("cart_data");
   };
 
-  const top = () => {
-    window.scrollTo(0, 0);
-  };
+  // const top = () => {
+  //   window.scrollTo(0, 0);
+  // };
 
   return (
     <Router>
-      <p onClick={top} className="top_btn">
-        <BiUpArrowAlt className="top-btn_arrow" />
-      </p>
+      {/* <p className="top_btn">
+        <AiFillMessage className="top-btn_arrow" />
+      </p> */}
       {main_path === "/" ? (
         <NavbarHome
           setPath={setPath}
@@ -255,7 +256,8 @@ function App() {
       </Switch>
 
       <Footer setPath={setPath} />
-
+      
+      <CommunityChats />
       <AuthenticationModal
         loginOpen={loginOpen}
         handleLoginOpen={handleLoginOpen}

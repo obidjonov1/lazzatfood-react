@@ -18,7 +18,7 @@ import { verifiedMemberData } from "../../apiServices/verify";
 export function NavbarMarket(props: any) {
   return (
     <div className="format home-navbar">
-      <div className="header_top">
+      {/* <div className="header_top">
         <Container>
           <div className="header-top">
             <div className="container">
@@ -70,14 +70,18 @@ export function NavbarMarket(props: any) {
             </div>
           </div>
         </Container>
-      </div>
+      </div> */}
 
       <div className="header_main">
         <Container>
           <div className="header-main">
             <div className="container">
               <NavLink to={"/"} className="header-logo" onClick={props.setPath}>
-                <img className="logo" src="/images/logo_lazzat.png" alt="" />
+                <img
+                  className="logo"
+                  src="/images/logo_lazzat_white.png"
+                  alt=""
+                />
               </NavLink>
 
               <Container sx={{ width: "auto" }}>

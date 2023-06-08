@@ -18,6 +18,11 @@ import { retrieveTrendProducts } from "./selector";
 import { createSelector } from "reselect";
 import { serverApi } from "../../../lib/config";
 import { useHistory } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation, Mousewheel, Keyboard } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 /** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -45,7 +50,7 @@ export function ActualProducts(props: any) {
       .getTargetProducts({
         order: "product_likes",
         page: 1,
-        limit: 12,
+        limit: 15,
       })
       .then((data) => setTrandProducts(data))
       .catch((err) => console.log(err));
@@ -58,53 +63,83 @@ export function ActualProducts(props: any) {
 
   return (
     <Container>
-      <div className="product-container">
-        <div className="container">
-          <div className="product-box actual_products">
-            <div className="product-main">
-              <h1 className="title title_sale title_title">
-                Actual <span>Products</span>
-              </h1>
-              <div className="aktual-products">
-                {trendProducts.map((ele: Product) => {
-                  const image_path = `${serverApi}/${ele.product_images[0]}`;
+        <h1
+          // style={{ textAlign: "center" }}
+          className="title title_sale title_title"
+        >
+          Popular <span>Products</span>
+        </h1>
+      <Swiper
+        className={"products_wrapper"}
+        slidesPerView={5}
+        centeredSlides={false}
+        spaceBetween={325}
+        navigation={{
+          nextEl: ".restaurant-next",
+          prevEl: ".restaurant-prev",
+        }}
+        pagination={{
+          el: ".swiper-pagination",
+          clickable: true,
+        }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+      >
+        <div className="product-container">
+          <div className="container">
+            <div className="product-box actual_products">
+              <div className="product-main">
+                <div className="aktual-products">
+                  {trendProducts.map((ele: Product, index) => {
+                    const image_path = `${serverApi}/${ele.product_images[0]}`;
 
-                  return (
-                    <div className="aktual-product meal">
-                      <img
-                        className="aktual-img"
-                        src={image_path}
-                        alt="mayanez"
-                      />
-                      <div className="aktual-body">
-                        <p className="aktual-title">{ele.product_name}</p>
-                        <h1 className="aktual-price">
-                          ₩{ele.product_price.toLocaleString()}
-                        </h1>
-                      </div>
-                      <div className="actual_cart">
-                        <button className="actual-cart_btn">
-                          <AiFillEye
-                            className="actual_view_btn"
-                            onClick={() => chosenDishHandler(ele._id)}
+                    return (
+                      <SwiperSlide
+                        style={{
+                          cursor: "pointer",
+                        }}
+                        key={index}
+                        className="products"
+                      >
+                        <div className="aktual-product meal">
+                          <img
+                            className="aktual-img"
+                            src={image_path}
+                            alt="mayanez"
                           />
-                          <BiShoppingBag
-                            className="actual_btn"
-                            onClick={(e) => {
-                              props.onAdd(ele);
-                              e.stopPropagation();
-                            }}
-                          />
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
+                          <div className="aktual-body">
+                            <p className="aktual-title">{ele.product_name}</p>
+                            <h1 className="aktual-price">
+                              ₩{ele.product_price.toLocaleString()}
+                            </h1>
+                          </div>
+                          <div className="actual_cart">
+                            <button className="actual-cart_btn">
+                              <AiFillEye
+                                className="actual_view_btn"
+                                onClick={() => chosenDishHandler(ele._id)}
+                              />
+                              <BiShoppingBag
+                                className="actual_btn"
+                                onClick={(e) => {
+                                  props.onAdd(ele);
+                                  e.stopPropagation();
+                                }}
+                              />
+                            </button>
+                          </div>
+                        </div>
+                      </SwiperSlide>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </Swiper>
     </Container>
   );
 }

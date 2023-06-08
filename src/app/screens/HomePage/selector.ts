@@ -27,3 +27,7 @@ export const retrieveTrendBoArticles = createSelector(
   selectHomePage,
   (HomePage) => HomePage.trendBoArticles
 );
+export const retrieveHealthProducts = createSelector(
+  selectHomePage,
+  (HomePage) => HomePage.healthProducts
+);

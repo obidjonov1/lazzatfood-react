@@ -20,6 +20,7 @@ export interface HomePageState {
   bestMarkets: Market[];
   trendProducts: Product[];
   recommendedProducts: Product[];
+  healthProducts: Product[];
   trendBoArticles: BoArticle[];
 }
 

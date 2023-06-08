@@ -490,7 +490,7 @@ export function OneMarket(props: any) {
                                       control={<Radio />}
                                       label="Beauty & Health"
                                       onClick={() =>
-                                        searchCollectionHandler("health")
+                                        searchCollectionHandler("parfumerie")
                                       }
                                     />
                                     <FormControlLabel
@@ -641,7 +641,9 @@ export function OneMarket(props: any) {
                                 </span>
                               </div>
                               <span className="product-title">
-                                {ele.product_name}
+                                {ele.product_name.length > 23
+                                  ? ele.product_name.slice(0, 23) + ".."
+                                  : ele.product_name}
                               </span>
                               <div className="product-cart_price_box">
                                 {ele.product_discount && ele.product_price ? (

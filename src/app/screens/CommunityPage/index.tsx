@@ -45,7 +45,7 @@ export function CommunityPage(props: any) {
     {
       bo_id: "all",
       page: 1,
-      limit: 4,
+      limit: 8,
     }
   );
 
@@ -94,22 +94,38 @@ export function CommunityPage(props: any) {
         <div className={"community_frame"}>
           <Container sx={{ mt: "80px", mb: "80px" }}>
             <Stack flexDirection={"row"} justifyContent={"space-between"}>
-              <CommunityChats />
+              {/* <CommunityChats /> */}
               <Stack className={"community_all_frame"} inputMode={"text"}>
                 <TabContext value={value}>
                   <Box className={"article_tabs"}>
                     <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                       <TabList
                         value={value}
-                        TabIndicatorProps={{ style: { background: "#1976d2" } }}
+                        TabIndicatorProps={{ style: { background: "#284578" } }}
                         onChange={handleChange}
                         aria-label="lab API tabs example"
                         style={{ borderColor: "blue" }}
                       >
-                        <Tab label="All articles" value="1" />
-                        <Tab label="evaluate market" value="2" />
-                        <Tab label="review product" value="3" />
-                        <Tab label="stories" value="4" />
+                        <Tab
+                          label="All articles"
+                          value="1"
+                          style={{ color: "#172b4d", fontWeight: "600" }}
+                        />
+                        <Tab
+                          label="evaluate market"
+                          value="2"
+                          style={{ color: "#172b4d", fontWeight: "600" }}
+                        />
+                        <Tab
+                          label="review product"
+                          value="3"
+                          style={{ color: "#172b4d", fontWeight: "600" }}
+                        />
+                        <Tab
+                          label="stories"
+                          value="4"
+                          style={{ color: "#172b4d", fontWeight: "600" }}
+                        />
                       </TabList>
                     </Box>
                   </Box>

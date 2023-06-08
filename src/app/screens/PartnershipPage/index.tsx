@@ -1,9 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "@mui/system";
 import "../../../css/partners.css";
 import { NavbarOthersBanner } from "./banner";
+import { ToastContainer, toast } from "react-toastify";
+import { makeStyles } from "@material-ui/core/styles";
+
+const notify = () => {
+  toast.info("We will be in contact soon !", {
+    position: "top-right",
+    autoClose: 1500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+};
+
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 2, 2),
+  },
+}));
 
 export function PartnershipPage() {
+  /** INITIALIZATIONS */
+  const classes = useStyles();
+
+  // Til qiymatlari va tilni yangilash funktsiyasi
+  const [companyName, setCompanyName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [additionalInfo, setAdditionalInfo] = useState("");
+
+  // Input qiymatlarini tozalash funktsiyasi
+  const resetForm = () => {
+    setCompanyName("");
+    setPhone("");
+    setEmail("");
+    setAdditionalInfo("");
+  };
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    // Ma'lumotlarni yuborish
+    // ...
+    // Formani tozalash
+    event.target.reset();
+    resetForm();
+  };
+
   return (
     <div>
       <NavbarOthersBanner />
@@ -23,7 +77,8 @@ export function PartnershipPage() {
                   and we will get back to you shortly.
                 </p>
               </div>
-              <form>
+              <form onSubmit={handleSubmit}>
+                {/* Inputlarni yangilash */}
                 <div className="mt-20">
                   <div className="form-field form-field--large">
                     <label className="form-field__label">Company name</label>
@@ -32,7 +87,8 @@ export function PartnershipPage() {
                         className="form-field__input"
                         placeholder="Company name"
                         name="companyName"
-                        value=""
+                        value={companyName}
+                        onChange={(event) => setCompanyName(event.target.value)}
                       />
                     </div>
                   </div>
@@ -44,7 +100,9 @@ export function PartnershipPage() {
                         className="form-field__input"
                         placeholder="Phone"
                         name="phone"
-                        value=""
+                        type="number"
+                        value={phone}
+                        onChange={(event) => setPhone(event.target.value)}
                       />
                     </div>
                   </div>
@@ -57,7 +115,8 @@ export function PartnershipPage() {
                         placeholder="Email"
                         type="email"
                         name="email"
-                        value=""
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
                       />
                     </div>
                   </div>
@@ -71,12 +130,20 @@ export function PartnershipPage() {
                         className="form-field__textarea"
                         placeholder="Additional information"
                         name="additionalInfo"
+                        value={additionalInfo}
+                        onChange={(event) =>
+                          setAdditionalInfo(event.target.value)
+                        }
                       ></textarea>
                     </div>
                   </div>
 
                   <div className="partner_btn">
-                    <button type="submit" className="btn-order">
+                    <button
+                      type="submit"
+                      className="btn-order"
+                      onClick={notify}
+                    >
                       Submit
                     </button>
                   </div>
@@ -84,6 +151,7 @@ export function PartnershipPage() {
               </form>
             </div>
           </div>
+          <ToastContainer />
         </div>
       </Container>
     </div>

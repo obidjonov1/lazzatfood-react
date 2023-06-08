@@ -9,7 +9,7 @@ SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 export function NavbarHomeBanner(props: any) {
   return (
-    <Container>
+    <div className="swiper_home">
       <Swiper
         slidesPerView={1}
         spaceBetween={30}
@@ -21,26 +21,26 @@ export function NavbarHomeBanner(props: any) {
         modules={[Pagination, Navigation]}
         className="mySwiper"
         autoplay={{
-          delay: 3000,
+          delay: 4000,
           disableOnInteraction: true,
         }}
       >
-        <SwiperSlide>
+        {/* <SwiperSlide>
           <img src="/images/slide.jpeg" alt="" className="slide_img" />
-        </SwiperSlide>
+        </SwiperSlide> */}
         <SwiperSlide>
           <img src="/images/slide4.jpeg" alt="" className="slide_img" />
         </SwiperSlide>
         <SwiperSlide>
           <img src="/images/slide1.jpeg" alt="" className="slide_img" />
         </SwiperSlide>
-        <SwiperSlide>
+        {/* <SwiperSlide>
           <img src="/images/slide5.jpeg" alt="" className="slide_img" />
-        </SwiperSlide>
-        <SwiperSlide>
+        </SwiperSlide> */}
+        {/* <SwiperSlide>
           <img src="/images/slider3.jpeg" alt="" className="slide_img" />
-        </SwiperSlide>
+        </SwiperSlide> */}
       </Swiper>
-    </Container>
+    </div>
   );
 }

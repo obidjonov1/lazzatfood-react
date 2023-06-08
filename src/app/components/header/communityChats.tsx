@@ -22,8 +22,10 @@ import assert from "assert";
 import { Definer } from "../../../lib/Definer";
 import moment from "moment";
 import { RippleBadge } from "../../MaterialTheme/styled";
+import ScrollableFeed from "react-scrollable-feed";
 import CloseIcon from "@mui/icons-material/Close";
 import MarkUnreadChatAltIcon from "@mui/icons-material/MarkUnreadChatAlt";
+import { AiFillMessage } from "react-icons/ai";
 
 const NewMessage = (data: any) => {
   if (data.new_message.mb_id == verifiedMemberData?._id) {
@@ -69,6 +71,14 @@ export function CommunityChats() {
   const handleOpenChat = () => {
     setOpen((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setOpenButton(true);
+      // setOpen(true);
+    }, 100);
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   useEffect(() => {
     socket.connect();
@@ -168,15 +178,18 @@ export function CommunityChats() {
   return (
     <Stack className="chatting">
       {openButton ? (
-        <Button className={"chat_button"} onClick={handleOpenChat}>
+        <button className="chat_button" onClick={handleOpenChat}>
           {open ? (
             <CloseIcon />
           ) : (
-            <MarkUnreadChatAltIcon style={{ transform: "scaleX(-1)" }} />
+            <AiFillMessage
+              className="top-btn_arrow"
+              style={{ transform: "scaleX(-1)" }}
+            />
           )}
-        </Button>
+        </button>
       ) : null}
-      <Stack className={"chat_frame"}>
+      <Stack className={`chat_frame ${open ? "open" : ""}`}>
         <Box className={"chat_top"}>
           <div>Online Chat</div>
           <RippleBadge
@@ -184,17 +197,19 @@ export function CommunityChats() {
             badgeContent={onlineUsers}
           />
         </Box>
-        <Box className={"chat_content"}>
-          <Stack className={"chat_main"}>
-            <Box
-              flexDirection={"row"}
-              style={{ display: "flex" }}
-              sx={{ m: "10px 0px" }}
-            >
-              <div className={"msg_left"}>Welcome to Live chat!</div>
-            </Box>
-            {messagesList}
-          </Stack>
+        <Box className={"chat_content"} id="chat_content" ref={chatContentRef}>
+          <ScrollableFeed>
+            <Stack className={"chat_main"}>
+              <Box
+                flexDirection={"row"}
+                style={{ display: "flex" }}
+                sx={{ m: "10px 0px" }}
+              >
+                <div className={"msg_left"}>Welcome to Live chat!</div>
+              </Box>
+              {messagesList}
+            </Stack>
+          </ScrollableFeed>
         </Box>
         <Box className={"chat_bott"}>
           <input
