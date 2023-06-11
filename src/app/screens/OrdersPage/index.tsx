@@ -80,7 +80,7 @@ export function OrdersPage(props: any) {
               <Box className={"order_nav_frame"}>
                 <Box sx={{ width: "73%" }} className="order-frame_box">
                   <TabList
-                    TabIndicatorProps={{ style: { background: "#43bb59" } }}
+                    TabIndicatorProps={{ style: { background: "#284578" } }}
                     onChange={handleChange}
                     value={value}
                     aria-label="basic tabs example"

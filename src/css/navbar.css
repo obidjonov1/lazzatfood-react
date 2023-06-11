@@ -214,12 +214,14 @@ body::-webkit-scrollbar-thumb:hover {
 .header-user-actions .my_page {
   display: flex;
   align-items: center;
+  color: #fff;
+  font-weight: 500;
   /* text-decoration: underline; */
 }
 .header-user-actions .my_page .my-page_icon {
   font-size: 24px;
   margin-right: 2px;
-  color: #6a6969;
+  color: #fff;
 }
 .header-user-actions .action-btn {
   position: relative;
