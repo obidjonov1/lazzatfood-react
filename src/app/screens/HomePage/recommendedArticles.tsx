@@ -87,7 +87,7 @@ export function RecommendedArticles(props: any) {
                     <Swiper
                       className="events_info swiper-wrapper"
                       slidesPerView={"auto"}
-                      centeredSlides={true}
+                      centeredSlides={false}
                       navigation={{
                         nextEl: ".swiper-button-next",
                         prevEl: ".swiper-button-prev",
@@ -96,10 +96,10 @@ export function RecommendedArticles(props: any) {
                         el: ".swiper-pagination",
                         clickable: true,
                       }}
-                      autoplay={{
-                        delay: 2000,
-                        disableOnInteraction: true,
-                      }}
+                      // autoplay={{
+                      //   delay: 2000,
+                      //   disableOnInteraction: true,
+                      // }}
                     >
                       {trendBoArticles?.map((article: BoArticle) => {
                         const art_image_url = article?.art_image

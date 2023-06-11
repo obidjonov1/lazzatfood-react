@@ -89,7 +89,7 @@ export function CommunityPage(props: any) {
 
   return (
     <div>
-      <NavbarOthersBanner />
+      <NavbarOthersBanner onClick={props.setPath} />
       <div className={"community_page"}>
         <div className={"community_frame"}>
           <Container sx={{ mt: "80px", mb: "80px" }}>

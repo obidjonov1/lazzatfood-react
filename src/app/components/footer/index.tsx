@@ -11,11 +11,7 @@ export function Footer(props: any) {
         <div className="footer__container">
           <div className="footer__logo" onClick={props.setPath}>
             <NavLink to={"/"} className="header-logo logo_white">
-              <img
-                className="logo"
-                src="/images/logo_lazzat_white.png"
-                alt=""
-              />
+              <img className="logo" src="/images/logo1.png" alt="" />
             </NavLink>
             <div className="footer__social">
               <ul className="footer-social__items">

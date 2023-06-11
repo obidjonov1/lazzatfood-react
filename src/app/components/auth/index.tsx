@@ -215,7 +215,7 @@ export default function AuthenticationModal(props: any) {
             <div className="form-wrapper signup-container ">
               <div className="user signup">
                 <div className="form-box">
-                  <h2 className="welcome-second">Welcome to LazzatFood!</h2>
+                  <h2 className="welcome-second">Welcome to Lazzatfood!</h2>
                   <div className="form-second">
                     <div className="form-control">
                       <input

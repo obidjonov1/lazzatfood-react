@@ -68,7 +68,7 @@ export function PartnershipPage() {
           <div className="partners__block">
             <div className="partners-form">
               <div className="partners__logo">
-                <img src="./images/logo_lazzat.png" alt="" />
+                <img src="./images/logo2.png" alt="" />
               </div>
 
               <div className="partners__desc">

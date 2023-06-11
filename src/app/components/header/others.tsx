@@ -77,7 +77,7 @@ export function NavbarOthers(props: any) {
           <div className="header-main">
             <div className="container">
               <NavLink to={"/"} className="header-logo" onClick={props.setPath}>
-                <img className="logo" src="/images/logo_lazzat_white.png" alt="" />
+                <img className="logo" src="/images/logo1.png" alt="" />
               </NavLink>
 
               <Container sx={{ width: "auto" }}>
@@ -97,7 +97,10 @@ export function NavbarOthers(props: any) {
                         <NavLink className="menu-title" to={"/shop"}>
                           Shop
                         </NavLink>
-                        <BiChevronDown />
+                        <BiChevronDown
+                          style={{ color: "#fff", fontSize: "18px" }}
+                        />
+
                         <div className="dropdown-panel">
                           <ul className="dropdown-panel-list">
                             <li className="menu-title">
@@ -296,7 +299,10 @@ export function NavbarOthers(props: any) {
 
                       <li className="menu-category" onClick={props.setPath}>
                         <p className="menu-title">About Us</p>
-                        <BiChevronDown />
+                        <BiChevronDown
+                          style={{ color: "#fff", fontSize: "18px" }}
+                        />
+
                         <ul className="dropdown-list">
                           <li className="dropdown-item">
                             <NavLink to={"/news"} onClick={props.setPath}>

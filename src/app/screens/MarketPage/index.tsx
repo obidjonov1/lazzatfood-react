@@ -4,7 +4,7 @@ import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { ChosenProduct } from "./chosenProduct";
 import { OneMarket } from "./oneMarket";
 import { AllMarkets } from "./allMarkets";
-import { NavbarMarketBanner } from "./banner";
+import { NavbarOthersBanner } from "./banner";
 import "../../../css/market.css";
 
 export function MarketPage(props: any) {
@@ -13,7 +13,7 @@ export function MarketPage(props: any) {
 
   return (
     <div>
-      <NavbarMarketBanner />
+      <NavbarOthersBanner />
       <Switch>
         <Route path={`${market.path}/product/:product_id`}>
           <ChosenProduct onAdd={props.onAdd} />

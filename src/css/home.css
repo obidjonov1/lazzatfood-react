@@ -29,7 +29,53 @@ body {
   margin: 30px 0;
   left: -6px;
 }
-.market-container {
+.on-sale_container {
+  width: 100%;
+  height: 200px;
+  /* background-image: url("/public/images/banner1.png");
+  background-position: center; */
+  background: #232f3e;
+  margin: 20px 0 60px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.on-sale_container h2 {
+  font-weight: 450;
+  margin-right: 40px;
+  color: #fff;
+}
+.on-sale_container .on-sale_title {
+  color: #ed174a;
+  text-decoration: underline;
+}
+.on-sale_container .on-sale_time_items {
+  display: flex;
+  align-items: center;
+}
+.on-sale_container .on-sale_time {
+  height: 55px;
+  width: 55px;
+  background: #ed174a;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+  margin-right: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.on-sale_container .on-sale_time_dot {
+  color: #fff;
+  font-weight: 600;
+  font-size: 18px;
+  margin-right: 4px;
+}
+.on-sale_container .on-sale_discount {
+  color: #ed174a;
+  margin-left: 5px;
+  font-size: 35px;
 }
 
 /********/
@@ -432,7 +478,7 @@ body {
 }
 .health_product .health_product_text {
   position: absolute;
-  bottom: 45%;
+  bottom: 40%;
   left: 30%;
 }
 .health_product .health_product_text span {
@@ -455,7 +501,7 @@ body {
   gap: 25px;
 }
 
-.product-grid .showcase {
+.showcase {
   border: 1px solid var(--cultured);
   border-radius: var(--border-radius-md);
   overflow: hidden;
@@ -465,26 +511,26 @@ body {
   background: #fff;
 }
 
-.product-grid .showcase:hover {
+.showcase:hover {
   box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.1);
 }
 
-.product-grid .showcase-banner {
+.showcase-banner {
   position: relative;
 }
 
-.product-grid .product-img {
+.product-img {
   width: 100%;
   height: 235px;
   object-fit: cover;
   transition: var(--transition-timing);
 }
 
-.product-grid .showcase:hover .product-img {
+.showcase:hover .product-img {
   transform: scale(1.03);
 }
 
-.product-grid .showcase-badge {
+.showcase-badge {
   position: absolute;
   top: 55px;
   left: 0;
@@ -498,7 +544,7 @@ body {
   z-index: 3;
 }
 
-.product-grid .showcase-actions {
+.showcase-actions {
   position: absolute;
   top: 15px;
   right: 5px;
@@ -506,7 +552,7 @@ body {
   z-index: 2;
 }
 
-.product-grid .btn-action {
+.btn-action {
   position: relative;
   color: #929292;
   margin-bottom: 5px;
@@ -555,7 +601,7 @@ body {
   border-radius: 50%;
   font-size: 12px;
 }
-.product-grid .btn-action .view_btn {
+.btn-action .view_btn {
   position: absolute;
   left: -191px;
   top: 6px;
@@ -566,25 +612,25 @@ body {
   border-radius: 50%;
 }
 
-.product-grid .reviews_cnt {
+.reviews_cnt {
   color: #919191;
   margin-left: 6px;
   margin-top: 2px;
   /* font-size: 14px; */
 }
 
-.product-grid .product-title {
+.product-title {
   color: #525252;
   font-size: 16px;
   font-weight: 440;
   padding: 0 10px 0 10px;
   text-transform: capitalize;
 }
-.product-grid .product-cart_price_box {
+.product-cart_price_box {
   height: 26px;
   margin-top: -6px;
 }
-.product-grid .price-box {
+.price-box {
   position: relative;
   display: flex;
   gap: 10px;
@@ -600,13 +646,13 @@ body {
   z-index: 99;
   padding-left: 8px;
 }
-.product-grid .price {
+.price {
   font-weight: 500;
   color: #4f4f4f;
   margin-left: 10px;
   font-size: 19px;
 }
-.product-grid .prce_disc {
+.prce_disc {
   padding-left: 10px;
   font-size: 17px;
   color: rgb(252, 127, 148);

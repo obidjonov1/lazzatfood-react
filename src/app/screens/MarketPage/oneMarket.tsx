@@ -247,7 +247,7 @@ export function OneMarket(props: any) {
             <h1 style={{ textTransform: "capitalize" }}>
               {chosenMarket?.mb_nick} Market
             </h1>
-            <div className="scroll-markets_swipper">
+            {/* <div className="scroll-markets_swipper">
               <Stack
                 style={{ width: "100%", display: "flex" }}
                 flexDirection={"row"}
@@ -294,7 +294,7 @@ export function OneMarket(props: any) {
                   <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
                 </Box>
               </Stack>
-            </div>
+            </div> */}
           </div>
 
           <div className="products-container">

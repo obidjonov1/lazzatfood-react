@@ -215,7 +215,7 @@ function App() {
           <ShopPage setPath={setPath} onAdd={onAdd} />
         </Route>
         <Route path="/community">
-          <CommunityPage />
+          <CommunityPage setPath={setPath} />
         </Route>
         <Route path="/orders">
           <OrdersPage
@@ -256,7 +256,7 @@ function App() {
       </Switch>
 
       <Footer setPath={setPath} />
-      
+
       <CommunityChats />
       <AuthenticationModal
         loginOpen={loginOpen}
