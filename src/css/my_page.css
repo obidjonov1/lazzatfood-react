@@ -156,8 +156,6 @@
   /* background: #000; */
   box-shadow: 0px 0px 15px 0px rgba(50, 50, 50, 0.2);
   border: 1px solid #d9d9d9;
-  /* box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15),
-    inset 3px 2px 9px rgba(255, 255, 255, 0.25); */
   border-radius: 17px;
 }
 
@@ -234,25 +232,42 @@
 .my_page_frame .my_page_right {
   margin-left: 30px;
   width: 30%;
-  height: auto;
+  height: 680px;
   display: flex;
+  border-radius: 15px;
+  background: #fff;
   flex-direction: column;
+  border: 1px solid #d5d5d5;
 }
 
 .my_page .order_info_box {
   position: relative;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   width: 100%;
   max-height: 530px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #ffffff;
-  box-shadow: inset 0px 1px 1px rgb(0 0 0 / 25%),
-    inset 0px 1px 8px rgb(0 0 0 / 25%), inset 0px 4px 16px rgb(242 189 87 / 4%);
-  border-radius: 16px;
 }
 
+.my_page .order_info_box .member-img_bg {
+  width: 394px;
+  overflow: hidden;
+}
+.my_page .order_info_box .member-img_bg img {
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+.my_page .order_info_box .user-info_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 80px;
+  height: 100px;
+}
 .my_page .order_info_box .settings_btn {
   position: absolute;
   top: 11%;
@@ -268,11 +283,13 @@
 }
 
 .my_page .order_info_box .order_user_img .order_user_avatar {
+  box-shadow: 2px 3px 8px rgba(34, 34, 34, 0.32);
+  padding: 8px;
   width: 117px;
   height: 117px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border-radius: 50%;
   margin-top: 40px;
+  background: #fff;
 }
 
 .my_page .order_info_box .order_user_icon_box {
@@ -305,9 +322,8 @@
 
 .my_page .order_info_box .user_media_box {
   margin-top: 10px;
-  width: 60%;
+  width: 220px;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   cursor: pointer;
 }
@@ -346,7 +362,7 @@
 }
 
 .my_page .my_page_menu {
-  margin-top: 40px;
+  margin-top: 175px;
   width: 100%;
   height: auto;
   display: flex;
@@ -356,21 +372,19 @@
 
 .my_page_menu .menu_box {
   margin-bottom: 10px;
-  padding: 0px 20px;
+  padding: 0px 115px;
   width: 100%;
   height: 50px;
   display: flex;
   align-items: center;
-  justify-content: center;
   cursor: pointer;
-  border-radius: 20px;
-  box-shadow: inset 0px 1px 1px rgb(0 0 0 / 25%),
-    inset 0px 1px 8px rgb(0 0 0 / 25%), inset 0px 4px 16px rgb(242 189 87 / 4%);
 }
-
-/* .my_page .active {
-  background: red;
-} */
+.menu_box.active {
+  background-color: rgb(218, 218, 218);
+}
+.menu_box.active span {
+  color: #fff;
+}
 
 .my_page .menu_box img {
   width: 25px;
@@ -414,7 +428,6 @@
 }
 
 .my_page .my_settings_page .spec_label {
-  font-family: "Source Serif Pro";
   font-weight: 400;
   font-size: 16px;
   line-height: 25px;
@@ -428,13 +441,10 @@
   width: 100%;
   height: 54px;
   border: none;
-  background: #f7f7f7;
-  box-shadow: inset 0px 1px 1px rgba(242, 241, 241, 0.25),
-    inset 0px 1px 8px rgba(204, 204, 204, 0.25),
-    inset 0px 4px 16px rgba(255, 255, 255, 0.04);
-  border-radius: 5px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.2);
 
-  font-family: "GT Walsheim Pro";
   font-weight: 400;
   font-size: 15px;
   line-height: 26px;
@@ -448,13 +458,10 @@
   width: 100%;
   height: 200px;
   border: none;
-  background: #f7f7f7;
-  box-shadow: inset 0px 1px 1px rgba(242, 241, 241, 0.25),
-    inset 0px 1px 8px rgba(204, 204, 204, 0.25),
-    inset 0px 4px 16px rgba(255, 255, 255, 0.04);
-  border-radius: 5px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.2);
 
-  font-family: "GT Walsheim Pro";
   font-weight: 400;
   font-size: 15px;
   line-height: 26px;
@@ -468,11 +475,9 @@
   width: 100%;
   height: auto;
   display: flex;
-  border-radius: 5px;
-  background: #f7f7f7;
-  box-shadow: inset 0px 1px 1px rgba(242, 241, 241, 0.25),
-    inset 0px 1px 8px rgba(204, 204, 204, 0.25),
-    inset 0px 4px 16px rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.2);
 }
 .my_settings_page .member_media_frame .mb_image {
   border-radius: 50%;
@@ -490,7 +495,6 @@
 }
 
 .my_page .my_settings_page .media_change_box span {
-  font-family: "GT Walsheim Pro";
   font-weight: 400;
   font-size: 16px;
   line-height: 18px;
@@ -499,7 +503,6 @@
 
 .my_page .my_settings_page .media_change_box p {
   margin: 10px 0px 14px 0px;
-  font-family: "GT Walsheim Pro";
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
@@ -531,18 +534,4 @@
 
 #filled-basic {
   height: auto;
-}
-
-.dashboard_link {
-  margin-top: 20px;
-  text-transform: uppercase;
-  box-shadow: inset 0px 1px 1px rgb(0 0 0 / 25%),
-    inset 0px 1px 8px rgb(0 0 0 / 25%), inset 0px 4px 16px rgb(242 189 87 / 4%);
-  padding: 6px 8px;
-  border-radius: 16px;
-  font-weight: 450;
-  font-size: 15px;
-}
-.dashboard_link:hover {
-  color: #000000;
 }
