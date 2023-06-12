@@ -1,4 +1,4 @@
-// / SweetAlertHandling /;
+/** SweetAlertHandling **/
 
 import Swal from "sweetalert2";
 import { Definer } from "./Definer";
@@ -10,6 +10,22 @@ export const sweetErrorHandling = async (
   let error_message = err.message.includes("att:")
     ? err.message
     : Definer.general_err1;
+
+  if (sweet_off) {
+    alert(error_message);
+  } else {
+    await Swal.fire({
+      icon: "error",
+      text: error_message,
+      showConfirmButton: false,
+    });
+  }
+};
+
+export const auth_err1 = async (err: any, sweet_off: boolean = false) => {
+  let error_message = err.message.includes("att:")
+    ? err.message
+    : Definer.auth_err1;
 
   if (sweet_off) {
     alert(error_message);
@@ -38,7 +54,7 @@ export const sweetTopSuccessAlert = async (
 
 export const sweetTopSmallSuccessAlert = async (
   msg: string,
-  duration: number = 1000,
+  duration: number = 2000,
   enable_forward: boolean = false
 ) => {
   const Toast = Swal.mixin({

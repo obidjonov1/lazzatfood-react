@@ -37,7 +37,7 @@ export function TargetArticles(props: any) {
       });
       assert.ok(like_result, Definer.general_err1);
 
-      await sweetTopSmallSuccessAlert("success", 700, false);
+      await sweetTopSmallSuccessAlert("success", 800, false);
       setArticlesRebuild(new Date());
     } catch (err: any) {
       console.log(err);

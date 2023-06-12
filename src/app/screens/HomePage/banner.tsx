@@ -29,7 +29,7 @@ export function NavbarHomeBanner(props: any) {
           <img src="/images/slide.jpeg" alt="" className="slide_img" />
         </SwiperSlide> */}
         <SwiperSlide>
-          <img src="/images/slide4.jpeg" alt="" className="slide_img" />
+          <img src="/images/banner-1.png" alt="" className="slide_img" />
         </SwiperSlide>
         <SwiperSlide>
           <img src="/images/slide1.jpeg" alt="" className="slide_img" />

@@ -50,9 +50,7 @@
   --transition-timing: 0.2s ease;
 }
 
-*,
-*::before,
-*::after {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -83,13 +81,6 @@ img {
   cursor: pointer;
 }
 
-img,
-/* ion-icon,
-button, */
-a {
-  display: block;
-}
-
 span {
   display: inline-block;
 }
@@ -110,51 +101,12 @@ input::placeholder {
   font: inherit;
 }
 
-body {
-  background: #fff;
-  font-family: "Poppins", sans-serif;
-}
-
-body::-webkit-scrollbar {
-  width: 15px;
-}
-
-body::-webkit-scrollbar-track {
-  background: var(--white);
-  border-left: 1px solid var(--cultured);
-}
-
-body::-webkit-scrollbar-thumb {
-  background: hsl(0, 0%, 80%);
-  border: 3px solid var(--white);
-  border-radius: 10px;
-}
-
-body::-webkit-scrollbar-thumb:hover {
-  background: hsl(0, 0%, 70%);
-}
-
-.format.home-navbar .header-top {
-  height: 38px;
-  margin: 7px 0;
-  padding: 5px 0;
-}
-.header_top {
-  width: 100%;
-  border-bottom: 1px solid var(--cultured);
-}
-
 /* #HEADER */
-.header-main .container {
-  /* gap: 80px; */
-}
 .header-main {
   padding: 14px 0;
 }
 .header_main {
-  /* border-bottom: 1px solid var(--cultured); 232F3E */
   background-color: #232f3e;
-  /* background-color: #3b2f63; */
 }
 
 .header-logo {
@@ -767,6 +719,8 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .swiper_home {
   width: 100%;
+  /* max-height: 700px; */
+  /* overflow: hidden; */
 }
 .swiper-button-prev {
   margin-left: 10px;
@@ -789,8 +743,8 @@ body::-webkit-scrollbar-thumb:hover {
 .banner_section {
   /* position: relative; */
   /* margin-top: 20px; */
-  background-image: linear-gradient(rgba(0, 22, 35, 0.4), rgba(0, 43, 70, 0.4)),
-    url("/public/images/aa1.jpg");
+  background-image: linear-gradient(rgba(0, 22, 35, 0.5), rgba(0, 43, 70, 0.5)),
+    url("/public/images/abs.png");
   background-position: center;
   width: 100%;
   height: 500px;

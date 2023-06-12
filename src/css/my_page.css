@@ -239,6 +239,9 @@
   flex-direction: column;
   border: 1px solid #d5d5d5;
 }
+.my_page_frame .other_page_right {
+  height: 650px;
+}
 
 .my_page .order_info_box {
   position: relative;
@@ -369,7 +372,9 @@
   flex-direction: column;
   align-items: center;
 }
-
+.my_page .other_page_menu {
+  margin-top: 250px;
+}
 .my_page_menu .menu_box {
   margin-bottom: 10px;
   padding: 0px 115px;
