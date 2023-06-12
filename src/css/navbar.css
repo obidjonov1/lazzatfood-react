@@ -979,6 +979,9 @@ input::placeholder {
 /* END BASKET */
 
 @media only screen and (max-width: 768px) {
+  .header-main{
+    padding: 10px 0;
+  }
   .header-logo .logo {
     width: 130px;
   }

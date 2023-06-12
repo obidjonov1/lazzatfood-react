@@ -105,7 +105,7 @@ export function HelpPage() {
           <TabContext value={value}>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <TabList
-                TabIndicatorProps={{ style: { background: "#43bb59" } }}
+                TabIndicatorProps={{ style: { background: "#284578" } }}
                 onChange={handleChanges}
                 aria-label="simple tabs example"
                 style={{

@@ -746,7 +746,7 @@
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   width: 100%;
-  padding: 10px;
+  padding: 10px 0;
   position: absolute;
   bottom: 0;
 }
@@ -754,6 +754,7 @@
 .event-card__title {
   display: flex;
   align-items: center;
+  padding: 0 10px;
 }
 .event-card__title img {
   border-radius: 50%;
@@ -769,11 +770,13 @@
   font-size: 15px;
   margin-top: 8px;
   font-weight: 500;
+  padding: 0 10px;
 }
 .article-box_bottom {
   display: flex;
   justify-content: end;
   align-items: center;
+  padding: 0 10px;
 }
 .article-box_bottom span {
   font-size: 14px;
@@ -898,7 +901,7 @@
   .product-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 10px;
   }
   .showcase {
     border: 1px solid var(--cultured);
@@ -934,7 +937,7 @@
     font-size: 12px;
   }
   /* onSale product */
-  .on-sale_container{
+  .on-sale_container {
     flex-direction: column;
   }
   .on-sale_container h2 {
@@ -942,7 +945,7 @@
     margin: 8px 0 15px 0;
     text-align: center;
   }
-  .on-sale_container .on-sale_discount{
+  .on-sale_container .on-sale_discount {
     font-size: 20px;
   }
   .on-sale_container .on-sale_time {
@@ -952,5 +955,79 @@
   }
   .on-sale_container .on-sale_time_dot {
     font-size: 13px;
+  }
+  /* community */
+  .community_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .rec-community_art {
+    display: block;
+    margin-left: 5px;
+  }
+  .community_container .community_box {
+    width: 180px;
+    height: 245px;
+  }
+  .community_container .community_image {
+    height: auto;
+  }
+  .community_container .community_image img {
+    height: auto;
+  }
+  .community_body .community_user img {
+    width: 28px;
+    height: 28px;
+  }
+  .community_container .community_box .community_body {
+    padding-top: 0;
+  }
+  .community_body .community_user span {
+    font-size: 13px;
+  }
+  .community_body .community_title {
+    font-size: 12px;
+  }
+  .community_date {
+    font-size: 10px;
+    margin-right: 9px;
+  }
+  .community_body .community-read_btn {
+    font-size: 12px;
+  }
+  .chatting .chat_frame.open {
+    right: 10px;
+    width: 95%;
+  }
+  .chat_main .msg_left {
+    font-size: 14px;
+  }
+  .chat_frame .chat_top {
+    font-size: 26px;
+    height: 85px;
+  }
+  .chatting .chat_button {
+    right: 25px;
+    width: 38px;
+    height: 38px;
+  }
+  .top-btn_arrow {
+    font-size: 26px;
+  }
+  .chat_bott .send_msg_btn {
+    width: 47px;
+    height: 47px;
+  }
+  .under-construction {
+    height: 290px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .under-construction .construction {
+    font-size: 16px;
+    margin-bottom: 6px;
   }
 }
