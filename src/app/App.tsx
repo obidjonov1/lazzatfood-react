@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../css/App.css";
 import "../css/footer.css";
 import "../css/navbar.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, useHistory } from "react-router-dom";
 import { MarketPage } from "./screens/MarketPage";
 import { ShopPage } from "./screens/ShopPage";
 import { CommunityPage } from "./screens/CommunityPage";
@@ -37,6 +37,7 @@ import { Product } from "./screens/types/product";
 import { BiUpArrowAlt } from "react-icons/bi";
 import { CommunityChats } from "./components/header/communityChats";
 import { AiFillMessage } from "react-icons/ai";
+import { Responsive } from "./screens/Responsive";
 
 function App() {
   /* INITIALIZATIONS */
@@ -139,6 +140,11 @@ function App() {
   // const top = () => {
   //   window.scrollTo(0, 0);
   // };
+
+   const history = useHistory<History>();
+   const handleClickOpenAlert = () => {
+     history.push("/construction");
+   };
 
   return (
     <Router>
@@ -249,6 +255,12 @@ function App() {
         </Route>
         <Route path="/login">
           <LoginPage />
+        </Route>
+        <Route path="/construction">
+          <Responsive
+            handleClickOpenAlert={handleClickOpenAlert}
+            setPath={setPath}
+          />
         </Route>
         <Route path="/">
           <HomePage setPath={setPath} onAdd={onAdd} />

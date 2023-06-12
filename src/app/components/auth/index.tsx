@@ -171,23 +171,6 @@ export default function AuthenticationModal(props: any) {
                         onClick={handleLoginRequest}
                       />
                     </div>
-                    {/* <div className="form-control">
-                      <p>Continue with</p>
-                      <div className="icons">
-                        <div className="icon" onClick={notify}>
-                          <img src="/images/search.svg" alt="" />
-                        </div>
-                        <div className="icon" onClick={notify}>
-                          <img src="/images/facebook.png" alt="" />
-                        </div>
-                        <div className="icon" onClick={notify}>
-                          <img src="/images/naver.png" alt="" />
-                        </div>
-                        <div className="icon" onClick={notify}>
-                          <img src="/images/kakotalk.png" alt="" />
-                        </div>
-                      </div>
-                    </div> */}
                   </div>
                 </div>
                 <ToastContainer />

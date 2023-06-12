@@ -108,6 +108,32 @@ input::placeholder {
 .header_main {
   background-color: #232f3e;
 }
+.home_home {
+  background-image: linear-gradient(rgba(0, 22, 35, 0.4), rgba(0, 43, 70, 0.2)),
+    url("/public/images/home_banner.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 600px;
+  width: 100%;
+}
+.home-navbar_txt {
+  position: absolute;
+  bottom: 290px;
+  left: 30%;
+  color: #fff;
+  text-align: center;
+  /* background: rgba(0, 0, 0, 0.1); */
+  padding: 10px;
+  border-radius: 15px;
+}
+.home-navbar_txt .home-navbar_title {
+  font-weight: 550;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+.home-navbar_txt .home-navbar_subtitle {
+  font-size: 16px;
+}
 
 .header-logo {
   margin-bottom: 20px;
@@ -236,11 +262,6 @@ input::placeholder {
   color: #fff;
 }
 
-/* .header-top {
-  display: block;
-  padding: 5px 0;
-  margin-top: 7px;
-} */
 .header-social-container,
 .header-top-actions {
   display: none;
@@ -709,18 +730,8 @@ input::placeholder {
 /* login end */
 
 /* banner */
-.mySwiper {
-  /* margin-top: 20px; */
-  /* border-radius: 15px; */
-}
-.slide_img {
-  /* border-radius: 15px; */
-  /* height: 700px; */
-}
 .swiper_home {
   width: 100%;
-  /* max-height: 700px; */
-  /* overflow: hidden; */
 }
 .swiper-button-prev {
   margin-left: 10px;
@@ -728,11 +739,9 @@ input::placeholder {
 }
 .swiper-button-prev:after {
   font-size: 40px !important;
-  /* font-weight: 900; */
 }
 .swiper-button-next:after {
   font-size: 40px !important;
-  /* font-weight: 900; */
 }
 .swiper-button-next {
   margin-right: 10px;
@@ -741,8 +750,6 @@ input::placeholder {
 
 /**** */
 .banner_section {
-  /* position: relative; */
-  /* margin-top: 20px; */
   background-image: linear-gradient(rgba(0, 22, 35, 0.5), rgba(0, 43, 70, 0.5)),
     url("/public/images/abs.png");
   background-position: center;
@@ -970,3 +977,31 @@ input::placeholder {
 }
 
 /* END BASKET */
+
+@media only screen and (max-width: 768px) {
+  .header-logo .logo {
+    width: 130px;
+  }
+  .header-user-actions .action-btn {
+    font-size: 12px;
+  }
+  .login-btn-action .icon_pers {
+    font-size: 15px;
+  }
+  .login-button {
+    font-size: 13px;
+  }
+  .home-navbar_txt .home-navbar_title {
+    font-size: 25px;
+  }
+  .home_home {
+    height: 280px;
+  }
+  .home-navbar_txt {
+    left: 0;
+    bottom: 85px;
+  }
+  .home-navbar_txt .home-navbar_subtitle {
+    display: none;
+  }
+}

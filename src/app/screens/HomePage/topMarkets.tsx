@@ -20,6 +20,7 @@ import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveTopMarkets } from "../../screens/HomePage/selector";
 import { Market } from "../types/user";
+import useDeviceDetect from "../../../lib/responsiveDetector";
 
 /** REDUX SELECTOR */
 const topMarketRetriever = createSelector(retrieveTopMarkets, (topMarkets) => ({
@@ -67,89 +68,98 @@ export function TopMarkets(props: any) {
     }
   };
 
-  return (
-    <Container>
-      <div className="market-container">
-        <div className="container">
-          {/* hero */}
-          <div className="product-box">
-            <div className="product-main">
-              <h1 className="title" style={{ marginTop: "100px" }}>
-                Our Top <span>Sellers</span>
-              </h1>
-              <div className="markets-grid_box">
-                {topMarkets.map((ele: Market) => {
-                  const image_path = `${serverApi}/${ele.mb_image}`;
+  const { isMobile } = useDeviceDetect();
+  const handlePushConstruction = () => {
+    history.push("/construction");
+  };
 
-                  return (
-                    <div
-                      className="markets_box"
-                      key={ele._id}
-                      onClick={() => chosenMarketHandler(ele._id)}
-                    >
-                      <div className="markets_img">
-                        <img src={image_path} alt="" />
-                      </div>
-                      <div className="markets_info-box">
-                        <div className="info_top">
-                          <p className="info-top_nick">{ele.mb_nick}</p>
-                          <p className="info-top_address">
-                            <ImLocation2 className="info_top-icon" />
-                            {ele?.mb_address}
-                          </p>
-                          <p className="info-top_address">
-                            <FiPhone className="info_top-icon" />
-                            {ele.mb_phone}
-                          </p>
+  if (isMobile()) {
+    return null;
+  } else {
+    return (
+      <Container>
+        <div className="market-container">
+          <div className="container">
+            {/* hero */}
+            <div className="product-box">
+              <div className="product-main">
+                <h1 className="title" style={{ marginTop: "100px" }}>
+                  Our Top <span>Sellers</span>
+                </h1>
+                <div className="markets-grid_box">
+                  {topMarkets.map((ele: Market) => {
+                    const image_path = `${serverApi}/${ele.mb_image}`;
+
+                    return (
+                      <div
+                        className="markets_box"
+                        key={ele._id}
+                        onClick={() => chosenMarketHandler(ele._id)}
+                      >
+                        <div className="markets_img">
+                          <img src={image_path} alt="" />
                         </div>
-                        <div className="info_bottom">
-                          <div className="market_bottom">
-                            <div className="market_views">
-                              <AiOutlineEye className="icons" />
-                              {ele.mb_views}
-                            </div>
-                            <p></p>
-                            <div className="market_likes">
-                              <AiFillHeart
-                                className="icons"
-                                style={{ color: "rgb(161, 157, 157)" }}
-                              />
-                              <div
-                                ref={(element) =>
-                                  (refs.current[ele._id] = element)
-                                }
-                              >
-                                {ele.mb_likes}
+                        <div className="markets_info-box">
+                          <div className="info_top">
+                            <p className="info-top_nick">{ele.mb_nick}</p>
+                            <p className="info-top_address">
+                              <ImLocation2 className="info_top-icon" />
+                              {ele?.mb_address}
+                            </p>
+                            <p className="info-top_address">
+                              <FiPhone className="info_top-icon" />
+                              {ele.mb_phone}
+                            </p>
+                          </div>
+                          <div className="info_bottom">
+                            <div className="market_bottom">
+                              <div className="market_views">
+                                <AiOutlineEye className="icons" />
+                                {ele.mb_views}
+                              </div>
+                              <p></p>
+                              <div className="market_likes">
+                                <AiFillHeart
+                                  className="icons"
+                                  style={{ color: "rgb(161, 157, 157)" }}
+                                />
+                                <div
+                                  ref={(element) =>
+                                    (refs.current[ele._id] = element)
+                                  }
+                                >
+                                  {ele.mb_likes}
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div
-                        className="market_like"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                        }}
-                      >
-                        <AiFillHeart
-                          onClick={(e) => targetLikeTop(e, ele._id)}
-                          style={{
-                            fill:
-                              ele?.me_liked && ele?.me_liked[0]?.my_favorite
-                                ? "red"
-                                : "white",
+                        <div
+                          className="market_like"
+                          onClick={(e) => {
+                            e.stopPropagation();
                           }}
-                          className="market-like_icon"
-                        />
+                        >
+                          <AiFillHeart
+                            onClick={(e) => targetLikeTop(e, ele._id)}
+                            style={{
+                              fill:
+                                ele?.me_liked && ele?.me_liked[0]?.my_favorite
+                                  ? "red"
+                                  : "white",
+                            }}
+                            className="market-like_icon"
+                          />
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </Container>
-  );
+      </Container>
+    );
+  }
 }

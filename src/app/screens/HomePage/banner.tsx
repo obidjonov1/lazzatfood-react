@@ -9,38 +9,19 @@ SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 export function NavbarHomeBanner(props: any) {
   return (
-    <div className="swiper_home">
-      <Swiper
-        slidesPerView={1}
-        spaceBetween={30}
-        loop={true}
-        pagination={{
-          clickable: true,
-        }}
-        // navigation={true}
-        modules={[Pagination, Navigation]}
-        className="mySwiper"
-        autoplay={{
-          delay: 4000,
-          disableOnInteraction: true,
-        }}
-      >
-        {/* <SwiperSlide>
-          <img src="/images/slide.jpeg" alt="" className="slide_img" />
-        </SwiperSlide> */}
-        <SwiperSlide>
-          <img src="/images/banner-1.png" alt="" className="slide_img" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/images/slide1.jpeg" alt="" className="slide_img" />
-        </SwiperSlide>
-        {/* <SwiperSlide>
-          <img src="/images/slide5.jpeg" alt="" className="slide_img" />
-        </SwiperSlide> */}
-        {/* <SwiperSlide>
-          <img src="/images/slider3.jpeg" alt="" className="slide_img" />
-        </SwiperSlide> */}
-      </Swiper>
+    <div>
+      <div className="home_home"></div>;
+      <Container sx={{ position: "relative" }}>
+        <div className="home-navbar_txt">
+          <h1 className="home-navbar_title">
+            Solve your halal food need with us!
+          </h1>
+          <p className="home-navbar_subtitle">
+            We find and sell the best vegetables. <br /> sources of apples and
+            other products with great care of the farmer.
+          </p>
+        </div>
+      </Container>
     </div>
   );
 }

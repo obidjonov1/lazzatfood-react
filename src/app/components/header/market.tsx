@@ -17,61 +17,7 @@ import { verifiedMemberData } from "../../apiServices/verify";
 
 export function NavbarMarket(props: any) {
   return (
-    <div className="format home-navbar">
-      {/* <div className="header_top">
-        <Container>
-          <div className="header-top">
-            <div className="container">
-              <ul className="header-social-container">
-                <li>
-                  <a
-                    href="https://www.facebook.com/sarvar19"
-                    className="social-link"
-                  >
-                    <BsFacebook />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://youtube.com/@SarvarObidjonov"
-                    className="social-link"
-                  >
-                    <AiFillYoutube />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.instagram.com/sarvar_obidjonov1"
-                    className="social-link"
-                  >
-                    <AiOutlineInstagram />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://t.me/sarvarobidjonov"
-                    className="social-link"
-                  >
-                    <BsTelegram />
-                  </a>
-                </li>
-              </ul>
-              <div className="header-alert-news">
-                <p>
-                  <b>Free delivery </b>
-                  from ₩99.000
-                </p>
-              </div>
-              <div className="header-top-actions">
-                <select name="language">
-                  <option value="en-US">Eng</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </div> */}
-
+    <div className="format market-navbar">
       <div className="header_main">
         <Container>
           <div className="header-main">
