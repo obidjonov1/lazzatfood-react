@@ -30,7 +30,7 @@ export function Footer(props: any) {
                       href="https://www.facebook.com/sarvar19"
                       className="social-link"
                     >
-                      <BsFacebook style={{ fontSize: "12px" }} />
+                      <BsFacebook style={{ fontSize: "17px" }} />
                     </a>
                   </li>
                   <li>
@@ -38,7 +38,7 @@ export function Footer(props: any) {
                       href="https://youtube.com/@SarvarObidjonov"
                       className="social-link"
                     >
-                      <AiFillYoutube style={{ fontSize: "12px" }} />
+                      <AiFillYoutube style={{ fontSize: "17px" }} />
                     </a>
                   </li>
                   <li>
@@ -46,7 +46,7 @@ export function Footer(props: any) {
                       href="https://www.instagram.com/sarvar_obidjonov1"
                       className="social-link"
                     >
-                      <AiOutlineInstagram style={{ fontSize: "12px" }} />
+                      <AiOutlineInstagram style={{ fontSize: "17px" }} />
                     </a>
                   </li>
                   <li>
@@ -54,7 +54,7 @@ export function Footer(props: any) {
                       href="https://t.me/sarvarobidjonov"
                       className="social-link"
                     >
-                      <BsTelegram style={{ fontSize: "12px" }} />
+                      <BsTelegram style={{ fontSize: "17px" }} />
                     </a>
                   </li>
                 </ul>

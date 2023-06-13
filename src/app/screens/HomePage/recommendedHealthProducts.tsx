@@ -175,58 +175,7 @@ export function RecommendedHealthProducts(props: any) {
                         >
                           <div className="showcase-banner">
                             <p className="showcase-badge">{size_volume}</p>
-                            <div className="showcase-actions">
-                              {/* <button className="btn-action">
-                                <span className="product_view_cnt">
-                                  {ele.product_views}
-                                </span>
-                                <Badge
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                  }}
-                                >
-                                  <Checkbox
-                                    className="like_btn like_btn_action"
-                                    icon={
-                                      <AiFillHeart
-                                        className="like_btn"
-                                        style={{
-                                          color: "#fff",
-                                          fontSize: "27px",
-                                        }}
-                                      />
-                                    }
-                                    id={ele._id}
-                                    checkedIcon={
-                                      <AiFillHeart
-                                        className="like_btn"
-                                        style={{
-                                          color: "red",
-                                          fontSize: "27px",
-                                        }}
-                                      />
-                                    }
-                                    onClick={targetLikeProduct}
-                                    checked={
-                                      ele?.me_liked &&
-                                      ele?.me_liked[0]?.my_favorite
-                                        ? true
-                                        : false
-                                    }
-                                  />
-                                  <span className="product_like_cnt">
-                                    {ele.product_likes}
-                                  </span>
-                                </Badge>
-                                <AiFillEye
-                                  style={{
-                                    color: "#fff",
-                                    fontSize: "27px",
-                                  }}
-                                  className="view_btn"
-                                />
-                              </button> */}
-                            </div>
+                            <div className="showcase-actions"></div>
                           </div>
                           <div className="showcase-content">
                             <div className="price-box">
@@ -299,7 +248,9 @@ export function RecommendedHealthProducts(props: any) {
                                 }}
                               >
                                 <BiShoppingBag className="add-cart__btn" />
-                                <p>Add To Cart</p>
+                                <p onClick={handlePushConstruction}>
+                                  Add To Cart
+                                </p>
                               </button>
                             </div>
                           </div>

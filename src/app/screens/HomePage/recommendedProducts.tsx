@@ -320,7 +320,9 @@ export function RecommendedProducts(props: any) {
                                 }}
                               >
                                 <BiShoppingBag className="add-cart__btn" />
-                                <p>Add To Cart</p>
+                                <p onClick={handlePushConstruction}>
+                                  Add To Cart
+                                </p>
                               </button>
                             </div>
                           </div>

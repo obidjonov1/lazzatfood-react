@@ -10,7 +10,7 @@ SwiperCore.use([Autoplay, Navigation, Pagination]);
 export function NavbarHomeBanner(props: any) {
   return (
     <div>
-      <div className="home_home"></div>;
+      <div className="home_home"></div>
       <Container sx={{ position: "relative" }}>
         <div className="home-navbar_txt">
           <h1 className="home-navbar_title">

@@ -996,6 +996,7 @@ input::placeholder {
   }
   .home-navbar_txt .home-navbar_title {
     font-size: 25px;
+    margin-bottom: 0;
   }
   .home_home {
     height: 280px;
